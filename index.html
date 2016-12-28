@@ -51,6 +51,7 @@
 			background-color: #F33;
 			display: flex;
 			justify-content: center;
+			flex-shrink: 1;
 		}
 		.card{
 			position: relative;
@@ -184,6 +185,41 @@
 
 		var canClick = true;
 
+		var Player = function(){
+			this.deck = [];
+			this.hand = [];
+			this.score = 0;
+			this.cornCounter = 0;
+			this.card = null;
+		};
+
+		Player.prototype.drawCard = function(p1, p2){
+			if(this.deck.length > 0){
+				var _card = this.deck.pop();
+				if(_card.hasOwnProperty("drawEffect")){
+					_card.drawEffect(_card, p1, p2);
+				}
+				this.hand.push(_card);
+			}
+		};
+
+		Player.prototype.playCard = function(id, p1, p2){
+			this.card = this.hand[id];
+
+			if(this.card.hasOwnProperty("battleEffect")){
+				this.card.battleEffect(this.card, p1, p2);
+			}
+
+			if(this.card.hasOwnProperty("globalEffect")){
+				this.card.globalEffect(this.card, p1, p2);
+			}
+
+			this.hand.splice(id, 1);
+		};
+
+		var player = new Player();
+		var enemy  = new Player();
+
 		cards = {
 			"dingle": {
 				title: "Dingle, the Sticky",
@@ -212,8 +248,8 @@
 				text: "Gets more powerful with each corn played.",
 				attack: 0,
 				defense: 0,
-				globalEffect: function(obj){obj.attack = cornCounter; obj.defense = cornCounter;},
-				battleEffect: function(){cornCounter += 1;}
+				globalEffect: function(obj, p1, p2){obj.attack = p1.cornCounter; obj.defense = p1.cornCounter;},
+				battleEffect: function(obj, p1, p2){p1.cornCounter += 1;}
 			}
 		};
 
@@ -231,6 +267,15 @@
 			}
 		}
 
+		function clone(obj) {
+			if (null == obj || "object" != typeof obj) return obj;
+			var copy = obj.constructor();
+			for (var attr in obj) {
+				if (obj.hasOwnProperty(attr)) copy[attr] = obj[attr];
+			}
+			return copy;
+		}
+
 		function makeCard(dict, id){
 			var string = "<div class=\"card\" id=\""+id+"\" onclick=\"playCard(this)\">";
 			   string += "<div class=\"title\" id=\""+id+"-title\">"+dict.title+"</div>";
@@ -241,49 +286,36 @@
 			return string;
 		}
 
-		function drawCard(_deck, _hand){
-			if(_deck.length > 0){
-				var card = _deck.pop();
-				if(card.hasOwnProperty("drawEffect")){
-					card.drawEffect(card);
-				}
-				_hand.push(card);
-			}
-		}
-
 		function takeTurn(){
-			var enemyCard = enemyHand.splice(Math.floor(Math.random()*enemyHand.length), 1)[0];
+			enemy.playCard(Math.floor(Math.random()*enemy.hand.length), enemy, player);
 
-			if(enemyCard.hasOwnProperty("battleEffect")){
-				enemyCard.battleEffect();
-			}
-
-			if(enemyCard.hasOwnProperty("globalEffect")){
-				enemyCard.globalEffect(enemyCard);
-			}
-
+			var yours  = document.getElementById("your-card");
 			var theirs = document.getElementById("enemy-card");
 
-			theirs.outerHTML = makeCard(enemyCard, "enemy-card");
+			yours.outerHTML = makeCard(player.card, "your-card");
+			yours = document.getElementById("your-card");
+			yours.style.visibility = "visible";
+
+			theirs.outerHTML = makeCard(enemy.card, "enemy-card");
 			theirs = document.getElementById("enemy-card");
 			theirs.style.visibility = "visible";
 
-
 			if(yourTurn){
-				if(yourCard.attack > enemyCard.defense){
-					score += 1;
+				if(player.card.attack > enemy.card.defense){
+					player.score += 1;
 				}else{
 					yourTurn = false;
 				}
 			}else{
-				if(enemyCard.attack > yourCard.defense){
-					enemyScore += 1;
+				if(enemy.card.attack > player.card.defense){
+					enemy.score += 1;
 				}else{
 					yourTurn = true;
 				}
 			}
 
 			updateScore();
+			updateHand();
 
 			if(yourTurn){
 				document.getElementById("turn").innerText = "You're on the attack!";
@@ -291,8 +323,8 @@
 				document.getElementById("turn").innerText = "You're on the defense!";
 			}
 
-			drawCard(deck, hand);
-			drawCard(enemyDeck, enemyHand);
+			player.drawCard(player, enemy);
+			enemy.drawCard(enemy, player);
 
 			updateHand();
 
@@ -302,16 +334,16 @@
 		function updateHand(){
 			document.getElementById("hand").innerHTML = "";
 
-			for(var i = 0; i < hand.length; i++){
-				if(hand[i].hasOwnProperty("globalEffect")){
-					hand[i].globalEffect(hand[i]);
+			for(var i = 0; i < player.hand.length; i++){
+				if(player.hand[i].hasOwnProperty("globalEffect")){
+					player.hand[i].globalEffect(player.hand[i], player, enemy);
 				}
-				document.getElementById("hand").innerHTML += makeCard(hand[i], "card-"+i);
+				document.getElementById("hand").innerHTML += makeCard(player.hand[i], "card-"+i);
 			}
 		}
 
 		function updateScore(){
-			document.getElementById("score-points").innerText = score + " - " + enemyScore;
+			document.getElementById("score-points").innerText = player.score + " - " + enemy.score;
 		}
 
 		function playCard(element){
@@ -319,24 +351,10 @@
 				var cardId = parseInt(element.id.substring(5));
 
 				if(!isNaN(cardId)){
-					var yours = document.getElementById("your-card");
 					canClick = false;
 					
-					yourCard = hand[cardId];
+					player.playCard(cardId, player, enemy);
 
-					if(yourCard.hasOwnProperty("battleEffect")){
-						yourCard.battleEffect();
-					}
-
-					if(yourCard.hasOwnProperty("globalEffect")){
-						yourCard.globalEffect(yourCard);
-					}
-
-					yours.outerHTML = makeCard(yourCard, "your-card");
-					yours = document.getElementById("your-card");
-					yours.style.visibility = "visible";
-
-					hand.splice(cardId, 1);
 					updateHand();
 
 					takeTurn();
@@ -361,30 +379,24 @@
 			library.push(cards["corn"]);
 
 			for(var i = 0; i < 20; i++){
-				deck.push(library[Math.floor(Math.random()*library.length)]);
+				player.deck.push(clone(library[3]));
 			}
 			for(var i = 0; i < 20; i++){
-				enemyDeck.push(library[Math.floor(Math.random()*library.length)]);
+				enemy.deck.push(clone(library[Math.floor(Math.random()*library.length)]));
 			}
 
-			shuffle(deck);
-			shuffle(enemyDeck);
+			shuffle(player.deck);
+			shuffle(enemy.deck);
 
-			hand.push(deck.pop());
-			hand.push(deck.pop());
-			hand.push(deck.pop());
+			player.drawCard(player, enemy);
+			player.drawCard(player, enemy);
+			player.drawCard(player, enemy);
 
-			enemyHand.push(enemyDeck.pop());
-			enemyHand.push(enemyDeck.pop());
-			enemyHand.push(enemyDeck.pop());
+			enemy.drawCard(enemy, player);
+			enemy.drawCard(enemy, player);
+			enemy.drawCard(enemy, player);
 
 			updateHand();
-		}
-
-		function printDeck(){
-			for(var i = 0; i < deck.length; i++){
-				console.log(deck[i].title);
-			}
 		}
 
 		startGame();
