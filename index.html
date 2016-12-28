@@ -180,6 +180,8 @@
 		var score = 0;
 		var enemyScore = 0;
 
+		var cornCounter = 0;
+
 		var canClick = true;
 
 		cards = {
@@ -188,21 +190,30 @@
 				image: "dingle.png",
 				text: "<i>Something smells!</i>",
 				attack: 4,
-				defense: 3
+				defense: 3,
 			},
 			"mantis": {
 				title: "Mantis Man",
 				image: "manti.png",
 				text: "<i>Buzzzzz</i>",
 				attack: 7,
-				defense: 0
+				defense: 0,
 			},
 			"sweater": {
 				title: "Comfy Sweater",
 				image: "sweater.png",
 				text: "<i>It's almost too warm.</i>",
 				attack: 0,
-				defense: 10
+				defense: 10,
+			},
+			"corn": {
+				title: "Sweet Corn",
+				image: "corn.png",
+				text: "Gets more powerful with each corn played.",
+				attack: 0,
+				defense: 0,
+				globalEffect: function(obj){obj.attack = cornCounter; obj.defense = cornCounter;},
+				battleEffect: function(){cornCounter += 1;}
 			}
 		};
 
@@ -217,9 +228,7 @@
 				temporaryValue = array[currentIndex];
 				array[currentIndex] = array[randomIndex];
 				array[randomIndex] = temporaryValue;
-				}
-
-			return array;
+			}
 		}
 
 		function makeCard(dict, id){
@@ -232,8 +241,26 @@
 			return string;
 		}
 
+		function drawCard(_deck, _hand){
+			if(_deck.length > 0){
+				var card = _deck.pop();
+				if(card.hasOwnProperty("drawEffect")){
+					card.drawEffect(card);
+				}
+				_hand.push(card);
+			}
+		}
+
 		function takeTurn(){
 			var enemyCard = enemyHand.splice(Math.floor(Math.random()*enemyHand.length), 1)[0];
+
+			if(enemyCard.hasOwnProperty("battleEffect")){
+				enemyCard.battleEffect();
+			}
+
+			if(enemyCard.hasOwnProperty("globalEffect")){
+				enemyCard.globalEffect(enemyCard);
+			}
 
 			var theirs = document.getElementById("enemy-card");
 
@@ -264,12 +291,8 @@
 				document.getElementById("turn").innerText = "You're on the defense!";
 			}
 
-			if(deck.length > 0){
-				hand.push(deck.pop());
-			}
-			if(enemyDeck.length > 0){
-				enemyHand.push(enemyDeck.pop());
-			}
+			drawCard(deck, hand);
+			drawCard(enemyDeck, enemyHand);
 
 			updateHand();
 
@@ -280,6 +303,9 @@
 			document.getElementById("hand").innerHTML = "";
 
 			for(var i = 0; i < hand.length; i++){
+				if(hand[i].hasOwnProperty("globalEffect")){
+					hand[i].globalEffect(hand[i]);
+				}
 				document.getElementById("hand").innerHTML += makeCard(hand[i], "card-"+i);
 			}
 		}
@@ -297,6 +323,15 @@
 					canClick = false;
 					
 					yourCard = hand[cardId];
+
+					if(yourCard.hasOwnProperty("battleEffect")){
+						yourCard.battleEffect();
+					}
+
+					if(yourCard.hasOwnProperty("globalEffect")){
+						yourCard.globalEffect(yourCard);
+					}
+
 					yours.outerHTML = makeCard(yourCard, "your-card");
 					yours = document.getElementById("your-card");
 					yours.style.visibility = "visible";
@@ -323,6 +358,7 @@
 			library.push(cards["dingle"]);
 			library.push(cards["mantis"]);
 			library.push(cards["sweater"]);
+			library.push(cards["corn"]);
 
 			for(var i = 0; i < 20; i++){
 				deck.push(library[Math.floor(Math.random()*library.length)]);
@@ -330,6 +366,9 @@
 			for(var i = 0; i < 20; i++){
 				enemyDeck.push(library[Math.floor(Math.random()*library.length)]);
 			}
+
+			shuffle(deck);
+			shuffle(enemyDeck);
 
 			hand.push(deck.pop());
 			hand.push(deck.pop());
@@ -340,6 +379,12 @@
 			enemyHand.push(enemyDeck.pop());
 
 			updateHand();
+		}
+
+		function printDeck(){
+			for(var i = 0; i < deck.length; i++){
+				console.log(deck[i].title);
+			}
 		}
 
 		startGame();
