@@ -30,9 +30,16 @@
 		}
 		#turn{
 			position: absolute;
-			font-size: 4vmin;
+			font-size: 3vmin;
 			top:3vmin;
 			left:5vmin;
+			color:black;
+		}
+		#score{
+			position: absolute;
+			font-size: 3vmin;
+			top:3vmin;
+			right:5vmin;
 			color:black;
 		}
 		#hand{
@@ -116,6 +123,7 @@
 		<div id="main">
 			<div id="game-title">Tinker Theory 2017</div>
 			<div id="turn">You're on the attack!</div>
+			<div id="score">Score: <span id="score-points">0 - 0</span></div>
 			<div id="your-card"  class="card">
 				<div class="title" id="your-card-title">Dingle, the Stubborn</div>
 				<div class="image" id="your-card-image"></div>
@@ -161,9 +169,18 @@
 		</div>
 	</body>
 	<script type="text/javascript">
-		var yourTurn = true;
+		var yourTurn  = true;
 		var yourCard  = null;
 		var enemyCard = null;
+		var hand      = [];
+		var enemyHand = [];
+		var deck      = [];
+		var enemyDeck = [];
+
+		var score = 0;
+		var enemyScore = 0;
+
+		var canClick = true;
 
 		cards = {
 			"dingle": {
@@ -189,10 +206,8 @@
 			}
 		};
 
-		function makeCard(name, id){
-			var dict = cards[name];
-
-			var string = "<div class=\"card "+name+"\" id=\""+id+"\" onclick=\"playCard(this)\">";
+		function makeCard(dict, id){
+			var string = "<div class=\"card\" id=\""+id+"\" onclick=\"playCard(this)\">";
 			   string += "<div class=\"title\" id=\""+id+"-title\">"+dict.title+"</div>";
 			   string += "<div class=\"image\" id=\""+id+"-image\" style=\"background-image:url('images/"+dict.image+"')\"></div>";
 			   string += "<div class=\"text\"  id=\""+id+"-text\" >"+dict.text+"</div>";
@@ -202,15 +217,69 @@
 		}
 
 		function takeTurn(){
+			var enemyCard = enemyHand.splice(Math.floor(Math.random()*enemyHand.length), 1)[0];
 
+			var theirs = document.getElementById("enemy-card");
+
+			theirs.outerHTML = makeCard(enemyCard, "enemy-card");
+			theirs = document.getElementById("enemy-card");
+			theirs.style.visibility = "visible";
+
+
+			if(yourTurn){
+				if(yourCard.attack > enemyCard.defense){
+					score += 1;
+				}else{
+					yourTurn = false;
+				}
+			}else{
+				if(enemyCard.attack > yourCard.defense){
+					enemyScore += 1;
+				}else{
+					yourTurn = true;
+				}
+			}
+
+			updateScore();
+
+			if(yourTurn){
+				document.getElementById("turn").innerText = "You're on the attack!";
+			}else{
+				document.getElementById("turn").innerText = "You're on the defense!";
+			}
+
+			canClick = true;
+		}
+
+		function updateHand(){
+			document.getElementById("hand").innerHTML = "";
+
+			for(var i = 0; i < hand.length; i++){
+				document.getElementById("hand").innerHTML += makeCard(hand[i], "card-"+i);
+			}
+		}
+
+		function updateScore(){
+			document.getElementById("score-points").innerText = score + " - " + enemyScore;
 		}
 
 		function playCard(element){
-			var yours = document.getElementById("your-card");
-			yourCard = element.className.substring(5);
-			yours.outerHTML = makeCard(yourCard, "your-card");
-			yours = document.getElementById("your-card");
-			yours.style.visibility = "visible";
+			if(canClick){
+				canClick = false;
+
+				var yours = document.getElementById("your-card");
+				var cardId = parseInt(element.id.substring(5));
+
+				yourCard = hand[cardId];
+				yours.outerHTML = makeCard(yourCard, "your-card");
+				yours = document.getElementById("your-card");
+				yours.style.visibility = "visible";
+
+				hand.splice(cardId, 1);
+				updateHand();
+
+				takeTurn();
+			}
 		}
 
 		function startGame(){
@@ -222,9 +291,15 @@
 				document.getElementById("turn").innerText = "You're on the defense!";
 			}
 
-			document.getElementById("card-0").outerHTML = makeCard("dingle", "card-0");
-			document.getElementById("card-1").outerHTML = makeCard("mantis", "card-1");
-			document.getElementById("card-2").outerHTML = makeCard("sweater", "card-2");
+			hand.push(cards["dingle"]);
+			hand.push(cards["mantis"]);
+			hand.push(cards["sweater"]);
+
+			enemyHand.push(cards["dingle"]);
+			enemyHand.push(cards["mantis"]);
+			enemyHand.push(cards["sweater"]);
+
+			updateHand();
 		}
 
 		startGame();
