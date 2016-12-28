@@ -1,0 +1,128 @@
+<!doctype html>
+<html>
+<head>
+	<style>
+		body, html{
+			height:100%;
+			margin:0;
+			color: #FFF;
+			background-color: #333;
+			font-family: "Helvetica", "Arial", sans-serif;
+		}
+		#main{
+			height:80vmin;
+			width: 80vmin;
+			background-color: #DDD;
+			position: absolute;
+			top:0px;
+			left:0px;
+			right:0px;
+			bottom:0px;
+			margin:auto;
+			border-radius: 3vmin;
+		}
+		#game-title{
+			position: absolute;
+			font-size:5vmin;
+			top: -6vmin;
+			width: 80vmin;
+			text-align: center;
+		}
+		#hand{
+			position: absolute;
+			bottom: 0px;
+			left:   0px;
+			width:  80vmin;
+			height: 30vmin;
+			background-color: #F33;
+			display: flex;
+			justify-content: center;
+		}
+		.card{
+			position: relative;
+			height: 26vmin;
+			width:  16vmin;
+			margin: 1vmin;
+			padding: 1vmin;
+			background-color: #3F3;
+			border-radius: 2vmin;
+			color: black;
+			font-size: 2vmin;
+		}
+		.card:hover{
+			border: .5vmin solid #000;
+			margin: .5vmin;
+		}
+		.image{
+			background-color:#33F;
+			width:16vmin;
+			height:10vmin;
+		}
+		.text{
+			text-align: center;
+		}
+		.attack{
+			position: absolute;
+			bottom:-.5vmin;
+			left:  -.5vmin;
+			background-color: white;
+			padding:1vmin;
+			border-radius: 1vmin;
+		}
+		.card:hover .attack{
+			left:   -1vmin;
+			bottom: -1vmin;
+			border-left:.5vmin solid #000;
+			border-bottom:.5vmin solid #000;
+
+		}
+		.defense{
+			position: absolute;
+			bottom:-.5vmin;
+			right: -.5vmin;
+			background-color: white;
+			padding:1vmin;
+			border-radius: 1vmin;
+		}
+		.card:hover .defense{
+			right:  -1vmin;
+			bottom: -1vmin;
+			border-right:.5vmin solid #000;
+			border-bottom:.5vmin solid #000;
+
+		}
+		#your-card{
+			position: absolute;
+			top:10vmin;
+			left:18vmin;
+		}
+		#enemy-card{
+			position: absolute;
+			top:10vmin;
+			left:42vmin;
+		}
+	</style>
+</head>
+	<body onkeydown="keyPressed(event);">
+		<div id="main">
+			<div id="game-title">Tinker Theory 2017</div>
+			<div id="your-card"  class="card"></div>
+			<div id="enemy-card" class="card"></div>
+			<div id="hand">
+				<div class="card" id="card-0" onclick="playCard(this)">
+					<div class="title" id="card-0-title">Dingle, the Stubborn</div>
+					<div class="image" id="card-0-image"></div>
+					<div class="text"  id="card-0-text" ><i>Something stinks!</i></div>
+
+					<div class="attack"  id="card-0-attack">7</div>
+					<div class="defense" id="card-0-defense">8</div>
+				</div>
+				<div class="card" id="card-1" onclick="playCard(this)"></div>
+				<div class="card" id="card-2" onclick="playCard(this)"></div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		
+	</script>
+</html>
