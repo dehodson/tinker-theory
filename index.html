@@ -206,6 +206,22 @@
 			}
 		};
 
+		function shuffle(array) {
+			//Fisher-Yates Shuffle, gratz to stack overflow 🙏
+			var currentIndex = array.length, temporaryValue, randomIndex;
+
+			while (0 !== currentIndex) {
+				randomIndex = Math.floor(Math.random() * currentIndex);
+				currentIndex -= 1;
+
+				temporaryValue = array[currentIndex];
+				array[currentIndex] = array[randomIndex];
+				array[randomIndex] = temporaryValue;
+				}
+
+			return array;
+		}
+
 		function makeCard(dict, id){
 			var string = "<div class=\"card\" id=\""+id+"\" onclick=\"playCard(this)\">";
 			   string += "<div class=\"title\" id=\""+id+"-title\">"+dict.title+"</div>";
@@ -248,6 +264,15 @@
 				document.getElementById("turn").innerText = "You're on the defense!";
 			}
 
+			if(deck.length > 0){
+				hand.push(deck.pop());
+			}
+			if(enemyDeck.length > 0){
+				enemyHand.push(enemyDeck.pop());
+			}
+
+			updateHand();
+
 			canClick = true;
 		}
 
@@ -265,20 +290,22 @@
 
 		function playCard(element){
 			if(canClick){
-				canClick = false;
-
-				var yours = document.getElementById("your-card");
 				var cardId = parseInt(element.id.substring(5));
 
-				yourCard = hand[cardId];
-				yours.outerHTML = makeCard(yourCard, "your-card");
-				yours = document.getElementById("your-card");
-				yours.style.visibility = "visible";
+				if(!isNaN(cardId)){
+					var yours = document.getElementById("your-card");
+					canClick = false;
+					
+					yourCard = hand[cardId];
+					yours.outerHTML = makeCard(yourCard, "your-card");
+					yours = document.getElementById("your-card");
+					yours.style.visibility = "visible";
 
-				hand.splice(cardId, 1);
-				updateHand();
+					hand.splice(cardId, 1);
+					updateHand();
 
-				takeTurn();
+					takeTurn();
+				}
 			}
 		}
 
@@ -291,13 +318,26 @@
 				document.getElementById("turn").innerText = "You're on the defense!";
 			}
 
-			hand.push(cards["dingle"]);
-			hand.push(cards["mantis"]);
-			hand.push(cards["sweater"]);
+			var library = [];
 
-			enemyHand.push(cards["dingle"]);
-			enemyHand.push(cards["mantis"]);
-			enemyHand.push(cards["sweater"]);
+			library.push(cards["dingle"]);
+			library.push(cards["mantis"]);
+			library.push(cards["sweater"]);
+
+			for(var i = 0; i < 20; i++){
+				deck.push(library[Math.floor(Math.random()*library.length)]);
+			}
+			for(var i = 0; i < 20; i++){
+				enemyDeck.push(library[Math.floor(Math.random()*library.length)]);
+			}
+
+			hand.push(deck.pop());
+			hand.push(deck.pop());
+			hand.push(deck.pop());
+
+			enemyHand.push(enemyDeck.pop());
+			enemyHand.push(enemyDeck.pop());
+			enemyHand.push(enemyDeck.pop());
 
 			updateHand();
 		}
