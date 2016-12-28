@@ -51,7 +51,6 @@
 			background-color: #F33;
 			display: flex;
 			justify-content: center;
-			flex-shrink: 1;
 		}
 		.card{
 			position: relative;
@@ -204,7 +203,7 @@
 		};
 
 		Player.prototype.playCard = function(id, p1, p2){
-			this.card = this.hand[id];
+			this.card = this.hand.splice(id, 1)[0];
 
 			if(this.card.hasOwnProperty("battleEffect")){
 				this.card.battleEffect(this.card, p1, p2);
@@ -213,8 +212,6 @@
 			if(this.card.hasOwnProperty("globalEffect")){
 				this.card.globalEffect(this.card, p1, p2);
 			}
-
-			this.hand.splice(id, 1);
 		};
 
 		var player = new Player();
@@ -245,11 +242,19 @@
 			"corn": {
 				title: "Sweet Corn",
 				image: "corn.png",
-				text: "Gets more powerful with each corn played.",
+				text: "Its stats are always equal to the number of corn you've played.",
 				attack: 0,
 				defense: 0,
 				globalEffect: function(obj, p1, p2){obj.attack = p1.cornCounter; obj.defense = p1.cornCounter;},
 				battleEffect: function(obj, p1, p2){p1.cornCounter += 1;}
+			},
+			"shower": {
+				title: "Power Shower",
+				image: "shower.png",
+				text: "Gives all cards in your hand +5/+5 when you play it.",
+				attack: 1,
+				defense: 1,
+				battleEffect: function(obj, p1, p2){for(var i = 0; i < p1.hand.length; i++){p1.hand[i].attack += 5; p1.hand[i].defense += 5;}}
 			}
 		};
 
@@ -377,9 +382,10 @@
 			library.push(cards["mantis"]);
 			library.push(cards["sweater"]);
 			library.push(cards["corn"]);
+			library.push(cards["shower"]);
 
 			for(var i = 0; i < 20; i++){
-				player.deck.push(clone(library[3]));
+				player.deck.push(clone(library[Math.floor(Math.random()*library.length)]));
 			}
 			for(var i = 0; i < 20; i++){
 				enemy.deck.push(clone(library[Math.floor(Math.random()*library.length)]));
