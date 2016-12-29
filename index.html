@@ -42,6 +42,15 @@
 			right:5vmin;
 			color:black;
 		}
+		#status{
+			position: absolute;
+			font-size: 3vmin;
+			bottom: 33vmin;
+			left: 0vmin;
+			width: 80vmin;
+			color: black;
+			text-align: center;
+		}
 		#hand{
 			position: absolute;
 			bottom: 0px;
@@ -121,48 +130,10 @@
 			<div id="game-title">Tinker Theory 2017</div>
 			<div id="turn">You're on the attack!</div>
 			<div id="score">Score: <span id="score-points">0 - 0</span></div>
-			<div id="your-card"  class="card">
-				<div class="title" id="your-card-title">Dingle, the Stubborn</div>
-				<div class="image" id="your-card-image"></div>
-				<div class="text"  id="your-card-text" ><i>Something stinks!</i></div>
-
-				<div class="attack"  id="your-card-attack">7</div>
-				<div class="defense" id="your-card-defense">8</div>
-			</div>
-			<div id="enemy-card" class="card">
-				<div class="title" id="enemy-card-title">Dingle, the Stubborn</div>
-				<div class="image" id="enemy-card-image"></div>
-				<div class="text"  id="enemy-card-text" ><i>Something stinks!</i></div>
-
-				<div class="attack"  id="enemy-card-attack">7</div>
-				<div class="defense" id="enemy-card-defense">8</div>
-			</div>
-			<div id="hand">
-				<div class="card" id="card-0" onclick="playCard(this)">
-					<div class="title" id="card-0-title">Dingle, the Stubborn</div>
-					<div class="image" id="card-0-image"></div>
-					<div class="text"  id="card-0-text" ><i>Something stinks!</i></div>
-
-					<div class="attack"  id="card-0-attack">7</div>
-					<div class="defense" id="card-0-defense">8</div>
-				</div>
-				<div class="card" id="card-1" onclick="playCard(this)">
-					<div class="title" id="card-1-title">Dingle, the Stubborn</div>
-					<div class="image" id="card-1-image"></div>
-					<div class="text"  id="card-1-text" ><i>Something stinks!</i></div>
-
-					<div class="attack"  id="card-1-attack">7</div>
-					<div class="defense" id="card-1-defense">8</div>
-				</div>
-				<div class="card" id="card-2" onclick="playCard(this)">
-					<div class="title" id="card-2-title">Dingle, the Stubborn</div>
-					<div class="image" id="card-2-image"></div>
-					<div class="text"  id="card-2-text" ><i>Something stinks!</i></div>
-
-					<div class="attack"  id="card-2-attack">7</div>
-					<div class="defense" id="card-2-defense">8</div>
-				</div>
-			</div>
+			<div id="your-card"  class="card"></div>
+			<div id="enemy-card" class="card"></div>
+			<div id="hand"></div>
+			<div id="status">Waiting on an opponent...</div>
 		</div>
 	</body>
 	<script type="text/javascript">
@@ -212,6 +183,8 @@
 				if(!isNaN(cardId)){
 					canClick = false;
 					
+					document.getElementById("status").innerText = "Waiting on your opponent to play a card.";
+
 					window.socket.emit("play", {number: cardId});
 				}
 			}
@@ -244,6 +217,10 @@
 
         	yours.outerHTML  = makeCard(data.yours, "your-card");
         	theirs.outerHTML = makeCard(data.theirs, "enemy-card");
+        });
+
+        socket.on('clear status', function (){
+        	document.getElementById("status").innerText = "";
         });
 	</script>
 </html>

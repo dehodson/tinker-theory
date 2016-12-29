@@ -153,6 +153,9 @@ function clone(obj) {
 
 function takeTurn(){
 
+    players[0].connection.emit("clear status");
+    players[1].connection.emit("clear status");
+
     var attacker = players[whoseTurn];
     var defender = players[(whoseTurn + 1) % 2];
 
@@ -191,6 +194,9 @@ function startGame(){
 
     players[whoseTurn].connection.emit("turn", {bool: true});
     players[(whoseTurn + 1) % 2].connection.emit("turn", {bool: false});
+
+    players[0].connection.emit("clear status");
+    players[1].connection.emit("clear status");
 
     var library = [];
 
