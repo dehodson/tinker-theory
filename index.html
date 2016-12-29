@@ -12,6 +12,17 @@
 		#main{
 			height:80vmin;
 			width: 80vmin;
+			position: absolute;
+			top:0px;
+			left:0px;
+			right:0px;
+			bottom:0px;
+			margin:auto;
+		}
+		#game-container{
+			position: absolute;
+			height:80vmin;
+			width: 80vmin;
 			background-color: #DDD;
 			position: absolute;
 			top:0px;
@@ -20,6 +31,7 @@
 			bottom:0px;
 			margin:auto;
 			border-radius: 3vmin;
+			overflow: hidden;
 		}
 		#game-title{
 			position: absolute;
@@ -50,6 +62,14 @@
 			width: 80vmin;
 			color: black;
 			text-align: center;
+		}
+		#status .loader{
+			height: 3vmin;
+			width: 3vmin;
+			background-image: url("balls.svg");
+			background-size:5vmin 5vmin;
+			display: inline-block;
+			background-position: center;
 		}
 		#hand{
 			position: absolute;
@@ -128,12 +148,14 @@
 	<body onkeydown="keyPressed(event);">
 		<div id="main">
 			<div id="game-title">Tinker Theory 2017</div>
-			<div id="turn">You're on the attack!</div>
-			<div id="score">Score: <span id="score-points">0 - 0</span></div>
-			<div id="your-card"  class="card"></div>
-			<div id="enemy-card" class="card"></div>
-			<div id="hand"></div>
-			<div id="status">Waiting on an opponent...</div>
+			<div id="game-container">
+				<div id="turn"></div>
+				<div id="score">Score: <span id="score-points">0 - 0</span></div>
+				<div id="your-card"  class="card"></div>
+				<div id="enemy-card" class="card"></div>
+				<div id="hand"></div>
+				<div id="status">Waiting on an opponent... <div class="loader"></div></div>
+			</div>
 		</div>
 	</body>
 	<script type="text/javascript">
@@ -182,8 +204,10 @@
 
 				if(!isNaN(cardId)){
 					canClick = false;
+
+					element.style.backgroundColor = "#7F7";
 					
-					document.getElementById("status").innerText = "Waiting on your opponent to play a card.";
+					document.getElementById("status").innerHTML = "Waiting on your opponent to play a card... <div class=\"loader\"></div>";
 
 					window.socket.emit("play", {number: cardId});
 				}
