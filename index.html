@@ -107,15 +107,14 @@
 			position: absolute;
 			top:10vmin;
 			left:18vmin;
-			visibility: hidden;
 		}
 		#enemy-card{
 			position: absolute;
 			top:10vmin;
 			left:42vmin;
-			visibility: hidden;
 		}
 	</style>
+	<script type="text/javascript" src="/socket.io/socket.io.js"></script>
 </head>
 	<body onkeydown="keyPressed(event);">
 		<div id="main">
@@ -167,105 +166,13 @@
 		</div>
 	</body>
 	<script type="text/javascript">
-		var yourTurn  = true;
+		var yourTurn = true;
 		var canClick = true;
+		var socket = io.connect('/');
 
-		var Player = function(){
-			this.deck = [];
-			this.hand = [];
-			this.score = 0;
-			this.cornCounter = 0;
-			this.card = null;
-		};
+		socket.emit("test");
 
-		Player.prototype.drawCard = function(p1, p2){
-			if(this.deck.length > 0){
-				var _card = this.deck.pop();
-				if(_card.hasOwnProperty("drawEffect")){
-					_card.drawEffect(_card, p1, p2);
-				}
-				this.hand.push(_card);
-			}
-		};
-
-		Player.prototype.playCard = function(id, p1, p2){
-			this.card = this.hand.splice(id, 1)[0];
-
-			if(this.card.hasOwnProperty("battleEffect")){
-				this.card.battleEffect(this.card, p1, p2);
-			}
-
-			if(this.card.hasOwnProperty("globalEffect")){
-				this.card.globalEffect(this.card, p1, p2);
-			}
-		};
-
-		var player = new Player();
-		var enemy  = new Player();
-
-		cards = {
-			"dingle": {
-				title: "Dingle, the Sticky",
-				image: "dingle.png",
-				text: "<i>Something smells!</i>",
-				attack: 4,
-				defense: 3,
-			},
-			"mantis": {
-				title: "Mantis Man",
-				image: "manti.png",
-				text: "<i>Buzzzzz</i>",
-				attack: 7,
-				defense: 0,
-			},
-			"sweater": {
-				title: "Comfy Sweater",
-				image: "sweater.png",
-				text: "<i>It's almost too warm.</i>",
-				attack: 0,
-				defense: 10,
-			},
-			"corn": {
-				title: "Sweet Corn",
-				image: "corn.png",
-				text: "When you play it, it gets +1/+1 for every corn you've played so far.",
-				attack: 0,
-				defense: 0,
-				globalEffect: function(obj, p1, p2){obj.text = "When you play it, it gets +1/+1 for every corn you've played so far. ("+p1.cornCounter+")";},
-				battleEffect: function(obj, p1, p2){p1.cornCounter += 1; obj.attack += p1.cornCounter; obj.defense += p1.cornCounter;}
-			},
-			"shower": {
-				title: "Power Shower",
-				image: "shower.png",
-				text: "Gives all cards in your hand +5/+5 when you play it.",
-				attack: 1,
-				defense: 1,
-				battleEffect: function(obj, p1, p2){for(var i = 0; i < p1.hand.length; i++){p1.hand[i].attack += 5; p1.hand[i].defense += 5;}}
-			}
-		};
-
-		function shuffle(array) {
-			//Fisher-Yates Shuffle, gratz to stack overflow 🙏
-			var currentIndex = array.length, temporaryValue, randomIndex;
-
-			while (0 !== currentIndex) {
-				randomIndex = Math.floor(Math.random() * currentIndex);
-				currentIndex -= 1;
-
-				temporaryValue = array[currentIndex];
-				array[currentIndex] = array[randomIndex];
-				array[randomIndex] = temporaryValue;
-			}
-		}
-
-		function clone(obj) {
-			if (null == obj || "object" != typeof obj) return obj;
-			var copy = obj.constructor();
-			for (var attr in obj) {
-				if (obj.hasOwnProperty(attr)) copy[attr] = obj[attr];
-			}
-			return copy;
-		}
+		var hand = [];
 
 		function makeCard(dict, id){
 			var string = "<div class=\"card\" id=\""+id+"\" onclick=\"playCard(this)\">";
@@ -277,67 +184,19 @@
 			return string;
 		}
 
-		function takeTurn(){
-			enemy.playCard(Math.floor(Math.random()*enemy.hand.length), enemy, player);
-
-			var yours  = document.getElementById("your-card");
-			var theirs = document.getElementById("enemy-card");
-
-			yours.outerHTML = makeCard(player.card, "your-card");
-			yours = document.getElementById("your-card");
-			yours.style.visibility = "visible";
-
-			theirs.outerHTML = makeCard(enemy.card, "enemy-card");
-			theirs = document.getElementById("enemy-card");
-			theirs.style.visibility = "visible";
-
-			if(yourTurn){
-				if(player.card.attack > enemy.card.defense){
-					player.score += 1;
-				}else{
-					yourTurn = false;
-				}
-			}else{
-				if(enemy.card.attack > player.card.defense){
-					enemy.score += 1;
-				}else{
-					yourTurn = true;
-				}
-			}
-
-			updateScore();
-			updateHand();
-
-			if(yourTurn){
-				document.getElementById("turn").innerText = "You're on the attack!";
-			}else{
-				document.getElementById("turn").innerText = "You're on the defense!";
-			}
-
-			player.drawCard(player, enemy);
-			enemy.drawCard(enemy, player);
-
-			updateHand();
-
-			canClick = true;
-		}
-
 		function updateHand(){
 			document.getElementById("hand").innerHTML = "";
 
-			if(player.hand.length > 3){
+			if(hand.length > 3){
 				var offset = 0;
-				var diff = 60 / (player.hand.length - 1);
+				var diff = 60 / (hand.length - 1);
 			}else{
-				var offset = (80 - (player.hand.length * 20)) / 2;
+				var offset = (80 - (hand.length * 20)) / 2;
 				var diff = 20;
 			}
 
-			for(var i = 0; i < player.hand.length; i++){
-				if(player.hand[i].hasOwnProperty("globalEffect")){
-					player.hand[i].globalEffect(player.hand[i], player, enemy);
-				}
-				document.getElementById("hand").innerHTML += makeCard(player.hand[i], "card-"+i);
+			for(var i = 0; i < hand.length; i++){
+				document.getElementById("hand").innerHTML += makeCard(hand[i], "card-"+i);
 				document.getElementById("card-"+i).style.left = (offset + (diff * i)) + "vmin";
 			}
 		}
@@ -353,56 +212,38 @@
 				if(!isNaN(cardId)){
 					canClick = false;
 					
-					player.playCard(cardId, player, enemy);
-
-					updateHand();
-
-					takeTurn();
+					window.socket.emit("play", {number: cardId});
 				}
 			}
 		}
 
-		function startGame(){
-			yourTurn = Math.random() > .5;
-
-			if(yourTurn){
+		socket.on('turn', function( data ) {
+            if(data.bool){
 				document.getElementById("turn").innerText = "You're on the attack!";
 			}else{
 				document.getElementById("turn").innerText = "You're on the defense!";
 			}
+        });
 
-			var library = [];
+        socket.on('hand', function( data ) {
+        	hand = data.hand;
+            updateHand();
+        });
 
-			library.push(cards["dingle"]);
-			library.push(cards["mantis"]);
-			library.push(cards["sweater"]);
-			library.push(cards["corn"]);
-			library.push(cards["shower"]);
+        socket.on('can click', function() {
+        	canClick = true;
+        });
 
-			for(var i = 0; i < 20; i++){
-				player.deck.push(clone(library[Math.floor(Math.random()*library.length)]));
-			}
-			for(var i = 0; i < 20; i++){
-				enemy.deck.push(clone(library[Math.floor(Math.random()*library.length)]));
-			}
+        socket.on('score', function( data ) {
+        	document.getElementById("score-points").innerText = data.you + " - " + data.them;
+        });
 
-			shuffle(player.deck);
-			shuffle(enemy.deck);
+        socket.on('battle', function( data ) {
+        	var yours  = document.getElementById("your-card");
+        	var theirs = document.getElementById("enemy-card");
 
-			player.drawCard(player, enemy);
-			player.drawCard(player, enemy);
-			player.drawCard(player, enemy);
-			player.drawCard(player, enemy);
-			player.drawCard(player, enemy);
-			player.drawCard(player, enemy);
-
-			enemy.drawCard(enemy, player);
-			enemy.drawCard(enemy, player);
-			enemy.drawCard(enemy, player);
-
-			updateHand();
-		}
-
-		startGame();
+        	yours.outerHTML  = makeCard(data.yours, "your-card");
+        	theirs.outerHTML = makeCard(data.theirs, "enemy-card");
+        });
 	</script>
 </html>
