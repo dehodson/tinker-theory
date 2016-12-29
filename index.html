@@ -49,11 +49,9 @@
 			width:  80vmin;
 			height: 30vmin;
 			background-color: #F33;
-			display: flex;
-			justify-content: center;
 		}
 		.card{
-			position: relative;
+			position: absolute;
 			height: 26vmin;
 			width:  16vmin;
 			margin: 1vmin;
@@ -66,6 +64,7 @@
 		.card:hover{
 			border: .5vmin solid #000;
 			margin: .5vmin;
+			z-index: 100;
 		}
 		.image{
 			background-size: 100%;
@@ -88,7 +87,6 @@
 			bottom: -1vmin;
 			border-left:.5vmin solid #000;
 			border-bottom:.5vmin solid #000;
-
 		}
 		.defense{
 			position: absolute;
@@ -170,18 +168,6 @@
 	</body>
 	<script type="text/javascript">
 		var yourTurn  = true;
-		var yourCard  = null;
-		var enemyCard = null;
-		var hand      = [];
-		var enemyHand = [];
-		var deck      = [];
-		var enemyDeck = [];
-
-		var score = 0;
-		var enemyScore = 0;
-
-		var cornCounter = 0;
-
 		var canClick = true;
 
 		var Player = function(){
@@ -242,11 +228,11 @@
 			"corn": {
 				title: "Sweet Corn",
 				image: "corn.png",
-				text: "Its stats are always equal to the number of corn you've played.",
+				text: "When you play it, it gets +1/+1 for every corn you've played so far.",
 				attack: 0,
 				defense: 0,
-				globalEffect: function(obj, p1, p2){obj.attack = p1.cornCounter; obj.defense = p1.cornCounter;},
-				battleEffect: function(obj, p1, p2){p1.cornCounter += 1;}
+				globalEffect: function(obj, p1, p2){obj.text = "When you play it, it gets +1/+1 for every corn you've played so far. ("+p1.cornCounter+")";},
+				battleEffect: function(obj, p1, p2){p1.cornCounter += 1; obj.attack += p1.cornCounter; obj.defense += p1.cornCounter;}
 			},
 			"shower": {
 				title: "Power Shower",
@@ -339,11 +325,20 @@
 		function updateHand(){
 			document.getElementById("hand").innerHTML = "";
 
+			if(player.hand.length > 3){
+				var offset = 0;
+				var diff = 60 / (player.hand.length - 1);
+			}else{
+				var offset = (80 - (player.hand.length * 20)) / 2;
+				var diff = 20;
+			}
+
 			for(var i = 0; i < player.hand.length; i++){
 				if(player.hand[i].hasOwnProperty("globalEffect")){
 					player.hand[i].globalEffect(player.hand[i], player, enemy);
 				}
 				document.getElementById("hand").innerHTML += makeCard(player.hand[i], "card-"+i);
+				document.getElementById("card-"+i).style.left = (offset + (diff * i)) + "vmin";
 			}
 		}
 
@@ -394,6 +389,9 @@
 			shuffle(player.deck);
 			shuffle(enemy.deck);
 
+			player.drawCard(player, enemy);
+			player.drawCard(player, enemy);
+			player.drawCard(player, enemy);
 			player.drawCard(player, enemy);
 			player.drawCard(player, enemy);
 			player.drawCard(player, enemy);
