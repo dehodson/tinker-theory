@@ -86,11 +86,11 @@ var Game = function(){
 Game.prototype.startGame = function(){
     this.whoseTurn = Math.floor(Math.random() * 2);
 
-    this.players[this.whoseTurn].connection.emit("turn", {bool: true});
-    this.players[(this.whoseTurn + 1) % 2].connection.emit("turn", {bool: false});
-
     this.players[0].connection.emit("clear status");
     this.players[1].connection.emit("clear status");
+
+    this.players[this.whoseTurn].connection.emit("turn", {bool: true});
+    this.players[(this.whoseTurn + 1) % 2].connection.emit("turn", {bool: false});
 
     var library = [];
 
@@ -99,12 +99,13 @@ Game.prototype.startGame = function(){
     library.push(cards["sweater"]);
     library.push(cards["corn"]);
     library.push(cards["shower"]);
+    library.push(cards["smug"]);
 
     for(var i = 0; i < 20; i++){
-        this.players[0].deck.push(clone(library[Math.floor(Math.random()*library.length)]));
+        this.players[0].deck.push(clone(library[i % library.length]));
     }
     for(var i = 0; i < 20; i++){
-        this.players[1].deck.push(clone(library[Math.floor(Math.random()*library.length)]));
+        this.players[1].deck.push(clone(library[i % library.length]));
     }
 
     shuffle(this.players[0].deck);
@@ -133,17 +134,20 @@ Game.prototype.takeTurn = function(){
     if(attacker.card.hasOwnProperty("globalEffect")){
         attacker.card.globalEffect(attacker.card, attacker, defender);
     }
-
-    if(attacker.card.hasOwnProperty("battleEffect")){
-        attacker.card.battleEffect(attacker.card, attacker, defender);
-    }
-
     if(defender.card.hasOwnProperty("globalEffect")){
         defender.card.globalEffect(defender.card, defender, attacker);
     }
-
+    if(attacker.card.hasOwnProperty("battleEffect")){
+        attacker.card.battleEffect(attacker.card, attacker, defender);
+    }
     if(defender.card.hasOwnProperty("battleEffect")){
         defender.card.battleEffect(defender.card, defender, attacker);
+    }
+    if(attacker.card.hasOwnProperty("globalEffect")){
+        attacker.card.globalEffect(attacker.card, attacker, defender);
+    }
+    if(defender.card.hasOwnProperty("globalEffect")){
+        defender.card.globalEffect(defender.card, defender, attacker);
     }
 
     if(attacker.card.attack > defender.card.defense){
@@ -201,14 +205,14 @@ cards = {
         image: "sweater.png",
         text: "<i>It's almost too warm.</i>",
         attack: 0,
-        defense: 10,
+        defense: 7,
     },
     "corn": {
         title: "Sweet Corn",
         image: "corn.png",
         text: "When you play it, it gets +1/+1 for every corn you've played so far.",
-        attack: 0,
-        defense: 0,
+        attack: 2,
+        defense: 2,
         globalEffect: function(obj, p1, p2){obj.text = "When you play it, it gets +1/+1 for every corn you've played so far. ("+p1.cornCounter+")";},
         battleEffect: function(obj, p1, p2){p1.cornCounter += 1; obj.attack += p1.cornCounter; obj.defense += p1.cornCounter;}
     },
@@ -219,6 +223,14 @@ cards = {
         attack: 1,
         defense: 1,
         battleEffect: function(obj, p1, p2){for(var i = 0; i < p1.hand.length; i++){p1.hand[i].attack += 5; p1.hand[i].defense += 5;}}
+    },
+    "smug": {
+        title: "Smug Fucker",
+        image: "smug.png",
+        text: "When you play him, draw a card.<br /><i>Nobody likes a know it all.</i>",
+        attack: 0,
+        defense: 3,
+        battleEffect: function(obj, p1, p2){p1.drawCard();}
     }
 };
 

@@ -78,6 +78,8 @@
 			width:  80vmin;
 			height: 30vmin;
 			background-color: #F33;
+			border-bottom-right-radius: 3vmin;
+			border-bottom-left-radius: 3vmin;
 		}
 		.card{
 			position: absolute;
@@ -89,6 +91,7 @@
 			border-radius: 2vmin;
 			color: black;
 			font-size: 2vmin;
+			box-shadow: -1vmin 1vmin 3vmin rgba(0,0,0,0.5);
 		}
 		.card:hover{
 			border: .5vmin solid #000;
@@ -110,6 +113,24 @@
 			background-color: white;
 			padding:1vmin;
 			border-radius: 1vmin;
+		}
+		.sword{
+			display: inline-block;
+			height:1.5vmin;
+			width: 1.5vmin;
+			background-image: url("sword.svg");
+			background-size:100%;
+			background-repeat: no-repeat;
+			background-position: center;
+		}
+		.shield{
+			display: inline-block;
+			height:1.5vmin;
+			width: 1.5vmin;
+			background-image: url("shield.svg");
+			background-size:100%;
+			background-repeat: no-repeat;
+			background-position: center;
 		}
 		.card:hover .attack{
 			left:   -1vmin;
@@ -232,6 +253,7 @@
 		var canClick = true;
 		var gameBegun = false;
 		var gameOver = false;
+		var updateHandLater = false;
 		var socket = io.connect('/');
 
 		var hand = [];
@@ -241,8 +263,8 @@
 			   string += "<div class=\"title\" id=\""+id+"-title\">"+dict.title+"</div>";
 			   string += "<div class=\"image\" id=\""+id+"-image\" style=\"background-image:url('images/"+dict.image+"')\"></div>";
 			   string += "<div class=\"text\"  id=\""+id+"-text\" >"+dict.text+"</div>";
-			   string += "<div class=\"attack\"  id=\""+id+"-attack\">"+dict.attack+"</div>";
-			   string += "<div class=\"defense\"  id=\""+id+"-defense\">"+dict.defense+"</div></div>";
+			   string += "<div class=\"attack\"  id=\""+id+"-attack\">"+dict.attack+"<div class=\"sword\"></div></div>";
+			   string += "<div class=\"defense\"  id=\""+id+"-defense\"><div class=\"shield\"></div>"+dict.defense+"</div></div>";
 			return string;
 		}
 
@@ -284,11 +306,12 @@
 		}
 
 		socket.on('turn', function( data ) {
-			var timeout = 3500;
+			var timeout = 2500;
 
 			if(!gameBegun){
 				timeout = 0;
 				gameBegun = true;
+				document.getElementById("status").innerText = "Pick a card.";
 			}
 
 			window.setTimeout(function(){
@@ -303,15 +326,21 @@
 
         socket.on('hand', function( data ) {
         	hand = data.hand;
-            updateHand();
+
+        	if(updateHandLater){
+        		window.setTimeout(updateHand, 2500);
+        		updateHandLater = false;
+        	}else{
+        		updateHand();
+        	}
         });
 
         socket.on('can click', function() {
-        	canClick = true;
+        	window.setTimeout(function(){canClick = true;}, 2500);
         });
 
         socket.on('score', function( data ) {
-        	window.setTimeout(function(){document.getElementById("score-points").innerText = data.you + " - " + data.them;}, 3500);
+        	window.setTimeout(function(){document.getElementById("score-points").innerText = data.you + " - " + data.them;}, 2500);
         });
 
         socket.on('battle', function( data ) {
@@ -321,29 +350,32 @@
         	yours.outerHTML  = makeCard(data.yours, "your-card");
         	theirs.outerHTML = makeCard(data.theirs, "enemy-card");
 
+        	updateHandLater = true;
+
         	document.getElementById("status").innerText = "Battle! 3...";
-        	window.setTimeout(function(){document.getElementById("status").innerText = "Battle! 2...";}, 1000);
-        	window.setTimeout(function(){document.getElementById("status").innerText = "Battle! 1...";}, 2000);
-        	window.setTimeout(function(){document.getElementById("status").innerText = "Go!";}, 3000);
+        	window.setTimeout(function(){document.getElementById("status").innerText = "Battle! 2...";}, 666);
+        	window.setTimeout(function(){document.getElementById("status").innerText = "Battle! 1...";}, 1334);
+        	window.setTimeout(function(){document.getElementById("status").innerText = "Go!";}, 2000);
+        	window.setTimeout(function(){document.getElementById("status").innerText = "Pick a card.";}, 3000);
 
         	if(yourTurn && data.yours.attack > data.theirs.defense){
-        		window.setTimeout(function(){document.getElementById("your-card").className = "card attacker-winner";}, 3000);
-        		window.setTimeout(function(){document.getElementById("enemy-card").className = "card defender-loser";}, 3300);
-        		window.setTimeout(function(){document.getElementById("your-card").className = "card attacker-exit";}, 3600);
+        		window.setTimeout(function(){document.getElementById("your-card").className = "card attacker-winner";}, 2000);
+        		window.setTimeout(function(){document.getElementById("enemy-card").className = "card defender-loser";}, 2300);
+        		window.setTimeout(function(){document.getElementById("your-card").className = "card attacker-exit";}, 2600);
         	}else if(yourTurn && data.yours.attack <= data.theirs.defense){
-        		window.setTimeout(function(){document.getElementById("your-card").className = "card attacker-winner";}, 3000);
-        		window.setTimeout(function(){document.getElementById("enemy-card").className = "card defender-winner";}, 3300);
-        		window.setTimeout(function(){document.getElementById("your-card").className = "card attacker-losing-exit";}, 3600);
-        		window.setTimeout(function(){document.getElementById("enemy-card").className = "card defender-winning-exit";}, 4000);
+        		window.setTimeout(function(){document.getElementById("your-card").className = "card attacker-winner";}, 2000);
+        		window.setTimeout(function(){document.getElementById("enemy-card").className = "card defender-winner";}, 2300);
+        		window.setTimeout(function(){document.getElementById("your-card").className = "card attacker-losing-exit";}, 2600);
+        		window.setTimeout(function(){document.getElementById("enemy-card").className = "card defender-winning-exit";}, 3000);
         	}else if(!yourTurn && data.yours.defense >= data.theirs.attack){
-        		window.setTimeout(function(){document.getElementById("enemy-card").className = "card attacker-winner";}, 3000);
-        		window.setTimeout(function(){document.getElementById("your-card").className = "card defender-winner";}, 3300);
-        		window.setTimeout(function(){document.getElementById("enemy-card").className = "card attacker-losing-exit";}, 3600);
-        		window.setTimeout(function(){document.getElementById("your-card").className = "card defender-winning-exit";}, 4000);
+        		window.setTimeout(function(){document.getElementById("enemy-card").className = "card attacker-winner";}, 2000);
+        		window.setTimeout(function(){document.getElementById("your-card").className = "card defender-winner";}, 2300);
+        		window.setTimeout(function(){document.getElementById("enemy-card").className = "card attacker-losing-exit";}, 2600);
+        		window.setTimeout(function(){document.getElementById("your-card").className = "card defender-winning-exit";}, 3000);
         	}else{
-        		window.setTimeout(function(){document.getElementById("enemy-card").className = "card attacker-winner";}, 3000);
-        		window.setTimeout(function(){document.getElementById("your-card").className = "card defender-loser";}, 3300);
-        		window.setTimeout(function(){document.getElementById("enemy-card").className = "card attacker-exit";}, 3600);
+        		window.setTimeout(function(){document.getElementById("enemy-card").className = "card attacker-winner";}, 2000);
+        		window.setTimeout(function(){document.getElementById("your-card").className = "card defender-loser";}, 2300);
+        		window.setTimeout(function(){document.getElementById("enemy-card").className = "card attacker-exit";}, 2600);
         	}
         });
 
