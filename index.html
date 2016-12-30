@@ -142,7 +142,76 @@
 			top:10vmin;
 			left:42vmin;
 		}
+		#your-card.attacker-winner{
+			background-color: #F99;
+			transform: rotate(45deg);
+			left: 25vmin;
+			transition: all .5s;
+		}
+		#your-card.attacker-exit{
+			background-color: #3F3;
+			transform: rotate(0deg);
+			left: -30vmin;
+			transition: all 1s;
+		}
+		#your-card.attacker-losing-exit{
+			background-color: #3F3;
+			transform: rotate(-360deg);
+			left: -30vmin;
+			transition: all 1s;
+		}
+		#enemy-card.defender-loser{
+			background-color: #999;
+			transform: rotate(45deg);
+			left: 90vmin;
+			transition: all 1s;
+		}
+		#enemy-card.defender-winner{
+			background-color: #999;
+			box-shadow: box-shadow: 0px 0px 3vmin #AAA;;
+			transition: all .5s;
+		}
+		#enemy-card.defender-winning-exit{
+			background-color: #3F3;
+			transition: all 1s;
+			left: 90vmin;
+		}
+		#your-card.defender-loser{
+			background-color: #999;
+			transform: rotate(-45deg);
+			left: -30vmin;
+			transition: all 1s;
+		}
+		#your-card.defender-winner{
+			background-color: #999;
+			box-shadow: box-shadow: 0px 0px 3vmin #AAA;;
+			transition: all .5s;
+		}
+		#your-card.defender-winning-exit{
+			background-color: #3F3;
+			transition: all 1s;
+			left: -30vmin;
+		}
+		#enemy-card.attacker-winner{
+			background-color: #F99;
+			transform: rotate(-45deg);
+			left: 35vmin;
+			transition: all .5s;
+		}
+		#enemy-card.attacker-exit{
+			background-color: #3F3;
+			transform: rotate(0deg);
+			left: 90vmin;
+			transition: all 1s;
+		}
+		#enemy-card.attacker-losing-exit{
+			background-color: #3F3;
+			transform: rotate(360deg);
+			left: 90vmin;
+			transition: all 1s;
+		}
 	</style>
+	<title>Tinker Theory</title>
 	<script type="text/javascript" src="/socket.io/socket.io.js"></script>
 </head>
 	<body onkeydown="keyPressed(event);">
@@ -161,9 +230,9 @@
 	<script type="text/javascript">
 		var yourTurn = true;
 		var canClick = true;
+		var gameBegun = false;
+		var gameOver = false;
 		var socket = io.connect('/');
-
-		socket.emit("test");
 
 		var hand = [];
 
@@ -199,7 +268,7 @@
 		}
 
 		function playCard(element){
-			if(canClick){
+			if(canClick && !gameOver){
 				var cardId = parseInt(element.id.substring(5));
 
 				if(!isNaN(cardId)){
@@ -215,11 +284,21 @@
 		}
 
 		socket.on('turn', function( data ) {
-            if(data.bool){
-				document.getElementById("turn").innerText = "You're on the attack!";
-			}else{
-				document.getElementById("turn").innerText = "You're on the defense!";
+			var timeout = 3500;
+
+			if(!gameBegun){
+				timeout = 0;
+				gameBegun = true;
 			}
+
+			window.setTimeout(function(){
+	            if(data.bool){
+					document.getElementById("turn").innerText = "You're on the attack!";
+				}else{
+					document.getElementById("turn").innerText = "You're on the defense!";
+				}
+				yourTurn = data.bool;
+			}, timeout);
         });
 
         socket.on('hand', function( data ) {
@@ -232,7 +311,7 @@
         });
 
         socket.on('score', function( data ) {
-        	document.getElementById("score-points").innerText = data.you + " - " + data.them;
+        	window.setTimeout(function(){document.getElementById("score-points").innerText = data.you + " - " + data.them;}, 3500);
         });
 
         socket.on('battle', function( data ) {
@@ -241,6 +320,31 @@
 
         	yours.outerHTML  = makeCard(data.yours, "your-card");
         	theirs.outerHTML = makeCard(data.theirs, "enemy-card");
+
+        	document.getElementById("status").innerText = "Battle! 3...";
+        	window.setTimeout(function(){document.getElementById("status").innerText = "Battle! 2...";}, 1000);
+        	window.setTimeout(function(){document.getElementById("status").innerText = "Battle! 1...";}, 2000);
+        	window.setTimeout(function(){document.getElementById("status").innerText = "Go!";}, 3000);
+
+        	if(yourTurn && data.yours.attack > data.theirs.defense){
+        		window.setTimeout(function(){document.getElementById("your-card").className = "card attacker-winner";}, 3000);
+        		window.setTimeout(function(){document.getElementById("enemy-card").className = "card defender-loser";}, 3300);
+        		window.setTimeout(function(){document.getElementById("your-card").className = "card attacker-exit";}, 3600);
+        	}else if(yourTurn && data.yours.attack <= data.theirs.defense){
+        		window.setTimeout(function(){document.getElementById("your-card").className = "card attacker-winner";}, 3000);
+        		window.setTimeout(function(){document.getElementById("enemy-card").className = "card defender-winner";}, 3300);
+        		window.setTimeout(function(){document.getElementById("your-card").className = "card attacker-losing-exit";}, 3600);
+        		window.setTimeout(function(){document.getElementById("enemy-card").className = "card defender-winning-exit";}, 4000);
+        	}else if(!yourTurn && data.yours.defense >= data.theirs.attack){
+        		window.setTimeout(function(){document.getElementById("enemy-card").className = "card attacker-winner";}, 3000);
+        		window.setTimeout(function(){document.getElementById("your-card").className = "card defender-winner";}, 3300);
+        		window.setTimeout(function(){document.getElementById("enemy-card").className = "card attacker-losing-exit";}, 3600);
+        		window.setTimeout(function(){document.getElementById("your-card").className = "card defender-winning-exit";}, 4000);
+        	}else{
+        		window.setTimeout(function(){document.getElementById("enemy-card").className = "card attacker-winner";}, 3000);
+        		window.setTimeout(function(){document.getElementById("your-card").className = "card defender-loser";}, 3300);
+        		window.setTimeout(function(){document.getElementById("enemy-card").className = "card attacker-exit";}, 3600);
+        	}
         });
 
         socket.on('clear status', function (){
@@ -249,6 +353,7 @@
 
         socket.on('disconnected', function(){
         	document.getElementById("status").innerText = "Your opponent disconnected.";
+        	gameOver = true;
         });
 	</script>
 </html>

@@ -273,10 +273,6 @@ sio.sockets.on('connection', function (client) {
         }
     });
 
-    client.on('test', function (){
-        console.log('test');
-    });
-
     client.on('play', function(data){
         search:
         for(var i = 0; i < games.length; i++){
