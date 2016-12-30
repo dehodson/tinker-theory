@@ -149,7 +149,7 @@
 		<div id="main">
 			<div id="game-title">Tinker Theory 2017</div>
 			<div id="game-container">
-				<div id="turn"></div>
+				<div id="turn">Waiting for a game to start...</div>
 				<div id="score">Score: <span id="score-points">0 - 0</span></div>
 				<div id="your-card"  class="card"></div>
 				<div id="enemy-card" class="card"></div>
@@ -245,6 +245,10 @@
 
         socket.on('clear status', function (){
         	document.getElementById("status").innerText = "";
+        });
+
+        socket.on('disconnected', function(){
+        	document.getElementById("status").innerText = "Your opponent disconnected.";
         });
 	</script>
 </html>
