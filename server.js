@@ -76,11 +76,13 @@ Player.prototype.updateHand = function(p1, p2, delay){
     this.connection.emit("hand", {hand: this.hand, delay: delay});
 };
 
-var Game = function(){
+var Game = function(publicity, gameId){
     this.players = [];
     this.complete = 0;
     this.clients  = 0;
     this.whoseTurn = 0;
+    this.public = publicity;
+    this.id = gameId;
 };
 
 Game.prototype.startGame = function(){
@@ -258,11 +260,8 @@ function clone(obj) {
 }
 
 sio.sockets.on('connection', function (client) {
-    var matched = false;
 
     client.userid = UUID();
-
-    //client.emit('onconnected', { id: client.userid } );
 
     console.log('\t socket.io:: player ' + client.userid + ' connected');
     
@@ -272,14 +271,39 @@ sio.sockets.on('connection', function (client) {
         search:
         for(var i = 0; i < games.length; i++){
             for(var j = 0; j < 2; j++){
-                if(games[i].players[j].uuid == client.userid){
-                    if(games[i].clients == 2){
-                        games[i].players[(j + 1) % 2].connection.emit("disconnected");
-                        games[i].clients += 1;
-                    }else{
-                        games.splice(i,1);
-                        break search;
+                try{
+                    if(games[i].players[j].uuid == client.userid){
+                        if(games[i].clients == 2){
+                            games[i].players[(j + 1) % 2].connection.emit("disconnected");
+                            games[i].clients += 1;
+                        }else{
+                            games.splice(i,1);
+                            break search;
+                        }
                     }
+                }catch(e){
+                   console.log("Error accessing players list: ",e)
+                }
+            }
+        }
+    });
+
+    client.on('quit', function () {
+        search:
+        for(var i = 0; i < games.length; i++){
+            for(var j = 0; j < 2; j++){
+                try{
+                    if(games[i].players[j].uuid == client.userid){
+                        if(games[i].clients == 2){
+                            games[i].players[(j + 1) % 2].connection.emit("disconnected");
+                            games[i].clients += 1;
+                        }else{
+                            games.splice(i,1);
+                            break search;
+                        }
+                    }
+                }catch(e){
+                    console.log("Error accessing players list: ",e)
                 }
             }
         }
@@ -302,18 +326,58 @@ sio.sockets.on('connection', function (client) {
         }
     });
 
-    for(var i = 0; i < games.length; i++){
-        if(games[i].clients == 1){
-            games[i].players.push(new Player(client.userid, client));
-            games[i].clients += 1;
-            matched = true;
-            games[i].startGame();
-        }
-    }
+    client.on('quick match', function(){
+        var matched = false;
 
-    if(!matched){
-        games.push(new Game());
-        games[games.length - 1].players.push(new Player(client.userid, client));
-        games[games.length - 1].clients += 1;
-    }
+        for(var i = 0; i < games.length; i++){
+            if(games[i].public && games[i].clients == 1){
+                games[i].players.push(new Player(client.userid, client));
+                games[i].clients += 1;
+                matched = true;
+                games[i].startGame();
+            }
+        }
+
+        if(!matched){
+            games.push(new Game(true, null));
+            games[games.length - 1].players.push(new Player(client.userid, client));
+            games[games.length - 1].clients += 1;
+        }
+    });
+
+    client.on('friend game', function(data){
+        var matched = false;
+
+        if (typeof data === 'undefined'){
+            data = {};
+        }
+
+        if(data.hasOwnProperty("id")){
+            for(var i = 0; i < games.length; i++){
+                if(!games[i].public && games[i].id == data.id){
+                    if(games[i].clients == 1){
+                        games[i].players.push(new Player(client.userid, client));
+                        games[i].players[0].connection.emit("friend joined");
+                        matched = true;
+                        games[i].startGame();
+                    }else{
+                        client.emit("join failed", {reason: "too many players."});
+                    }
+
+                    break;
+                }
+            }
+        }else{
+            var gameId = Date.now().toString(36);
+            games.push(new Game(false, gameId));
+            games[games.length - 1].players.push(new Player(client.userid, client));
+            games[games.length - 1].clients += 1;
+            client.emit("game id", {id: gameId});
+            console.log(gameId);
+        }
+
+        if(!matched){
+            client.emit("join failed", {reason: "no game with that id."});
+        }
+    });
 });

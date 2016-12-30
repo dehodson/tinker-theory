@@ -1,0 +1,332 @@
+body, html{
+	height:100%;
+	margin:0;
+	color: #FFF;
+	background-color: #333;
+	font-family: "Helvetica", "Arial", sans-serif;
+}
+#main{
+	height:80vmin;
+	width: 80vmin;
+	position: absolute;
+	top:0px;
+	left:0px;
+	right:0px;
+	bottom:0px;
+	margin:auto;
+}
+#game-container{
+	position: absolute;
+	height:80vmin;
+	width: 80vmin;
+	background-color: #DDD;
+	position: absolute;
+	top:0px;
+	left:0px;
+	right:0px;
+	bottom:0px;
+	margin:auto;
+	border-radius: 3vmin;
+	overflow: hidden;
+}
+#no-click{
+	height:100%;
+	width:100%;
+	z-index: 10;
+	background-color: rgba(0,0,0,0.7);
+	position: absolute;
+	top:0px;
+	left:0px;
+	visibility: hidden;
+}
+#alert-box{
+	position: absolute;
+	top:50%;
+	left:50%;
+	transform: translate(-50%, -50%);
+	background-color: #333;
+	z-index: 11;
+	font-size:4vmin;
+	text-align: center;
+	border: 3px solid white;
+	border-radius: 5px;
+	padding:5px;
+	width:60vmin;
+	visibility: hidden;
+}
+#splash{
+	position: absolute;
+	height:80vmin;
+	width: 80vmin;
+	background-color: #FFF;
+	position: absolute;
+	top:0px;
+	left:0px;
+	right:0px;
+	bottom:0px;
+	margin:auto;
+	border-radius: 3vmin;
+	overflow: hidden;
+	z-index: 5;
+}
+#splash-logo{
+	background-image: url("gears.svg");
+	position: absolute;
+	height:20vmin;
+	width: 20vmin;
+	left: 10vmin;
+	top:  10vmin;
+	background-size: 100%;
+	background-position: center;
+}
+#splash-title{
+	font-size: 10vmin;
+	position: absolute;
+	left: 35vmin;
+	top:  10vmin;
+	color:black;
+	font-family:serif;
+	font-weight: bold;
+}
+.splash-button{
+	box-shadow: -1vmin 1vmin 3vmin rgba(0,0,0,0.5);
+	position: absolute;
+	color:black;
+	width:34vmin;
+	height:9vmin;
+	font-size:3vmin;
+	text-align: center;
+	line-height: 9vmin;
+	border-radius: 3vmin;
+	border: .5vmin solid black;
+	transition: background-color .25s;
+}
+#splash-quick-match{
+	background-color: #AAF;
+	left: 2.5vmin;
+	top: 50vmin;
+}
+#splash-friend-game{
+	background-color: #FAA;
+	left: 42.5vmin;
+	top: 50vmin;
+}
+#splash-quick-match:hover{
+	background-color: #FFF;
+}
+#splash-friend-game:hover{
+	background-color: #FFF;
+}
+#game-title{
+	position: absolute;
+	font-size:5vmin;
+	top: -6vmin;
+	width: 80vmin;
+	text-align: center;
+}
+#quit-game{
+	position: absolute;
+	font-size:3vmin;
+	bottom: -5vmin;
+	width: 80vmin;
+	text-align: center;
+}
+#turn{
+	position: absolute;
+	font-size: 3vmin;
+	top:3vmin;
+	left:5vmin;
+	color:black;
+}
+#score{
+	position: absolute;
+	font-size: 3vmin;
+	top:3vmin;
+	right:5vmin;
+	color:black;
+}
+#status{
+	position: absolute;
+	font-size: 3vmin;
+	bottom: 33vmin;
+	left: 0vmin;
+	width: 80vmin;
+	color: black;
+	text-align: center;
+}
+#status .loader{
+	height: 3vmin;
+	width: 3vmin;
+	background-image: url("balls.svg");
+	background-size:5vmin 5vmin;
+	display: inline-block;
+	background-position: center;
+}
+#hand{
+	position: absolute;
+	bottom: 0px;
+	left:   0px;
+	width:  80vmin;
+	height: 30vmin;
+	background-color: #F33;
+	border-bottom-right-radius: 3vmin;
+	border-bottom-left-radius: 3vmin;
+}
+.card{
+	position: absolute;
+	height: 26vmin;
+	width:  16vmin;
+	margin: 1vmin;
+	padding: 1vmin;
+	background-color: #3F3;
+	border-radius: 2vmin;
+	color: black;
+	font-size: 2vmin;
+	box-shadow: -1vmin 1vmin 3vmin rgba(0,0,0,0.5);
+}
+.card:hover{
+	border: .5vmin solid #000;
+	margin: .5vmin;
+	z-index: 100;
+}
+#hand .card{
+	transition: background-color .25s;
+}
+#hand .card:hover{
+	background-color: #7F7;
+}
+.image{
+	background-size: 100%;
+	width:16vmin;
+	height:10vmin;
+}
+.text{
+	text-align: center;
+}
+.attack{
+	position: absolute;
+	bottom:-.5vmin;
+	left:  -.5vmin;
+	background-color: white;
+	padding:1vmin;
+	border-radius: 1vmin;
+}
+.sword{
+	display: inline-block;
+	height:1.5vmin;
+	width: 1.5vmin;
+	background-image: url("sword.svg");
+	background-size:100%;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+.shield{
+	display: inline-block;
+	height:1.5vmin;
+	width: 1.5vmin;
+	background-image: url("shield.svg");
+	background-size:100%;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+.card:hover .attack{
+	left:   -1vmin;
+	bottom: -1vmin;
+	border-left:.5vmin solid #000;
+	border-bottom:.5vmin solid #000;
+}
+.defense{
+	position: absolute;
+	bottom:-.5vmin;
+	right: -.5vmin;
+	background-color: white;
+	padding:1vmin;
+	border-radius: 1vmin;
+}
+.card:hover .defense{
+	right:  -1vmin;
+	bottom: -1vmin;
+	border-right:.5vmin solid #000;
+	border-bottom:.5vmin solid #000;
+
+}
+
+
+#your-card{
+	position: absolute;
+	top:10vmin;
+	left:18vmin;
+}
+#enemy-card{
+	position: absolute;
+	top:10vmin;
+	left:42vmin;
+}
+#your-card.attacker-winner{
+	background-color: #F99;
+	transform: rotate(45deg);
+	left: 25vmin;
+	transition: all .5s;
+}
+#your-card.attacker-exit{
+	background-color: #3F3;
+	transform: rotate(0deg);
+	left: -30vmin;
+	transition: all 1s;
+}
+#your-card.attacker-losing-exit{
+	background-color: #3F3;
+	transform: rotate(-360deg);
+	left: -30vmin;
+	transition: all 1s;
+}
+#enemy-card.defender-loser{
+	background-color: #999;
+	transform: rotate(45deg);
+	left: 90vmin;
+	transition: all 1s;
+}
+#enemy-card.defender-winner{
+	background-color: #999;
+	box-shadow: box-shadow: 0px 0px 3vmin #AAA;;
+	transition: all .5s;
+}
+#enemy-card.defender-winning-exit{
+	background-color: #3F3;
+	transition: all 1s;
+	left: 90vmin;
+}
+#your-card.defender-loser{
+	background-color: #999;
+	transform: rotate(-45deg);
+	left: -30vmin;
+	transition: all 1s;
+}
+#your-card.defender-winner{
+	background-color: #999;
+	box-shadow: box-shadow: 0px 0px 3vmin #AAA;;
+	transition: all .5s;
+}
+#your-card.defender-winning-exit{
+	background-color: #3F3;
+	transition: all 1s;
+	left: -30vmin;
+}
+#enemy-card.attacker-winner{
+	background-color: #F99;
+	transform: rotate(-45deg);
+	left: 35vmin;
+	transition: all .5s;
+}
+#enemy-card.attacker-exit{
+	background-color: #3F3;
+	transform: rotate(0deg);
+	left: 90vmin;
+	transition: all 1s;
+}
+#enemy-card.attacker-losing-exit{
+	background-color: #3F3;
+	transform: rotate(360deg);
+	left: 90vmin;
+	transition: all 1s;
+}

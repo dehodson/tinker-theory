@@ -1,249 +1,15 @@
 <!doctype html>
 <html>
 <head>
-	<style>
-		body, html{
-			height:100%;
-			margin:0;
-			color: #FFF;
-			background-color: #333;
-			font-family: "Helvetica", "Arial", sans-serif;
-		}
-		#main{
-			height:80vmin;
-			width: 80vmin;
-			position: absolute;
-			top:0px;
-			left:0px;
-			right:0px;
-			bottom:0px;
-			margin:auto;
-		}
-		#game-container{
-			position: absolute;
-			height:80vmin;
-			width: 80vmin;
-			background-color: #DDD;
-			position: absolute;
-			top:0px;
-			left:0px;
-			right:0px;
-			bottom:0px;
-			margin:auto;
-			border-radius: 3vmin;
-			overflow: hidden;
-		}
-		#game-title{
-			position: absolute;
-			font-size:5vmin;
-			top: -6vmin;
-			width: 80vmin;
-			text-align: center;
-		}
-		#turn{
-			position: absolute;
-			font-size: 3vmin;
-			top:3vmin;
-			left:5vmin;
-			color:black;
-		}
-		#score{
-			position: absolute;
-			font-size: 3vmin;
-			top:3vmin;
-			right:5vmin;
-			color:black;
-		}
-		#status{
-			position: absolute;
-			font-size: 3vmin;
-			bottom: 33vmin;
-			left: 0vmin;
-			width: 80vmin;
-			color: black;
-			text-align: center;
-		}
-		#status .loader{
-			height: 3vmin;
-			width: 3vmin;
-			background-image: url("balls.svg");
-			background-size:5vmin 5vmin;
-			display: inline-block;
-			background-position: center;
-		}
-		#hand{
-			position: absolute;
-			bottom: 0px;
-			left:   0px;
-			width:  80vmin;
-			height: 30vmin;
-			background-color: #F33;
-			border-bottom-right-radius: 3vmin;
-			border-bottom-left-radius: 3vmin;
-		}
-		.card{
-			position: absolute;
-			height: 26vmin;
-			width:  16vmin;
-			margin: 1vmin;
-			padding: 1vmin;
-			background-color: #3F3;
-			border-radius: 2vmin;
-			color: black;
-			font-size: 2vmin;
-			box-shadow: -1vmin 1vmin 3vmin rgba(0,0,0,0.5);
-		}
-		.card:hover{
-			border: .5vmin solid #000;
-			margin: .5vmin;
-			z-index: 100;
-		}
-		#hand .card{
-			transition: background-color .25s;
-		}
-		#hand .card:hover{
-			background-color: #7F7;
-		}
-		.image{
-			background-size: 100%;
-			width:16vmin;
-			height:10vmin;
-		}
-		.text{
-			text-align: center;
-		}
-		.attack{
-			position: absolute;
-			bottom:-.5vmin;
-			left:  -.5vmin;
-			background-color: white;
-			padding:1vmin;
-			border-radius: 1vmin;
-		}
-		.sword{
-			display: inline-block;
-			height:1.5vmin;
-			width: 1.5vmin;
-			background-image: url("sword.svg");
-			background-size:100%;
-			background-repeat: no-repeat;
-			background-position: center;
-		}
-		.shield{
-			display: inline-block;
-			height:1.5vmin;
-			width: 1.5vmin;
-			background-image: url("shield.svg");
-			background-size:100%;
-			background-repeat: no-repeat;
-			background-position: center;
-		}
-		.card:hover .attack{
-			left:   -1vmin;
-			bottom: -1vmin;
-			border-left:.5vmin solid #000;
-			border-bottom:.5vmin solid #000;
-		}
-		.defense{
-			position: absolute;
-			bottom:-.5vmin;
-			right: -.5vmin;
-			background-color: white;
-			padding:1vmin;
-			border-radius: 1vmin;
-		}
-		.card:hover .defense{
-			right:  -1vmin;
-			bottom: -1vmin;
-			border-right:.5vmin solid #000;
-			border-bottom:.5vmin solid #000;
-
-		}
-		#your-card{
-			position: absolute;
-			top:10vmin;
-			left:18vmin;
-		}
-		#enemy-card{
-			position: absolute;
-			top:10vmin;
-			left:42vmin;
-		}
-		#your-card.attacker-winner{
-			background-color: #F99;
-			transform: rotate(45deg);
-			left: 25vmin;
-			transition: all .5s;
-		}
-		#your-card.attacker-exit{
-			background-color: #3F3;
-			transform: rotate(0deg);
-			left: -30vmin;
-			transition: all 1s;
-		}
-		#your-card.attacker-losing-exit{
-			background-color: #3F3;
-			transform: rotate(-360deg);
-			left: -30vmin;
-			transition: all 1s;
-		}
-		#enemy-card.defender-loser{
-			background-color: #999;
-			transform: rotate(45deg);
-			left: 90vmin;
-			transition: all 1s;
-		}
-		#enemy-card.defender-winner{
-			background-color: #999;
-			box-shadow: box-shadow: 0px 0px 3vmin #AAA;;
-			transition: all .5s;
-		}
-		#enemy-card.defender-winning-exit{
-			background-color: #3F3;
-			transition: all 1s;
-			left: 90vmin;
-		}
-		#your-card.defender-loser{
-			background-color: #999;
-			transform: rotate(-45deg);
-			left: -30vmin;
-			transition: all 1s;
-		}
-		#your-card.defender-winner{
-			background-color: #999;
-			box-shadow: box-shadow: 0px 0px 3vmin #AAA;;
-			transition: all .5s;
-		}
-		#your-card.defender-winning-exit{
-			background-color: #3F3;
-			transition: all 1s;
-			left: -30vmin;
-		}
-		#enemy-card.attacker-winner{
-			background-color: #F99;
-			transform: rotate(-45deg);
-			left: 35vmin;
-			transition: all .5s;
-		}
-		#enemy-card.attacker-exit{
-			background-color: #3F3;
-			transform: rotate(0deg);
-			left: 90vmin;
-			transition: all 1s;
-		}
-		#enemy-card.attacker-losing-exit{
-			background-color: #3F3;
-			transform: rotate(360deg);
-			left: 90vmin;
-			transition: all 1s;
-		}
-	</style>
+	<link rel="stylesheet" type="text/css" href="style.css">
 	<title>Tinker Theory</title>
 	<script type="text/javascript" src="/socket.io/socket.io.js"></script>
 </head>
-	<body onkeydown="keyPressed(event);">
+	<body>
+		<div id="no-click"></div>
 		<div id="main">
 			<div id="game-title">Tinker Theory 2017</div>
+			<div id="quit-game" onclick="mainMenu();">Back to Menu</div>
 			<div id="game-container">
 				<div id="turn">Waiting for a game to start...</div>
 				<div id="score">Score: <span id="score-points">0 - 0</span></div>
@@ -252,6 +18,13 @@
 				<div id="hand"></div>
 				<div id="status">Waiting on an opponent... <div class="loader"></div></div>
 			</div>
+			<div id="splash">
+				<div id="splash-logo"></div>
+				<div id="splash-title">Tinker<br />Theory</div>
+				<div class="splash-button" id="splash-quick-match" onclick="quickMatch();">Quick Match</div>
+				<div class="splash-button" id="splash-friend-game" onclick="friendGame();">Challenge a Friend</div>
+			</div>
+			<div id="alert-box">Send the following link to a friend, and they will join your game: <span id="alert-box-link"></span></div>
 		</div>
 	</body>
 	<script type="text/javascript">
@@ -259,9 +32,38 @@
 		var canClick = true;
 		var gameBegun = false;
 		var gameOver = false;
+		var mode = 0;
 		var socket = io.connect('/');
 
+		var old = document.getElementById("game-container").innerHTML;
+
 		var hand = [];
+
+		var $_GET = {};
+		if(document.location.toString().indexOf('?') !== -1) { //from stackoverflow import *
+		    var query = document.location
+		                   .toString()
+		                   // get the query string
+		                   .replace(/^.*?\?/, '')
+		                   // and remove any existing hash string (thanks, @vrijdenker)
+		                   .replace(/#.*$/, '')
+		                   .split('&');
+
+		    for(var i=0, l=query.length; i<l; i++) {
+		       var aux = decodeURIComponent(query[i]).split('=');
+		       $_GET[aux[0]] = aux[1];
+		    }
+		}
+
+		function showAlert(){
+			document.getElementById("no-click").style.visibility = "visible";
+			document.getElementById("alert-box").style.visibility = "visible";
+		}
+
+		function closeAlert(){
+			document.getElementById("no-click").style.visibility = "hidden";
+			document.getElementById("alert-box").style.visibility = "hidden";
+		}
 
 		function makeCard(dict, id){
 			var string = "<div class=\"card\" id=\""+id+"\" onclick=\"playCard(this)\">";
@@ -307,6 +109,40 @@
 
 					window.socket.emit("play", {number: cardId});
 				}
+			}
+		}
+
+		function quickMatch(){
+			yourTurn = true;
+			canClick = true;
+			gameBegun = false;
+			gameOver = false;
+			mode = 1;
+			document.getElementById("splash").style.visibility = "hidden";
+			socket.emit("quick match");
+		}
+
+		function friendGame(){
+			yourTurn = true;
+			canClick = true;
+			gameBegun = false;
+			gameOver = false;
+			mode = 1;
+			document.getElementById("splash").style.visibility = "hidden";
+
+			if($_GET["gameid"]){
+				socket.emit("friend game", {id: $_GET["gameid"]});
+			}else{
+				socket.emit("friend game");
+			}
+		}
+
+		function mainMenu(){
+			document.getElementById("splash").style.visibility = "visible";
+			document.getElementById("game-container").innerHTML = old;
+			if(mode != 0){
+				socket.emit("quit");
+				mode = 0;
 			}
 		}
 
@@ -375,6 +211,19 @@
         	}
         });
 
+        socket.on('game id', function(data){
+        	document.getElementById("alert-box-link").innerText = window.location.href + "?gameid=" + data.id;
+        	showAlert();
+        });
+
+        socket.on('friend joined', function(){
+        	closeAlert();
+        });
+
+        socket.on('join failed', function(data){
+
+        });
+
         socket.on('clear status', function (){
         	document.getElementById("status").innerText = "";
         });
@@ -383,5 +232,9 @@
         	document.getElementById("status").innerText = "Your opponent disconnected.";
         	gameOver = true;
         });
+
+        if($_GET["gameid"]){
+			friendGame();
+		}
 	</script>
 </html>
