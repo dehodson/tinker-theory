@@ -98,6 +98,12 @@
 			margin: .5vmin;
 			z-index: 100;
 		}
+		#hand .card{
+			transition: background-color .25s;
+		}
+		#hand .card:hover{
+			background-color: #7F7;
+		}
 		.image{
 			background-size: 100%;
 			width:16vmin;
@@ -253,7 +259,6 @@
 		var canClick = true;
 		var gameBegun = false;
 		var gameOver = false;
-		var updateHandLater = false;
 		var socket = io.connect('/');
 
 		var hand = [];
@@ -296,7 +301,7 @@
 				if(!isNaN(cardId)){
 					canClick = false;
 
-					element.style.backgroundColor = "#7F7";
+					element.style.backgroundColor = "#DDD";
 					
 					document.getElementById("status").innerHTML = "Waiting on your opponent to play a card... <div class=\"loader\"></div>";
 
@@ -325,14 +330,7 @@
         });
 
         socket.on('hand', function( data ) {
-        	hand = data.hand;
-
-        	if(updateHandLater){
-        		window.setTimeout(updateHand, 2500);
-        		updateHandLater = false;
-        	}else{
-        		updateHand();
-        	}
+    		window.setTimeout(function(){hand = data.hand; updateHand();}, data.delay);
         });
 
         socket.on('can click', function() {
@@ -349,8 +347,6 @@
 
         	yours.outerHTML  = makeCard(data.yours, "your-card");
         	theirs.outerHTML = makeCard(data.theirs, "enemy-card");
-
-        	updateHandLater = true;
 
         	document.getElementById("status").innerText = "Battle! 3...";
         	window.setTimeout(function(){document.getElementById("status").innerText = "Battle! 2...";}, 666);

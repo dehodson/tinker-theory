@@ -66,14 +66,14 @@ Player.prototype.playCard = function(id, p1, p2){
     this.card = this.hand.splice(id, 1)[0];
 };
 
-Player.prototype.updateHand = function(p1, p2){
+Player.prototype.updateHand = function(p1, p2, delay){
     for(var i = 0; i < this.hand.length; i++){
         if(this.hand[i].hasOwnProperty("globalEffect")){
             this.hand[i].globalEffect(this.hand[i], p1, p2);
         }
     }
 
-    this.connection.emit("hand", {hand: this.hand});
+    this.connection.emit("hand", {hand: this.hand, delay: delay});
 };
 
 var Game = function(){
@@ -119,8 +119,8 @@ Game.prototype.startGame = function(){
     this.players[1].drawCard(this.players[1], this.players[0]);
     this.players[1].drawCard(this.players[1], this.players[0]);
 
-    this.players[0].updateHand(this.players[0], this.players[1]);
-    this.players[1].updateHand(this.players[1], this.players[0]);
+    this.players[0].updateHand(this.players[0], this.players[1], 0);
+    this.players[1].updateHand(this.players[1], this.players[0], 0);
 }
 
 Game.prototype.takeTurn = function(){
@@ -162,8 +162,8 @@ Game.prototype.takeTurn = function(){
     this.players[0].connection.emit("score", {you: this.players[0].score, them: this.players[1].score});
     this.players[1].connection.emit("score", {you: this.players[1].score, them: this.players[0].score});
 
-    this.players[0].updateHand(this.players[0], this.players[1]);
-    this.players[1].updateHand(this.players[1], this.players[0]);
+    this.players[0].updateHand(this.players[0], this.players[1], 0);
+    this.players[1].updateHand(this.players[1], this.players[0], 0);
 
     this.players[this.whoseTurn].connection.emit("turn", {bool: true});
     this.players[(this.whoseTurn + 1) % 2].connection.emit("turn", {bool: false});
@@ -171,8 +171,8 @@ Game.prototype.takeTurn = function(){
     this.players[0].drawCard(this.players[0], this.players[1]);
     this.players[1].drawCard(this.players[1], this.players[0]);
 
-    this.players[0].updateHand(this.players[0], this.players[1]);
-    this.players[1].updateHand(this.players[1], this.players[0]);
+    this.players[0].updateHand(this.players[0], this.players[1], 2500);
+    this.players[1].updateHand(this.players[1], this.players[0], 2500);
 
     this.complete = 0;
 
