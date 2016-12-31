@@ -1,3 +1,15 @@
+::-webkit-scrollbar {
+	width: .5vmin
+}
+
+::-webkit-scrollbar-thumb {
+	background: #FFF;
+}
+
+::-webkit-scrollbar-track {
+	background: #AAA;
+}
+
 body, html{
 	height:100%;
 	margin:0;
@@ -39,7 +51,7 @@ body, html{
 	left:0px;
 	visibility: hidden;
 }
-#alert-box{
+#alert-box, #error-box{
 	position: absolute;
 	top:50%;
 	left:50%;
@@ -103,19 +115,74 @@ body, html{
 }
 #splash-quick-match{
 	background-color: #AAF;
-	left: 2.5vmin;
+	left: 3vmin;
 	top: 50vmin;
 }
 #splash-friend-game{
 	background-color: #FAA;
-	left: 42.5vmin;
+	left: 42vmin;
 	top: 50vmin;
+}
+#splash-deckbuilder{
+	background-color: #FFA;
+	left: 3vmin;
+	top: 65vmin;
+}
+#splash-rules{
+	background-color: #AFA;
+	left: 42vmin;
+	top: 65vmin;
 }
 #splash-quick-match:hover{
 	background-color: #FFF;
 }
 #splash-friend-game:hover{
 	background-color: #FFF;
+}
+#splash-deckbuilder:hover{
+	background-color: #FFF;
+}
+#splash-rules:hover{
+	background-color: #FFF;
+}
+#deck-builder{
+	position: absolute;
+	height:80vmin;
+	width: 80vmin;
+	background-color: #DDD;
+	position: absolute;
+	top:0px;
+	left:0px;
+	right:0px;
+	bottom:0px;
+	margin:auto;
+	border-radius: 3vmin;
+	overflow: hidden;
+	visibility: hidden;
+}
+#deck-builder-cards{
+	width:60vmin;
+	position: absolute;
+	top:0px;
+	left:0px;
+	overflow-y:scroll;
+	overflow-x:hidden;
+	background-color:#FAF;
+}
+#deck-builder-list{
+	width:20vmin;
+	height:80vmin;
+	position: absolute;
+	left:60vmin;
+	top: 0vmin;
+	color: black;
+	background-color: #FFF;
+}
+#deck-builder-list .item{
+	width:20vmin;
+	height:4vmin;
+	font-size: 3vmin;
+	line-height: 4vmin;
 }
 #game-title{
 	position: absolute;
@@ -130,6 +197,7 @@ body, html{
 	bottom: -5vmin;
 	width: 80vmin;
 	text-align: center;
+	z-index: 12;
 }
 #turn{
 	position: absolute;
