@@ -51,7 +51,7 @@ body, html{
 	left:0px;
 	visibility: hidden;
 }
-#alert-box, #error-box{
+#alert-box, #error-box, #deck-picker{
 	position: absolute;
 	top:50%;
 	left:50%;
@@ -151,6 +151,7 @@ body, html{
 	width: 80vmin;
 	background-color: #DDD;
 	position: absolute;
+	color: black;
 	top:0px;
 	left:0px;
 	right:0px;
@@ -160,9 +161,16 @@ body, html{
 	overflow: hidden;
 	visibility: hidden;
 }
+.deckbuilder-button{
+	width:24vmin;
+	height:5vmin;
+	line-height: 5vmin;
+	text-align: center;
+}
 #deck-builder-cards{
 	width:55vmin;
 	position: absolute;
+	height:80vmin;
 	top:0px;
 	left:0px;
 	overflow-y:scroll;
@@ -192,17 +200,36 @@ body, html{
 .stats{
 	float: right;
 }
-#deck-builder-list{
-	width:25vmin;
-	height:80vmin;
+#deck-builder-header{
+	width: 22.5vmin;
+	height: 10vmin;
+	line-height: 5vmin;
 	position: absolute;
 	left:55vmin;
-	top: 0vmin;
-	color: black;
+	top:0vmin;
+	padding:0 1.25vmin;
+}
+#deck-builder-footer{
+	width: 25vmin;
+	height: 10vmin;
+	position: absolute;
+	left:55vmin;
+	top:70vmin;
+}
+#deck-builder-deckname{
+	width: 22.5vmin;
+}
+#deck-builder-list{
+	width:22.5vmin;
+	height:60vmin;
+	position: absolute;
+	left:55vmin;
+	top: 10vmin;
 	background-color: #FFF;
+	padding:0 1.25vmin;
 }
 #deck-builder-list .item{
-	width:20vmin;
+	width:22.5vmin;
 	height:4vmin;
 	font-size: 3vmin;
 	line-height: 4vmin;

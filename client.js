@@ -27,14 +27,14 @@ if(document.location.toString().indexOf('?') !== -1) { //from stackoverflow impo
 
 var decklist = [];
 
-decks = [];
+decks = {};
 
 if(localStorage.decks){
-	JSON.parse(localStorage.decks);
+	decks = JSON.parse(localStorage.decks);
 }else{
-	decks.push({
+	decks = {
 		"default": []
-	});
+	};
 
 	localStorage.decks = JSON.stringify(decks);
 }
@@ -57,6 +57,53 @@ function showError(){
 function closeError(){
 	document.getElementById("no-click").style.visibility = "hidden";
 	document.getElementById("error-box").style.visibility = "hidden";
+}
+
+function pickDeck(){
+	var dropdown = document.getElementById("deck-picker-dropdown");
+	var deckname = dropdown.options[dropdown.selectedIndex].text;
+
+	if(mode == 1){
+
+	}else{
+		if(deckname != "New Deck..."){
+			decklist = decks[deckname];
+
+			document.getElementById("deck-builder-deckname").value = deckname;
+
+			var list = document.getElementById("deck-builder-list");
+			list.innerHTML = "";
+
+			for(var item in decklist){
+				list.innerHTML += "<div class=\"list\" onclick=\"removeFromDeck('"+decklist[item]+"')\">"+cards[decklist[item]].title+" <span class=\"stats\">"+cards[decklist[item]].attack+"/"+cards[decklist[item]].defense+"</span></div>";
+			}
+		}
+
+		closeDeckPicker();
+	}
+}
+
+function showDeckPicker(){
+	var dropdown = document.getElementById("deck-picker-dropdown");
+	dropdown.innerHTML = "";
+
+	var i = 0;
+
+	for(var deck in decks){
+		dropdown.innerHTML += "<option value=\""+i+"\">"+deck+"</option>";
+	}
+
+	if(mode == 2){
+		dropdown.innerHTML = "<option value=\"new\">New Deck...</option>" + dropdown.innerHTML;
+	}
+
+	document.getElementById("no-click").style.visibility = "visible";
+	document.getElementById("deck-picker").style.visibility = "visible";
+}
+
+function closeDeckPicker(){
+	document.getElementById("no-click").style.visibility = "hidden";
+	document.getElementById("deck-picker").style.visibility = "hidden";
 }
 
 function makeCard(dict, id, onclick){
@@ -136,6 +183,8 @@ function friendGame(){
 }
 
 function deckBuilder(){
+	mode = 2;
+
 	decklist = [];
 	var element = document.getElementById("deck-builder-cards");
 	element.innerHTML = "";
@@ -149,7 +198,9 @@ function deckBuilder(){
 		i += 1;
 	}
 
-	element.style.height = ((Math.floor((i - 1) / 3) + 1) * 28) + "vmin";
+	showDeckPicker();
+
+	//element.style.height = ((Math.floor((i - 1) / 3) + 1) * 28) + "vmin";
 	document.getElementById("deck-builder").style.visibility = "visible";
 	document.getElementById("splash").style.visibility = "hidden";
 }
@@ -163,7 +214,7 @@ function addToDeck(name){
 		}
 	}
 
-	if(count < 3){
+	if(count < 3 && decklist.length < 20){
 		decklist.push(name);
 		decklist.sort();
 
@@ -173,6 +224,9 @@ function addToDeck(name){
 		for(var item in decklist){
 			list.innerHTML += "<div class=\"list\" onclick=\"removeFromDeck('"+decklist[item]+"')\">"+cards[decklist[item]].title+" <span class=\"stats\">"+cards[decklist[item]].attack+"/"+cards[decklist[item]].defense+"</span></div>";
 		}
+	}else if(decklist.length >= 20){
+		document.getElementById("error-box").innerText = "Twenty is the maximum deck size.";
+		showError();
 	}
 }
 
@@ -197,19 +251,51 @@ function removeFromDeck(name){
 	}
 }
 
+function clearDeck(){
+	decklist = [];
+	document.getElementById("deck-builder-list").innerHTML = "";
+}
+
+function saveDeck(){
+	var deckname = document.getElementById("deck-builder-deckname").value;
+
+	if(deckname == ""){
+		document.getElementById("error-box").innerText = "Your deck needs a name!";
+		showError();
+	}else if(decklist.length < 20){
+		document.getElementById("error-box").innerText = "You need twenty cards in a deck!";
+		showError();
+	}else if(decklist.length > 20){
+		document.getElementById("error-box").innerText = "You have too many cards in your deck!";
+		showError();
+	}else{
+		decks[deckname] = decklist;
+		localStorage.decks = JSON.stringify(decks);
+		document.getElementById("error-box").innerText = "Deck saved successfully.";
+		showError();
+	}
+}
+
 function mainMenu(){
 	document.getElementById("splash").style.visibility = "visible";
 	document.getElementById("deck-builder").style.visibility = "hidden";
 	document.getElementById("game-container").innerHTML = old;
 	closeAlert();
 	closeError();
-	if(mode != 0){
+	closeDeckPicker();
+
+	if(mode == 1){
 		socket.emit("quit");
-		mode = 0;
+	}else if(mode == 2){
+		document.getElementById("deck-builder-list").innerHTML  = "";
+		document.getElementById("deck-builder-cards").innerHTML = "";
+		document.getElementById("deck-builder-deckname").value  = "";
 	}
 	if($_GET["gameid"]){
 		window.location.href = location.protocol + '//' + location.host + location.pathname;
 	}
+
+	mode = 0;
 }
 
 socket.on('turn', function( data ) {

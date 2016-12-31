@@ -19,8 +19,15 @@
 				<div id="status">Waiting on an opponent... <div class="loader"></div></div>
 			</div>
 			<div id="deck-builder">
-				<div id="deck-builder-cards"></div>
-				<div id="deck-builder-list"></div>
+				<div id="deck-builder-card-continer">
+					<div id="deck-builder-cards"></div>
+				</div>
+				<div id="deck-builder-header">Deck Name:<br /><input type="text" id="deck-builder-deckname"></div>
+				<div id="deck-builder-list">  </div>
+				<div id="deck-builder-footer">
+					<div class="deckbuilder-button" onclick="clearDeck()" id="deck-builder-clear">Clear</div>
+					<div class="deckbuilder-button" onclick="saveDeck()" id="deck-builder-save">Save</div>
+				</div>
 			</div>
 			<div id="splash">
 				<div id="splash-logo"></div>
@@ -31,7 +38,12 @@
 				<div class="splash-button" id="splash-rules">Rules</div>
 			</div>
 			<div id="alert-box">Send the following link to a friend, and they will join your game: <span id="alert-box-link"></span></div>
-			<div id="error-box"></div>
+			<div id="error-box" onclick="closeError()"></div>
+			<div id="deck-picker">
+				Pick a deck:<br />
+				<select id="deck-picker-dropdown"></select><br />
+				<div class="deck-picker-button" onclick="pickDeck()">Okay</div>
+			</div>
 		</div>
 	</body>
 	<script src="cards.js"></script>
