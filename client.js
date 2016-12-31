@@ -25,6 +25,20 @@ if(document.location.toString().indexOf('?') !== -1) { //from stackoverflow impo
     }
 }
 
+var decklist = [];
+
+decks = [];
+
+if(localStorage.decks){
+	JSON.parse(localStorage.decks);
+}else{
+	decks.push({
+		"default": []
+	});
+
+	localStorage.decks = JSON.stringify(decks);
+}
+
 function showAlert(){
 	document.getElementById("no-click").style.visibility = "visible";
 	document.getElementById("alert-box").style.visibility = "visible";
@@ -122,6 +136,7 @@ function friendGame(){
 }
 
 function deckBuilder(){
+	decklist = [];
 	var element = document.getElementById("deck-builder-cards");
 	element.innerHTML = "";
 	var i = 0;
@@ -129,19 +144,57 @@ function deckBuilder(){
 	for(var card in cards){
 		element.innerHTML += makeCard(cards[card], "deckbuilder-"+i, "addToDeck('"+card+"')");
 		var display = document.getElementById("deckbuilder-"+i);
-		display.style.left = ((i % 3) * 20)+"vmin";
-		display.style.top  = (Math.floor(i / 3) * 30)+"vmin";
+		display.style.left = ((i % 3) * 18)+"vmin";
+		display.style.top  = (Math.floor(i / 3) * 28)+"vmin";
 		i += 1;
 	}
 
-	element.style.height = ((Math.floor((i - 1) / 3) + 1) * 30) + "vmin";
+	element.style.height = ((Math.floor((i - 1) / 3) + 1) * 28) + "vmin";
 	document.getElementById("deck-builder").style.visibility = "visible";
 	document.getElementById("splash").style.visibility = "hidden";
 }
 
 function addToDeck(name){
-	var list = document.getElementById("deck-builder-list");
-	list.innerHTML += "<div class=\"list\">"+cards[name].title+"</div>";
+	var count = 0;
+
+	for(var item in decklist){
+		if(decklist[item] == name){
+			count += 1;
+		}
+	}
+
+	if(count < 3){
+		decklist.push(name);
+		decklist.sort();
+
+		var list = document.getElementById("deck-builder-list");
+		list.innerHTML = "";
+
+		for(var item in decklist){
+			list.innerHTML += "<div class=\"list\" onclick=\"removeFromDeck('"+decklist[item]+"')\">"+cards[decklist[item]].title+" <span class=\"stats\">"+cards[decklist[item]].attack+"/"+cards[decklist[item]].defense+"</span></div>";
+		}
+	}
+}
+
+function removeFromDeck(name){
+	var found = false;
+
+	for(var item in decklist){
+		if(decklist[item] == name){
+			decklist.splice(item, 1);
+			found = true;
+			break;
+		}
+	}
+
+	if(found){
+		var list = document.getElementById("deck-builder-list");
+		list.innerHTML = "";
+
+		for(var item in decklist){
+			list.innerHTML += "<div class=\"list\" onclick=\"removeFromDeck('"+decklist[item]+"')\">"+cards[decklist[item]].title+" <span class=\"stats\">"+cards[decklist[item]].attack+"/"+cards[decklist[item]].defense+"</span></div>";
+		}
+	}
 }
 
 function mainMenu(){

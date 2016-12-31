@@ -161,7 +161,7 @@ body, html{
 	visibility: hidden;
 }
 #deck-builder-cards{
-	width:60vmin;
+	width:55vmin;
 	position: absolute;
 	top:0px;
 	left:0px;
@@ -169,11 +169,34 @@ body, html{
 	overflow-x:hidden;
 	background-color:#FAF;
 }
+#deck-builder-cards .card{
+	position: absolute;
+	height: 24vmin;
+	width:  14.5vmin;
+	margin: 1vmin;
+	padding: 1vmin;
+	background-color: #3F3;
+	border-radius: 2vmin;
+	color: black;
+	font-size: 1.8vmin;
+	box-shadow: -.5vmin .5vmin 2vmin rgba(0,0,0,0.5);
+}
+#deck-builder-cards .card:hover{
+	border: .5vmin solid #000;
+	margin: .5vmin;
+}
+#deck-builder-cards .image{
+	height: 8vmin;
+	width:  14vmin;
+}
+.stats{
+	float: right;
+}
 #deck-builder-list{
-	width:20vmin;
+	width:25vmin;
 	height:80vmin;
 	position: absolute;
-	left:60vmin;
+	left:55vmin;
 	top: 0vmin;
 	color: black;
 	background-color: #FFF;
