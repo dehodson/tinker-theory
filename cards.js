@@ -55,8 +55,55 @@ cards = {
     "wall": {
         title: "Ice Wall",
         image: "wall.png",
-        text: "<i>No, I don't know how a wall attacks either. Why don't you make your own card game?</i>",
+        text: "<i>No, I don't know how a wall attacks either. Make your own card game.</i>",
         attack: 2,
         defense: 5
+    },
+    "timmy": {
+        title: "Little Timmy",
+        image: "timmy.png",
+        text: "If you win an attack with him, you get an extra point.",
+        attack: 2,
+        defense: 2,
+        successfulAttackEffect: function(obj, p1, p2){p1.score += 1;}
+    },
+    "timer": {
+        title: "Dr. Time",
+        image: "timer.png",
+        text: "His defense is equal to twice your opponent's score.",
+        attack: 3,
+        defense: 0,
+        globalEffect: function(obj, p1, p2){obj.defense = p2.score * 2;}
+    },
+    "smuggy": {
+        title: "Great Thinker",
+        image: "smuggy.png",
+        text: "If you successfully defend with him, draw a card.",
+        attack: 0,
+        defense: 5,
+        successfulDefenseEffect: function(obj, p1, p2){p1.drawCard();}
+    },
+    "cornwall": {
+        title: "Wall of Corn",
+        image: "cornwall.png",
+        text: "<i>The best defense is a good corn fence.</i>",
+        attack: 1,
+        defense: 6,
+        battleEffect: function(obj, p1, p2){p1.cornCounter += 1;}
+    },
+    "gatekeeper": {
+        title: "Gatekeeper",
+        image: "gatekeeper.png",
+        text: "When you play him, you'll draw your best attacker next.",
+        attack: 1,
+        defense: 4,
+        battleEffect: function(obj, p1, p2){
+            var best = 0;
+            var index = 0;
+            for(var card in p1.deck){
+                if(p1.deck[card].attack > best){index = card; best = p1.deck[card].attack}
+            }
+            p1.nextCard = index;
+        }
     }
 };

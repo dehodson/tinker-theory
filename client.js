@@ -64,7 +64,13 @@ function pickDeck(){
 	var deckname = dropdown.options[dropdown.selectedIndex].text;
 
 	if(mode == 1){
-
+		socket.emit("quick match", {deck: decks[deckname]});
+	}else if(mode == 3){
+		if($_GET["gameid"]){
+			socket.emit("friend game", {id: $_GET["gameid"], deck: decks[deckname]});
+		}else{
+			socket.emit("friend game", {deck: decks[deckname]});
+		}
 	}else{
 		if(deckname != "New Deck..."){
 			decklist = decks[deckname];
@@ -78,9 +84,9 @@ function pickDeck(){
 				list.innerHTML += "<div class=\"list\" onclick=\"removeFromDeck('"+decklist[item]+"')\">"+cards[decklist[item]].title+" <span class=\"stats\">"+cards[decklist[item]].attack+"/"+cards[decklist[item]].defense+"</span></div>";
 			}
 		}
-
-		closeDeckPicker();
 	}
+
+	closeDeckPicker();
 }
 
 function showDeckPicker(){
@@ -164,7 +170,8 @@ function quickMatch(){
 	gameOver = false;
 	mode = 1;
 	document.getElementById("splash").style.visibility = "hidden";
-	socket.emit("quick match");
+
+	showDeckPicker();
 }
 
 function friendGame(){
@@ -172,14 +179,10 @@ function friendGame(){
 	canClick = true;
 	gameBegun = false;
 	gameOver = false;
-	mode = 1;
+	mode = 3;
 	document.getElementById("splash").style.visibility = "hidden";
 
-	if($_GET["gameid"]){
-		socket.emit("friend game", {id: $_GET["gameid"]});
-	}else{
-		socket.emit("friend game");
-	}
+	showDeckPicker();
 }
 
 function deckBuilder(){
@@ -284,7 +287,7 @@ function mainMenu(){
 	closeError();
 	closeDeckPicker();
 
-	if(mode == 1){
+	if(mode == 1 || mode == 3){
 		socket.emit("quit");
 	}else if(mode == 2){
 		document.getElementById("deck-builder-list").innerHTML  = "";

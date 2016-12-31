@@ -43,12 +43,13 @@ sio.configure(function (){
 
 var whoseTurn = 0;
 
-var Player = function(id, conn){
-    this.deck = [];
+var Player = function(id, conn, deck){
+    this.deck = deck;
     this.hand = [];
     this.score = 0;
     this.cornCounter = 0;
     this.card = null;
+    this.nextCard = null;
     this.uuid = id;
     this.hasPlayed = false;
     this.connection = conn;
@@ -56,7 +57,15 @@ var Player = function(id, conn){
 
 Player.prototype.drawCard = function(p1, p2){
     if(this.deck.length > 0){
-        var _card = this.deck.pop();
+        if(this.nextCard == null){
+            if(this.deck.length > 0){
+                var _card = this.deck.pop();
+            }
+        } else {
+            var _card = this.deck.splice(this.nextCard, 1)[0];
+            this.nextCard = null;
+        }
+
         if(_card.hasOwnProperty("drawEffect")){
             _card.drawEffect(_card, p1, p2);
         }
@@ -95,22 +104,6 @@ Game.prototype.startGame = function(){
 
     this.players[this.whoseTurn].connection.emit("turn", {bool: true});
     this.players[(this.whoseTurn + 1) % 2].connection.emit("turn", {bool: false});
-
-    var library = [];
-
-    library.push(cards["dingle"]);
-    library.push(cards["mantis"]);
-    library.push(cards["sweater"]);
-    library.push(cards["corn"]);
-    library.push(cards["shower"]);
-    library.push(cards["smug"]);
-
-    for(var i = 0; i < 20; i++){
-        this.players[0].deck.push(clone(library[i % library.length]));
-    }
-    for(var i = 0; i < 20; i++){
-        this.players[1].deck.push(clone(library[i % library.length]));
-    }
 
     shuffle(this.players[0].deck);
     shuffle(this.players[1].deck);
@@ -156,8 +149,22 @@ Game.prototype.takeTurn = function(){
 
     if(attacker.card.attack > defender.card.defense){
         attacker.score += 1;
+
+        if(attacker.card.hasOwnProperty("successfulAttackEffect")){
+            attacker.card.successfulAttackEffect(attacker.card, attacker, defender);
+        }
+        if(defender.card.hasOwnProperty("failedDefenseEffect")){
+            defender.card.failedDefenseEffect(defender.card, defender, attacker);
+        }
     }else{
         this.whoseTurn = (this.whoseTurn + 1) % 2;
+
+        if(attacker.card.hasOwnProperty("failedAttackEffect")){
+            attacker.card.failedAttackEffect(attacker.card, attacker, defender);
+        }
+        if(defender.card.hasOwnProperty("successfulDefenseEffect")){
+            defender.card.successfulDefenseEffect(defender.card, defender, attacker);
+        }
     }
 
     this.players[0].connection.emit("battle", {yours: this.players[0].card, theirs: this.players[1].card});
@@ -279,12 +286,18 @@ sio.sockets.on('connection', function (client) {
         }
     });
 
-    client.on('quick match', function(){
+    client.on('quick match', function(data){
         var matched = false;
+
+        var deck = [];
+
+        for(var card in data.deck){
+            deck.push(clone(cards[data.deck[card]]));
+        }
 
         for(var i = 0; i < games.length; i++){
             if(games[i].public && games[i].clients == 1){
-                games[i].players.push(new Player(client.userid, client));
+                games[i].players.push(new Player(client.userid, client, deck));
                 games[i].clients += 1;
                 matched = true;
                 games[i].startGame();
@@ -293,7 +306,7 @@ sio.sockets.on('connection', function (client) {
 
         if(!matched){
             games.push(new Game(true, null));
-            games[games.length - 1].players.push(new Player(client.userid, client));
+            games[games.length - 1].players.push(new Player(client.userid, client, deck));
             games[games.length - 1].clients += 1;
         }
     });
@@ -301,15 +314,17 @@ sio.sockets.on('connection', function (client) {
     client.on('friend game', function(data){
         var matched = false;
 
-        if (typeof data === 'undefined'){
-            data = {};
+        var deck = [];
+
+        for(var card in data.deck){
+            deck.push(clone(cards[data.deck[card]]));
         }
 
         if(data.hasOwnProperty("id")){
             for(var i = 0; i < games.length; i++){
                 if(!games[i].public && games[i].id == data.id){
                     if(games[i].clients == 1){
-                        games[i].players.push(new Player(client.userid, client));
+                        games[i].players.push(new Player(client.userid, client, deck));
                         games[i].players[0].connection.emit("friend joined");
                         games[i].clients += 1;
                         games[i].startGame();
@@ -324,7 +339,7 @@ sio.sockets.on('connection', function (client) {
         }else{
             var gameId = Date.now().toString(36);
             games.push(new Game(false, gameId));
-            games[games.length - 1].players.push(new Player(client.userid, client));
+            games[games.length - 1].players.push(new Player(client.userid, client, deck));
             games[games.length - 1].clients += 1;
             client.emit("game id", {id: gameId});
             matched = true;
