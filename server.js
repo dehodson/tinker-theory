@@ -286,6 +286,18 @@ sio.sockets.on('connection', function (client) {
         }
     });
 
+    client.on('chat', function(data){
+        search:
+        for(var i = 0; i < games.length; i++){
+            for(var j = 0; j < 2; j++){
+                if(games[i].players[j].uuid == client.userid && !games[i].players[j].hasPlayed){
+                    games[i].players[(j + 1) % 2].connection.emit('chat', data);
+                    break search;
+                }
+            }
+        }
+    });
+
     client.on('quick match', function(data){
         var matched = false;
 

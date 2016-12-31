@@ -4,6 +4,7 @@ var gameBegun = false;
 var gameOver = false;
 var mode = 0;
 var socket = io.connect('/');
+var messages = 0;
 
 var old = document.getElementById("game-container").innerHTML;
 
@@ -25,6 +26,17 @@ if(document.location.toString().indexOf('?') !== -1) { //from stackoverflow impo
     }
 }
 
+function moveCaretToStart(el) {
+    if (typeof el.selectionStart == "number") {
+        el.selectionStart = el.selectionEnd = 0;
+    } else if (typeof el.createTextRange != "undefined") {
+        el.focus();
+        var range = el.createTextRange();
+        range.collapse(true);
+        range.select();
+    }
+}
+
 var decklist = [];
 
 decks = {};
@@ -33,7 +45,7 @@ if(localStorage.decks){
 	decks = JSON.parse(localStorage.decks);
 }else{
 	decks = {
-		"default": []
+		"default": ["dingle","mantis","mantis","shower","shower","shower","shrinky","shrinky","shrinky","smug","smug","smuggy","sweater","sweater","timer","timer","timmy","timmy","wall","wall"]
 	};
 
 	localStorage.decks = JSON.stringify(decks);
@@ -57,6 +69,16 @@ function showError(){
 function closeError(){
 	document.getElementById("no-click").style.visibility = "hidden";
 	document.getElementById("error-box").style.visibility = "hidden";
+}
+
+function showChat(){
+	document.getElementById("chat-main").innerHTML = "";
+
+	document.getElementById("chat").style.visibility = "visible";
+}
+
+function hideChat(){
+	document.getElementById("chat").style.visibility = "hidden";
 }
 
 function pickDeck(){
@@ -172,6 +194,7 @@ function quickMatch(){
 	document.getElementById("splash").style.visibility = "hidden";
 
 	showDeckPicker();
+	showChat();
 }
 
 function friendGame(){
@@ -183,6 +206,7 @@ function friendGame(){
 	document.getElementById("splash").style.visibility = "hidden";
 
 	showDeckPicker();
+	showChat();
 }
 
 function deckBuilder(){
@@ -286,6 +310,7 @@ function mainMenu(){
 	closeAlert();
 	closeError();
 	closeDeckPicker();
+	hideChat();
 
 	if(mode == 1 || mode == 3){
 		socket.emit("quit");
@@ -299,6 +324,32 @@ function mainMenu(){
 	}
 
 	mode = 0;
+}
+
+function createChatBubble(type, message){
+	var chatbox = document.getElementById("chat-main");
+
+	chatbox.innerHTML += "<div class=\"chat-bubble "+type+"\" id=\"chat-msg-"+messages+"\"></div>";
+
+	document.getElementById("chat-msg-"+messages).innerText = type+": "+message;
+
+	messages += 1;
+}
+
+function keyPressed(event){
+	if(event.which == 13){
+		var textarea = document.getElementById("chat-input");
+		var text = textarea.value;
+		textarea.value = "";
+
+		window.setTimeout(function() {
+	        moveCaretToStart(textarea);
+	    }, 1);
+
+	    createChatBubble("you", text);
+
+		socket.emit("chat", {message: text});
+	}
 }
 
 socket.on('turn', function( data ) {
@@ -364,6 +415,10 @@ socket.on('battle', function( data ) {
 		window.setTimeout(function(){document.getElementById("your-card").className = "card defender-loser";}, 2300);
 		window.setTimeout(function(){document.getElementById("enemy-card").className = "card attacker-exit";}, 2600);
 	}
+});
+
+socket.on('chat', function(data){
+	createChatBubble("them", data.message);
 });
 
 socket.on('game id', function(data){

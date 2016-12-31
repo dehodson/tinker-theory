@@ -27,6 +27,60 @@ body, html{
 	bottom:0px;
 	margin:auto;
 }
+#chat{
+	position: absolute;
+	height: 80vmin;
+	background-color: #FFF;
+	width: 20vmin;
+	right:-21vmin;
+	top:0vmin;
+	border-radius: 3vmin;
+	color: black;
+	visibility: hidden;
+}
+#chat-header{
+	position: absolute;
+	top:0vmin;
+	left:0vmin;
+	height:5vmin;
+	width: 20vmin;
+	background-color: #AAA;
+	line-height: 5vmin;
+	text-align: center;
+	border-top-right-radius: 3vmin;
+	border-top-left-radius: 3vmin;
+}
+#chat-main{
+	position: absolute;
+	top:5vmin;
+	left:0vmin;
+	height:65vmin;
+	width: 20vmin;
+	overflow-y:scroll;
+}
+.chat-bubble{
+	width:19vmin;
+	padding:.5vmin;
+}
+.chat-bubble.them{
+	background-color: #FCC;
+}
+#chat-footer{
+	position: absolute;
+	top:70vmin;
+	left:0vmin;
+	height:10vmin;
+	width: 20vmin;
+	background-color: #AAA;
+	text-align: center;
+	border-bottom-right-radius: 3vmin;
+	border-bottom-left-radius: 3vmin;
+}
+#chat-input{
+	width:18vmin;
+	margin:.5vmin;
+	height:6vmin;
+}
 #game-container{
 	position: absolute;
 	height:80vmin;

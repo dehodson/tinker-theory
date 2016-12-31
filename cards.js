@@ -105,5 +105,13 @@ cards = {
             }
             p1.nextCard = index;
         }
+    },
+    "shrinky": {
+        title: "Shrink Technician",
+        image: "shrinky.png",
+        text: "Gives all cards in your opponent's hand -1/-1 when you play it.",
+        attack: 3,
+        defense: 1,
+        battleEffect: function(obj, p1, p2){for(var i = 0; i < p2.hand.length; i++){p2.hand[i].attack -= 1; p2.hand[i].defense -= 1;}}
     }
 };
