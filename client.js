@@ -143,8 +143,8 @@ function makeCard(dict, id, onclick){
 	   string += "<div class=\"title\" id=\""+id+"-title\">"+dict.title+"</div>";
 	   string += "<div class=\"image\" id=\""+id+"-image\" style=\"background-image:url('images/"+dict.image+"')\"></div>";
 	   string += "<div class=\"text\"  id=\""+id+"-text\" >"+dict.text+"</div>";
-	   string += "<div class=\"attack\"  id=\""+id+"-attack\">"+dict.attack+"<div class=\"sword\"></div></div>";
-	   string += "<div class=\"defense\"  id=\""+id+"-defense\"><div class=\"shield\"></div>"+dict.defense+"</div></div>";
+	   string += "<div class=\"attack\"  id=\""+id+"-attack\">"+(dict.attack + dict.buffa)+"<div class=\"sword\"></div></div>";
+	   string += "<div class=\"defense\"  id=\""+id+"-defense\"><div class=\"shield\"></div>"+(dict.defense + dict.buffd)+"</div></div>";
 	return string;
 }
 
@@ -344,7 +344,7 @@ function keyPressed(event){
 
 		window.setTimeout(function() {
 	        moveCaretToStart(textarea);
-	    }, 1);
+	    }, 10);
 
 	    createChatBubble("you", text);
 
@@ -396,16 +396,16 @@ socket.on('battle', function( data ) {
 	window.setTimeout(function(){document.getElementById("status").innerText = "Go!";}, 2000);
 	window.setTimeout(function(){document.getElementById("status").innerText = "Pick a card.";}, 3000);
 
-	if(yourTurn && data.yours.attack > data.theirs.defense){
+	if(yourTurn && data.yours.attack + data.yours.buffa > data.theirs.defense + data.theirs.buffd){
 		window.setTimeout(function(){document.getElementById("your-card").className = "card attacker-winner";}, 2000);
 		window.setTimeout(function(){document.getElementById("enemy-card").className = "card defender-loser";}, 2300);
 		window.setTimeout(function(){document.getElementById("your-card").className = "card attacker-exit";}, 2600);
-	}else if(yourTurn && data.yours.attack <= data.theirs.defense){
+	}else if(yourTurn && data.yours.attack + data.yours.buffa <= data.theirs.defense + data.theirs.buffd){
 		window.setTimeout(function(){document.getElementById("your-card").className = "card attacker-winner";}, 2000);
 		window.setTimeout(function(){document.getElementById("enemy-card").className = "card defender-winner";}, 2300);
 		window.setTimeout(function(){document.getElementById("your-card").className = "card attacker-losing-exit";}, 2600);
 		window.setTimeout(function(){document.getElementById("enemy-card").className = "card defender-winning-exit";}, 3000);
-	}else if(!yourTurn && data.yours.defense >= data.theirs.attack){
+	}else if(!yourTurn && data.yours.defense + data.yours.buffd >= data.theirs.attack + data.theirs.buffa){
 		window.setTimeout(function(){document.getElementById("enemy-card").className = "card attacker-winner";}, 2000);
 		window.setTimeout(function(){document.getElementById("your-card").className = "card defender-winner";}, 2300);
 		window.setTimeout(function(){document.getElementById("enemy-card").className = "card attacker-losing-exit";}, 2600);

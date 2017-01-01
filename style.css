@@ -240,7 +240,7 @@ body, html{
 	background-color: #3F3;
 	border-radius: 2vmin;
 	color: black;
-	font-size: 1.8vmin;
+	font-size: 1.7vmin;
 	box-shadow: -.5vmin .5vmin 2vmin rgba(0,0,0,0.5);
 }
 #deck-builder-cards .card:hover{
@@ -353,7 +353,7 @@ body, html{
 	background-color: #3F3;
 	border-radius: 2vmin;
 	color: black;
-	font-size: 2vmin;
+	font-size: 1.8vmin;
 	box-shadow: -1vmin 1vmin 3vmin rgba(0,0,0,0.5);
 }
 .card:hover{

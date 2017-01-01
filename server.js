@@ -147,7 +147,7 @@ Game.prototype.takeTurn = function(){
         defender.card.globalEffect(defender.card, defender, attacker);
     }
 
-    if(attacker.card.attack > defender.card.defense){
+    if(attacker.card.attack + attacker.card.buffa > defender.card.defense + defender.card.buffd){
         attacker.score += 1;
 
         if(attacker.card.hasOwnProperty("successfulAttackEffect")){
