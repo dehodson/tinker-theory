@@ -87,6 +87,23 @@ Player.prototype.updateHand = function(p1, p2, delay){
     this.connection.emit("hand", {hand: this.hand, delay: delay});
 };
 
+
+Player.prototype.updateAllCards = function(p1, p2){
+    for(var i = 0; i < this.hand.length; i++){
+        if(this.hand[i].hasOwnProperty("globalEffect")){
+            this.hand[i].globalEffect(this.hand[i], p1, p2);
+        }
+    }
+    for(var i = 0; i < this.deck.length; i++){
+        if(this.deck[i].hasOwnProperty("globalEffect")){
+            this.deck[i].globalEffect(this.deck[i], p1, p2);
+        }
+    }
+    if(this.card.hasOwnProperty("globalEffect")){
+        this.card.globalEffect(this.card, p1, p2);
+    }
+}
+
 var Game = function(publicity, gameId){
     this.players = [];
     this.complete = 0;
@@ -128,24 +145,18 @@ Game.prototype.takeTurn = function(){
     var attacker = this.players[this.whoseTurn];
     var defender = this.players[(this.whoseTurn + 1) % 2];
 
-    if(attacker.card.hasOwnProperty("globalEffect")){
-        attacker.card.globalEffect(attacker.card, attacker, defender);
-    }
-    if(defender.card.hasOwnProperty("globalEffect")){
-        defender.card.globalEffect(defender.card, defender, attacker);
-    }
+    attacker.updateAllCards(attacker, defender);
+    defender.updateAllCards(defender, attacker);
+
     if(attacker.card.hasOwnProperty("battleEffect")){
         attacker.card.battleEffect(attacker.card, attacker, defender);
     }
     if(defender.card.hasOwnProperty("battleEffect")){
         defender.card.battleEffect(defender.card, defender, attacker);
     }
-    if(attacker.card.hasOwnProperty("globalEffect")){
-        attacker.card.globalEffect(attacker.card, attacker, defender);
-    }
-    if(defender.card.hasOwnProperty("globalEffect")){
-        defender.card.globalEffect(defender.card, defender, attacker);
-    }
+
+    attacker.updateAllCards(attacker, defender);
+    defender.updateAllCards(defender, attacker);
 
     if(attacker.card.attack + attacker.card.buffa > defender.card.defense + defender.card.buffd){
         attacker.score += 1;

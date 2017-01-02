@@ -164,5 +164,25 @@ cards = {
         buffa: 0,
         buffd: 0,
         globalEffect: function(obj, p1, p2){if(p2.score > p1.score){obj.attack = 10; obj.defense = 10;}else{obj.attack = 1; obj.defense = 1;}}
+    },
+    "electro": {
+        title: "Electro-Mage",
+        image: "electro.png",
+        text: "When you play her, your opponent draws a card.",
+        attack: 9,
+        defense: 1,
+        buffa: 0,
+        buffd: 0,
+        battleEffect: function(obj, p1, p2){p2.drawCard();}
+    },
+    "clone": {
+        title: "Cosmic Clone",
+        image: "clone.png",
+        text: "Its stats in battle are always equal to your opponent's card.",
+        attack: 0,
+        defense: 0,
+        buffa: 0,
+        buffd: 0,
+        battleEffect: function(obj, p1, p2){obj.attack = p2.card.attack; obj.defense = p2.card.defense; obj.buffa = p2.card.buffa; obj.buffd = p2.card.buffd;}
     }
 };
