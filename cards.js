@@ -178,11 +178,41 @@ cards = {
     "clone": {
         title: "Cosmic Clone",
         image: "clone.png",
-        text: "Its stats in battle are always equal to your opponent's card.",
+        text: "It copies the stats of the last card you played.",
         attack: 0,
         defense: 0,
         buffa: 0,
         buffd: 0,
-        battleEffect: function(obj, p1, p2){obj.attack = p2.card.attack; obj.defense = p2.card.defense; obj.buffa = p2.card.buffa; obj.buffd = p2.card.buffd;}
+        battleEffect: function(obj, p1, p2){
+            if(p1.lastCard != null){obj.attack = p1.lastCard.attack; obj.defense = p1.lastCard.defense; obj.buffa = p1.lastCard.buffa; obj.buffd = p1.lastCard.buffd;
+        }}
+    },
+    "warrior": {
+        title: "Copy-Mage",
+        image: "warrior.png",
+        text: "It copies the battle effects of the last card you played.",
+        attack: 3,
+        defense: 3,
+        buffa: 0,
+        buffd: 0,
+        battleEffect: function(obj, p1, p2){
+            if(p1.lastCard != null){
+                if(p1.lastCard.hasOwnProperty("battleEffect") && p1.lastCard.battleEffect.toString() != obj.battleEffect.toString()){
+                    obj.battleEffect = p1.lastCard.battleEffect; obj.battleEffect(obj, p1, p2);
+                }
+                if(p1.lastCard.hasOwnProperty("successfulAttackEffect")){
+                    obj.successfulAttackEffect = p1.lastCard.successfulAttackEffect;
+                }
+                if(p1.lastCard.hasOwnProperty("failedAttackEffect")){
+                    obj.failedAttackEffect = p1.lastCard.failedAttackEffect;
+                }
+                if(p1.lastCard.hasOwnProperty("successfulDefenseEffect")){
+                    obj.successfulDefenseEffect = p1.lastCard.successfulDefenseEffect;
+                }
+                if(p1.lastCard.hasOwnProperty("failedDefenseEffect")){
+                    obj.failedDefenseEffect = p1.lastCard.failedDefenseEffect;
+                }
+            }
+        }
     }
 };

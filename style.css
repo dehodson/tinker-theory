@@ -356,6 +356,18 @@ body, html{
 	font-size: 1.8vmin;
 	box-shadow: -1vmin 1vmin 3vmin rgba(0,0,0,0.5);
 }
+.card.buffed{
+	background-color: #FF3;
+	box-shadow: -1vmin 1vmin 3vmin rgba(0,0,0,0.5), 0vmin 0vmin 3vmin rgba(255,255,200,0.7);
+}
+.card.debuffed{
+	background-color: #F33;
+	box-shadow: -1vmin 1vmin 3vmin rgba(0,0,0,0.5), 0vmin 0vmin 3vmin rgba(255,200,200,0.7);
+}
+.buff{
+	font-size:1.6vmin;
+	font-style:italic;
+}
 .card:hover{
 	border: .5vmin solid #000;
 	margin: .5vmin;

@@ -50,6 +50,7 @@ var Player = function(id, conn, deck){
     this.cornCounter = 0;
     this.card = null;
     this.nextCard = null;
+    this.lastCard = null;
     this.uuid = id;
     this.hasPlayed = false;
     this.connection = conn;
@@ -74,6 +75,7 @@ Player.prototype.drawCard = function(p1, p2){
 };
 
 Player.prototype.playCard = function(id, p1, p2){
+    this.lastCard = clone(this.card);
     this.card = this.hand.splice(id, 1)[0];
 };
 
