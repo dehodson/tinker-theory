@@ -135,12 +135,12 @@ cards = {
     "shrinky": {
         title: "Shrink Technician",
         image: "shrinky.png",
-        text: "Gives all cards in your opponent's hand -1/-1 when you play it.",
+        text: "Gives all cards in your opponent's hand -1/-3 when you play it.",
         attack: 3,
         defense: 1,
         buffa: 0,
         buffd: 0,
-        battleEffect: function(obj, p1, p2){for(var i = 0; i < p2.hand.length; i++){p2.hand[i].buffa -= 1; p2.hand[i].buffd -= 1;}}
+        battleEffect: function(obj, p1, p2){for(var i = 0; i < p2.hand.length; i++){p2.hand[i].buffa -= 1; p2.hand[i].buffd -= 3;}}
     },
     "normalizer": {
         title: "Normalizer Wizard",
@@ -211,6 +211,35 @@ cards = {
                 }
                 if(p1.lastCard.hasOwnProperty("failedDefenseEffect")){
                     obj.failedDefenseEffect = p1.lastCard.failedDefenseEffect;
+                }
+            }
+        }
+    },
+    "barrier": {
+        title: "Mystical Barrier",
+        image: "barrier.png",
+        text: "If you successfully defend with it, you get a point.",
+        attack: 0,
+        defense: 6,
+        buffa: 0,
+        buffd: 0,
+        successfulDefenseEffect: function(obj, p1, p2){p1.score += 1;}
+    },
+    "diggy": {
+        title: "Archmage Diggy",
+        image: "diggy.png",
+        text: "When you play him, give all other copies of the last card your opponent played -2/-2.",
+        attack: 2,
+        defense: 4,
+        buffa: 0,
+        buffd: 0,
+        battleEffect: function(obj, p1, p2){
+            if(p2.lastCard != null){
+                for(var card in p2.deck){
+                    if(p2.deck[card].title == p2.lastCard.title){p2.deck[card].buffa -= 2; p2.deck[card].buffd -= 2;}
+                }
+                for(var card in p2.hand){
+                    if(p2.hand[card].title == p2.lastCard.title){p2.hand[card].buffa -= 2; p2.hand[card].buffd -= 2;}
                 }
             }
         }
