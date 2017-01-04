@@ -40,12 +40,12 @@ cards = {
     "shower": {
         title: "Power Shower",
         image: "shower.png",
-        text: "Gives all cards in your hand +5/+5 when you play it.",
+        text: "Gives all cards in your hand +3/+3 when you play it.",
         attack: 1,
         defense: 1,
         buffa: 0,
         buffd: 0,
-        battleEffect: function(obj, p1, p2){for(var i = 0; i < p1.hand.length; i++){p1.hand[i].buffa += 5; p1.hand[i].buffd += 5;}}
+        battleEffect: function(obj, p1, p2){for(var i = 0; i < p1.hand.length; i++){p1.hand[i].buffa += 3; p1.hand[i].buffd += 3;}}
     },
     "smug": {
         title: "Smug Fucker",
@@ -168,12 +168,12 @@ cards = {
     "electro": {
         title: "Electro-Mage",
         image: "electro.png",
-        text: "When you play her, your opponent draws a card.",
-        attack: 9,
-        defense: 1,
+        text: "If you lose an attack with her, you lose a point.",
+        attack: 7,
+        defense: 3,
         buffa: 0,
         buffd: 0,
-        battleEffect: function(obj, p1, p2){p2.drawCard();}
+        failedAttackEffect: function(obj, p1, p2){if(p1.score > 0){p1.score -= 1;}}
     },
     "clone": {
         title: "Cosmic Clone",
@@ -242,6 +242,33 @@ cards = {
                     if(p2.hand[card].title == p2.lastCard.title){p2.hand[card].buffa -= 2; p2.hand[card].buffd -= 2;}
                 }
             }
+        }
+    },
+    "farmer": {
+        title: "Farmer Jeb",
+        image: "farmer.png",
+        text: "If the last card you played was a corn card, draw a card.",
+        attack: 4,
+        defense: 2,
+        buffa: 0,
+        buffd: 0,
+        battleEffect: function(obj, p1, p2){
+            if(p1.lastCard != null){if(p1.lastCard.title.indexOf("Corn") != -1){p1.drawCard();}}
+        }
+    },
+    "necro": {
+        title: "Necrosplicer",
+        image: "necro.png",
+        text: "When you play him, distribute all stats among cards in your opponent's hand evenly.",
+        attack: 5,
+        defense: 1,
+        buffa: 0,
+        buffd: 0,
+        battleEffect: function(obj, p1, p2){
+            var total = 0;
+            for(var i = 0; i < p2.hand.length; i++){total += p2.hand[i].attack + p2.hand[i].defense + p2.hand[i].buffa + p2.hand[i].buffd; p2.hand[i].buffa = 0; p2.hand[i].buffd = 0;}
+            var amount = Math.floor(total / (p2.hand.length * 2));
+            for(var i = 0; i < p2.hand.length; i++){p2.hand[i].buffa = amount - p2.hand[i].attack; p2.hand[i].buffd = amount - p2.hand[i].defense};
         }
     }
 };
