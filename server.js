@@ -150,6 +150,13 @@ Game.prototype.takeTurn = function(){
     attacker.updateAllCards(attacker, defender);
     defender.updateAllCards(defender, attacker);
 
+    if(attacker.card.hasOwnProperty("priorityEffect")){
+        attacker.card.priorityEffect(attacker.card, attacker, defender);
+    }
+    if(defender.card.hasOwnProperty("priorityEffect")){
+        defender.card.priorityEffect(defender.card, defender, attacker);
+    }
+
     if(attacker.card.hasOwnProperty("battleEffect")){
         attacker.card.battleEffect(attacker.card, attacker, defender);
     }

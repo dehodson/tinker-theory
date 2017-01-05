@@ -270,5 +270,24 @@ cards = {
             var amount = Math.floor(total / (p2.hand.length * 2));
             for(var i = 0; i < p2.hand.length; i++){p2.hand[i].buffa = amount - p2.hand[i].attack; p2.hand[i].buffd = amount - p2.hand[i].defense};
         }
+    },
+    "silencer": {
+        title: "Mystic Silencer",
+        image: "silencer.png",
+        text: "When you play him, remove all effects from all cards in your opponent's hand.",
+        attack: 5,
+        defense: 1,
+        buffa: 0,
+        buffd: 0,
+        battleEffect: function(obj, p1, p2){
+            for(var i = 0; i < p2.hand.length; i++){
+                delete p2.hand[i].priorityEffect;
+                delete p2.hand[i].successfulAttackEffect;
+                delete p2.hand[i].successfulDefenseEffect;
+                delete p2.hand[i].failedAttackEffect;
+                delete p2.hand[i].failedDefenseEffect;
+                delete p2.hand[i].battleEffect;
+            }
+        }
     }
 };
