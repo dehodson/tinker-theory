@@ -297,7 +297,7 @@ cards = {
     "silencer": {
         title: "Mystic Silencer",
         image: "silencer.png",
-        text: "Silence all cards in your opponent's hand.",
+        text: "When you play him, silence all cards in your opponent's hand.",
         attack: 3,
         defense: 3,
         buffa: 0,
@@ -307,6 +307,55 @@ cards = {
             for(var i = 0; i < p2.hand.length; i++){
                 p2.hand[i].silenced = true;
             }
+        }
+    },
+    "duo": {
+        title: "Magical Duo",
+        image: "duo.png",
+        text: "When you play them, draw a card, but silence it.",
+        attack: 3,
+        defense: 2,
+        buffa: 0,
+        buffd: 0,
+        silenced: false,
+        battleEffect: function(obj, p1, p2){
+            if(p1.deck.length > 0){
+                if(p1.nextCard != null){
+                    p1.nextCard.silenced = true;
+                }else{
+                    p1.deck[p1.deck.length - 1].silenced = true;
+                }
+                p1.drawCard();
+            }
+        }
+    },
+    "hexmage": {
+        title: "Wizened Hexmage",
+        image: "hexmage.png",
+        text: "When you play him, unsilence all cards in players' hands. He gets +1/+0 for each.",
+        attack: 0,
+        defense: 4,
+        buffa: 0,
+        buffd: 0,
+        silenced: false,
+        battleEffect: function(obj, p1, p2){
+            var number = 0;
+
+            for(var i = 0; i < p1.hand.length; i++){
+                if(p1.hand[i].silenced){
+                    number += 1;
+                    p1.hand[i].silenced = false;
+                }
+            }
+
+            for(var i = 0; i < p2.hand.length; i++){
+                if(p2.hand[i].silenced){
+                    number += 1;
+                    p2.hand[i].silenced = false;
+                }
+            }
+
+            obj.buffa += number;
         }
     }
 };
