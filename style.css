@@ -199,6 +199,21 @@ body, html{
 #splash-rules:hover{
 	background-color: #FFF;
 }
+#splash{
+	position: absolute;
+	height:80vmin;
+	width: 80vmin;
+	background-color: #FFF;
+	position: absolute;
+	top:0px;
+	left:0px;
+	right:0px;
+	bottom:0px;
+	margin:auto;
+	border-radius: 3vmin;
+	overflow: hidden;
+	z-index: 5;
+}
 #deck-builder{
 	position: absolute;
 	height:80vmin;
@@ -214,6 +229,36 @@ body, html{
 	border-radius: 3vmin;
 	overflow: hidden;
 	visibility: hidden;
+}
+#rules{
+	position: absolute;
+	height:80vmin;
+	width: 80vmin;
+	background-color: #FFF;
+	position: absolute;
+	top:0px;
+	left:0px;
+	right:0px;
+	bottom:0px;
+	margin:auto;
+	border-radius: 3vmin;
+	z-index: 5;
+	visibility: hidden;
+	color: black;
+	font-size: 2.5vmin;
+}
+#rules-container{
+	position: absolute;
+	width: 76vmin;
+	height: 78vmin;
+	padding: 1vmin;
+	top:0vmin;
+	left:0vmin;
+	overflow-y: scroll;
+}
+#rules h1,h2,h3,h4,h5,h6{
+	margin: 0.5vmin 0vmin;
+	padding: 0;
 }
 .deckbuilder-button{
 	width:24vmin;

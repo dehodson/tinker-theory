@@ -35,7 +35,28 @@
 				<div class="splash-button" id="splash-quick-match" onclick="quickMatch();">Quick Match</div>
 				<div class="splash-button" id="splash-friend-game" onclick="friendGame();">Challenge a Friend</div>
 				<div class="splash-button" id="splash-deckbuilder" onclick="deckBuilder();">Build a Deck</div>
-				<div class="splash-button" id="splash-rules">Rules</div>
+				<div class="splash-button" id="splash-rules"       onclick="showRules();">Rules</div>
+			</div>
+			<div id="rules">
+				<div id="rules-container">
+					<h1>How to Play</h1>
+					<p>The object of the game is to score as many points as possible. Each turn, you pick a card from your hand
+					to play against your opponent. You score a point when you're attacking and your card's attack exceeds your
+					opponent's card's defense.</p>
+					<h3>Card Effects</h3>
+					<p>Certain cards have additional effects. If a card has an additional effect, it will be written on the card.
+					Those effects may take action when played in battle, when you successfully attack with them, successfully 
+					defend with them, or in other situations. The card will tell you when the effect will occur.</p>
+					<h3>Buffs and Debuffs</h3>
+					<p>Certain cards improve the stats of cards. Other cards lower the stats of cards. A card is <b>buffed</b> if
+					it has greater stats than its normal stats. A card is <b>debuffed</b> if it has lower stats than its normal
+					stats.</p>
+					<h3>Silenced</h3>
+					<p>If a card is <b>silenced</b>, it will say so on its card and its text will be struck out. Card effects that trigger
+					in battle will not trigger if the card is silenced.</p>
+					<h3>Deckbuilding</h3>
+					<p>A deck must contain twenty cards, no more and no less. A maximum of three of each card is enforced.</p>
+				</div>
 			</div>
 			<div id="alert-box">Send the following link to a friend, and they will join your game: <span id="alert-box-link"></span></div>
 			<div id="error-box" onclick="closeError()"></div>

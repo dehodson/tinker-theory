@@ -73,12 +73,15 @@ function closeError(){
 
 function showChat(){
 	document.getElementById("chat-main").innerHTML = "";
-
 	document.getElementById("chat").style.visibility = "visible";
 }
 
 function hideChat(){
 	document.getElementById("chat").style.visibility = "hidden";
+}
+
+function showRules(){
+	document.getElementById("rules").style.visibility = "visible";
 }
 
 function pickDeck(){
@@ -143,26 +146,19 @@ function makeCard(dict, id, onclick){
 	var buffString = "";
 	var silenceString = "";
 
-	if(dict.silenced){
-		silenceString = ", silenced";
-	}
-
 	if(dict.buffa > 0 || dict.buffd > 0){
 		className = "card buffed";
-		buffString = "<br /><span class=\"buff\">(buffed"+silenceString+")</span>";
+		buffString = "<br /><span class=\"buff\">(buffed)</span>";
 	}
 
 	if(dict.buffa < 0 || dict.buffd < 0){
 		className = "card debuffed";
-		buffString = "<br /><span class=\"buff\">(debuffed"+silenceString+")</span>";
+		buffString = "<br /><span class=\"buff\">(debuffed)</span>";
 	}
 
 	if(dict.silenced){
 		className += " silenced";
-
-		if(buffString == ""){
-			buffString = "<br /><span class=\"buff\">(silenced)</span>";
-		}
+		buffString += "<br /><span class=\"buff\">(silenced)</span>";
 	}
 
 	var string = "<div class=\""+className+"\" id=\""+id+"\" onclick=\""+onclick+"\">";
@@ -332,6 +328,7 @@ function saveDeck(){
 function mainMenu(){
 	document.getElementById("splash").style.visibility = "visible";
 	document.getElementById("deck-builder").style.visibility = "hidden";
+	document.getElementById("rules").style.visibility = "hidden";
 	document.getElementById("game-container").innerHTML = old;
 	closeAlert();
 	closeError();
