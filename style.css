@@ -364,9 +364,13 @@ body, html{
 	background-color: #F33;
 	box-shadow: -1vmin 1vmin 3vmin rgba(0,0,0,0.5), 0vmin 0vmin 3vmin rgba(255,200,200,0.7);
 }
+.card.silenced .text:not(.buff){
+	text-decoration: line-through;
+}
 .buff{
 	font-size:1.6vmin;
 	font-style:italic;
+	display: inline-block;
 }
 .card:hover{
 	border: .5vmin solid #000;

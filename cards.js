@@ -7,6 +7,7 @@ cards = {
         defense: 3,
         buffa: 0,
         buffd: 0,
+        silenced: false
     },
     "mantis": {
         title: "Mantis Man",
@@ -16,6 +17,7 @@ cards = {
         defense: 0,
         buffa: 0,
         buffd: 0,
+        silenced: false
     },
     "sweater": {
         title: "Comfy Sweater",
@@ -25,6 +27,7 @@ cards = {
         defense: 7,
         buffa: 0,
         buffd: 0,
+        silenced: false
     },
     "corn": {
         title: "Sweet Corn",
@@ -34,6 +37,7 @@ cards = {
         defense: 2,
         buffa: 0,
         buffd: 0,
+        silenced: false,
         globalEffect: function(obj, p1, p2){obj.text = "Its stats grow with every corn you play. (+"+p1.cornCounter+"/+"+p1.cornCounter+")"; obj.attack = 2 + p1.cornCounter; obj.defense = 2 + p1.cornCounter;},
         battleEffect: function(obj, p1, p2){p1.cornCounter += 1;}
     },
@@ -45,6 +49,7 @@ cards = {
         defense: 1,
         buffa: 0,
         buffd: 0,
+        silenced: false,
         battleEffect: function(obj, p1, p2){for(var i = 0; i < p1.hand.length; i++){p1.hand[i].buffa += 3; p1.hand[i].buffd += 3;}}
     },
     "smug": {
@@ -55,6 +60,7 @@ cards = {
         defense: 3,
         buffa: 0,
         buffd: 0,
+        silenced: false,
         battleEffect: function(obj, p1, p2){p1.drawCard();}
     },
     "fist": {
@@ -65,6 +71,7 @@ cards = {
         defense: 2,
         buffa: 0,
         buffd: 0,
+        silenced: false
     },
     "wall": {
         title: "Ice Wall",
@@ -74,6 +81,7 @@ cards = {
         defense: 5,
         buffa: 0,
         buffd: 0,
+        silenced: false
     },
     "timmy": {
         title: "Little Timmy",
@@ -83,6 +91,7 @@ cards = {
         defense: 2,
         buffa: 0,
         buffd: 0,
+        silenced: false,
         successfulAttackEffect: function(obj, p1, p2){p1.score += 1;}
     },
     "timer": {
@@ -93,6 +102,7 @@ cards = {
         defense: 0,
         buffa: 0,
         buffd: 0,
+        silenced: false,
         globalEffect: function(obj, p1, p2){obj.defense = p2.score * 2;}
     },
     "smuggy": {
@@ -103,6 +113,7 @@ cards = {
         defense: 5,
         buffa: 0,
         buffd: 0,
+        silenced: false,
         successfulDefenseEffect: function(obj, p1, p2){p1.drawCard();}
     },
     "cornwall": {
@@ -113,6 +124,7 @@ cards = {
         defense: 6,
         buffa: 0,
         buffd: 0,
+        silenced: false,
         battleEffect: function(obj, p1, p2){p1.cornCounter += 1;}
     },
     "gatekeeper": {
@@ -123,6 +135,7 @@ cards = {
         defense: 4,
         buffa: 0,
         buffd: 0,
+        silenced: false,
         battleEffect: function(obj, p1, p2){
             var best = 0;
             var index = 0;
@@ -140,6 +153,7 @@ cards = {
         defense: 1,
         buffa: 0,
         buffd: 0,
+        silenced: false,
         battleEffect: function(obj, p1, p2){for(var i = 0; i < p2.hand.length; i++){p2.hand[i].buffa -= 1; p2.hand[i].buffd -= 3;}}
     },
     "normalizer": {
@@ -150,6 +164,7 @@ cards = {
         defense: 0,
         buffa: 0,
         buffd: 0,
+        silenced: false,
         battleEffect: function(obj, p1, p2){
             for(var i = 0; i < p2.hand.length; i++){p2.hand[i].buffa = 0; p2.hand[i].buffd = 0;}
             for(var i = 0; i < p1.hand.length; i++){p1.hand[i].buffa = 0; p1.hand[i].buffd = 0;}
@@ -163,6 +178,7 @@ cards = {
         defense: 1,
         buffa: 0,
         buffd: 0,
+        silenced: false,
         globalEffect: function(obj, p1, p2){if(p2.score > p1.score){obj.attack = 10; obj.defense = 10;}else{obj.attack = 1; obj.defense = 1;}}
     },
     "electro": {
@@ -173,6 +189,7 @@ cards = {
         defense: 3,
         buffa: 0,
         buffd: 0,
+        silenced: false,
         failedAttackEffect: function(obj, p1, p2){if(p1.score > 0){p1.score -= 1;}}
     },
     "clone": {
@@ -183,6 +200,7 @@ cards = {
         defense: 0,
         buffa: 0,
         buffd: 0,
+        silenced: false,
         battleEffect: function(obj, p1, p2){
             if(p1.lastCard != null){obj.attack = p1.lastCard.attack; obj.defense = p1.lastCard.defense; obj.buffa = p1.lastCard.buffa; obj.buffd = p1.lastCard.buffd;
         }}
@@ -195,6 +213,7 @@ cards = {
         defense: 3,
         buffa: 0,
         buffd: 0,
+        silenced: false,
         battleEffect: function(obj, p1, p2){
             if(p1.lastCard != null){
                 if(p1.lastCard.hasOwnProperty("battleEffect") && p1.lastCard.battleEffect.toString() != obj.battleEffect.toString()){
@@ -223,6 +242,7 @@ cards = {
         defense: 6,
         buffa: 0,
         buffd: 0,
+        silenced: false,
         successfulDefenseEffect: function(obj, p1, p2){p1.score += 1;}
     },
     "diggy": {
@@ -233,6 +253,7 @@ cards = {
         defense: 4,
         buffa: 0,
         buffd: 0,
+        silenced: false,
         battleEffect: function(obj, p1, p2){
             if(p2.lastCard != null){
                 for(var card in p2.deck){
@@ -252,6 +273,7 @@ cards = {
         defense: 2,
         buffa: 0,
         buffd: 0,
+        silenced: false,
         battleEffect: function(obj, p1, p2){
             if(p1.lastCard != null){if(p1.lastCard.title.indexOf("Corn") != -1){p1.drawCard();}}
         }
@@ -259,11 +281,12 @@ cards = {
     "necro": {
         title: "Necrosplicer",
         image: "necro.png",
-        text: "When you play him, distribute all stats among cards in your opponent's hand evenly.",
+        text: "When you play him, your opponent's hand's stats are averaged together.",
         attack: 5,
         defense: 1,
         buffa: 0,
         buffd: 0,
+        silenced: false,
         battleEffect: function(obj, p1, p2){
             var total = 0;
             for(var i = 0; i < p2.hand.length; i++){total += p2.hand[i].attack + p2.hand[i].defense + p2.hand[i].buffa + p2.hand[i].buffd; p2.hand[i].buffa = 0; p2.hand[i].buffd = 0;}
@@ -274,19 +297,15 @@ cards = {
     "silencer": {
         title: "Mystic Silencer",
         image: "silencer.png",
-        text: "When you play him, remove all effects from all cards in your opponent's hand.",
-        attack: 5,
-        defense: 1,
+        text: "Silence all cards in your opponent's hand.",
+        attack: 3,
+        defense: 3,
         buffa: 0,
         buffd: 0,
+        silenced: false,
         battleEffect: function(obj, p1, p2){
             for(var i = 0; i < p2.hand.length; i++){
-                delete p2.hand[i].priorityEffect;
-                delete p2.hand[i].successfulAttackEffect;
-                delete p2.hand[i].successfulDefenseEffect;
-                delete p2.hand[i].failedAttackEffect;
-                delete p2.hand[i].failedDefenseEffect;
-                delete p2.hand[i].battleEffect;
+                p2.hand[i].silenced = true;
             }
         }
     }

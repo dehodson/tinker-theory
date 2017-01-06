@@ -150,17 +150,17 @@ Game.prototype.takeTurn = function(){
     attacker.updateAllCards(attacker, defender);
     defender.updateAllCards(defender, attacker);
 
-    if(attacker.card.hasOwnProperty("priorityEffect")){
+    if(!attacker.card.silenced && attacker.card.hasOwnProperty("priorityEffect")){
         attacker.card.priorityEffect(attacker.card, attacker, defender);
     }
-    if(defender.card.hasOwnProperty("priorityEffect")){
+    if(!defender.card.silenced && defender.card.hasOwnProperty("priorityEffect")){
         defender.card.priorityEffect(defender.card, defender, attacker);
     }
 
-    if(attacker.card.hasOwnProperty("battleEffect")){
+    if(!attacker.card.silenced && attacker.card.hasOwnProperty("battleEffect")){
         attacker.card.battleEffect(attacker.card, attacker, defender);
     }
-    if(defender.card.hasOwnProperty("battleEffect")){
+    if(!defender.card.silenced && defender.card.hasOwnProperty("battleEffect")){
         defender.card.battleEffect(defender.card, defender, attacker);
     }
 
@@ -170,19 +170,19 @@ Game.prototype.takeTurn = function(){
     if(attacker.card.attack + attacker.card.buffa > defender.card.defense + defender.card.buffd){
         attacker.score += 1;
 
-        if(attacker.card.hasOwnProperty("successfulAttackEffect")){
+        if(!attacker.card.silenced && attacker.card.hasOwnProperty("successfulAttackEffect")){
             attacker.card.successfulAttackEffect(attacker.card, attacker, defender);
         }
-        if(defender.card.hasOwnProperty("failedDefenseEffect")){
+        if(!defender.card.silenced && defender.card.hasOwnProperty("failedDefenseEffect")){
             defender.card.failedDefenseEffect(defender.card, defender, attacker);
         }
     }else{
         this.whoseTurn = (this.whoseTurn + 1) % 2;
 
-        if(attacker.card.hasOwnProperty("failedAttackEffect")){
+        if(!attacker.card.silenced && attacker.card.hasOwnProperty("failedAttackEffect")){
             attacker.card.failedAttackEffect(attacker.card, attacker, defender);
         }
-        if(defender.card.hasOwnProperty("successfulDefenseEffect")){
+        if(!defender.card.silenced && defender.card.hasOwnProperty("successfulDefenseEffect")){
             defender.card.successfulDefenseEffect(defender.card, defender, attacker);
         }
     }
