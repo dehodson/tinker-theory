@@ -340,26 +340,50 @@ cards = {
         silenced: false,
         battleEffect: function(obj, p1, p2){
             var number = 0;
-
             for(var i = 0; i < p1.hand.length; i++){
                 if(p1.hand[i].silenced){
                     number += 1;
                     p1.hand[i].silenced = false;
                 }
             }
-            
             obj.buffa += number;
         }
     },
     "bound": {
         title: "Bound Behemoth",
         image: "bound.png",
-        text: "Starts silenced. When you play it, it gets +10/+10.",
+        text: "Starts silenced. When you play it, it gets +7/+7.",
         attack: 4,
         defense: 2,
         buffa: 0,
         buffd: 0,
         silenced: true,
-        battleEffect: function(obj, p1, p2){obj.buffa += 10; obj.buffd += 10;}
+        battleEffect: function(obj, p1, p2){obj.buffa += 7; obj.buffd += 7;}
+    },
+    "flocking": {
+        title: "Flocking Wraiths",
+        image: "flocking.png",
+        text: "When you play them, other copies of them in your deck get +3/+3.",
+        attack: 1,
+        defense: 1,
+        buffa: 0,
+        buffd: 0,
+        silenced: false,
+        battleEffect: function(obj, p1, p2){
+            for(var card in p1.deck){
+                if(p1.deck[card].title == obj.title){p1.deck[card].buffa += 3; p1.deck[card].buffd += 3;}
+            }
+        }
+    },
+    "eternal": {
+        title: "Eternal Protector",
+        image: "eternal.png",
+        text: "It can't be buffed or debuffed.<br /><br /><i>Ever standing, ever watchful.</i>",
+        attack: 2,
+        defense: 6,
+        buffa: 0,
+        buffd: 0,
+        silenced: false,
+        globalEffect: function(obj, p1, p2){obj.buffa = 0; obj.buffd = 0;}
     }
 };
