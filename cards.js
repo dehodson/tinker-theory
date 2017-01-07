@@ -332,7 +332,7 @@ cards = {
     "hexmage": {
         title: "Wizened Hexmage",
         image: "hexmage.png",
-        text: "When you play him, unsilence all cards in players' hands. He gets +1/+0 for each.",
+        text: "When you play him, unsilence all cards in your hand. He gets +1/+0 for each.",
         attack: 0,
         defense: 4,
         buffa: 0,
@@ -347,15 +347,19 @@ cards = {
                     p1.hand[i].silenced = false;
                 }
             }
-
-            for(var i = 0; i < p2.hand.length; i++){
-                if(p2.hand[i].silenced){
-                    number += 1;
-                    p2.hand[i].silenced = false;
-                }
-            }
-
+            
             obj.buffa += number;
         }
+    },
+    "bound": {
+        title: "Bound Behemoth",
+        image: "bound.png",
+        text: "Starts silenced. When you play it, it gets +10/+10.",
+        attack: 4,
+        defense: 2,
+        buffa: 0,
+        buffd: 0,
+        silenced: true,
+        battleEffect: function(obj, p1, p2){obj.buffa += 10; obj.buffd += 10;}
     }
 };
