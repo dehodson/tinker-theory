@@ -1,3 +1,17 @@
+function shuffle(array) {
+    //Fisher-Yates Shuffle, gratz to stack overflow 🙏
+    var currentIndex = array.length, temporaryValue, randomIndex;
+
+    while (0 !== currentIndex) {
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+    }
+}
+
 cards = {
     "dingle": {
         title: "Dingle, the Sticky",
@@ -385,5 +399,21 @@ cards = {
         buffd: 0,
         silenced: false,
         globalEffect: function(obj, p1, p2){obj.buffa = 0; obj.buffd = 0;}
+    },
+    "goddess": {
+        title: "Renewal Goddess",
+        image: "goddess.png",
+        text: "When you play her, shuffle your hand into your deck and draw that many cards.",
+        attack: 2,
+        defense: 2,
+        buffa: 0,
+        buffd: 0,
+        silenced: false,
+        battleEffect: function(obj, p1, p2){
+            var size = p1.hand.length;
+            for(var i = 0; i < size; i++){p1.deck.push(p1.hand.pop());}
+            shuffle(p1.deck);
+            for(var i = 0; i < size; i++){p1.drawCard();}
+        }
     }
 };
