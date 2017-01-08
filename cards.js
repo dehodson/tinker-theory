@@ -58,7 +58,7 @@ cards = {
     "shower": {
         title: "Power Shower",
         image: "shower.png",
-        text: "Gives all cards in your hand +3/+3 when you play it.",
+        text: "<span class=\"silenceable\">Gives all cards in your hand +3/+3 when you play it.</span>",
         attack: 1,
         defense: 1,
         buffa: 0,
@@ -69,7 +69,7 @@ cards = {
     "smug": {
         title: "Smug Fucker",
         image: "smug.png",
-        text: "When you play him, draw a card.<br /><br /><i>Nobody likes a know it all.</i>",
+        text: "<span class=\"silenceable\">When you play him, draw a card.</span><br /><br /><i>Nobody likes a know it all.</i>",
         attack: 0,
         defense: 3,
         buffa: 0,
@@ -100,7 +100,7 @@ cards = {
     "timmy": {
         title: "Little Timmy",
         image: "timmy.png",
-        text: "If you win an attack with him, you get an extra point.",
+        text: "<span class=\"silenceable\">If you win an attack with him, you get an extra point.</span>",
         attack: 2,
         defense: 2,
         buffa: 0,
@@ -122,7 +122,7 @@ cards = {
     "smuggy": {
         title: "Great Thinker",
         image: "smuggy.png",
-        text: "If you successfully defend with him, draw a card.",
+        text: "<span class=\"silenceable\">If you successfully defend with him, draw a card.</span>",
         attack: 0,
         defense: 5,
         buffa: 0,
@@ -144,7 +144,7 @@ cards = {
     "gatekeeper": {
         title: "Gatekeeper",
         image: "gatekeeper.png",
-        text: "When you play him, you'll draw your best attacker next.",
+        text: "<span class=\"silenceable\">When you play him, you'll draw your best attacker next.</span>",
         attack: 1,
         defense: 4,
         buffa: 0,
@@ -162,7 +162,7 @@ cards = {
     "shrinky": {
         title: "Shrink Technician",
         image: "shrinky.png",
-        text: "Gives all cards in your opponent's hand -1/-3 when you play it.",
+        text: "<span class=\"silenceable\">Gives all cards in your opponent's hand -1/-3 when you play it.</span>",
         attack: 3,
         defense: 1,
         buffa: 0,
@@ -173,7 +173,7 @@ cards = {
     "normalizer": {
         title: "Normalizer Wizard",
         image: "normalizer.png",
-        text: "Removes all buffs from cards in each player's hand when you play it.",
+        text: "<span class=\"silenceable\">Removes all buffs from cards in each player's hand when you play it.</span>",
         attack: 5,
         defense: 0,
         buffa: 0,
@@ -198,7 +198,7 @@ cards = {
     "electro": {
         title: "Electro-Mage",
         image: "electro.png",
-        text: "If you lose an attack with her, you lose a point.",
+        text: "<span class=\"silenceable\">If you lose an attack with her, you lose a point.</span>",
         attack: 7,
         defense: 3,
         buffa: 0,
@@ -209,7 +209,7 @@ cards = {
     "clone": {
         title: "Cosmic Clone",
         image: "clone.png",
-        text: "It copies the stats of the last card you played.",
+        text: "<span class=\"silenceable\">It copies the stats of the last card you played.</span>",
         attack: 0,
         defense: 0,
         buffa: 0,
@@ -222,7 +222,7 @@ cards = {
     "warrior": {
         title: "Copy-Mage",
         image: "warrior.png",
-        text: "It copies the battle effects of the last card you played.",
+        text: "<span class=\"silenceable\">It copies the battle effects of the last card you played.</span>",
         attack: 3,
         defense: 3,
         buffa: 0,
@@ -251,7 +251,7 @@ cards = {
     "barrier": {
         title: "Mystical Barrier",
         image: "barrier.png",
-        text: "If you successfully defend with it, you get a point.",
+        text: "<span class=\"silenceable\">If you successfully defend with it, you get a point.</span>",
         attack: 0,
         defense: 6,
         buffa: 0,
@@ -262,7 +262,7 @@ cards = {
     "diggy": {
         title: "Archmage Diggy",
         image: "diggy.png",
-        text: "When you play him, give all other copies of the last card your opponent played -2/-2.",
+        text: "<span class=\"silenceable\">When you play him, give all other copies of the last card your opponent played -2/-2.</span>",
         attack: 2,
         defense: 4,
         buffa: 0,
@@ -282,7 +282,7 @@ cards = {
     "farmer": {
         title: "Farmer Jeb",
         image: "farmer.png",
-        text: "If the last card you played was a corn card, draw a card.",
+        text: "<span class=\"silenceable\">If the last card you played was a corn card, draw a card.</span>",
         attack: 4,
         defense: 2,
         buffa: 0,
@@ -295,7 +295,7 @@ cards = {
     "necro": {
         title: "Necrosplicer",
         image: "necro.png",
-        text: "When you play him, your opponent's hand's stats are averaged together.",
+        text: "<span class=\"silenceable\">When you play him, your opponent's hand's stats are averaged together.</span>",
         attack: 5,
         defense: 1,
         buffa: 0,
@@ -311,7 +311,7 @@ cards = {
     "silencer": {
         title: "Mystic Silencer",
         image: "silencer.png",
-        text: "When you play him, silence all cards in your opponent's hand.",
+        text: "<span class=\"silenceable\">When you play him, silence all cards in your opponent's hand.</span>",
         attack: 3,
         defense: 3,
         buffa: 0,
@@ -326,7 +326,7 @@ cards = {
     "duo": {
         title: "Magical Duo",
         image: "duo.png",
-        text: "When you play them, draw a card, but silence it.",
+        text: "<span class=\"silenceable\">When you play them, draw a card, but silence it.</span>",
         attack: 3,
         defense: 2,
         buffa: 0,
@@ -346,7 +346,7 @@ cards = {
     "hexmage": {
         title: "Wizened Hexmage",
         image: "hexmage.png",
-        text: "When you play him, unsilence all cards in your hand. He gets +1/+0 for each.",
+        text: "<span class=\"silenceable\">When you play him, unsilence all cards in your hand. He gets +1/+0 for each.</span>",
         attack: 0,
         defense: 4,
         buffa: 0,
@@ -366,7 +366,7 @@ cards = {
     "bound": {
         title: "Bound Behemoth",
         image: "bound.png",
-        text: "Starts silenced. When you play it, it gets +7/+7.",
+        text: "Starts silenced. <span class=\"silenceable\">When you play it, it gets +7/+7.</span>",
         attack: 4,
         defense: 2,
         buffa: 0,
@@ -377,7 +377,7 @@ cards = {
     "flocking": {
         title: "Flocking Wraiths",
         image: "flocking.png",
-        text: "When you play them, other copies of them in your deck get +3/+3.",
+        text: "<span class=\"silenceable\">When you play them, other copies of them in your deck get +3/+3.</span>",
         attack: 1,
         defense: 1,
         buffa: 0,
@@ -403,7 +403,7 @@ cards = {
     "goddess": {
         title: "Renewal Goddess",
         image: "goddess.png",
-        text: "When you play her, shuffle your hand into your deck and draw that many cards.",
+        text: "<span class=\"silenceable\">Shuffle your hand into your deck when you play her. Draw that many cards.</span>",
         attack: 2,
         defense: 2,
         buffa: 0,
