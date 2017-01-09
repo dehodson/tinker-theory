@@ -1,15 +1,3 @@
-::-webkit-scrollbar {
-	width: .5vmin
-}
-
-::-webkit-scrollbar-thumb {
-	background: #FFF;
-}
-
-::-webkit-scrollbar-track {
-	background: #AAA;
-}
-
 @font-face {
     font-family: Chunkfive;
     src: url(resources/Chunkfive.otf);
@@ -158,7 +146,7 @@ body, html{
 	left: 35vmin;
 	top:  10vmin;
 	color:black;
-	text-shadow: 0 0 2vmin #AAA;
+	text-shadow: 0 0 3vmin #CCF;
 	font-family: Chunkfive, serif;
 }
 .splash-button{
@@ -253,20 +241,20 @@ body, html{
 	padding: 0;
 }
 .deckbuilder-button{
-	width:24vmin;
+	width:22vmin;
 	height:5vmin;
 	line-height: 5vmin;
 	text-align: center;
 }
 #deck-builder-cards{
-	width:55vmin;
+	width:56vmin;
 	position: absolute;
 	height:80vmin;
 	top:0px;
 	left:0px;
 	overflow-y:scroll;
 	overflow-x:hidden;
-	background-color:#505;
+	background-color:#FCF;
 }
 #deck-builder-cards .card{
 	position: absolute;
@@ -293,35 +281,35 @@ body, html{
 	float: right;
 }
 #deck-builder-header{
-	width: 22.5vmin;
+	width: 21.5vmin;
 	height: 10vmin;
 	line-height: 5vmin;
 	position: absolute;
-	left:55vmin;
+	left:56vmin;
 	top:0vmin;
 	padding:0 1.25vmin;
 }
 #deck-builder-footer{
-	width: 25vmin;
+	width: 24.5vmin;
 	height: 10vmin;
 	position: absolute;
-	left:55vmin;
+	left:56vmin;
 	top:70vmin;
 }
 #deck-builder-deckname{
-	width: 22.5vmin;
+	width: 21.5vmin;
 }
 #deck-builder-list{
-	width:22.5vmin;
+	width:21.5vmin;
 	height:60vmin;
 	position: absolute;
-	left:55vmin;
+	left:56vmin;
 	top: 10vmin;
 	background-color: #FFF;
 	padding:0 1.25vmin;
 }
 #deck-builder-list .item{
-	width:22.5vmin;
+	width:21.5vmin;
 	height:4vmin;
 	font-size: 3vmin;
 	line-height: 4vmin;

@@ -6,7 +6,7 @@ var express = require('express');
 var UUID    = require('node-uuid');
 var http    = require('http');
 
-require("./cards.js");
+require("./site/cards.js");
 
 var verbose = false;
 var epr     = express();
@@ -19,13 +19,13 @@ console.log('\t :: Express :: Listening on port ' + port );
 
 
 epr.get( '/', function( req, res ){ 
-    res.sendfile( __dirname + '/index.html' );
+    res.sendfile( __dirname + '/site/index.html' );
 });
 
 
 epr.get( '/*' , function( req, res, next ) {
     var file = req.params[0]; 
-    res.sendfile( __dirname + '/' + file );
+    res.sendfile( __dirname + '/site/' + file );
 });
 
 
@@ -144,7 +144,7 @@ function deckIsValid(deck){
         }
     }
 
-    if(total != 20){
+    if(total != 20 || deck.length != 20){
         return false;
     }
 
