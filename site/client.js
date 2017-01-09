@@ -61,6 +61,8 @@ function closeAlert(){
 	document.getElementById("alert-box").style.visibility = "hidden";
 }
 
+var executeOnClose = null;
+
 function showError(){
 	document.getElementById("no-click").style.visibility = "visible";
 	document.getElementById("error-box").style.visibility = "visible";
@@ -69,6 +71,11 @@ function showError(){
 function closeError(){
 	document.getElementById("no-click").style.visibility = "hidden";
 	document.getElementById("error-box").style.visibility = "hidden";
+
+	if(executeOnClose != null){
+		executeOnClose();
+		executeOnClose = null;
+	}
 }
 
 function showChat(){
@@ -323,6 +330,23 @@ function saveDeck(){
 		document.getElementById("error-box").innerText = "Deck saved successfully.";
 		showError();
 	}
+}
+
+function deleteDeck(){
+	var deckname = document.getElementById("deck-builder-deckname").value;
+
+	if(decks.hasOwnProperty(deckname)){
+		delete decks[deckname];
+		localStorage.decks = JSON.stringify(decks);
+	}
+
+	decklist = [];
+	document.getElementById("deck-builder-list").innerHTML = "";
+	document.getElementById("deck-builder-deckname").value = "";
+
+	executeOnClose = function(){showDeckPicker();};
+	document.getElementById("error-box").innerText = "Deck deleted.";
+	showError();
 }
 
 function mainMenu(){
