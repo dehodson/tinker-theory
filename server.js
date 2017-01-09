@@ -296,7 +296,7 @@ sio.sockets.on('connection', function (client) {
         }
     });
 
-    client.on('quit', function () {
+    client.on('quit', function(){
         search:
         for(var i = 0; i < games.length; i++){
             for(var j = 0; j < 2; j++){
@@ -318,104 +318,114 @@ sio.sockets.on('connection', function (client) {
     });
 
     client.on('play', function(data){
-        search:
-        for(var i = 0; i < games.length; i++){
-            for(var j = 0; j < 2; j++){
-                if(games[i].players[j].uuid == client.userid && !games[i].players[j].hasPlayed){
-                    games[i].players[j].playCard(data.number, games[i].players[j], games[i].players[(j + 1) % 2]);
-                    games[i].players[j].hasPlayed = true;
-                    games[i].complete += 1;
-                    if(games[i].complete == 2){
-                        games[i].takeTurn();
+        if(typeof(data) !== 'undefined' && data.hasOwnProperty("number")){
+            search:
+            for(var i = 0; i < games.length; i++){
+                for(var j = 0; j < 2; j++){
+                    if(games[i].players[j].uuid == client.userid && !games[i].players[j].hasPlayed){
+                        if(data.number < games[i].players[j].hand.length){
+                            games[i].players[j].playCard(data.number, games[i].players[j], games[i].players[(j + 1) % 2]);
+                            games[i].players[j].hasPlayed = true;
+                            games[i].complete += 1;
+                            if(games[i].complete == 2){
+                                games[i].takeTurn();
+                            }
+                        }
+                        break search;
                     }
-                    break search;
                 }
             }
         }
     });
 
     client.on('chat', function(data){
-        search:
-        for(var i = 0; i < games.length; i++){
-            for(var j = 0; j < 2; j++){
-                if(games[i].players[j].uuid == client.userid && !games[i].players[j].hasPlayed){
-                    games[i].players[(j + 1) % 2].connection.emit('chat', data);
-                    break search;
+        if(typeof(data) !== 'undefined' && data.hasOwnProperty("message")){
+            search:
+            for(var i = 0; i < games.length; i++){
+                for(var j = 0; j < 2; j++){
+                    if(games[i].players[j].uuid == client.userid && !games[i].players[j].hasPlayed){
+                        games[i].players[(j + 1) % 2].connection.emit('chat', data);
+                        break search;
+                    }
                 }
             }
         }
     });
 
     client.on('quick match', function(data){
-        if(deckIsValid(data.deck)){
-            var matched = false;
+        if(typeof(data) !== 'undefined' && data.hasOwnProperty("deck")){
+            if(deckIsValid(data.deck)){
+                var matched = false;
 
-            var deck = [];
+                var deck = [];
 
-            for(var card in data.deck){
-                deck.push(clone(cards[data.deck[card]]));
-            }
-
-            for(var i = 0; i < games.length; i++){
-                if(games[i].public && games[i].clients == 1){
-                    games[i].players.push(new Player(client.userid, client, deck));
-                    games[i].clients += 1;
-                    matched = true;
-                    games[i].startGame();
+                for(var card in data.deck){
+                    deck.push(clone(cards[data.deck[card]]));
                 }
-            }
 
-            if(!matched){
-                games.push(new Game(true, null));
-                games[games.length - 1].players.push(new Player(client.userid, client, deck));
-                games[games.length - 1].clients += 1;
+                for(var i = 0; i < games.length; i++){
+                    if(games[i].public && games[i].clients == 1){
+                        games[i].players.push(new Player(client.userid, client, deck));
+                        games[i].clients += 1;
+                        matched = true;
+                        games[i].startGame();
+                    }
+                }
+
+                if(!matched){
+                    games.push(new Game(true, null));
+                    games[games.length - 1].players.push(new Player(client.userid, client, deck));
+                    games[games.length - 1].clients += 1;
+                }
+            } else {
+                client.emit("join failed", {reason: "not a valid deck."});
             }
-        } else {
-            client.emit("join failed", {reason: "not a valid deck."});
         }
     });
 
     client.on('friend game', function(data){
-        if(deckIsValid(data.deck)){
-            var matched = false;
+        if(typeof(data) !== 'undefined' && data.hasOwnProperty("deck")){
+            if(deckIsValid(data.deck)){
+                var matched = false;
 
-            var deck = [];
+                var deck = [];
 
-            for(var card in data.deck){
-                deck.push(clone(cards[data.deck[card]]));
-            }
-
-            if(data.hasOwnProperty("id")){
-                for(var i = 0; i < games.length; i++){
-                    if(!games[i].public && games[i].id == data.id){
-                        if(games[i].clients == 1){
-                            games[i].players.push(new Player(client.userid, client, deck));
-                            games[i].players[0].connection.emit("friend joined");
-                            games[i].clients += 1;
-                            games[i].startGame();
-                        }else{
-                            client.emit("join failed", {reason: "too many players."});
-                        }
-
-                        matched = true;
-                        break;
-                    }
+                for(var card in data.deck){
+                    deck.push(clone(cards[data.deck[card]]));
                 }
-            }else{
-                var gameId = Date.now().toString(36);
-                games.push(new Game(false, gameId));
-                games[games.length - 1].players.push(new Player(client.userid, client, deck));
-                games[games.length - 1].clients += 1;
-                client.emit("game id", {id: gameId});
-                matched = true;
-                console.log(gameId);
-            }
 
-            if(!matched){
-                client.emit("join failed", {reason: "no game with that id."});
+                if(data.hasOwnProperty("id")){
+                    for(var i = 0; i < games.length; i++){
+                        if(!games[i].public && games[i].id == data.id){
+                            if(games[i].clients == 1){
+                                games[i].players.push(new Player(client.userid, client, deck));
+                                games[i].players[0].connection.emit("friend joined");
+                                games[i].clients += 1;
+                                games[i].startGame();
+                            }else{
+                                client.emit("join failed", {reason: "too many players."});
+                            }
+
+                            matched = true;
+                            break;
+                        }
+                    }
+                }else{
+                    var gameId = Date.now().toString(36);
+                    games.push(new Game(false, gameId));
+                    games[games.length - 1].players.push(new Player(client.userid, client, deck));
+                    games[games.length - 1].clients += 1;
+                    client.emit("game id", {id: gameId});
+                    matched = true;
+                    console.log(gameId);
+                }
+
+                if(!matched){
+                    client.emit("join failed", {reason: "no game with that id."});
+                }
+            } else {
+                client.emit("join failed", {reason: "not a valid deck."});
             }
-        } else {
-            client.emit("join failed", {reason: "not a valid deck."});
         }
     });
 });
