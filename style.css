@@ -10,6 +10,11 @@
 	background: #AAA;
 }
 
+@font-face {
+    font-family: Chunkfive;
+    src: url(resources/Chunkfive.otf);
+}
+
 body, html{
 	height:100%;
 	margin:0;
@@ -151,8 +156,7 @@ body, html{
 	left: 35vmin;
 	top:  10vmin;
 	color:black;
-	font-family:serif;
-	font-weight: bold;
+	font-family: Chunkfive, serif;
 }
 .splash-button{
 	box-shadow: -1vmin 1vmin 3vmin rgba(0,0,0,0.5);
@@ -198,21 +202,6 @@ body, html{
 }
 #splash-rules:hover{
 	background-color: #FFF;
-}
-#splash{
-	position: absolute;
-	height:80vmin;
-	width: 80vmin;
-	background-color: #FFF;
-	position: absolute;
-	top:0px;
-	left:0px;
-	right:0px;
-	bottom:0px;
-	margin:auto;
-	border-radius: 3vmin;
-	overflow: hidden;
-	z-index: 5;
 }
 #deck-builder{
 	position: absolute;
@@ -274,7 +263,7 @@ body, html{
 	left:0px;
 	overflow-y:scroll;
 	overflow-x:hidden;
-	background-color:#FAF;
+	background-color:#505;
 }
 #deck-builder-cards .card{
 	position: absolute;
@@ -282,7 +271,6 @@ body, html{
 	width:  14.5vmin;
 	margin: 1vmin;
 	padding: 1vmin;
-	background-color: #3F3;
 	border-radius: 2vmin;
 	color: black;
 	font-size: 1.7vmin;
@@ -385,7 +373,7 @@ body, html{
 	left:   0px;
 	width:  80vmin;
 	height: 30vmin;
-	background-color: #F33;
+	background-color: #505;
 	border-bottom-right-radius: 3vmin;
 	border-bottom-left-radius: 3vmin;
 }
@@ -395,7 +383,7 @@ body, html{
 	width:  16vmin;
 	margin: 1vmin;
 	padding: 1vmin;
-	background-color: #3F3;
+	background-color: #FFF;
 	border-radius: 2vmin;
 	color: black;
 	font-size: 1.8vmin;
@@ -411,6 +399,9 @@ body, html{
 }
 .card.silenced .silenceable{
 	text-decoration: line-through;
+}
+.card .title{
+	font-family: Chunkfive;
 }
 .buff{
 	font-size:1.6vmin;
@@ -431,6 +422,7 @@ body, html{
 	background-size: 100%;
 	width:16vmin;
 	height:10vmin;
+	border: 0.2vmin solid black;
 }
 .text{
 	text-align: center;
@@ -439,7 +431,7 @@ body, html{
 	position: absolute;
 	bottom:-.5vmin;
 	left:  -.5vmin;
-	background-color: white;
+	background-color: #FAA;
 	padding:1vmin;
 	border-radius: 1vmin;
 }
@@ -471,7 +463,7 @@ body, html{
 	position: absolute;
 	bottom:-.5vmin;
 	right: -.5vmin;
-	background-color: white;
+	background-color: #AAF;
 	padding:1vmin;
 	border-radius: 1vmin;
 }
