@@ -494,3 +494,8 @@ socket.on('disconnected', function(){
 if($_GET["gameid"]){
 	friendGame();
 }
+
+// var audio = new Audio('goog.wav');
+// audio.play();
+
+// window.setInterval(function(){audio.currentTime = 0; audio.play()}, 35000);
