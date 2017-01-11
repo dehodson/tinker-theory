@@ -250,16 +250,31 @@ Game.prototype.takeTurn = function(){
     this.players[this.whoseTurn].connection.emit("turn", {bool: true});
     this.players[(this.whoseTurn + 1) % 2].connection.emit("turn", {bool: false});
 
-    this.players[0].drawCard(this.players[0], this.players[1]);
-    this.players[1].drawCard(this.players[1], this.players[0]);
+    if(this.players[0].deck.length == 0 && this.players[0].hand.length == 0){
 
-    this.players[0].updateHand(this.players[0], this.players[1], 2500);
-    this.players[1].updateHand(this.players[1], this.players[0], 2500);
+        if(this.players[0].score > this.players[1].score){
+            this.players[0].connection.emit("game over", {message: "You won!"})
+            this.players[1].connection.emit("game over", {message: "You lost."})
+        }else if(this.players[1].score > this.players[0].score){
+            this.players[0].connection.emit("game over", {message: "You lost."})
+            this.players[1].connection.emit("game over", {message: "You won!"})
+        }else{
+            this.players[0].connection.emit("game over", {message: "Tie game."})
+            this.players[1].connection.emit("game over", {message: "Tie game."})
+        }
+    }else{
+        
+        this.players[0].drawCard(this.players[0], this.players[1]);
+        this.players[1].drawCard(this.players[1], this.players[0]);
 
-    this.complete = 0;
+        this.players[0].updateHand(this.players[0], this.players[1], 2500);
+        this.players[1].updateHand(this.players[1], this.players[0], 2500);
 
-    this.players[0].hasPlayed = false;
-    this.players[1].hasPlayed = false;
+        this.complete = 0;
+
+        this.players[0].hasPlayed = false;
+        this.players[1].hasPlayed = false;
+    }
 
     this.players[0].connection.emit("can click");
     this.players[1].connection.emit("can click");

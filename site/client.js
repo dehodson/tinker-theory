@@ -491,6 +491,13 @@ socket.on('disconnected', function(){
 	gameOver = true;
 });
 
+socket.on('game over', function(data){
+	window.setTimeout(function(){
+		document.getElementById("error-box").innerText = data.message;
+		showError();
+	}, 4000);
+})
+
 if($_GET["gameid"]){
 	friendGame();
 }
