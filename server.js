@@ -337,16 +337,20 @@ sio.sockets.on('connection', function (client) {
             search:
             for(var i = 0; i < games.length; i++){
                 for(var j = 0; j < 2; j++){
-                    if(games[i].players[j].uuid == client.userid && !games[i].players[j].hasPlayed){
-                        if(data.number < games[i].players[j].hand.length){
-                            games[i].players[j].playCard(data.number, games[i].players[j], games[i].players[(j + 1) % 2]);
-                            games[i].players[j].hasPlayed = true;
-                            games[i].complete += 1;
-                            if(games[i].complete == 2){
-                                games[i].takeTurn();
+                    try{
+                        if(games[i].players[j].uuid == client.userid && !games[i].players[j].hasPlayed){
+                            if(data.number < games[i].players[j].hand.length){
+                                games[i].players[j].playCard(data.number, games[i].players[j], games[i].players[(j + 1) % 2]);
+                                games[i].players[j].hasPlayed = true;
+                                games[i].complete += 1;
+                                if(games[i].complete == 2){
+                                    games[i].takeTurn();
+                                }
                             }
+                            break search;
                         }
-                        break search;
+                    }catch(e){
+                        console.log("Error accessing players list: ",e)
                     }
                 }
             }
@@ -358,9 +362,13 @@ sio.sockets.on('connection', function (client) {
             search:
             for(var i = 0; i < games.length; i++){
                 for(var j = 0; j < 2; j++){
-                    if(games[i].players[j].uuid == client.userid && !games[i].players[j].hasPlayed){
-                        games[i].players[(j + 1) % 2].connection.emit('chat', data);
-                        break search;
+                    try{
+                        if(games[i].players[j].uuid == client.userid && !games[i].players[j].hasPlayed){
+                            games[i].players[(j + 1) % 2].connection.emit('chat', data);
+                            break search;
+                        }
+                    }catch(e){
+                        console.log("Error accessing players list: ",e)
                     }
                 }
             }
@@ -379,11 +387,15 @@ sio.sockets.on('connection', function (client) {
                 }
 
                 for(var i = 0; i < games.length; i++){
-                    if(games[i].public && games[i].clients == 1){
-                        games[i].players.push(new Player(client.userid, client, deck));
-                        games[i].clients += 1;
-                        matched = true;
-                        games[i].startGame();
+                    try{
+                        if(games[i].public && games[i].clients == 1){
+                            games[i].players.push(new Player(client.userid, client, deck));
+                            games[i].clients += 1;
+                            matched = true;
+                            games[i].startGame();
+                        }
+                    }catch(e){
+                        console.log("Error accessing games list: ",e)
                     }
                 }
 
@@ -411,28 +423,36 @@ sio.sockets.on('connection', function (client) {
 
                 if(data.hasOwnProperty("id")){
                     for(var i = 0; i < games.length; i++){
-                        if(!games[i].public && games[i].id == data.id){
-                            if(games[i].clients == 1){
-                                games[i].players.push(new Player(client.userid, client, deck));
-                                games[i].players[0].connection.emit("friend joined");
-                                games[i].clients += 1;
-                                games[i].startGame();
-                            }else{
-                                client.emit("join failed", {reason: "too many players."});
-                            }
+                        try{
+                            if(!games[i].public && games[i].id == data.id){
+                                if(games[i].clients == 1){
+                                    games[i].players.push(new Player(client.userid, client, deck));
+                                    games[i].players[0].connection.emit("friend joined");
+                                    games[i].clients += 1;
+                                    games[i].startGame();
+                                }else{
+                                    client.emit("join failed", {reason: "too many players."});
+                                }
 
-                            matched = true;
-                            break;
+                                matched = true;
+                                break;
+                            }
+                        }catch(e){
+                            console.log("Error accessing players list: ",e)
                         }
                     }
                 }else{
-                    var gameId = Date.now().toString(36);
-                    games.push(new Game(false, gameId));
-                    games[games.length - 1].players.push(new Player(client.userid, client, deck));
-                    games[games.length - 1].clients += 1;
-                    client.emit("game id", {id: gameId});
-                    matched = true;
-                    console.log(gameId);
+                    try{
+                        var gameId = Date.now().toString(36);
+                        games.push(new Game(false, gameId));
+                        games[games.length - 1].players.push(new Player(client.userid, client, deck));
+                        games[games.length - 1].clients += 1;
+                        client.emit("game id", {id: gameId});
+                        matched = true;
+                        console.log(gameId);
+                    }catch(e){
+                        console.log("Error accessing players list: ",e)
+                    }
                 }
 
                 if(!matched){
