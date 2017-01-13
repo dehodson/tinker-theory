@@ -66,7 +66,7 @@ function clone(obj) {
 
 var whoseTurn = 0;
 
-var Player = function(id, conn, deck){
+var Player = function(id, conn, deck, name){
     this.deck = deck;
     this.hand = [];
     this.score = 0;
@@ -77,6 +77,7 @@ var Player = function(id, conn, deck){
     this.uuid = id;
     this.hasPlayed = false;
     this.connection = conn;
+    this.name = name;
 };
 
 Player.prototype.drawCard = function(p1, p2){
@@ -188,6 +189,9 @@ Game.prototype.startGame = function(){
 
     this.players[0].updateHand(this.players[0], this.players[1], 0);
     this.players[1].updateHand(this.players[1], this.players[0], 0);
+
+    this.players[0].connection.emit("chat", {message: "You're playing against "+this.players[1].name+".", name: "server"});
+    this.players[1].connection.emit("chat", {message: "You're playing against "+this.players[0].name+".", name: "server"});
 }
 
 Game.prototype.takeTurn = function(){
@@ -285,6 +289,7 @@ var games = [];
 sio.sockets.on('connection', function (client) {
 
     client.userid = UUID();
+    client.name   = "";
 
     console.log('\t socket.io:: player ' + client.userid + ' connected');
     
@@ -357,6 +362,14 @@ sio.sockets.on('connection', function (client) {
         }
     });
 
+    client.on('set name', function(data){
+        if(typeof(data) !== 'undefined' && data.hasOwnProperty("name")){
+            if(data.name.length < 13){
+                client.name = data.name;
+            }
+        }
+    });
+
     client.on('chat', function(data){
         if(typeof(data) !== 'undefined' && data.hasOwnProperty("message")){
             search:
@@ -364,7 +377,7 @@ sio.sockets.on('connection', function (client) {
                 for(var j = 0; j < 2; j++){
                     try{
                         if(games[i].players[j].uuid == client.userid && !games[i].players[j].hasPlayed){
-                            games[i].players[(j + 1) % 2].connection.emit('chat', data);
+                            games[i].players[(j + 1) % 2].connection.emit('chat', {message: data.message, name: games[i].players[j].name});
                             break search;
                         }
                     }catch(e){
@@ -389,7 +402,7 @@ sio.sockets.on('connection', function (client) {
                 for(var i = 0; i < games.length; i++){
                     try{
                         if(games[i].public && games[i].clients == 1){
-                            games[i].players.push(new Player(client.userid, client, deck));
+                            games[i].players.push(new Player(client.userid, client, deck, client.name));
                             games[i].clients += 1;
                             matched = true;
                             games[i].startGame();
@@ -401,7 +414,7 @@ sio.sockets.on('connection', function (client) {
 
                 if(!matched){
                     games.push(new Game(true, null));
-                    games[games.length - 1].players.push(new Player(client.userid, client, deck));
+                    games[games.length - 1].players.push(new Player(client.userid, client, deck, client.name));
                     games[games.length - 1].clients += 1;
                 }
             } else {
@@ -426,7 +439,7 @@ sio.sockets.on('connection', function (client) {
                         try{
                             if(!games[i].public && games[i].id == data.id){
                                 if(games[i].clients == 1){
-                                    games[i].players.push(new Player(client.userid, client, deck));
+                                    games[i].players.push(new Player(client.userid, client, deck, client.name));
                                     games[i].players[0].connection.emit("friend joined");
                                     games[i].clients += 1;
                                     games[i].startGame();
@@ -445,7 +458,7 @@ sio.sockets.on('connection', function (client) {
                     try{
                         var gameId = Date.now().toString(36);
                         games.push(new Game(false, gameId));
-                        games[games.length - 1].players.push(new Player(client.userid, client, deck));
+                        games[games.length - 1].players.push(new Player(client.userid, client, deck, client.name));
                         games[games.length - 1].clients += 1;
                         client.emit("game id", {id: gameId});
                         matched = true;

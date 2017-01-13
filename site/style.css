@@ -195,6 +195,22 @@ body, html{
 #splash-rules:hover{
 	background-color: #FFF;
 }
+#splash-name{
+	position: absolute;
+	height:3vmin;
+	width:40vmin;
+	left:20vmin;
+	top:36vmin;
+	font-size:2.5vmin;
+	line-height: 3vmin;
+	text-align: center;
+	color:black;
+}
+#splash-name-box{
+	height: 2.5vmin;
+	font-size:2vmin;
+	text-align:center;
+}
 #deck-builder{
 	position: absolute;
 	height:80vmin;

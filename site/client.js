@@ -349,6 +349,12 @@ function deleteDeck(){
 	showError();
 }
 
+function setName(){
+	var clientName = document.getElementById("splash-name-box").value;
+
+	socket.emit("set name", {name: clientName});
+}
+
 function mainMenu(){
 	document.getElementById("splash").style.visibility = "visible";
 	document.getElementById("deck-builder").style.visibility = "hidden";
@@ -373,12 +379,12 @@ function mainMenu(){
 	mode = 0;
 }
 
-function createChatBubble(type, message){
+function createChatBubble(type, message, name){
 	var chatbox = document.getElementById("chat-main");
 
 	chatbox.innerHTML += "<div class=\"chat-bubble "+type+"\" id=\"chat-msg-"+messages+"\"></div>";
 
-	document.getElementById("chat-msg-"+messages).innerText = type+": "+message;
+	document.getElementById("chat-msg-"+messages).innerText = name+": "+message;
 
 	messages += 1;
 }
@@ -393,7 +399,7 @@ function keyPressed(event){
 	        moveCaretToStart(textarea);
 	    }, 10);
 
-	    createChatBubble("you", text);
+	    createChatBubble("you", text, "you");
 
 		socket.emit("chat", {message: text});
 	}
@@ -465,7 +471,7 @@ socket.on('battle', function( data ) {
 });
 
 socket.on('chat', function(data){
-	createChatBubble("them", data.message);
+	createChatBubble("them", data.message, data.name);
 });
 
 socket.on('game id', function(data){
