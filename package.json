@@ -1,0 +1,25 @@
+{
+  "name": "tinker-theory",
+  "version": "1.0.0",
+  "description": "A multiplayer card game built with node.js and socker.io",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dehodson/tinker-theory.git"
+  },
+  "author": "dehodson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dehodson/tinker-theory/issues"
+  },
+  "homepage": "https://github.com/dehodson/tinker-theory#readme",
+  "dependencies": {
+    "express": "^4.14.0",
+    "node-uuid": "^1.4.7",
+    "socket.io": "^0.9.17"
+  }
+}
