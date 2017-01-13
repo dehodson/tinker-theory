@@ -289,7 +289,7 @@ var games = [];
 sio.sockets.on('connection', function (client) {
 
     client.userid = UUID();
-    client.name   = "";
+    client.name   = "anonymous";
 
     console.log('\t socket.io:: player ' + client.userid + ' connected');
     
@@ -364,14 +364,14 @@ sio.sockets.on('connection', function (client) {
 
     client.on('set name', function(data){
         if(typeof(data) !== 'undefined' && data.hasOwnProperty("name")){
-            if(data.name.length < 13){
+            if(data.name.length > 0 && data.name.length < 13){
                 client.name = data.name;
             }
         }
     });
 
     client.on('chat', function(data){
-        if(typeof(data) !== 'undefined' && data.hasOwnProperty("message")){
+        if(typeof(data) !== 'undefined' && data.hasOwnProperty("message") && data.message.length < 101){
             search:
             for(var i = 0; i < games.length; i++){
                 for(var j = 0; j < 2; j++){

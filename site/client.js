@@ -387,6 +387,8 @@ function createChatBubble(type, message, name){
 	document.getElementById("chat-msg-"+messages).innerText = name+": "+message;
 
 	messages += 1;
+
+	chatbox.scrollTop = chatbox.scrollHeight;
 }
 
 function keyPressed(event){

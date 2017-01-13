@@ -53,8 +53,10 @@ body, html{
 	overflow-y:scroll;
 }
 .chat-bubble{
-	width:19vmin;
+	width:17.5vmin;
 	padding:.5vmin;
+	padding-right:1vmin;
+	word-wrap: break-word;
 }
 .chat-bubble.them{
 	background-color: #FCC;
