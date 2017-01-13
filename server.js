@@ -298,7 +298,7 @@ sio.sockets.on('connection', function (client) {
 
         search:
         for(var i = 0; i < games.length; i++){
-            for(var j = 0; j < 2; j++){
+            for(var j = 0; j < games[i].players.length; j++){
                 try{
                     if(games[i].players[j].uuid == client.userid){
                         if(games[i].clients == 2){
@@ -319,7 +319,7 @@ sio.sockets.on('connection', function (client) {
     client.on('quit', function(){
         search:
         for(var i = 0; i < games.length; i++){
-            for(var j = 0; j < 2; j++){
+            for(var j = 0; j < games[i].players.length; j++){
                 try{
                     if(games[i].players[j].uuid == client.userid){
                         if(games[i].clients == 2){
@@ -341,7 +341,7 @@ sio.sockets.on('connection', function (client) {
         if(typeof(data) !== 'undefined' && data.hasOwnProperty("number")){
             search:
             for(var i = 0; i < games.length; i++){
-                for(var j = 0; j < 2; j++){
+                for(var j = 0; j < games[i].players.length; j++){
                     try{
                         if(games[i].players[j].uuid == client.userid && !games[i].players[j].hasPlayed){
                             if(data.number < games[i].players[j].hand.length){
@@ -374,7 +374,7 @@ sio.sockets.on('connection', function (client) {
         if(typeof(data) !== 'undefined' && data.hasOwnProperty("message") && data.message.length < 101){
             search:
             for(var i = 0; i < games.length; i++){
-                for(var j = 0; j < 2; j++){
+                for(var j = 0; j < games[i].players.length; j++){
                     try{
                         if(games[i].players[j].uuid == client.userid && !games[i].players[j].hasPlayed){
                             games[i].players[(j + 1) % 2].connection.emit('chat', {message: data.message, name: games[i].players[j].name});
