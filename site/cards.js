@@ -520,5 +520,18 @@ cards = {
         cursed: true,
         expansion: "cogs",
         silenced: false
+    },
+    "unsweet": {
+        title: "Unsweet Corn",
+        image: "unsweet.png",
+        text: "<span class=\"silenceable\">If you've played at least 3 corn cards when you play it, cards in your opponent's hand get -2/-2.</span>",
+        attack: 5,
+        defense: 0,
+        buffa: 0,
+        buffd: 0,
+        cursed: false,
+        expansion: "cogs",
+        silenced: false,
+        battleEffect: function(obj, p1, p2){p1.cornCounter += 1; if(p1.cornCounter > 2){for(var i = 0; i < p2.hand.length; i++){p2.hand[i].buffa -= 2; p2.hand[i].buffd -= 2;}}}
     }
 };

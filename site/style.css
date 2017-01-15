@@ -531,9 +531,10 @@ body, html{
 	position: absolute;
 	width: 10vmin;
 	bottom:100%;
-	left: 3vmin;
+	left: 20%;
 	border-radius: 1vmin;
 	padding:.5vmin;
+	z-index: 100;
 }
 .icon.debuffed{
 	background-image: url("resources/debuffed.png");
@@ -545,9 +546,10 @@ body, html{
 	position: absolute;
 	width: 10vmin;
 	bottom:100%;
-	left: 3vmin;
+	left: 20%;
 	border-radius: 1vmin;
 	padding:.5vmin;
+	z-index: 100;
 }
 .icon.silenced{
 	background-image: url("resources/silenced.png");
@@ -559,9 +561,10 @@ body, html{
 	position: absolute;
 	width: 10vmin;
 	bottom:100%;
-	left: 3vmin;
+	left: 20%;
 	border-radius: 1vmin;
 	padding:.5vmin;
+	z-index: 100;
 }
 .icon.cursed{
 	background-image: url("resources/cursed.png");
@@ -573,9 +576,10 @@ body, html{
 	position: absolute;
 	width: 10vmin;
 	bottom:100%;
-	left: 3vmin;
+	left: 20%;
 	border-radius: 1vmin;
 	padding:.5vmin;
+	z-index: 100;
 }
 .card:hover{
 	border: .5vmin solid #000;
