@@ -165,27 +165,29 @@ function makeCard(dict, id, onclick){
 
 	if(dict.buffa > 0 || dict.buffd > 0){
 		className = "card buffed";
-		buffString = "<br /><span class=\"buff\">(buffed)</span>";
+		buffString = "<div class=\"icon buffed\"></div>";
 	}
 
 	if(dict.buffa < 0 || dict.buffd < 0){
 		className = "card debuffed";
-		buffString = "<br /><span class=\"buff\">(debuffed)</span>";
+		buffString = "<div class=\"icon debuffed\"></div>";
 	}
 
 	if(dict.silenced){
 		className += " silenced";
-		buffString += "<br /><span class=\"buff\">(silenced)</span>";
+		buffString += "<div class=\"icon silenced\"></div>";
 	}
 
 	if(dict.cursed){
-		buffString += "<br /><span class=\"buff\">(cursed)</span>";
+		buffString += "<div class=\"icon cursed\"></div>";
 	}
+
 
 	var string = "<div class=\""+className+"\" id=\""+id+"\" onclick=\""+onclick+"\">";
 	   string += "<div class=\"title\" id=\""+id+"-title\">"+dict.title+"</div>";
 	   string += "<div class=\"image\" id=\""+id+"-image\" style=\"background-image:url('images/"+dict.image+"')\"></div>";
-	   string += "<div class=\"text\"  id=\""+id+"-text\" >"+dict.text+buffString+"</div>";
+	   string += "<div class=\"text\"  id=\""+id+"-text\" >"+dict.text+"</div>";
+	   string += "<div class=\"buff\"  id=\""+id+"-buff\">"+buffString+"</div>";
 	   string += "<div class=\"attack\"  id=\""+id+"-attack\">"+(dict.attack + dict.buffa)+"<div class=\"sword\"></div></div>";
 	   string += "<div class=\"defense\"  id=\""+id+"-defense\"><div class=\"shield\"></div>"+(dict.defense + dict.buffd)+"</div></div>";
 	return string;

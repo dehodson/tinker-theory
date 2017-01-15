@@ -478,7 +478,7 @@ cards = {
     },
     "cursy": {
         title: "Spiteful One",
-        image: "flocking.png",
+        image: "cursy.png",
         text: "<span class=\"silenceable\">When you play her, curse the top two cards of your opponent's deck.</span>",
         attack: 1,
         defense: 5,
@@ -491,5 +491,34 @@ cards = {
             var max = p2.deck.length < 2 ? p2.deck.length : 2;
             for(var i = 0; i < max; i++){p2.deck[(p2.deck.length - 1) - i].cursed = true;}
         }
+    },
+    "maniac": {
+        title: "Hex Maniac",
+        image: "flocking.png",
+        text: "<span class=\"silenceable\">When you play him, if your opponent's deck contains a cursed card, he gets +3/+3.</span>",
+        attack: 2,
+        defense: 3,
+        buffa: 0,
+        buffd: 0,
+        cursed: false,
+        expansion: "cogs",
+        silenced: false,
+        battleEffect: function(obj, p1, p2){
+            var found = false;
+            for(var i = 0; i < p2.deck.length; i++){if(p2.deck[i].cursed){found = true;}}
+            if(found){obj.buffa += 3; obj.buffd += 3;}
+        }
+    },
+    "idol":  {
+        title: "Cursed Idol",
+        image: "flocking.png",
+        text: "Starts cursed.<br /><br /><i>Known to the state of California to cause curses.</i>",
+        attack: 5,
+        defense: 5,
+        buffa: 0,
+        buffd: 0,
+        cursed: true,
+        expansion: "cogs",
+        silenced: false
     }
 };

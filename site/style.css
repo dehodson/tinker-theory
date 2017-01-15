@@ -384,7 +384,7 @@ body, html{
 	line-height: 3.5vmin;
 	font-size: 3vmin;
 	position: absolute;
-	left:55.5vmin;
+	left:56vmin;
 	top:0vmin;
 	padding:1vmin 1.25vmin;
 	background-color:#DDD;
@@ -504,9 +504,78 @@ body, html{
 	font-family: Chunkfive;
 	font-size:1.6vmin;
 }
+.icon{
+	height:1.8vmin;
+	width: 1.8vmin;
+	margin:.5vmin;
+	background-size: 100%;
+	display:inline-block;
+	background-position: center;
+	background-repeat: no-repeat;
+}
 .buff{
-	font-size:1.6vmin;
-	font-style:italic;
+	position: absolute;
+	width: 100%;
+	height:1.9vmin;
+	bottom: 1vmin;
+	left: 0vmin;
+	text-align: center;
+}
+.icon.buffed{
+	background-image: url("resources/buffed.png");
+}
+.icon.buffed:hover:before{
+	content: "Buffed. Its stats have been raised.";
+	color:#fff;
+	background-color: black;
+	position: absolute;
+	width: 10vmin;
+	bottom:100%;
+	left: 3vmin;
+	border-radius: 1vmin;
+	padding:.5vmin;
+}
+.icon.debuffed{
+	background-image: url("resources/debuffed.png");
+}
+.icon.debuffed:hover:before{
+	content: "Debuffed. Its stats have been lowered.";
+	color:#fff;
+	background-color: black;
+	position: absolute;
+	width: 10vmin;
+	bottom:100%;
+	left: 3vmin;
+	border-radius: 1vmin;
+	padding:.5vmin;
+}
+.icon.silenced{
+	background-image: url("resources/silenced.png");
+}
+.icon.silenced:hover:before{
+	content: "Silenced. Battle effects do not activate.";
+	color:#fff;
+	background-color: black;
+	position: absolute;
+	width: 10vmin;
+	bottom:100%;
+	left: 3vmin;
+	border-radius: 1vmin;
+	padding:.5vmin;
+}
+.icon.cursed{
+	background-image: url("resources/cursed.png");
+}
+.icon.cursed:hover:before{
+	content: "Cursed. Gets -1/-1 at the end of every turn in hand.";
+	color:#fff;
+	background-color: black;
+	position: absolute;
+	width: 10vmin;
+	bottom:100%;
+	left: 3vmin;
+	border-radius: 1vmin;
+	padding:.5vmin;
 }
 .card:hover{
 	border: .5vmin solid #000;
