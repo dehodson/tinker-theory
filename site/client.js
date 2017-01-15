@@ -5,6 +5,7 @@ var gameOver = false;
 var mode = 0;
 var socket = io.connect('/');
 var messages = 0;
+var turn = 0;
 
 var old = document.getElementById("game-container").innerHTML;
 
@@ -85,6 +86,15 @@ function showChat(){
 
 function hideChat(){
 	document.getElementById("chat").style.visibility = "hidden";
+}
+
+function showLog(){
+	document.getElementById("battle-log-main").innerHTML = "";
+	document.getElementById("battle-log").style.visibility = "visible";
+}
+
+function hideLog(){
+	document.getElementById("battle-log").style.visibility = "hidden";
 }
 
 function showRules(){
@@ -220,10 +230,12 @@ function quickMatch(){
 	gameBegun = false;
 	gameOver = false;
 	mode = 1;
+	turn = 0;
 	document.getElementById("splash").style.visibility = "hidden";
 
 	showDeckPicker();
 	showChat();
+	showLog();
 }
 
 function friendGame(){
@@ -232,10 +244,12 @@ function friendGame(){
 	gameBegun = false;
 	gameOver = false;
 	mode = 3;
+	turn = 0;
 	document.getElementById("splash").style.visibility = "hidden";
 
 	showDeckPicker();
 	showChat();
+	showLog();
 }
 
 function deckBuilder(){
@@ -364,6 +378,7 @@ function mainMenu(){
 	closeError();
 	closeDeckPicker();
 	hideChat();
+	hideLog();
 
 	if(mode == 1 || mode == 3){
 		socket.emit("quit");
@@ -389,6 +404,27 @@ function createChatBubble(type, message, name){
 	messages += 1;
 
 	chatbox.scrollTop = chatbox.scrollHeight;
+}
+
+function addToBattleLog(yours, theirs, attacking, success){
+	var log = document.getElementById("battle-log-main");
+	var attackString = "";
+
+	turn += 1;
+	log.innerHTML = "<div class=\"chat-bubble\" id=\"chat-msg-"+messages+"\"></div>" + log.innerHTML;
+
+	if(attacking && success)
+		document.getElementById("chat-msg-"+messages).innerText = "Turn "+turn+": Your "+yours+" defeats their "+theirs+" on the attack.";
+	else if(attacking && !success)
+		document.getElementById("chat-msg-"+messages).innerText = "Turn "+turn+": Your "+yours+" loses to their "+theirs+" on the attack.";
+	else if(!attacking && success)
+		document.getElementById("chat-msg-"+messages).innerText = "Turn "+turn+": Your "+yours+" defeats their "+theirs+" on the defense.";
+	else if(!attacking && !success)
+		document.getElementById("chat-msg-"+messages).innerText = "Turn "+turn+": Your "+yours+" loses to their "+theirs+" on the defense.";
+
+	messages += 1;
+
+	chatbox.scrollTop = 0;
 }
 
 function keyPressed(event){
@@ -455,20 +491,24 @@ socket.on('battle', function( data ) {
 		window.setTimeout(function(){document.getElementById("your-card").className = "card attacker-winner";}, 2000);
 		window.setTimeout(function(){document.getElementById("enemy-card").className = "card defender-loser";}, 2300);
 		window.setTimeout(function(){document.getElementById("your-card").className = "card attacker-exit";}, 2600);
+		window.setTimeout(function(){addToBattleLog(data.yours.title, data.theirs.title, true, true)}, 3000);
 	}else if(yourTurn && data.yours.attack + data.yours.buffa <= data.theirs.defense + data.theirs.buffd){
 		window.setTimeout(function(){document.getElementById("your-card").className = "card attacker-winner";}, 2000);
 		window.setTimeout(function(){document.getElementById("enemy-card").className = "card defender-winner";}, 2300);
 		window.setTimeout(function(){document.getElementById("your-card").className = "card attacker-losing-exit";}, 2600);
 		window.setTimeout(function(){document.getElementById("enemy-card").className = "card defender-winning-exit";}, 3000);
+		window.setTimeout(function(){addToBattleLog(data.yours.title, data.theirs.title, true, false)}, 3000);
 	}else if(!yourTurn && data.yours.defense + data.yours.buffd >= data.theirs.attack + data.theirs.buffa){
 		window.setTimeout(function(){document.getElementById("enemy-card").className = "card attacker-winner";}, 2000);
 		window.setTimeout(function(){document.getElementById("your-card").className = "card defender-winner";}, 2300);
 		window.setTimeout(function(){document.getElementById("enemy-card").className = "card attacker-losing-exit";}, 2600);
 		window.setTimeout(function(){document.getElementById("your-card").className = "card defender-winning-exit";}, 3000);
+		window.setTimeout(function(){addToBattleLog(data.yours.title, data.theirs.title, false, true)}, 3000);
 	}else{
 		window.setTimeout(function(){document.getElementById("enemy-card").className = "card attacker-winner";}, 2000);
 		window.setTimeout(function(){document.getElementById("your-card").className = "card defender-loser";}, 2300);
 		window.setTimeout(function(){document.getElementById("enemy-card").className = "card attacker-exit";}, 2600);
+		window.setTimeout(function(){addToBattleLog(data.yours.title, data.theirs.title, false, false)}, 3000);
 	}
 });
 

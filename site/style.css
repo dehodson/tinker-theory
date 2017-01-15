@@ -77,6 +77,48 @@ body, html{
 	margin:.5vmin;
 	height:6vmin;
 }
+#battle-log{
+	position: absolute;
+	height: 80vmin;
+	background-color: #FFF;
+	width: 20vmin;
+	left: -21vmin;
+	top:0vmin;
+	border-radius: 3vmin;
+	color: black;
+	visibility: hidden;
+}
+#battle-log-header{
+	position: absolute;
+	top:0vmin;
+	left:0vmin;
+	height:5vmin;
+	width: 20vmin;
+	background-color: #AAA;
+	line-height: 5vmin;
+	font-size: 3vmin;
+	text-align: center;
+	border-top-right-radius: 3vmin;
+	border-top-left-radius: 3vmin;
+}
+#battle-log-main{
+	position: absolute;
+	top:5vmin;
+	left:0vmin;
+	height:70vmin;
+	width: 20vmin;
+	overflow-y:scroll;
+}
+#battle-log-footer{
+	position: absolute;
+	top:75vmin;
+	left:0vmin;
+	height:5vmin;
+	width: 20vmin;
+	background-color: #AAA;
+	border-bottom-right-radius: 3vmin;
+	border-bottom-left-radius: 3vmin;
+}
 #game-container{
 	position: absolute;
 	height:80vmin;

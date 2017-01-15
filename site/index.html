@@ -11,6 +11,7 @@
 	<link rel="manifest" href="/manifest.json">
 	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 	<meta name="theme-color" content="#ffffff">
+	<script>this.top.location !== this.location && (this.top.location = this.location);</script>
 </head>
 	<body>
 		<div id="no-click"></div>
@@ -40,7 +41,7 @@
 			<div id="splash">
 				<div id="splash-logo"></div>
 				<div id="splash-title">Tinker<br />Theory!</div>
-				<div id="splash-name">What's your name? <input type="text" id="splash-name-box" onblur="setName();" maxlength="12" /> </div>
+				<div id="splash-name">What's your name?<input type="text" id="splash-name-box" onblur="setName();" maxlength="12" /> </div>
 				<div class="splash-button" id="splash-quick-match" onclick="quickMatch();">Quick Match</div>
 				<div class="splash-button" id="splash-friend-game" onclick="friendGame();">Challenge a Friend</div>
 				<div class="splash-button" id="splash-deckbuilder" onclick="deckBuilder();">Build a Deck</div>
@@ -78,6 +79,11 @@
 				<div id="chat-header">Chat</div>
 				<div id="chat-main"></div>
 				<div id="chat-footer"><textarea maxlength="100" id="chat-input" onkeydown="keyPressed(event)"></textarea></div>
+			</div>
+			<div id="battle-log">
+				<div id="battle-log-header">Battle Log</div>
+				<div id="battle-log-main"></div>
+				<div id="battle-log-footer"></div>
 			</div>
 		</div>
 	</body>
