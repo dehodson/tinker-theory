@@ -564,5 +564,18 @@ cards = {
         expansion: "cogs",
         silenced: false,
         battleEffect: function(obj, p1, p2){for(var i = 0; i < p1.hand.length; i++){p1.hand[i].buffa += 5; p1.hand[i].buffd += 5;  p1.hand[i].cursed = true;}}
+    },
+    "bastard": {
+        title: "Battery Bastard",
+        image: "bastard.png",
+        text: "<span class=\"silenceable\">If you successfully attack with him, gain 3 charge.</span><br /><br /><i>His cup size is AAA.</i>",
+        attack: 6,
+        defense: 1,
+        buffa: 0,
+        buffd: 0,
+        cursed: false,
+        expansion: "cogs",
+        silenced: false,
+        successfulAttackEffect: function(obj, p1, p2){p1.charge += 3}
     }
 };
