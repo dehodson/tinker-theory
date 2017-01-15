@@ -577,5 +577,31 @@ cards = {
         expansion: "cogs",
         silenced: false,
         successfulAttackEffect: function(obj, p1, p2){p1.charge += 3}
+    },
+    "matrix": {
+        title: "Defense Matrix",
+        image: "liquid.png",
+        text: "<span class=\"silenceable\">When you play it, cards in your hand get +1 defense for every charge you have.</span>",
+        attack: 1,
+        defense: 5,
+        buffa: 0,
+        buffd: 0,
+        cursed: false,
+        expansion: "cogs",
+        silenced: false,
+        battleEffect: function(obj, p1, p2){for(var i = 0; i < p1.hand.length; i++){p1.hand[i].buffd += p1.charge}}
+    },
+    "electrotimmy": {
+        title: "Electro-Timmy",
+        image: "electrotimmy.png",
+        text: "<span class=\"silenceable\">When you play him, spend 5 charge and gain a point.</span>",
+        attack: 3,
+        defense: 3,
+        buffa: 0,
+        buffd: 0,
+        cursed: false,
+        expansion: "cogs",
+        silenced: false,
+        battleEffect: function(obj, p1, p2){if(p1.charge >= 5){p1.score += 1; p1.charge -= 5;}}
     }
 };
