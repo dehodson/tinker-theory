@@ -533,5 +533,23 @@ cards = {
         expansion: "cogs",
         silenced: false,
         battleEffect: function(obj, p1, p2){p1.cornCounter += 1; if(p1.cornCounter > 2){for(var i = 0; i < p2.hand.length; i++){p2.hand[i].buffa -= 2; p2.hand[i].buffd -= 2;}}}
+    },
+    "demoness": {
+        title: "Chaos Goddess",
+        image: "demoness.png",
+        text: "<span class=\"silenceable\">Shuffle your opponent's hand into their deck when you play her. They draw two cards.</span>",
+        attack: 3,
+        defense: 0,
+        buffa: 0,
+        buffd: 0,
+        cursed: false,
+        expansion: "cogs",
+        silenced: false,
+        battleEffect: function(obj, p1, p2){
+            var size = p2.hand.length;
+            for(var i = 0; i < size; i++){p2.deck.push(p2.hand.pop());}
+            shuffle(p2.deck);
+            for(var i = 0; i < 2; i++){p2.drawCard();}
+        }
     }
 };

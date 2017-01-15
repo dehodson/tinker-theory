@@ -268,6 +268,9 @@ Game.prototype.takeTurn = function(){
         }
     }else{
 
+        this.players[0].drawCard(this.players[0], this.players[1]);
+        this.players[1].drawCard(this.players[1], this.players[0]);
+
         for(var i = 0; i < 2; i++){
             for(var j = 0; j < this.players[i].hand.length; j++){
                 if(this.players[i].hand[j].cursed == true){
@@ -276,9 +279,6 @@ Game.prototype.takeTurn = function(){
                 }
             }
         }
-        
-        this.players[0].drawCard(this.players[0], this.players[1]);
-        this.players[1].drawCard(this.players[1], this.players[0]);
 
         this.players[0].updateHand(this.players[0], this.players[1], 2500);
         this.players[1].updateHand(this.players[1], this.players[0], 2500);
