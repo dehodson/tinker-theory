@@ -28,7 +28,10 @@
 			</div>
 			<div id="deck-builder">
 				<div id="deck-builder-card-continer">
-					<div id="deck-builder-cards"></div>
+					<div class="deck-builder-tab" id="deck-builder-core-tab" onclick="showTab('cards');">core</div>
+					<div class="deck-builder-page" id="deck-builder-cards"></div>
+					<div class="deck-builder-tab" id="deck-builder-curse-tab" onclick="showTab('curse');">curse</div>
+					<div class="deck-builder-page" id="deck-builder-cards-curse"></div>
 				</div>
 				<div id="deck-builder-header">Deck Name:<br /><input type="text" id="deck-builder-deckname"></div>
 				<div id="deck-builder-list">  </div>
@@ -40,7 +43,8 @@
 			</div>
 			<div id="splash">
 				<div id="splash-logo"></div>
-				<div id="splash-title">Tinker<br />Theory!</div>
+				<div id="splash-title">Tinker<br />Theory:</div>
+				<div id="splash-subtitle">Curse of the Cogs</div>
 				<div id="splash-name">What's your name?<input type="text" id="splash-name-box" onblur="setName();" maxlength="12" /> </div>
 				<div class="splash-button" id="splash-quick-match" onclick="quickMatch();">Quick Match</div>
 				<div class="splash-button" id="splash-friend-game" onclick="friendGame();">Challenge a Friend</div>

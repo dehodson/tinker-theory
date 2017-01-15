@@ -256,13 +256,26 @@ function deckBuilder(){
 	mode = 2;
 
 	decklist = [];
-	var element = document.getElementById("deck-builder-cards");
+	var element  = document.getElementById("deck-builder-cards");
+	var cotclist = document.getElementById("deck-builder-cards-curse");
 	element.innerHTML = "";
+	cotclist.innerHTML = "";
+	element.style.visibility = "visible";
+	cotclist.style.visibility = "hidden";
 	var i = 0;
+	var page = 0;
 
 	for(var card in cards){
-		element.innerHTML += makeCard(cards[card], "deckbuilder-"+i, "addToDeck('"+card+"')");
-		var display = document.getElementById("deckbuilder-"+i);
+		if(cards[card].expansion == "core"){
+			element.innerHTML += makeCard(cards[card], "deckbuilder-"+card, "addToDeck('"+card+"')");
+		}else{
+			if(page == 0){
+				i = 0;
+				page += 1;
+			}
+			cotclist.innerHTML += makeCard(cards[card], "deckbuilder-"+card, "addToDeck('"+card+"')");
+		}
+		var display = document.getElementById("deckbuilder-"+card);
 		display.style.left = ((i % 3) * 18)+"vmin";
 		display.style.top  = (Math.floor(i / 3) * 28)+"vmin";
 		i += 1;
@@ -273,6 +286,16 @@ function deckBuilder(){
 	//element.style.height = ((Math.floor((i - 1) / 3) + 1) * 28) + "vmin";
 	document.getElementById("deck-builder").style.visibility = "visible";
 	document.getElementById("splash").style.visibility = "hidden";
+}
+
+function showTab(name){
+	if(name == "cards"){
+		document.getElementById("deck-builder-cards").style.visibility = "visible";
+		document.getElementById("deck-builder-cards-curse").style.visibility = "hidden";
+	}else if(name == "curse"){
+		document.getElementById("deck-builder-cards").style.visibility = "hidden";
+		document.getElementById("deck-builder-cards-curse").style.visibility = "visible";
+	}
 }
 
 function addToDeck(name){

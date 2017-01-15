@@ -163,7 +163,7 @@ body, html{
 	height:80vmin;
 	width: 80vmin;
 	background-color: #FFF;
-	background: radial-gradient(#FFF 50%, #CCC 100%);
+	background: radial-gradient(#FDF8FF 50%, #CDB5CD 100%);
 	position: absolute;
 	top:0px;
 	left:0px;
@@ -180,7 +180,7 @@ body, html{
 	height:20vmin;
 	width: 20vmin;
 	left: 10vmin;
-	top:  10vmin;
+	top:  8vmin;
 	background-size: 100%;
 	background-position: center;
 	background-repeat: no-repeat;
@@ -190,8 +190,16 @@ body, html{
 	line-height: 9vmin;
 	position: absolute;
 	left: 30vmin;
-	top:  11vmin;
+	top:  9vmin;
 	color:black;
+	font-family: 'Alfa Slab One', serif;
+}
+#splash-subtitle{
+	font-size: 5vmin;
+	position: absolute;
+	left: 24.5vmin;
+	top:  26.5vmin;
+	color:#2E0854;
 	font-family: 'Alfa Slab One', serif;
 }
 .splash-button{
@@ -259,7 +267,7 @@ body, html{
 	position: absolute;
 	height:80vmin;
 	width: 80vmin;
-	background-color: #DDD;
+	background-color: #AAA;
 	position: absolute;
 	color: black;
 	top:0px;
@@ -312,16 +320,23 @@ body, html{
 .deckbuilder-button:hover{
 	background-color: #AFA;
 }
-#deck-builder-cards{
+.deck-builder-page{
 	width:56vmin;
 	position: absolute;
-	height:80vmin;
-	top:0px;
+	height:75vmin;
+	top:5vmin;
 	left:0px;
 	overflow-y:scroll;
 	overflow-x:hidden;
 }
-#deck-builder-cards .card{
+#deck-builder-cards{
+	background-color: #DDD;
+}
+#deck-builder-cards-curse{
+	visibility: hidden;
+	background-color: #71637D;
+}
+.deck-builder-page .card{
 	position: absolute;
 	height: 24vmin;
 	width:  14.5vmin;
@@ -331,16 +346,34 @@ body, html{
 	font-size: 1.7vmin;
 	box-shadow: -.5vmin .5vmin 2vmin rgba(0,0,0,0.5);
 }
-#deck-builder-cards .card .title{
+.deck-builder-page .card .title{
 	font-size: 1.5vmin;
 }
-#deck-builder-cards .card:hover{
+.deck-builder-page .card:hover{
 	border: .5vmin solid #000;
 	margin: .5vmin;
 }
-#deck-builder-cards .image{
+.deck-builder-page .image{
 	height: 8.75vmin;
 	width:  14vmin;
+}
+.deck-builder-tab{
+	position: absolute;
+	height: 4vmin;
+	width: 10vmin;
+	top:1vmin;
+	border-top-left-radius: 2vmin;
+	border-top-right-radius: 2vmin;
+	text-align: center;
+	line-height: 4vmin;
+}
+#deck-builder-core-tab{
+	background-color: #DDD;
+	left:1vmin;
+}
+#deck-builder-curse-tab{
+	background-color: #71637D;
+	left:12vmin;
 }
 .stats{
 	float: right;
@@ -354,6 +387,7 @@ body, html{
 	left:55.5vmin;
 	top:0vmin;
 	padding:1vmin 1.25vmin;
+	background-color:#DDD;
 }
 #deck-builder-footer{
 	width: 24vmin;
@@ -361,6 +395,7 @@ body, html{
 	position: absolute;
 	left:56vmin;
 	top:65vmin;
+	background-color:#DDD;
 }
 #deck-builder-deckname{
 	width: 21.5vmin;

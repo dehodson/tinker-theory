@@ -21,6 +21,8 @@ cards = {
         defense: 3,
         buffa: 0,
         buffd: 0,
+        cursed: false,
+        expansion: "core",
         silenced: false
     },
     "mantis": {
@@ -31,6 +33,8 @@ cards = {
         defense: 0,
         buffa: 0,
         buffd: 0,
+        cursed: false,
+        expansion: "core",
         silenced: false
     },
     "sweater": {
@@ -41,6 +45,8 @@ cards = {
         defense: 7,
         buffa: 0,
         buffd: 0,
+        cursed: false,
+        expansion: "core",
         silenced: false
     },
     "corn": {
@@ -51,6 +57,8 @@ cards = {
         defense: 2,
         buffa: 0,
         buffd: 0,
+        cursed: false,
+        expansion: "core",
         silenced: false,
         globalEffect: function(obj, p1, p2){obj.text = "Its stats grow with every corn you play. (+"+p1.cornCounter+"/+"+p1.cornCounter+")"; obj.attack = 2 + p1.cornCounter; obj.defense = 2 + p1.cornCounter;},
         battleEffect: function(obj, p1, p2){p1.cornCounter += 1;}
@@ -63,6 +71,8 @@ cards = {
         defense: 1,
         buffa: 0,
         buffd: 0,
+        cursed: false,
+        expansion: "core",
         silenced: false,
         battleEffect: function(obj, p1, p2){for(var i = 0; i < p1.hand.length; i++){p1.hand[i].buffa += 3; p1.hand[i].buffd += 3;}}
     },
@@ -74,6 +84,8 @@ cards = {
         defense: 3,
         buffa: 0,
         buffd: 0,
+        cursed: false,
+        expansion: "core",
         silenced: false,
         battleEffect: function(obj, p1, p2){p1.drawCard();}
     },
@@ -85,6 +97,8 @@ cards = {
         defense: 2,
         buffa: 0,
         buffd: 0,
+        cursed: false,
+        expansion: "core",
         silenced: false
     },
     "wall": {
@@ -95,6 +109,8 @@ cards = {
         defense: 5,
         buffa: 0,
         buffd: 0,
+        cursed: false,
+        expansion: "core",
         silenced: false
     },
     "timmy": {
@@ -105,6 +121,8 @@ cards = {
         defense: 2,
         buffa: 0,
         buffd: 0,
+        cursed: false,
+        expansion: "core",
         silenced: false,
         successfulAttackEffect: function(obj, p1, p2){p1.score += 1;}
     },
@@ -116,6 +134,8 @@ cards = {
         defense: 0,
         buffa: 0,
         buffd: 0,
+        cursed: false,
+        expansion: "core",
         silenced: false,
         globalEffect: function(obj, p1, p2){obj.defense = p2.score * 2;}
     },
@@ -127,6 +147,8 @@ cards = {
         defense: 5,
         buffa: 0,
         buffd: 0,
+        cursed: false,
+        expansion: "core",
         silenced: false,
         successfulDefenseEffect: function(obj, p1, p2){p1.drawCard();}
     },
@@ -138,6 +160,8 @@ cards = {
         defense: 6,
         buffa: 0,
         buffd: 0,
+        cursed: false,
+        expansion: "core",
         silenced: false,
         battleEffect: function(obj, p1, p2){p1.cornCounter += 1;}
     },
@@ -149,6 +173,8 @@ cards = {
         defense: 4,
         buffa: 0,
         buffd: 0,
+        cursed: false,
+        expansion: "core",
         silenced: false,
         battleEffect: function(obj, p1, p2){
             var best = 0;
@@ -167,6 +193,8 @@ cards = {
         defense: 1,
         buffa: 0,
         buffd: 0,
+        cursed: false,
+        expansion: "core",
         silenced: false,
         battleEffect: function(obj, p1, p2){for(var i = 0; i < p2.hand.length; i++){p2.hand[i].buffa -= 1; p2.hand[i].buffd -= 3;}}
     },
@@ -178,6 +206,8 @@ cards = {
         defense: 0,
         buffa: 0,
         buffd: 0,
+        cursed: false,
+        expansion: "core",
         silenced: false,
         battleEffect: function(obj, p1, p2){
             for(var i = 0; i < p2.hand.length; i++){p2.hand[i].buffa = 0; p2.hand[i].buffd = 0;}
@@ -192,6 +222,8 @@ cards = {
         defense: 1,
         buffa: 0,
         buffd: 0,
+        cursed: false,
+        expansion: "core",
         silenced: false,
         globalEffect: function(obj, p1, p2){if(p2.score > p1.score){obj.attack = 10; obj.defense = 10;}else{obj.attack = 1; obj.defense = 1;}}
     },
@@ -203,6 +235,8 @@ cards = {
         defense: 3,
         buffa: 0,
         buffd: 0,
+        cursed: false,
+        expansion: "core",
         silenced: false,
         failedAttackEffect: function(obj, p1, p2){if(p1.score > 0){p1.score -= 1;}}
     },
@@ -214,6 +248,8 @@ cards = {
         defense: 0,
         buffa: 0,
         buffd: 0,
+        cursed: false,
+        expansion: "core",
         silenced: false,
         battleEffect: function(obj, p1, p2){
             if(p1.lastCard != null){obj.attack = p1.lastCard.attack; obj.defense = p1.lastCard.defense; obj.buffa = p1.lastCard.buffa; obj.buffd = p1.lastCard.buffd;
@@ -227,6 +263,8 @@ cards = {
         defense: 3,
         buffa: 0,
         buffd: 0,
+        cursed: false,
+        expansion: "core",
         silenced: false,
         battleEffect: function(obj, p1, p2){
             if(p1.lastCard != null){
@@ -256,6 +294,8 @@ cards = {
         defense: 6,
         buffa: 0,
         buffd: 0,
+        cursed: false,
+        expansion: "core",
         silenced: false,
         successfulDefenseEffect: function(obj, p1, p2){p1.score += 1;}
     },
@@ -267,6 +307,8 @@ cards = {
         defense: 4,
         buffa: 0,
         buffd: 0,
+        cursed: false,
+        expansion: "core",
         silenced: false,
         battleEffect: function(obj, p1, p2){
             if(p2.lastCard != null){
@@ -287,6 +329,8 @@ cards = {
         defense: 2,
         buffa: 0,
         buffd: 0,
+        cursed: false,
+        expansion: "core",
         silenced: false,
         battleEffect: function(obj, p1, p2){
             if(p1.lastCard != null){if(p1.lastCard.title.indexOf("Corn") != -1){p1.drawCard();}}
@@ -300,6 +344,8 @@ cards = {
         defense: 1,
         buffa: 0,
         buffd: 0,
+        cursed: false,
+        expansion: "core",
         silenced: false,
         battleEffect: function(obj, p1, p2){
             var total = 0;
@@ -316,6 +362,8 @@ cards = {
         defense: 3,
         buffa: 0,
         buffd: 0,
+        cursed: false,
+        expansion: "core",
         silenced: false,
         battleEffect: function(obj, p1, p2){
             for(var i = 0; i < p2.hand.length; i++){
@@ -331,6 +379,8 @@ cards = {
         defense: 2,
         buffa: 0,
         buffd: 0,
+        cursed: false,
+        expansion: "core",
         silenced: false,
         battleEffect: function(obj, p1, p2){
             if(p1.deck.length > 0){
@@ -351,6 +401,8 @@ cards = {
         defense: 4,
         buffa: 0,
         buffd: 0,
+        cursed: false,
+        expansion: "core",
         silenced: false,
         battleEffect: function(obj, p1, p2){
             var number = 0;
@@ -371,6 +423,8 @@ cards = {
         defense: 2,
         buffa: 0,
         buffd: 0,
+        cursed: false,
+        expansion: "core",
         silenced: true,
         battleEffect: function(obj, p1, p2){obj.buffa += 7; obj.buffd += 7;}
     },
@@ -382,6 +436,8 @@ cards = {
         defense: 1,
         buffa: 0,
         buffd: 0,
+        cursed: false,
+        expansion: "core",
         silenced: false,
         battleEffect: function(obj, p1, p2){
             for(var card in p1.deck){
@@ -397,6 +453,8 @@ cards = {
         defense: 6,
         buffa: 0,
         buffd: 0,
+        cursed: false,
+        expansion: "core",
         silenced: false,
         globalEffect: function(obj, p1, p2){obj.buffa = 0; obj.buffd = 0;}
     },
@@ -408,6 +466,56 @@ cards = {
         defense: 2,
         buffa: 0,
         buffd: 0,
+        cursed: false,
+        expansion: "core",
+        silenced: false,
+        battleEffect: function(obj, p1, p2){
+            var size = p1.hand.length;
+            for(var i = 0; i < size; i++){p1.deck.push(p1.hand.pop());}
+            shuffle(p1.deck);
+            for(var i = 0; i < size; i++){p1.drawCard();}
+        }
+    },
+    "flocking2": {
+        title: "Flocking Wraiths",
+        image: "flocking.png",
+        text: "<span class=\"silenceable\">When you play them, other copies of them in your deck get +3/+3.</span>",
+        attack: 1,
+        defense: 1,
+        buffa: 0,
+        buffd: 0,
+        cursed: false,
+        expansion: "cogs",
+        silenced: false,
+        battleEffect: function(obj, p1, p2){
+            for(var card in p1.deck){
+                if(p1.deck[card].title == obj.title){p1.deck[card].buffa += 3; p1.deck[card].buffd += 3;}
+            }
+        }
+    },
+    "eternal2": {
+        title: "Eternal Protector",
+        image: "eternal.png",
+        text: "It can't be buffed or debuffed.<br /><br /><i>Ever standing, ever watchful.</i>",
+        attack: 2,
+        defense: 6,
+        buffa: 0,
+        buffd: 0,
+        cursed: false,
+        expansion: "cogs",
+        silenced: false,
+        globalEffect: function(obj, p1, p2){obj.buffa = 0; obj.buffd = 0;}
+    },
+    "goddess2": {
+        title: "Renewal Goddess",
+        image: "goddess.png",
+        text: "<span class=\"silenceable\">Shuffle your hand into your deck when you play her. Draw that many cards.</span>",
+        attack: 2,
+        defense: 2,
+        buffa: 0,
+        buffd: 0,
+        cursed: false,
+        expansion: "cogs",
         silenced: false,
         battleEffect: function(obj, p1, p2){
             var size = p1.hand.length;
