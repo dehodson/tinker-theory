@@ -71,6 +71,7 @@ var Player = function(id, conn, deck, name){
     this.hand = [];
     this.score = 0;
     this.cornCounter = 0;
+    this.charge = 0;
     this.card = null;
     this.nextCard = null;
     this.lastCard = null;
@@ -110,7 +111,7 @@ Player.prototype.updateHand = function(p1, p2, delay){
         }
     }
 
-    this.connection.emit("hand", {hand: this.hand, delay: delay});
+    this.connection.emit("hand", {hand: this.hand, delay: delay, charge: [p1.charge, p2.charge], handsize: [p1.hand.length, p2.hand.length]});
 };
 
 

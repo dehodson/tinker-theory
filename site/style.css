@@ -450,12 +450,13 @@ body, html{
 }
 #status{
 	position: absolute;
-	font-size: 3vmin;
-	bottom: 33vmin;
+	font-size: 2.5vmin;
+	bottom: 35vmin;
 	left: 0vmin;
 	width: 80vmin;
 	color: black;
 	text-align: center;
+	font-weight: bold;
 }
 #status .loader{
 	height: 3vmin;
@@ -476,6 +477,26 @@ body, html{
 	background-color: #AAA;
 	border-bottom-right-radius: 3vmin;
 	border-bottom-left-radius: 3vmin;
+}
+#yourstats{
+	position: absolute;
+	left:1vmin;
+	top: 43vmin;
+	width: 15vmin;
+	text-align: left;
+	color: black;
+	white-space: nowrap;
+	font-size:1.8vmin;
+}
+#theirstats{
+	position: absolute;
+	right:1vmin;
+	top: 43vmin;
+	width: 15vmin;
+	text-align: right;
+	color: black;
+	white-space: nowrap;
+	font-size:1.8vmin;
 }
 .card{
 	position: absolute;

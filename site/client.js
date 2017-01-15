@@ -495,6 +495,8 @@ socket.on('turn', function( data ) {
 
 socket.on('hand', function( data ) {
 	window.setTimeout(function(){hand = data.hand; updateHand();}, data.delay);
+	window.setTimeout(function(){document.getElementById("yourcharge").innerText = data.charge[0]; document.getElementById("theircharge").innerText = data.charge[1];}, data.delay);
+	window.setTimeout(function(){document.getElementById("yourhandsize").innerText = data.handsize[0]; document.getElementById("theirhandsize").innerText = data.handsize[1];}, data.delay);
 });
 
 socket.on('can click', function() {

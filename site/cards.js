@@ -555,7 +555,7 @@ cards = {
     "liquid": {
         title: "Caustic Liquid",
         image: "liquid.png",
-        text: "<span class=\"silenceable\">Gives all cards in your hand +4/+4 when you play it, but curses them.</span>",
+        text: "<span class=\"silenceable\">Gives all cards in your hand +5/+5 when you play it, but curses them.</span>",
         attack: 3,
         defense: 1,
         buffa: 0,
@@ -563,6 +563,6 @@ cards = {
         cursed: false,
         expansion: "cogs",
         silenced: false,
-        battleEffect: function(obj, p1, p2){for(var i = 0; i < p1.hand.length; i++){p1.hand[i].buffa += 4; p1.hand[i].buffd += 4;  p1.hand[i].cursed = true;}}
+        battleEffect: function(obj, p1, p2){for(var i = 0; i < p1.hand.length; i++){p1.hand[i].buffa += 5; p1.hand[i].buffd += 5;  p1.hand[i].cursed = true;}}
     }
 };
