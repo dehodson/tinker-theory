@@ -178,6 +178,10 @@ function makeCard(dict, id, onclick){
 		buffString += "<br /><span class=\"buff\">(silenced)</span>";
 	}
 
+	if(dict.cursed){
+		buffString += "<br /><span class=\"buff\">(cursed)</span>";
+	}
+
 	var string = "<div class=\""+className+"\" id=\""+id+"\" onclick=\""+onclick+"\">";
 	   string += "<div class=\"title\" id=\""+id+"-title\">"+dict.title+"</div>";
 	   string += "<div class=\"image\" id=\""+id+"-image\" style=\"background-image:url('images/"+dict.image+"')\"></div>";
@@ -395,6 +399,8 @@ function setName(){
 function mainMenu(){
 	document.getElementById("splash").style.visibility = "visible";
 	document.getElementById("deck-builder").style.visibility = "hidden";
+	document.getElementById("deck-builder-cards").style.visibility = "hidden";
+	document.getElementById("deck-builder-cards-curse").style.visibility = "hidden";
 	document.getElementById("rules").style.visibility = "hidden";
 	document.getElementById("game-container").innerHTML = old;
 	closeAlert();

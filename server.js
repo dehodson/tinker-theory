@@ -267,6 +267,15 @@ Game.prototype.takeTurn = function(){
             this.players[1].connection.emit("game over", {message: "Tie game."})
         }
     }else{
+
+        for(var i = 0; i < 2; i++){
+            for(var j = 0; j < this.players[i].hand.length; j++){
+                if(this.players[i].hand[j].cursed == true){
+                    this.players[i].hand[j].buffa -= 1;
+                    this.players[i].hand[j].buffd -= 1;
+                }
+            }
+        }
         
         this.players[0].drawCard(this.players[0], this.players[1]);
         this.players[1].drawCard(this.players[1], this.players[0]);

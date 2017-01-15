@@ -476,52 +476,20 @@ cards = {
             for(var i = 0; i < size; i++){p1.drawCard();}
         }
     },
-    "flocking2": {
-        title: "Flocking Wraiths",
+    "cursy": {
+        title: "Spiteful One",
         image: "flocking.png",
-        text: "<span class=\"silenceable\">When you play them, other copies of them in your deck get +3/+3.</span>",
+        text: "<span class=\"silenceable\">When you play her, curse the top two cards of your opponent's deck.</span>",
         attack: 1,
-        defense: 1,
+        defense: 5,
         buffa: 0,
         buffd: 0,
         cursed: false,
         expansion: "cogs",
         silenced: false,
         battleEffect: function(obj, p1, p2){
-            for(var card in p1.deck){
-                if(p1.deck[card].title == obj.title){p1.deck[card].buffa += 3; p1.deck[card].buffd += 3;}
-            }
-        }
-    },
-    "eternal2": {
-        title: "Eternal Protector",
-        image: "eternal.png",
-        text: "It can't be buffed or debuffed.<br /><br /><i>Ever standing, ever watchful.</i>",
-        attack: 2,
-        defense: 6,
-        buffa: 0,
-        buffd: 0,
-        cursed: false,
-        expansion: "cogs",
-        silenced: false,
-        globalEffect: function(obj, p1, p2){obj.buffa = 0; obj.buffd = 0;}
-    },
-    "goddess2": {
-        title: "Renewal Goddess",
-        image: "goddess.png",
-        text: "<span class=\"silenceable\">Shuffle your hand into your deck when you play her. Draw that many cards.</span>",
-        attack: 2,
-        defense: 2,
-        buffa: 0,
-        buffd: 0,
-        cursed: false,
-        expansion: "cogs",
-        silenced: false,
-        battleEffect: function(obj, p1, p2){
-            var size = p1.hand.length;
-            for(var i = 0; i < size; i++){p1.deck.push(p1.hand.pop());}
-            shuffle(p1.deck);
-            for(var i = 0; i < size; i++){p1.drawCard();}
+            var max = p2.deck.length < 2 ? p2.deck.length : 2;
+            for(var i = 0; i < max; i++){p2.deck[(p2.deck.length - 1) - i].cursed = true;}
         }
     }
 };
