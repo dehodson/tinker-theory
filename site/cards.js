@@ -513,8 +513,8 @@ cards = {
         title: "Cursed Idol",
         image: "flocking.png",
         text: "Starts cursed.<br /><br /><i>Known to the state of California to cause curses.</i>",
-        attack: 5,
-        defense: 5,
+        attack: 6,
+        defense: 6,
         buffa: 0,
         buffd: 0,
         cursed: true,
@@ -551,5 +551,18 @@ cards = {
             shuffle(p2.deck);
             for(var i = 0; i < 2; i++){p2.drawCard();}
         }
+    },
+    "liquid": {
+        title: "Caustic Liquid",
+        image: "liquid.png",
+        text: "<span class=\"silenceable\">Gives all cards in your hand +4/+4 when you play it, but curses them.</span>",
+        attack: 3,
+        defense: 1,
+        buffa: 0,
+        buffd: 0,
+        cursed: false,
+        expansion: "cogs",
+        silenced: false,
+        battleEffect: function(obj, p1, p2){for(var i = 0; i < p1.hand.length; i++){p1.hand[i].buffa += 4; p1.hand[i].buffd += 4;  p1.hand[i].cursed = true;}}
     }
 };
