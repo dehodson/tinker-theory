@@ -525,6 +525,11 @@ body, html{
 	font-family: Chunkfive;
 	font-size:1.6vmin;
 }
+.card.curse{
+	background-image: url("resources/cardback.png");
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
 .icon{
 	height:2vmin;
 	width: 2vmin;
