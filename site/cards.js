@@ -511,7 +511,7 @@ cards = {
     },
     "idol":  {
         title: "Cursed Idol",
-        image: "flocking.png",
+        image: "idol.png",
         text: "Starts cursed.<br /><br /><i>Known to the state of California to cause curses.</i>",
         attack: 6,
         defense: 6,
@@ -580,7 +580,7 @@ cards = {
     },
     "matrix": {
         title: "Defense Matrix",
-        image: "liquid.png",
+        image: "matrix.png",
         text: "<span class=\"silenceable\">When you play it, cards in your hand get +1 defense for every charge you have.</span>",
         attack: 1,
         defense: 5,
@@ -603,5 +603,35 @@ cards = {
         expansion: "cogs",
         silenced: false,
         battleEffect: function(obj, p1, p2){if(p1.charge >= 5){p1.score += 1; p1.charge -= 5;}}
+    },
+    "coffee": {
+        title: "Wizard Coffee",
+        image: "coffee.png",
+        text: "<span class=\"silenceable\">When you play it, all mages in your deck get +2 attack.<br /><br /><i>\"Order for Saruman!\"</i></span>",
+        attack: 2,
+        defense: 2,
+        buffa: 0,
+        buffd: 0,
+        cursed: false,
+        expansion: "cogs",
+        silenced: false,
+        battleEffect: function(obj, p1, p2){
+            for(var card in p1.deck){
+                if(p1.deck[card].title.match(/mage/i)){p1.deck[card].buffa += 2;}
+            }
+        }
+    },
+    "hexbot": {
+        title: "Hexbot",
+        image: "unsweet.png",
+        text: "<span class=\"silenceable\">When you play it, spend 3 charge and curse your opponent's hand.</span>",
+        attack: 2,
+        defense: 4,
+        buffa: 0,
+        buffd: 0,
+        cursed: false,
+        expansion: "cogs",
+        silenced: false,
+        battleEffect: function(obj, p1, p2){if(p1.charge >= 3){p1.charge -= 3; for(var i = 0; i < p2.hand.length; i++){p2.hand[i].cursed = true;}}}
     }
 };
