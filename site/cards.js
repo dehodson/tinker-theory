@@ -697,6 +697,23 @@ cards = {
             }
         }
     },
+    "hulk": {
+        title: "Behemoth Hulk",
+        image: "liquid.png",
+        text: "<span class=\"silenceable\">When you play it, cards in your hand get -3/-3.</span>",
+        attack: 9,
+        defense: 9,
+        buffa: 0,
+        buffd: 0,
+        cursed: false,
+        expansion: "cogs",
+        silenced: false,
+        battleEffect: function(obj, p1, p2){
+            for(var i in p1.hand){
+                p1.hand[i].buffa -= 3; p1.hand[i].buffd -= 3;
+            }
+        }
+    },
     "knowledge": {
         title: "Knowledge Feaster",
         image: "knowledge.png",
@@ -777,6 +794,89 @@ cards = {
                 for(var card in p2.hand){
                     if(p2.hand[card].title == p2.lastCard.title){p2.hand[card].silenced = true;}
                 }
+            }
+        }
+    },
+    "potion": {
+        title: "Proton Potion",
+        image: "liquid.png",
+        text: "<span class=\"silenceable\">Spend all your charge when you play it. Cards in your hand get +1/+0 for each.</span>",
+        attack: 4,
+        defense: 0,
+        buffa: 0,
+        buffd: 0,
+        cursed: false,
+        expansion: "cogs",
+        silenced: false,
+        battleEffect: function(obj, p1, p2){
+            num = p1.charge;
+            for(var i in p1.hand){
+                p1.hand[i].buffa += num;
+            }
+            p1.charge = 0;
+        }
+    },
+    "revenge": {
+        title: "Revenge Totem",
+        image: "stone.png",
+        text: "<span class=\"silenceable\">If the last card you played was cursed or silenced, curse or silence your opponent's hand.</span>",
+        attack: 2,
+        defense: 3,
+        buffa: 0,
+        buffd: 0,
+        cursed: false,
+        expansion: "cogs",
+        silenced: false,
+        battleEffect: function(obj, p1, p2){
+            for(var card in p2.hand){
+                if(p1.lastCard.silenced){p2.hand[card].silenced = true;}if(p1.lastCard.cursed){p2.hand[card].cursed = true;}
+            }
+        }
+    },
+    "socket": {
+        title: "Socket Wall",
+        image: "stone.png",
+        text: "<span class=\"silenceable\">When you play it, gain 2 charge.</span>",
+        attack: 1,
+        defense: 6,
+        buffa: 0,
+        buffd: 0,
+        cursed: false,
+        expansion: "cogs",
+        silenced: false,
+        battleEffect: function(obj, p1, p2){p1.charge += 2;}
+    },
+    "artifact": {
+        title: "Curious Artifact",
+        image: "liquid.png",
+        text: "Starts cursed.<br /><span class=\"silenceable\">When you play it, if both of its stats are below -9, you gain two points.</span>",
+        attack: 0,
+        defense: 0,
+        buffa: 0,
+        buffd: 0,
+        cursed: true,
+        expansion: "cogs",
+        silenced: false,
+        battleEffect: function(obj, p1, p2){
+            if(obj.buffa + obj.attack < -9 && obj.buffd + obj.defense < -9){
+                p1.score += 2;
+            }
+        }
+    },
+    "mason": {
+        title: "Mad Mason",
+        image: "gatekeeper.png",
+        text: "<span class=\"silenceable\">If you fail to attack with him, you'll draw a wall next.</span>",
+        attack: 6,
+        defense: 0,
+        buffa: 0,
+        buffd: 0,
+        cursed: false,
+        expansion: "cogs",
+        silenced: false,
+        battleEffect: function(obj, p1, p2){
+            for(var card in p1.deck){
+                if(p1.deck[card].title.match(/wall/i)){p1.nextCard = card; break;}
             }
         }
     }
