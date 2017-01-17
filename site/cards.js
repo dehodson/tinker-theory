@@ -835,7 +835,7 @@ cards = {
     },
     "socket": {
         title: "Socket Wall",
-        image: "stone.png",
+        image: "socket.png",
         text: "<span class=\"silenceable\">When you play it, gain 2 charge.</span>",
         attack: 1,
         defense: 6,
@@ -848,7 +848,7 @@ cards = {
     },
     "artifact": {
         title: "Curious Artifact",
-        image: "liquid.png",
+        image: "artifact.png",
         text: "Starts cursed.<br /><span class=\"silenceable\">When you play it, if both of its stats are below -9, you gain two points.</span>",
         attack: 0,
         defense: 0,
@@ -877,6 +877,58 @@ cards = {
         battleEffect: function(obj, p1, p2){
             for(var card in p1.deck){
                 if(p1.deck[card].title.match(/wall/i)){p1.nextCard = card; break;}
+            }
+        }
+    },
+    "thief": {
+        title: "Juice Thief",
+        image: "liquid.png",
+        text: "<span class=\"silenceable\">When you play her, steal up to 2 charge from your opponent.</span>",
+        attack: 3,
+        defense: 3,
+        buffa: 0,
+        buffd: 0,
+        cursed: true,
+        expansion: "cogs",
+        silenced: false,
+        battleEffect: function(obj, p1, p2){
+            if(p2.charge < 2){
+                p1.charge += p2.charge;
+                p2.charge = 0;
+            }else{
+                p2.charge -= 2;
+                p1.charge += 2;
+            }
+        }
+    },
+    "conjurer": {
+        title: "Porcine Conjurer",
+        image: "liquid.png",
+        text: "<span class=\"silenceable\">When you play him, turn the best attacker in your opponent's hand into a 1/1 pig.</span>",
+        attack: 2,
+        defense: 4,
+        buffa: 0,
+        buffd: 0,
+        cursed: false,
+        expansion: "cogs",
+        silenced: false,
+        battleEffect: function(obj, p1, p2){
+            var best = 0;
+            var index = 0;
+            for(var card in p2.hand){
+                if(p2.hand[card].attack + p2.hand[card].buffa > best){index = card; best = p2.hand[card].attack + p2.hand[card].buffa}
+            }
+            p2.hand[index] = {
+                title: "Pig",
+                image: "liquid.png",
+                text: "<i>Oink.</i>",
+                attack: 1,
+                defense: 1,
+                buffa: 0,
+                buffd: 0,
+                cursed: false,
+                expansion: "cogs",
+                silenced: false
             }
         }
     }
