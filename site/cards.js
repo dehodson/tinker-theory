@@ -201,7 +201,7 @@ cards = {
     "normalizer": {
         title: "Normalizer Wizard",
         image: "normalizer.png",
-        text: "<span class=\"silenceable\">Removes all buffs from cards in each player's hand when you play it.</span>",
+        text: "<span class=\"silenceable\">Removes all buffs and debuffs from cards in each player's hand when you play it.</span>",
         attack: 5,
         defense: 0,
         buffa: 0,
@@ -649,8 +649,8 @@ cards = {
     },
     "lil": {
         title: "Lil' Battery Bug",
-        image: "electrotimmy.png",
-        text: "<span class=\"silenceable\">When you play it, gain 5 charge.</span>",
+        image: "lil.png",
+        text: "<span class=\"silenceable\">When you play it, gain 5 charge.</span><br /><br /><i>Zap!</i>",
         attack: 1,
         defense: 1,
         buffa: 0,
@@ -679,7 +679,7 @@ cards = {
     },
     "electricsilencer": {
         title: "Electric Silencer",
-        image: "silencer.png",
+        image: "electricsilencer.png",
         text: "<span class=\"silenceable\">When you play him, spend 3 charge and silence all cards in your opponent's hand.</span>",
         attack: 1,
         defense: 6,
@@ -727,8 +727,8 @@ cards = {
         title: "Curse Drainer",
         image: "silencer.png",
         text: "<span class=\"silenceable\">If you successfully defend with him, uncurse your hand. Gain 1 charge for each.</span>",
-        attack: 1,
-        defense: 6,
+        attack: 0,
+        defense: 5,
         buffa: 0,
         buffd: 0,
         cursed: false,
@@ -757,5 +757,27 @@ cards = {
         expansion: "cogs",
         silenced: false,
         battleEffect: function(obj, p1, p2){if(p1.charge >= 4){p1.charge -= 4; obj.buffa += 4; obj.buffd += 4;}}
+    },
+    "apprentice": {
+        title: "Diggy's Apprentice",
+        image: "diggy.png",
+        text: "<span class=\"silenceable\">When you play him, silence all other copies of the last card your opponent played.</span>",
+        attack: 4,
+        defense: 1,
+        buffa: 0,
+        buffd: 0,
+        cursed: false,
+        expansion: "cogs",
+        silenced: false,
+        battleEffect: function(obj, p1, p2){
+            if(p2.lastCard != null){
+                for(var card in p2.deck){
+                    if(p2.deck[card].title == p2.lastCard.title){p2.deck[card].silenced = true;}
+                }
+                for(var card in p2.hand){
+                    if(p2.hand[card].title == p2.lastCard.title){p2.hand[card].silenced = true;}
+                }
+            }
+        }
     }
 };
