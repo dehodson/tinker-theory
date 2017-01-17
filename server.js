@@ -95,6 +95,9 @@ Player.prototype.drawCard = function(p1, p2){
         if(_card.hasOwnProperty("drawEffect")){
             _card.drawEffect(_card, p1, p2);
         }
+        if(_card.hasOwnProperty("globalEffect")){
+            _card.globalEffect(_card, p1, p2);
+        }
         this.hand.push(_card);
     }
 };

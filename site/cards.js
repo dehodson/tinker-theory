@@ -594,7 +594,7 @@ cards = {
     "electrotimmy": {
         title: "Electro-Timmy",
         image: "electrotimmy.png",
-        text: "<span class=\"silenceable\">When you play him, spend 5 charge and gain a point.</span>",
+        text: "<span class=\"silenceable\">When you play him, spend 6 charge and gain a point.</span>",
         attack: 3,
         defense: 3,
         buffa: 0,
@@ -602,7 +602,7 @@ cards = {
         cursed: false,
         expansion: "cogs",
         silenced: false,
-        battleEffect: function(obj, p1, p2){if(p1.charge >= 5){p1.score += 1; p1.charge -= 5;}}
+        battleEffect: function(obj, p1, p2){if(p1.charge >= 6){p1.score += 1; p1.charge -= 6;}}
     },
     "coffee": {
         title: "Wizard Coffee",
@@ -624,7 +624,7 @@ cards = {
     "hexbot": {
         title: "Hexbot",
         image: "unsweet.png",
-        text: "<span class=\"silenceable\">When you play it, spend 3 charge and curse your opponent's hand.</span>",
+        text: "<span class=\"silenceable\">When you play it, spend 3 charge and curse all cards in your opponent's hand.</span>",
         attack: 2,
         defense: 4,
         buffa: 0,
@@ -650,7 +650,7 @@ cards = {
     "lil": {
         title: "Lil' Battery Bug",
         image: "electrotimmy.png",
-        text: "<span class=\"silenceable\">When you play it, you get 5 charge.</span>",
+        text: "<span class=\"silenceable\">When you play it, gain 5 charge.</span>",
         attack: 1,
         defense: 1,
         buffa: 0,
@@ -658,6 +658,66 @@ cards = {
         cursed: false,
         expansion: "cogs",
         silenced: false,
-        battleEffect: function(obj, p1, p2){if(p1.charge >= 2 && p1.deck.length > 0){p1.drawCard(); p1.charge -= 2;}}
+        battleEffect: function(obj, p1, p2){p1.charge += 5;}
+    },
+    "stone": {
+        title: "Heaven Stone",
+        image: "electrotimmy.png",
+        text: "<span class=\"silenceable\">When you play it, draw a goddess. That goddess gets +3/+0.</span>",
+        attack: 2,
+        defense: 2,
+        buffa: 0,
+        buffd: 0,
+        cursed: false,
+        expansion: "cogs",
+        silenced: false,
+        battleEffect: function(obj, p1, p2){
+            for(var card in p1.deck){
+                if(p1.deck[card].title.match(/goddess/i)){p1.nextCard = card; p1.deck[card].buffa += 3; p1.drawCard(); break;}
+            }
+        }
+    },
+    "electricsilencer": {
+        title: "Electric Silencer",
+        image: "silencer.png",
+        text: "<span class=\"silenceable\">When you play him, spend 3 charge and silence all cards in your opponent's hand.</span>",
+        attack: 1,
+        defense: 6,
+        buffa: 0,
+        buffd: 0,
+        cursed: false,
+        expansion: "cogs",
+        silenced: false,
+        battleEffect: function(obj, p1, p2){
+            for(var i = 0; i < p2.hand.length; i++){
+                p2.hand[i].silenced = true;
+            }
+        }
+    },
+    "knowledge": {
+        title: "Knowledge Feaster",
+        image: "corn.png",
+        text: "Its stats are equal to the number of cards in your hand.",
+        attack: 0,
+        defense: 0,
+        buffa: 0,
+        buffd: 0,
+        cursed: false,
+        expansion: "cogs",
+        silenced: false,
+        globalEffect: function(obj, p1, p2){obj.attack = p1.hand.length; obj.defense = p1.hand.length;},
+    },
+    "proof": {
+        title: "Hexproof Barrier",
+        image: "corn.png",
+        text: "It can't be cursed.",
+        attack: 0,
+        defense: 6,
+        buffa: 0,
+        buffd: 0,
+        cursed: false,
+        expansion: "cogs",
+        silenced: false,
+        globalEffect: function(obj, p1, p2){obj.cursed = false;},
     }
 };
