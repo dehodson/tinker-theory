@@ -931,5 +931,20 @@ cards = {
                 silenced: false
             }
         }
+    },
+    "peeper": {
+        title: "Peeper",
+        image: "liquid.png",
+        text: "<span class=\"silenceable\">When you play her, look at your opponent's hand.</span>",
+        attack: 3,
+        defense: 3,
+        buffa: 0,
+        buffd: 0,
+        cursed: false,
+        expansion: "cogs",
+        silenced: false,
+        battleEffect: function(obj, p1, p2){
+            p1.connection.emit("enemy hand", {hand: p2.hand});
+        }
     }
 };

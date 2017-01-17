@@ -152,9 +152,9 @@ body, html{
 	z-index: 11;
 	font-size:4vmin;
 	text-align: center;
-	border: 3px solid white;
-	border-radius: 5px;
-	padding:5px;
+	border: 0.5vmin solid white;
+	border-radius: 1vmin;
+	padding:1vmin;
 	width:60vmin;
 	visibility: hidden;
 }
@@ -477,6 +477,11 @@ body, html{
 	background-color: #AAA;
 	border-bottom-right-radius: 3vmin;
 	border-bottom-left-radius: 3vmin;
+}
+#enemy-hand{
+	width:  80vmin;
+	height: 30vmin;
+	background-color: #AAA;
 }
 #yourstats{
 	position: absolute;

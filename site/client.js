@@ -213,6 +213,30 @@ function updateHand(){
 	}
 }
 
+function showEnemyHand(enemyHand){
+	document.getElementById("error-box").innerHTML = "Their hand:<br /><div id=\"enemy-hand\"></div>";
+
+	document.getElementById("error-box").style.width = "80vmin";
+	executeOnClose = function(){document.getElementById("error-box").style.width = "60vmin";};
+
+	document.getElementById("enemy-hand").innerHTML = "";
+
+	if(enemyHand.length > 3){
+		var offset = 0;
+		var diff = 60 / (enemyHand.length - 1);
+	}else{
+		var offset = (80 - (enemyHand.length * 20)) / 2;
+		var diff = 20;
+	}
+
+	for(var i = 0; i < enemyHand.length; i++){
+		document.getElementById("enemy-hand").innerHTML += makeCard(enemyHand[i], "their-card-"+i, "");
+		document.getElementById("their-card-"+i).style.left = (offset + (diff * i)) + "vmin";
+	}
+
+	showError();
+}
+
 function updateScore(){
 	document.getElementById("score-points").innerText = player.score + " - " + enemy.score;
 }
@@ -458,7 +482,7 @@ function addToBattleLog(yours, theirs, attacking, success){
 
 	messages += 1;
 
-	chatbox.scrollTop = 0;
+	log.scrollTop = 0;
 }
 
 function keyPressed(event){
@@ -573,6 +597,10 @@ socket.on('clear status', function (){
 socket.on('disconnected', function(){
 	document.getElementById("status").innerText = "Your opponent disconnected.";
 	gameOver = true;
+});
+
+socket.on('enemy hand', function(data){
+	window.setTimeout(function(){showEnemyHand(data.hand);}, 3000);
 });
 
 socket.on('game over', function(data){
