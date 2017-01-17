@@ -662,7 +662,7 @@ cards = {
     },
     "stone": {
         title: "Heaven Stone",
-        image: "electrotimmy.png",
+        image: "stone.png",
         text: "<span class=\"silenceable\">When you play it, draw a goddess. That goddess gets +3/+0.</span>",
         attack: 2,
         defense: 2,
@@ -689,14 +689,17 @@ cards = {
         expansion: "cogs",
         silenced: false,
         battleEffect: function(obj, p1, p2){
-            for(var i = 0; i < p2.hand.length; i++){
-                p2.hand[i].silenced = true;
+            if(p1.charge >= 3){
+                for(var i = 0; i < p2.hand.length; i++){
+                    p2.hand[i].silenced = true;
+                }
+                p1.charge -= 3;
             }
         }
     },
     "knowledge": {
         title: "Knowledge Feaster",
-        image: "corn.png",
+        image: "knowledge.png",
         text: "Its stats are equal to the number of cards in your hand.",
         attack: 0,
         defense: 0,
@@ -719,5 +722,40 @@ cards = {
         expansion: "cogs",
         silenced: false,
         globalEffect: function(obj, p1, p2){obj.cursed = false;},
+    },
+    "drainer": {
+        title: "Curse Drainer",
+        image: "silencer.png",
+        text: "<span class=\"silenceable\">If you successfully defend with him, uncurse your hand. Gain 1 charge for each.</span>",
+        attack: 1,
+        defense: 6,
+        buffa: 0,
+        buffd: 0,
+        cursed: false,
+        expansion: "cogs",
+        silenced: false,
+        successfulDefenseEffect: function(obj, p1, p2){
+            var num = 0;
+            for(var i in p1.hand){
+                if(p1.hand[i].cursed){
+                    num += 1;
+                    p1.hand[i].cursed = false;
+                }
+            }
+            p1.charge += num;
+        }
+    },
+    "mech": {
+        title: "Circuit Smasher",
+        image: "electrotimmy.png",
+        text: "<span class=\"silenceable\">When you play it, spend 4 charge and it gets +4/+4.</span>",
+        attack: 3,
+        defense: 3,
+        buffa: 0,
+        buffd: 0,
+        cursed: false,
+        expansion: "cogs",
+        silenced: false,
+        battleEffect: function(obj, p1, p2){if(p1.charge >= 4){p1.charge -= 4; obj.buffa += 4; obj.buffd += 4;}}
     }
 };
