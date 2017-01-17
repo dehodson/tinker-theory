@@ -633,5 +633,31 @@ cards = {
         expansion: "cogs",
         silenced: false,
         battleEffect: function(obj, p1, p2){if(p1.charge >= 3){p1.charge -= 3; for(var i = 0; i < p2.hand.length; i++){p2.hand[i].cursed = true;}}}
+    },
+    "ai": {
+        title: "AI Researcher",
+        image: "electrotimmy.png",
+        text: "<span class=\"silenceable\">When you play her, spend 2 charge and draw a card.</span>",
+        attack: 4,
+        defense: 2,
+        buffa: 0,
+        buffd: 0,
+        cursed: false,
+        expansion: "cogs",
+        silenced: false,
+        battleEffect: function(obj, p1, p2){if(p1.charge >= 2 && p1.deck.length > 0){p1.drawCard(); p1.charge -= 2;}}
+    },
+    "lil": {
+        title: "Lil' Battery Bug",
+        image: "electrotimmy.png",
+        text: "<span class=\"silenceable\">When you play it, you get 5 charge.</span>",
+        attack: 1,
+        defense: 1,
+        buffa: 0,
+        buffd: 0,
+        cursed: false,
+        expansion: "cogs",
+        silenced: false,
+        battleEffect: function(obj, p1, p2){if(p1.charge >= 2 && p1.deck.length > 0){p1.drawCard(); p1.charge -= 2;}}
     }
 };
