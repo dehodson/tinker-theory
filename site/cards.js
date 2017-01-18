@@ -494,7 +494,7 @@ cards = {
     },
     "maniac": {
         title: "Hex Maniac",
-        image: "flocking.png",
+        image: "maniac.png",
         text: "<span class=\"silenceable\">When you play him, if your opponent's deck contains a cursed card, he gets +3/+3.</span>",
         attack: 2,
         defense: 3,
@@ -623,7 +623,7 @@ cards = {
     },
     "hexbot": {
         title: "Hexbot",
-        image: "unsweet.png",
+        image: "hexbot.png",
         text: "<span class=\"silenceable\">When you play it, spend 3 charge and curse all cards in your opponent's hand.</span>",
         attack: 2,
         defense: 4,
