@@ -636,7 +636,7 @@ cards = {
     },
     "ai": {
         title: "AI Researcher",
-        image: "electrotimmy.png",
+        image: "ai.png",
         text: "<span class=\"silenceable\">When you play her, spend 2 charge and draw a card.</span>",
         attack: 4,
         defense: 2,
@@ -699,7 +699,7 @@ cards = {
     },
     "hulk": {
         title: "Behemoth Hulk",
-        image: "liquid.png",
+        image: "hulk.png",
         text: "<span class=\"silenceable\">When you play it, cards in your hand get -3/-3.</span>",
         attack: 9,
         defense: 9,
@@ -729,7 +729,7 @@ cards = {
     },
     "proof": {
         title: "Hexproof Barrier",
-        image: "corn.png",
+        image: "proof.png",
         text: "It can't be cursed.",
         attack: 0,
         defense: 6,
