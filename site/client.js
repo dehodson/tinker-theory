@@ -321,6 +321,42 @@ function deckBuilder(){
 	document.getElementById("splash").style.visibility = "hidden";
 }
 
+function cardSearch(searchBox){
+	var regex = new RegExp(searchBox.value.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&"), 'i');
+
+	var element  = document.getElementById("deck-builder-cards");
+	var cotclist = document.getElementById("deck-builder-cards-curse");
+	element.innerHTML = "";
+	cotclist.innerHTML = "";
+
+	var i = 0;
+	var page = 0;
+
+	for(var card in cards){
+		if(cards[card].expansion == "core"){
+			if(cards[card].title.match(regex) || cards[card].text.match(regex)){
+				element.innerHTML += makeCard(cards[card], "deckbuilder-"+card, "addToDeck('"+card+"')");
+				var display = document.getElementById("deckbuilder-"+card);
+				display.style.left = ((i % 3) * 18)+"vmin";
+				display.style.top  = (Math.floor(i / 3) * 28)+"vmin";
+				i += 1;
+			}
+		}else{
+			if(page == 0){
+				i = 0;
+				page += 1;
+			}
+			if(cards[card].title.match(regex) || cards[card].text.match(regex)){
+				cotclist.innerHTML += makeCard(cards[card], "deckbuilder-"+card, "addToDeck('"+card+"')");
+				var display = document.getElementById("deckbuilder-"+card);
+				display.style.left = ((i % 3) * 18)+"vmin";
+				display.style.top  = (Math.floor(i / 3) * 28)+"vmin";
+				i += 1;
+			}
+		}
+	}
+}
+
 function showTab(name){
 	if(name == "cards"){
 		document.getElementById("deck-builder-cards").style.visibility = "visible";

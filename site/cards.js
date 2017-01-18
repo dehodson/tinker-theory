@@ -935,7 +935,7 @@ cards = {
     "peeper": {
         title: "Peeper",
         image: "liquid.png",
-        text: "<span class=\"silenceable\">When you play her, look at your opponent's hand.</span>",
+        text: "<span class=\"silenceable\">When you play her, look at your opponent's hand.</span><br /><br /><i>Dirty screen looker.</i>",
         attack: 3,
         defense: 3,
         buffa: 0,

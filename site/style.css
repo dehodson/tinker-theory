@@ -375,6 +375,16 @@ body, html{
 	background-color: #71637D;
 	left:12vmin;
 }
+#deck-builder-search{
+	position: absolute;
+	height:4vmin;
+	width:30vmin;
+	left:26vmin;
+	top:1.5vmin;
+}
+#deck-builder-search-input{
+	width: 20vmin;
+}
 .stats{
 	float: right;
 }
