@@ -52,6 +52,12 @@ if(localStorage.decks){
 	localStorage.decks = JSON.stringify(decks);
 }
 
+if(localStorage.clientName){
+	document.getElementById("splash-name-box").value = localStorage.clientName;
+
+	setName();
+}
+
 function showAlert(){
 	document.getElementById("no-click").style.visibility = "visible";
 	document.getElementById("alert-box").style.visibility = "visible";
@@ -458,6 +464,8 @@ function deleteDeck(){
 function setName(){
 	var clientName = document.getElementById("splash-name-box").value;
 
+	localStorage.clientName = clientName;
+
 	socket.emit("set name", {name: clientName});
 }
 
@@ -519,6 +527,15 @@ function addToBattleLog(yours, theirs, attacking, success){
 	messages += 1;
 
 	log.scrollTop = 0;
+}
+
+function beg(){
+	var box = document.getElementById("error-box");
+	box.innerHTML = "<h3>Consider Donating</h3><br />I hate ads and will never put them on my sites. ";
+	box.innerHTML += "If you enjoy Tinker Theory, maybe you'd like to buy me a drink?<br /><br />"
+	box.innerHTML += "donate at: <a href=\"https://cash.me/$dehodson\" target=\"_blank\">https://cash.me/$dehodson</a>";
+
+	showError();
 }
 
 function keyPressed(event){

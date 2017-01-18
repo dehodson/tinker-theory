@@ -9,6 +9,7 @@ body, html{
 	color: #FFF;
 	background-color: #333;
 	font-family: "Helvetica", "Arial", sans-serif;
+	overflow:hidden;
 }
 #main{
 	height:80vmin;
@@ -157,6 +158,12 @@ body, html{
 	padding:1vmin;
 	width:60vmin;
 	visibility: hidden;
+}
+#error-box a:visited{
+	color:white;
+}
+#error-box a{
+	color:white;
 }
 #splash{
 	position: absolute;
@@ -768,4 +775,31 @@ body, html{
 	transform: rotate(360deg);
 	left: 90vmin;
 	transition: all 1s;
+}
+#donation{
+	position: absolute;
+	height: 18vmin;
+	width: 28vmin;
+	bottom:-10vmin;
+	left: -15vmin;
+	padding: 1vmin;
+	background-color: rgba(255, 255, 255, 0.4);
+	color:black;
+	transform: rotate(45deg);
+	text-align: center;
+	transition: left .5s, bottom .5s, background-color .5s;
+	font-size: 1.8vmin;
+	cursor: pointer;
+}
+#close-donation{
+	position: absolute;
+	bottom: 1vmin;
+	left: 14.5vmin;
+	color:white;
+	cursor: pointer;
+}
+#donation:hover{
+	bottom:-9vmin;
+	left:-14vmin;
+	background-color: white;
 }

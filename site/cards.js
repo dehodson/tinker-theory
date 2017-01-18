@@ -888,7 +888,7 @@ cards = {
         defense: 3,
         buffa: 0,
         buffd: 0,
-        cursed: true,
+        cursed: false,
         expansion: "cogs",
         silenced: false,
         battleEffect: function(obj, p1, p2){
@@ -945,6 +945,25 @@ cards = {
         silenced: false,
         battleEffect: function(obj, p1, p2){
             p1.connection.emit("enemy hand", {hand: p2.hand});
+        }
+    },
+    "crier": {
+        title: "Rallying Crier",
+        image: "liquid.png",
+        text: "When you draw him, other cards in your hand get +1/+1.",
+        attack: 3,
+        defense: 2,
+        buffa: 0,
+        buffd: 0,
+        cursed: false,
+        expansion: "cogs",
+        silenced: false,
+        drawEffect: function(obj, p1, p2){
+            if(p1){
+                for(var i in p1.hand){
+                    p1.hand[i].buffa += 1; p1.hand[i].buffd += 1;
+                }
+            }
         }
     }
 };
