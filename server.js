@@ -191,6 +191,14 @@ Game.prototype.startGame = function(){
     this.players[1].drawCard(this.players[1], this.players[0]);
     this.players[1].drawCard(this.players[1], this.players[0]);
 
+    for(var i = 0; i < 2; i++){
+        for(var j = 0; j < this.players[i].hand.length; j++){
+            if(this.players[i].hand[j].hasOwnProperty("startTurnInHandEffect")){
+                this.players[i].hand[j].startTurnInHandEffect(this.players[i].hand[j], this.players[i], this.players[(i + 1) % 2]);
+            }
+        }
+    }
+
     this.players[0].updateHand(this.players[0], this.players[1], 0);
     this.players[1].updateHand(this.players[1], this.players[0], 0);
 
@@ -277,6 +285,10 @@ Game.prototype.takeTurn = function(){
 
         for(var i = 0; i < 2; i++){
             for(var j = 0; j < this.players[i].hand.length; j++){
+                if(this.players[i].hand[j].hasOwnProperty("startTurnInHandEffect")){
+                    this.players[i].hand[j].startTurnInHandEffect(this.players[i].hand[j], this.players[i], this.players[(i + 1) % 2]);
+                }
+
                 if(this.players[i].hand[j].cursed == true){
                     this.players[i].hand[j].buffa -= 1;
                     this.players[i].hand[j].buffd -= 1;

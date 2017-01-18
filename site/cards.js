@@ -385,7 +385,7 @@ cards = {
         battleEffect: function(obj, p1, p2){
             if(p1.deck.length > 0){
                 if(p1.nextCard != null){
-                    p1.nextCard.silenced = true;
+                    p1.deck[nextCard].silenced = true;
                 }else{
                     p1.deck[p1.deck.length - 1].silenced = true;
                 }
@@ -963,6 +963,89 @@ cards = {
                 for(var i in p1.hand){
                     p1.hand[i].buffa += 1; p1.hand[i].buffd += 1;
                 }
+            }
+        }
+    },
+    "twins": {
+        title: "The Three Twins",
+        image: "liquid.png",
+        text: "If you start a turn with all three of them in hand, they become 9/9.",
+        attack: 2,
+        defense: 3,
+        buffa: 0,
+        buffd: 0,
+        cursed: false,
+        expansion: "cogs",
+        silenced: false,
+        startTurnInHandEffect: function(obj, p1, p2){
+            var count = 0;
+            for(var i in p1.hand){
+                if(p1.hand[i].title == obj.title){
+                    count += 1;
+                }
+            }
+            if(count >= 3){
+                obj.attack = 9; obj.defense = 9;
+            }
+        }
+    },
+    "tricks": {
+        title: "Bag Of Tricks",
+        image: "liquid.png",
+        text: "<span class=\"silenceable\">When played, it will randomly curse, silence, or give -3/-3 to your opponent's next card.</span>",
+        attack: 0,
+        defense: 4,
+        buffa: 0,
+        buffd: 0,
+        cursed: false,
+        expansion: "cogs",
+        silenced: false,
+        battleEffect: function(obj, p1, p2){
+            var random = Math.random();
+            if(random <= .333){
+                if(p2.nextCard){
+                    p2.deck[nextCard].cursed = true;
+                }else{
+                    if(p2.deck.length > 0){
+                        p2.deck[p2.deck.length - 1].cursed = true;
+                        obj.text = "Randomly chosen trick: Give -3/-3 to your opponent's next card.";
+                    }
+                }
+            }else if(random <= .666){
+                if(p2.nextCard){
+                    p2.deck[nextCard].cursed = true;
+                }else{
+                    if(p2.deck.length > 0){
+                        p2.deck[p2.deck.length - 1].cursed = true;
+                        obj.text = "Randomly chosen trick: Curse your opponent's next card.";
+                    }
+                }
+            }else{
+                if(p2.nextCard){
+                    p2.deck[nextCard].silenced = true;
+                }else{
+                    if(p2.deck.length > 0){
+                        p2.deck[p2.deck.length - 1].silenced = true;
+                        obj.text = "Randomly chosen trick: Silence your opponent's next card.";
+                    }
+                }
+            }
+        }
+    },
+    "spackler": {
+        title: "Supreme Spackler",
+        image: "gatekeeper.png",
+        text: "<span class=\"silenceable\">When you play him, all walls and barriers in your deck get +0/+1.</span>",
+        attack: 5,
+        defense: 1,
+        buffa: 0,
+        buffd: 0,
+        cursed: false,
+        expansion: "cogs",
+        silenced: false,
+        battleEffect: function(obj, p1, p2){
+            for(var card in p1.deck){
+                if(p1.deck[card].title.match(/wall/i) || p1.deck[card].title.match(/barrier/i)){p1.deck[card].buffd += 1;}
             }
         }
     }
