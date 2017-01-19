@@ -836,7 +836,7 @@ cards = {
     "socket": {
         title: "Socket Wall",
         image: "socket.png",
-        text: "<span class=\"silenceable\">When you play it, gain 2 charge.</span>",
+        text: "<span class=\"silenceable\">When you play it, gain 2 charge.</span><br /><br /><i>Defeated by childproof safety plugs.</i>",
         attack: 1,
         defense: 6,
         buffa: 0,
@@ -1065,6 +1065,80 @@ cards = {
                 if(p1.lastCard.hasOwnProperty("battleEffect") && p1.lastCard.battleEffect.toString() != obj.battleEffect.toString()){
                     obj.battleEffect = p1.lastCard.battleEffect; obj.battleEffect(obj, p2, p1);
                 }
+            }
+        }
+    },
+    "staff": {
+        title: "Diggy's Staff",
+        image: "stone.png",
+        text: "<span class=\"silenceable\">When you play it, Diggy cards in your hand get +4/+4. Others get +1/+1.</span>",
+        attack: 1,
+        defense: 0,
+        buffa: 0,
+        buffd: 0,
+        cursed: false,
+        expansion: "cogs",
+        silenced: false,
+        battleEffect: function(obj, p1, p2){
+            for(var card in p1.hand){
+                if(p1.hand[card].title.match(/diggy/i)){p1.hand[card].buffa += 3; p1.hand[card].buffd += 3;}
+                p1.hand[card].buffa += 1; p1.hand[card].buffd += 1;
+            }
+        }
+    },
+    "pummeler": {
+        title: "Power-Pummeler",
+        image: "liquid.png",
+        text: "Every turn you start with it in hand, spend 1 charge and it gets +2/+2.",
+        attack: 2,
+        defense: 2,
+        buffa: 0,
+        buffd: 0,
+        cursed: false,
+        expansion: "cogs",
+        silenced: false,
+        startTurnInHandEffect: function(obj, p1, p2){
+            if(p1.charge >= 1){
+                obj.buffa += 2; obj.buffd += 2; p1.charge -= 1;
+            }
+        }
+    },
+    "lightning": {
+        title: "Lightning Dingle",
+        image: "dingle.png",
+        text: "<span class=\"silenceable\">When you play him, gain 2 charge.</span><br /><br /><i>Smells like static.</i>",
+        attack: 3,
+        defense: 4,
+        buffa: 0,
+        buffd: 0,
+        cursed: false,
+        expansion: "cogs",
+        silenced: false,
+        battleEffect: function(obj, p1, p2){p1.charge += 2;}
+    },
+    "spirit": {
+        title: "Trickster Spirit",
+        image: "liquid.png",
+        text: "If you start a turn with it in hand, and you have 5 or more points, it becomes a 1/1 pig.",
+        attack: 8,
+        defense: 0,
+        buffa: 0,
+        buffd: 0,
+        cursed: false,
+        expansion: "cogs",
+        silenced: false,
+        startTurnInHandEffect: function(obj, p1, p2){
+            if(p1.score >= 5){
+                obj.title = "Pig";
+                obj.image = "liquid.png";
+                obj.text = "<i>Oink.</i>";
+                obj.attack = 1;
+                obj.defense = 1;
+                obj.buffa = 0;
+                obj.buffd = 0;
+                obj.cursed = false;
+                obj.expansion = "cogs";
+                obj.silenced = false;
             }
         }
     }

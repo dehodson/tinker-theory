@@ -55,7 +55,7 @@ if(localStorage.decks){
 if(localStorage.clientName){
 	document.getElementById("splash-name-box").value = localStorage.clientName;
 
-	setName();
+	socket.emit("set name", {name: localStorage.clientName});
 }
 
 function showAlert(){
