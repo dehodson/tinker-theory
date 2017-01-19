@@ -552,6 +552,21 @@ body, html{
 	background-size: 100%;
 	background-repeat: no-repeat;
 }
+.action{
+	font-weight: bold;
+}
+.action:hover:before{
+	content: "Action: takes effect when you play the card.";
+	color:#fff;
+	background-color: black;
+	position: absolute;
+	width: 10vmin;
+	bottom:10%;
+	left: 20%;
+	border-radius: 1vmin;
+	padding:.5vmin;
+	z-index: 100;
+}
 .icon{
 	height:2vmin;
 	width: 2vmin;
