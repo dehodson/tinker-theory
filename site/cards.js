@@ -764,8 +764,8 @@ cards = {
     },
     "mech": {
         title: "Circuit Smasher",
-        image: "electrotimmy.png",
-        text: "<span class=\"silenceable\">When you play it, spend 4 charge and it gets +4/+4.</span>",
+        image: "mech.png",
+        text: "<span class=\"silenceable\">When you play him, spend 4 charge and he gets +4/+4.</span>",
         attack: 3,
         defense: 3,
         buffa: 0,
@@ -777,7 +777,7 @@ cards = {
     },
     "apprentice": {
         title: "Diggy's Apprentice",
-        image: "diggy.png",
+        image: "apprentice.png",
         text: "<span class=\"silenceable\">When you play him, silence all other copies of the last card your opponent played.</span>",
         attack: 4,
         defense: 1,
@@ -799,7 +799,7 @@ cards = {
     },
     "potion": {
         title: "Proton Potion",
-        image: "liquid.png",
+        image: "potion.png",
         text: "<span class=\"silenceable\">Spend all your charge when you play it. Cards in your hand get +1/+0 for each.</span>",
         attack: 4,
         defense: 0,
