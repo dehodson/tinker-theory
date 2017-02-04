@@ -730,7 +730,7 @@ cards = {
     "proof": {
         title: "Hexproof Barrier",
         image: "proof.png",
-        text: "It can't be cursed.",
+        text: "It can't be cursed.<br /><br /><i>One time a big horse shaped hex tricked it, though.</i>",
         attack: 0,
         defense: 6,
         buffa: 0,
