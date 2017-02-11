@@ -991,7 +991,7 @@ cards = {
     },
     "tricks": {
         title: "Bag Of Tricks",
-        image: "liquid.png",
+        image: "tricks.png",
         text: "<span class=\"silenceable\">When played, it will randomly curse, silence, or give -3/-3 to your opponent's next card.</span>",
         attack: 0,
         defense: 4,
@@ -1034,7 +1034,7 @@ cards = {
     },
     "spackler": {
         title: "Supreme Spackler",
-        image: "gatekeeper.png",
+        image: "spackler.png",
         text: "<span class=\"silenceable\">When you play him, all walls and barriers in your deck get +0/+1.</span>",
         attack: 5,
         defense: 1,
@@ -1086,7 +1086,7 @@ cards = {
     },
     "lightning": {
         title: "Lightning Dingle",
-        image: "dingle.png",
+        image: "lightning.png",
         text: "<span class=\"silenceable\">When you play him, gain 2 charge.</span><br /><br /><i>Smells like static.</i>",
         attack: 3,
         defense: 4,
