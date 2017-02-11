@@ -11,6 +11,18 @@ body, html{
 	font-family: "Helvetica", "Arial", sans-serif;
 	overflow:hidden;
 }
+a:link{
+	color:#FFF;
+}
+a:visited{
+	color:#FFF;
+}
+a:active{
+	color:#FFF;
+}
+a:hover{
+	color:#DDD;
+}
 #main{
 	height:80vmin;
 	width: 80vmin;
@@ -186,8 +198,8 @@ body, html{
 	position: absolute;
 	height:20vmin;
 	width: 20vmin;
-	left: 10vmin;
-	top:  8vmin;
+	left: 9vmin;
+	top:  7.5vmin;
 	background-size: 100%;
 	background-position: center;
 	background-repeat: no-repeat;
@@ -204,8 +216,10 @@ body, html{
 #splash-subtitle{
 	font-size: 5vmin;
 	position: absolute;
-	left: 24.5vmin;
-	top:  26.5vmin;
+	left: 0vmin;
+	top:  27.5vmin;
+	width:80vmin;
+	text-align:center;
 	color:#2E0854;
 	font-family: 'Alfa Slab One', serif;
 }
@@ -791,30 +805,23 @@ body, html{
 	left: 90vmin;
 	transition: all 1s;
 }
-#donation{
+#github{
 	position: absolute;
-	height: 18vmin;
-	width: 28vmin;
-	bottom:-10vmin;
-	left: -15vmin;
-	padding: 1vmin;
-	background-color: rgba(255, 255, 255, 0.4);
-	color:black;
-	transform: rotate(45deg);
-	text-align: center;
-	transition: left .5s, bottom .5s, background-color .5s;
-	font-size: 1.8vmin;
-	cursor: pointer;
+	bottom:1vmin;
+	left:1vmin;
+	font-size: 1.5vmin;
+	opacity: 0.5;
 }
-#close-donation{
+#github:hover{
+	opacity: 1;
+}
+#donate{
 	position: absolute;
-	bottom: 1vmin;
-	left: 14.5vmin;
-	color:white;
-	cursor: pointer;
+	bottom:1vmin;
+	right:1vmin;
+	font-size: 1.5vmin;
+	opacity: 0.5;
 }
-#donation:hover{
-	bottom:-9vmin;
-	left:-14vmin;
-	background-color: white;
+#donate:hover{
+	opacity: 1;
 }
