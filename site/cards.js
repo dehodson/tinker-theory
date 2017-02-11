@@ -1179,5 +1179,30 @@ cards = {
             }
             if(found){obj.buffa += 3; obj.buffd += 3;}
         }
+    },
+    "future": {
+        title: "Fortune Teller",
+        image: "liquid.png",
+        text: "<span class=\"silenceable\">When you play her, look at the top three cards of your deck.</span><br /><br /><i>Dirty future looker.</i>",
+        attack: 3,
+        defense: 3,
+        buffa: 0,
+        buffd: 0,
+        cursed: false,
+        expansion: "cogs",
+        silenced: false,
+        battleEffect: function(obj, p1, p2){
+            if(p1.deck.length > 1){
+                var top = [];
+                var num = 5;
+                if(p1.deck.length < 5){
+                    num = p1.deck.length;
+                }
+                for(var i = 2; i < num; i++){
+                    top.push(p1.deck[p1.deck.length - i]);
+                }
+                p1.connection.emit("enemy hand", {hand: top});
+            }
+        }
     }
 };
