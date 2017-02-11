@@ -1049,25 +1049,6 @@ cards = {
             }
         }
     },
-    "warrior2": {
-        title: "Confused Copier",
-        image: "warrior.png",
-        text: "<span class=\"silenceable\">He applies the \"when played\" effect of the last card you played to your opponent.</span><br/><i>Wait... what?</i>",
-        attack: 3,
-        defense: 3,
-        buffa: 0,
-        buffd: 0,
-        cursed: false,
-        expansion: "cogs",
-        silenced: false,
-        battleEffect: function(obj, p1, p2){
-            if(p1.lastCard != null){
-                if(p1.lastCard.hasOwnProperty("battleEffect") && p1.lastCard.battleEffect.toString() != obj.battleEffect.toString()){
-                    obj.battleEffect = p1.lastCard.battleEffect; obj.battleEffect(obj, p2, p1);
-                }
-            }
-        }
-    },
     "staff": {
         title: "Diggy's Staff",
         image: "stone.png",
@@ -1140,6 +1121,63 @@ cards = {
                 obj.expansion = "cogs";
                 obj.silenced = false;
             }
+        }
+    },
+    "washer": {
+        title: "Steam Cleaner",
+        image: "stone.png",
+        text: "<span class=\"silenceable\">When you play it, spend 5 charge and remove all debuffs from cards in your hand.</span>",
+        attack: 2,
+        defense: 5,
+        buffa: 0,
+        buffd: 0,
+        cursed: false,
+        expansion: "cogs",
+        silenced: false,
+        battleEffect: function(obj, p1, p2){
+            if(p1.charge >= 5){
+                for(var card in p1.hand){
+                    if(p1.hand[card].buffa < 0){p1.hand[card].buffa = 0}
+                    if(p1.hand[card].buffd < 0){p1.hand[card].buffd = 0}
+                    p1.charge -= 5;
+                }
+            }
+        }
+    },
+    "statue": {
+        title: "Awakening Statue",
+        image: "hexmage.png",
+        text: "<span class=\"silenceable\">If you successfully attack with him, unsilence all cards in your hand.</span>",
+        attack: 6,
+        defense: 0,
+        buffa: 0,
+        buffd: 0,
+        cursed: false,
+        expansion: "cogs",
+        silenced: false,
+        successfulAttackEffect: function(obj, p1, p2){
+            for(var i = 0; i < p1.hand.length; i++){
+                p1.hand[i].silenced = false;
+            }
+        }
+    },
+    "harbinger": {
+        title: "Harbinger of Doom",
+        image: "hexmage.png",
+        text: "<span class=\"silenceable\">When you play him, if you have a Behemoth in hand, he gets +3/+3.</span>",
+        attack: 3,
+        defense: 3,
+        buffa: 0,
+        buffd: 0,
+        cursed: false,
+        expansion: "cogs",
+        silenced: false,
+        battleEffect: function(obj, p1, p2){
+            var found = false;
+            for(var i = 0; i < p1.hand.length; i++){
+                if(p1.hand[card].title.match(/behemoth/i)){found = true;}
+            }
+            if(found){obj.buffa += 3; obj.buffd += 3;}
         }
     }
 };
