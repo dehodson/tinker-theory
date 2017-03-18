@@ -401,7 +401,7 @@ sio.sockets.on('connection', function (client) {
             for(var i = 0; i < games.length; i++){
                 for(var j = 0; j < games[i].players.length; j++){
                     try{
-                        if(games[i].players[j].uuid == client.userid && !games[i].players[j].hasPlayed){
+                        if(games[i].players[j].uuid == client.userid){
                             games[i].players[(j + 1) % 2].connection.emit('chat', {message: data.message, name: games[i].players[j].name});
                             break search;
                         }
