@@ -944,7 +944,7 @@ cards = {
         expansion: "cogs",
         silenced: false,
         battleEffect: function(obj, p1, p2){
-            p1.connection.emit("enemy hand", {hand: p2.hand});
+            p1.connection.emit("enemy hand", {hand: p2.hand, what: "Their hand:"});
         }
     },
     "crier": {
@@ -1201,7 +1201,7 @@ cards = {
                 for(var i = 2; i < num; i++){
                     top.push(p1.deck[p1.deck.length - i]);
                 }
-                p1.connection.emit("enemy hand", {hand: top});
+                p1.connection.emit("enemy hand", {hand: top, what: "Top three cards of your deck:"});
             }
         }
     }

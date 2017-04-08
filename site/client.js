@@ -219,8 +219,8 @@ function updateHand(){
 	}
 }
 
-function showEnemyHand(enemyHand){
-	document.getElementById("error-box").innerHTML = "Their hand:<br /><div id=\"enemy-hand\"></div>";
+function showEnemyHand(enemyHand, what){
+	document.getElementById("error-box").innerHTML = what+"<br /><div id=\"enemy-hand\"></div>";
 
 	document.getElementById("error-box").style.width = "80vmin";
 	executeOnClose = function(){document.getElementById("error-box").style.width = "60vmin";};
@@ -653,7 +653,7 @@ socket.on('disconnected', function(){
 });
 
 socket.on('enemy hand', function(data){
-	window.setTimeout(function(){showEnemyHand(data.hand);}, 3000);
+	window.setTimeout(function(){showEnemyHand(data.hand, data.what);}, 3000);
 });
 
 socket.on('game over', function(data){
