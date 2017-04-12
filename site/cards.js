@@ -1182,8 +1182,8 @@ cards = {
     },
     "future": {
         title: "Fortune Teller",
-        image: "liquid.png",
-        text: "<span class=\"silenceable\">When you play her, look at the top three cards of your deck.</span><br /><br /><i>Dirty future looker.</i>",
+        image: "future.png",
+        text: "<span class=\"silenceable\">When you play her, look at the top three cards of your deck.</span>",
         attack: 3,
         defense: 3,
         buffa: 0,
