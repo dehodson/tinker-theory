@@ -1146,7 +1146,7 @@ cards = {
     },
     "statue": {
         title: "Awakening Statue",
-        image: "hexmage.png",
+        image: "statue.png",
         text: "<span class=\"silenceable\">If you successfully attack with him, unsilence all cards in your hand.</span>",
         attack: 6,
         defense: 0,
@@ -1163,7 +1163,7 @@ cards = {
     },
     "harbinger": {
         title: "Harbinger of Doom",
-        image: "hexmage.png",
+        image: "harbinger.png",
         text: "<span class=\"silenceable\">When you play him, if you have a Behemoth in hand, he gets +3/+3.</span>",
         attack: 3,
         defense: 3,
