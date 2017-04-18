@@ -1099,7 +1099,7 @@ cards = {
     },
     "spirit": {
         title: "Trickster Spirit",
-        image: "liquid.png",
+        image: "spirit.png",
         text: "If you start a turn with it in hand, and you have 5 or more points, it becomes a 1/1 pig.",
         attack: 8,
         defense: 0,
@@ -1125,7 +1125,7 @@ cards = {
     },
     "washer": {
         title: "Steam Cleaner",
-        image: "stone.png",
+        image: "washer.png",
         text: "<span class=\"silenceable\">When you play it, spend 5 charge and remove all debuffs from cards in your hand.</span>",
         attack: 2,
         defense: 5,
