@@ -934,7 +934,7 @@ cards = {
     },
     "peeper": {
         title: "Peeper",
-        image: "liquid.png",
+        image: "peeper.png",
         text: "<span class=\"silenceable\">When you play her, look at your opponent's hand.</span><br /><br /><i>Dirty screen looker.</i>",
         attack: 3,
         defense: 3,
@@ -1051,7 +1051,7 @@ cards = {
     },
     "staff": {
         title: "Diggy's Staff",
-        image: "stone.png",
+        image: "staff.png",
         text: "<span class=\"silenceable\">When you play it, Diggy cards in your hand get +4/+4. Others get +1/+1.</span>",
         attack: 1,
         defense: 0,
@@ -1069,7 +1069,7 @@ cards = {
     },
     "pummeler": {
         title: "Power-Pummeler",
-        image: "liquid.png",
+        image: "pummeler.png",
         text: "Every turn you start with it in hand, spend 1 charge and it gets +2/+2.",
         attack: 2,
         defense: 2,
