@@ -920,7 +920,7 @@ cards = {
             }
             p2.hand[index] = {
                 title: "Pig",
-                image: "liquid.png",
+                image: "pig.png",
                 text: "<i>Oink.</i>",
                 attack: 1,
                 defense: 1,
@@ -968,7 +968,7 @@ cards = {
     },
     "twins": {
         title: "The Three Twins",
-        image: "liquid.png",
+        image: "twins.png",
         text: "If you start a turn with all three of them in hand, they become 9/9.",
         attack: 2,
         defense: 3,
@@ -1111,7 +1111,7 @@ cards = {
         startTurnInHandEffect: function(obj, p1, p2){
             if(p1.score >= 5){
                 obj.title = "Pig";
-                obj.image = "liquid.png";
+                obj.image = "pig.png";
                 obj.text = "<i>Oink.</i>";
                 obj.attack = 1;
                 obj.defense = 1;
