@@ -7,6 +7,12 @@ var socket = io.connect('/');
 var messages = 0;
 var turn = 0;
 
+var notification = new Audio('status_alert.mp3');
+notification.volume = 0.7;
+
+var chime = new Audio('chime.mp3');
+chime.volume = 0.8;
+
 var old = document.getElementById("game-container").innerHTML;
 
 var hand = [];
@@ -617,6 +623,8 @@ socket.on('battle', function( data ) {
 	yours.outerHTML  = makeCard(data.yours, "your-card");
 	theirs.outerHTML = makeCard(data.theirs, "enemy-card");
 
+	notification.play();
+
 	document.getElementById("status").innerText = "Battle! 3...";
 	window.setTimeout(function(){document.getElementById("status").innerText = "Battle! 2...";}, 666);
 	window.setTimeout(function(){document.getElementById("status").innerText = "Battle! 1...";}, 1334);
@@ -684,6 +692,10 @@ socket.on('game over', function(data){
 		document.getElementById("error-box").innerText = data.message;
 		showError();
 	}, 4000);
+});
+
+socket.on('game start', function(data){
+	chime.play();
 })
 
 if($_GET["gameid"]){

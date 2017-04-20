@@ -177,6 +177,9 @@ Game.prototype.startGame = function(){
     this.players[0].connection.emit("clear status");
     this.players[1].connection.emit("clear status");
 
+    this.players[0].connection.emit("game start");
+    this.players[1].connection.emit("game start");
+
     this.players[this.whoseTurn].connection.emit("turn", {bool: true});
     this.players[(this.whoseTurn + 1) % 2].connection.emit("turn", {bool: false});
 
