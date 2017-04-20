@@ -87,7 +87,7 @@ cards = {
         cursed: false,
         expansion: "core",
         silenced: false,
-        battleEffect: function(obj, p1, p2){p1.drawCard();}
+        battleEffect: function(obj, p1, p2){p1.drawCard(p1, p2);}
     },
     "fist": {
         title: "Flaming Fist",
@@ -137,7 +137,7 @@ cards = {
         cursed: false,
         expansion: "core",
         silenced: false,
-        globalEffect: function(obj, p1, p2){obj.defense = p2.score * 2;}
+        globalEffect: function(obj, p1, p2){console.log(p1);console.log(p2);obj.defense = p2.score * 2;}
     },
     "smuggy": {
         title: "Great Thinker",
@@ -150,7 +150,7 @@ cards = {
         cursed: false,
         expansion: "core",
         silenced: false,
-        successfulDefenseEffect: function(obj, p1, p2){p1.drawCard();}
+        successfulDefenseEffect: function(obj, p1, p2){p1.drawCard(p1, p2);}
     },
     "cornwall": {
         title: "Wall of Corn",
@@ -333,7 +333,7 @@ cards = {
         expansion: "core",
         silenced: false,
         battleEffect: function(obj, p1, p2){
-            if(p1.lastCard != null){if(p1.lastCard.title.indexOf("Corn") != -1){p1.drawCard();}}
+            if(p1.lastCard != null){if(p1.lastCard.title.indexOf("Corn") != -1){p1.drawCard(p1, p2);}}
         }
     },
     "necro": {
@@ -389,7 +389,7 @@ cards = {
                 }else{
                     p1.deck[p1.deck.length - 1].silenced = true;
                 }
-                p1.drawCard();
+                p1.drawCard(p1, p2);
             }
         }
     },
@@ -473,7 +473,7 @@ cards = {
             var size = p1.hand.length;
             for(var i = 0; i < size; i++){p1.deck.push(p1.hand.pop());}
             shuffle(p1.deck);
-            for(var i = 0; i < size; i++){p1.drawCard();}
+            for(var i = 0; i < size; i++){p1.drawCard(p1, p2);}
         }
     },
     "cursy": {
@@ -549,7 +549,7 @@ cards = {
             var size = p2.hand.length;
             for(var i = 0; i < size; i++){p2.deck.push(p2.hand.pop());}
             shuffle(p2.deck);
-            for(var i = 0; i < 2; i++){p2.drawCard();}
+            for(var i = 0; i < 2; i++){p2.drawCard(p1, p2);}
         }
     },
     "liquid": {
@@ -645,7 +645,7 @@ cards = {
         cursed: false,
         expansion: "cogs",
         silenced: false,
-        battleEffect: function(obj, p1, p2){if(p1.charge >= 2 && p1.deck.length > 0){p1.drawCard(); p1.charge -= 2;}}
+        battleEffect: function(obj, p1, p2){if(p1.charge >= 2 && p1.deck.length > 0){p1.drawCard(p1, p2); p1.charge -= 2;}}
     },
     "lil": {
         title: "Lil' Battery Bug",
@@ -673,7 +673,7 @@ cards = {
         silenced: false,
         battleEffect: function(obj, p1, p2){
             for(var card in p1.deck){
-                if(p1.deck[card].title.match(/goddess/i)){p1.nextCard = card; p1.deck[card].buffa += 3; p1.drawCard(); break;}
+                if(p1.deck[card].title.match(/goddess/i)){p1.nextCard = card; p1.deck[card].buffa += 3; p1.drawCard(p1, p2); break;}
             }
         }
     },
