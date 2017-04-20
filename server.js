@@ -370,7 +370,7 @@ sio.sockets.on('connection', function (client) {
             search:
             for(var i = 0; i < games.length; i++){
                 for(var j = 0; j < games[i].players.length; j++){
-                    try{
+                    //try{
                         if(games[i].players[j].uuid == client.userid && !games[i].players[j].hasPlayed){
                             if(data.number < games[i].players[j].hand.length){
                                 games[i].players[j].playCard(data.number, games[i].players[j], games[i].players[(j + 1) % 2]);
@@ -382,9 +382,9 @@ sio.sockets.on('connection', function (client) {
                             }
                             break search;
                         }
-                    }catch(e){
-                        console.log("Error accessing players list: ",e)
-                    }
+                    //}catch(e){
+                    //    console.log("Error accessing players list: ",e)
+                    //}
                 }
             }
         }
