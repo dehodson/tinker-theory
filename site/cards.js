@@ -865,7 +865,7 @@ cards = {
     },
     "mason": {
         title: "Mad Mason",
-        image: "gatekeeper.png",
+        image: "mason.png",
         text: "<span class=\"silenceable\">If you fail to attack with him, you'll draw a wall next.</span>",
         attack: 6,
         defense: 0,
@@ -903,7 +903,7 @@ cards = {
     },
     "conjurer": {
         title: "Porcine Conjurer",
-        image: "liquid.png",
+        image: "conjurer.png",
         text: "<span class=\"silenceable\">When you play him, turn the best attacker in your opponent's hand into a 1/1 pig.</span>",
         attack: 2,
         defense: 4,
