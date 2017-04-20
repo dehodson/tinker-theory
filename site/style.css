@@ -132,6 +132,13 @@ a:hover{
 	border-bottom-right-radius: 3vmin;
 	border-bottom-left-radius: 3vmin;
 }
+#card-preview{
+	position: absolute;
+	top:0px;
+	left:0px;
+	height: 28vmin;
+	width:  18vmin;
+}
 #game-container{
 	position: absolute;
 	height:80vmin;
@@ -145,6 +152,9 @@ a:hover{
 	margin:auto;
 	border-radius: 3vmin;
 	overflow: hidden;
+}
+.cardname{
+	font-weight: bold;
 }
 #no-click{
 	height:100%;

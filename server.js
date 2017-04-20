@@ -421,7 +421,9 @@ sio.sockets.on('connection', function (client) {
                 var deck = [];
 
                 for(var card in data.deck){
-                    deck.push(clone(cards[data.deck[card]]));
+                    var newCard = clone(cards[data.deck[card]]);
+                    newCard.id = data.deck[card];
+                    deck.push(newCard);
                 }
 
                 for(var i = 0; i < games.length; i++){
@@ -456,7 +458,9 @@ sio.sockets.on('connection', function (client) {
                 var deck = [];
 
                 for(var card in data.deck){
-                    deck.push(clone(cards[data.deck[card]]));
+                    var newCard = clone(cards[data.deck[card]]);
+                    newCard.id = data.deck[card];
+                    deck.push(newCard);
                 }
 
                 if(data.hasOwnProperty("id")){
