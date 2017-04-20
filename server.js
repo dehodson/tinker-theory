@@ -376,7 +376,7 @@ sio.sockets.on('connection', function (client) {
                                 games[i].players[j].playCard(data.number, games[i].players[j], games[i].players[(j + 1) % 2]);
                                 games[i].players[j].hasPlayed = true;
                                 games[i].complete += 1;
-                                if(games[i].complete == 2){
+                                if(games[i].players[0].hasPlayed && games[i].players[1].hasPlayed){
                                     games[i].takeTurn();
                                 }
                             }
