@@ -137,7 +137,7 @@ cards = {
         cursed: false,
         expansion: "core",
         silenced: false,
-        globalEffect: function(obj, p1, p2){obj.defense = p2.score * 2;}
+        globalEffect: function(obj, p1, p2){console.log(p1);console.log(p2);obj.defense = p2.score * 2;}
     },
     "smuggy": {
         title: "Great Thinker",
