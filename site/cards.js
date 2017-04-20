@@ -742,7 +742,7 @@ cards = {
     },
     "drainer": {
         title: "Curse Drainer",
-        image: "silencer.png",
+        image: "drainer.png",
         text: "<span class=\"silenceable\">If you successfully defend with him, uncurse your hand. Gain 1 charge for each.</span>",
         attack: 0,
         defense: 5,
@@ -882,7 +882,7 @@ cards = {
     },
     "thief": {
         title: "Juice Thief",
-        image: "liquid.png",
+        image: "thief.png",
         text: "<span class=\"silenceable\">When you play her, steal up to 2 charge from your opponent.</span>",
         attack: 3,
         defense: 3,
@@ -949,7 +949,7 @@ cards = {
     },
     "crier": {
         title: "Rallying Crier",
-        image: "liquid.png",
+        image: "crier.png",
         text: "When you draw him, other cards in your hand get +1/+1.",
         attack: 3,
         defense: 2,
