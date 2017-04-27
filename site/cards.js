@@ -1175,7 +1175,7 @@ cards = {
         battleEffect: function(obj, p1, p2){
             var found = false;
             for(var i = 0; i < p1.hand.length; i++){
-                if(p1.hand[card].title.match(/behemoth/i)){found = true;}
+                if(p1.hand[i].title.match(/behemoth/i)){found = true;}
             }
             if(found){obj.buffa += 3; obj.buffd += 3;}
         }
