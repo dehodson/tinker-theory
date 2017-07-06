@@ -5,8 +5,6 @@ Art credits to yours truly.
 
 Sound from [Headphaze](https://www.freesound.org/people/Headphaze/sounds/277033/) and [FoolBoyMedia](https://www.freesound.org/people/FoolBoyMedia/sounds/352667/) on Freesound.org
 
-[Click here to play!](http://tinkertheory.ddns.net/)
-
 ## Prerequisites
 * [Node.js](https://nodejs.org/en/) (Version 6 and up recommended)
 
