@@ -376,6 +376,10 @@ a:hover{
 	visibility: hidden;
 	background-color: #71637D;
 }
+#deck-builder-cards-blessed{
+	visibility: hidden;
+	background-color: #E6E4B5;
+}
 .deck-builder-page .card{
 	position: absolute;
 	height: 24vmin;
@@ -400,7 +404,7 @@ a:hover{
 .deck-builder-tab{
 	position: absolute;
 	height: 4vmin;
-	width: 10vmin;
+	width: 8vmin;
 	top:1vmin;
 	border-top-left-radius: 2vmin;
 	border-top-right-radius: 2vmin;
@@ -413,17 +417,21 @@ a:hover{
 }
 #deck-builder-curse-tab{
 	background-color: #71637D;
-	left:12vmin;
+	left:10vmin;
+}
+#deck-builder-blessed-tab{
+	background-color: #E6E4B5;
+	left:19vmin;
 }
 #deck-builder-search{
 	position: absolute;
 	height:4vmin;
 	width:30vmin;
-	left:26vmin;
+	left:28vmin;
 	top:1.5vmin;
 }
 #deck-builder-search-input{
-	width: 20vmin;
+	width: 18vmin;
 }
 .stats{
 	float: right;
@@ -582,6 +590,11 @@ a:hover{
 }
 .card.curse{
 	background-image: url("resources/cardback.png");
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+.card.blessed{
+	background-image: url("resources/blessed-cardback.png");
 	background-size: 100%;
 	background-repeat: no-repeat;
 }

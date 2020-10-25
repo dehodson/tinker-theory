@@ -1210,5 +1210,37 @@ cards = {
                 p1.connection.emit("enemy hand", {hand: top, what: "Top three cards of your deck:"});
             }
         }
-    }
+    },
+    "pearly-gates": {
+        title: "Pearly Gates",
+        image: "pearly-gates.png",
+        text: "<span class=\"silenceable\">When you play it, your opponent draws a card.</span>",
+        attack: 0,
+        defense: 9,
+        buffa: 0,
+        buffd: 0,
+        cursed: false,
+        expansion: "blessed",
+        silenced: false,
+        battleEffect: function(obj, p1, p2){
+            p2.drawCard(p2, p1);
+        }
+    },
+    "flocking-seraphs": {
+        title: "Flocking Seraphs",
+        image: "flocking-seraphim.png",
+        text: "<span class=\"silenceable\">When you play them, other copies of them in your deck get +3/-3.</span>",
+        attack: 1,
+        defense: 7,
+        buffa: 0,
+        buffd: 0,
+        cursed: false,
+        expansion: "blessed",
+        silenced: false,
+        battleEffect: function(obj, p1, p2){
+            for(var card in p1.deck){
+                if(p1.deck[card].title == obj.title){p1.deck[card].buffa += 3; p1.deck[card].buffd -= 3;}
+            }
+        }
+    },
 };

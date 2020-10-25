@@ -203,6 +203,10 @@ function makeCard(dict, id, onclick){
 		className += " curse";
 	}
 
+	if(dict.expansion == "blessed"){
+		className += " blessed";
+	}
+
 	var string = "<div class=\""+className+"\" id=\""+id+"\" onclick=\""+onclick+"\">";
 	   string += "<div class=\"title\" id=\""+id+"-title\">"+dict.title+"</div>";
 	   string += "<div class=\"image\" id=\""+id+"-image\" style=\"background-image:url('images/"+dict.image+"')\"></div>";
@@ -308,22 +312,31 @@ function deckBuilder(){
 	decklist = [];
 	var element  = document.getElementById("deck-builder-cards");
 	var cotclist = document.getElementById("deck-builder-cards-curse");
+	var blessedlist = document.getElementById("deck-builder-cards-blessed");
 	element.innerHTML = "";
 	cotclist.innerHTML = "";
+	blessedlist.innerHTML = "";
 	element.style.visibility = "visible";
 	cotclist.style.visibility = "hidden";
+	blessedlist.style.visibility = "hidden";
 	var i = 0;
 	var page = 0;
 
 	for(var card in cards){
 		if(cards[card].expansion == "core"){
 			element.innerHTML += makeCard(cards[card], "deckbuilder-"+card, "addToDeck('"+card+"')");
-		}else{
+		}else if(cards[card].expansion == "cogs"){
 			if(page == 0){
 				i = 0;
 				page += 1;
 			}
 			cotclist.innerHTML += makeCard(cards[card], "deckbuilder-"+card, "addToDeck('"+card+"')");
+		}else if(cards[card].expansion == "blessed"){
+			if(page == 1){
+				i = 0;
+				page += 1;
+			}
+			blessedlist.innerHTML += makeCard(cards[card], "deckbuilder-"+card, "addToDeck('"+card+"')");
 		}
 		var display = document.getElementById("deckbuilder-"+card);
 		display.style.left = ((i % 3) * 18)+"vmin";
@@ -343,8 +356,10 @@ function cardSearch(searchBox){
 
 	var element  = document.getElementById("deck-builder-cards");
 	var cotclist = document.getElementById("deck-builder-cards-curse");
+	var blessedlist = document.getElementById("deck-builder-cards-blessed");
 	element.innerHTML = "";
 	cotclist.innerHTML = "";
+	blessedlist.innerHTML = "";
 
 	var i = 0;
 	var page = 0;
@@ -363,12 +378,18 @@ function cardSearch(searchBox){
 	for(var card in cards){
 		if(cards[card].expansion == "core"){
 			doSearch(element);
-		}else{
+		}else if(cards[card].expansion == "cogs"){
 			if(page == 0){
 				i = 0;
 				page += 1;
 			}
 			doSearch(cotclist);
+		}else if(cards[card].expansion == "blessed"){
+			if(page == 1){
+				i = 0;
+				page += 1;
+			}
+			doSearch(blessedlist);
 		}
 	}
 }
@@ -377,9 +398,15 @@ function showTab(name){
 	if(name == "cards"){
 		document.getElementById("deck-builder-cards").style.visibility = "visible";
 		document.getElementById("deck-builder-cards-curse").style.visibility = "hidden";
+		document.getElementById("deck-builder-cards-blessed").style.visibility = "hidden";
 	}else if(name == "curse"){
 		document.getElementById("deck-builder-cards").style.visibility = "hidden";
 		document.getElementById("deck-builder-cards-curse").style.visibility = "visible";
+		document.getElementById("deck-builder-cards-blessed").style.visibility = "hidden";
+	}else if(name == "blessed"){
+		document.getElementById("deck-builder-cards").style.visibility = "hidden";
+		document.getElementById("deck-builder-cards-curse").style.visibility = "hidden";
+		document.getElementById("deck-builder-cards-blessed").style.visibility = "visible";
 	}
 }
 
@@ -485,6 +512,7 @@ function mainMenu(){
 	document.getElementById("deck-builder").style.visibility = "hidden";
 	document.getElementById("deck-builder-cards").style.visibility = "hidden";
 	document.getElementById("deck-builder-cards-curse").style.visibility = "hidden";
+	document.getElementById("deck-builder-cards-blessed").style.visibility = "hidden";
 	document.getElementById("rules").style.visibility = "hidden";
 	document.getElementById("card-preview").style.visibility = "hidden"
 	document.getElementById("game-container").innerHTML = old;
