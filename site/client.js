@@ -141,6 +141,7 @@ function pickDeck(){
 			document.getElementById("deck-builder-deckname").value = deckname;
 
 			showDeckList();
+			updateCardCount(decklist.length);
 		}
 	}
 
@@ -382,6 +383,11 @@ function showTab(name){
 	}
 }
 
+function updateCardCount(count){
+	document.getElementById("deck-builder-card-count").innerText = count+"/20";
+}
+
+
 function addToDeck(name){
 	var count = 0;
 
@@ -400,6 +406,8 @@ function addToDeck(name){
 		document.getElementById("error-box").innerText = "Twenty is the maximum deck size.";
 		showError();
 	}
+
+	updateCardCount(decklist.length);
 }
 
 function removeFromDeck(name){
@@ -417,11 +425,14 @@ function removeFromDeck(name){
 		showDeckList();
 		hideCard();
 	}
+
+	updateCardCount(decklist.length);
 }
 
 function clearDeck(){
 	decklist = [];
 	document.getElementById("deck-builder-list").innerHTML = "";
+	updateCardCount(decklist.length);
 }
 
 function saveDeck(){
@@ -568,10 +579,10 @@ function keyPressed(event){
 		textarea.value = "";
 
 		window.setTimeout(function() {
-	        moveCaretToStart(textarea);
-	    }, 10);
+				moveCaretToStart(textarea);
+		}, 10);
 
-	    createChatBubble("you", text, "you");
+		createChatBubble("you", text, "you");
 
 		socket.emit("chat", {message: text});
 	}

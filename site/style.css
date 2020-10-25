@@ -351,6 +351,15 @@ a:hover{
 .deckbuilder-button:hover{
 	background-color: #AFA;
 }
+.deckbuilder-card-count{
+	width:23vmin;
+	margin-right:1vmin;
+	height:3vmin;
+	line-height: 3vmin;
+	font-size: 1.5vmin;
+	font-weight: bold;
+	text-align: right;
+}
 .deck-builder-page{
 	width:56vmin;
 	position: absolute;
@@ -432,10 +441,10 @@ a:hover{
 }
 #deck-builder-footer{
 	width: 24vmin;
-	height: 15vmin;
+	height: 18vmin;
 	position: absolute;
 	left:56vmin;
-	top:65vmin;
+	top:62vmin;
 	background-color:#DDD;
 }
 #deck-builder-deckname{
@@ -444,7 +453,7 @@ a:hover{
 }
 #deck-builder-list{
 	width:21.5vmin;
-	height:55vmin;
+	height:52vmin;
 	position: absolute;
 	left:56vmin;
 	top: 10vmin;
