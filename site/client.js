@@ -113,6 +113,15 @@ function showRules(){
 	document.getElementById("rules").style.visibility = "visible";
 }
 
+function showDeckList(){
+	var list = document.getElementById("deck-builder-list");
+	list.innerHTML = "";
+
+	for(var item in decklist){
+		list.innerHTML += "<div class=\"list\" onclick=\"removeFromDeck('"+decklist[item]+"')\"><span onmousemove='showCard(event, \""+decklist[item]+"\")' onmouseleave='hideCard()'>"+cards[decklist[item]].title+"</span> <span class=\"stats\">"+cards[decklist[item]].attack+"/"+cards[decklist[item]].defense+"</span></div>";
+	}
+}
+
 function pickDeck(){
 	var dropdown = document.getElementById("deck-picker-dropdown");
 	var deckname = dropdown.options[dropdown.selectedIndex].text;
@@ -131,12 +140,7 @@ function pickDeck(){
 
 			document.getElementById("deck-builder-deckname").value = deckname;
 
-			var list = document.getElementById("deck-builder-list");
-			list.innerHTML = "";
-
-			for(var item in decklist){
-				list.innerHTML += "<div class=\"list\" onclick=\"removeFromDeck('"+decklist[item]+"')\">"+cards[decklist[item]].title+" <span class=\"stats\">"+cards[decklist[item]].attack+"/"+cards[decklist[item]].defense+"</span></div>";
-			}
+			showDeckList();
 		}
 	}
 
@@ -392,12 +396,7 @@ function addToDeck(name){
 		decklist.push(name);
 		decklist.sort();
 
-		var list = document.getElementById("deck-builder-list");
-		list.innerHTML = "";
-
-		for(var item in decklist){
-			list.innerHTML += "<div class=\"list\" onclick=\"removeFromDeck('"+decklist[item]+"')\">"+cards[decklist[item]].title+" <span class=\"stats\">"+cards[decklist[item]].attack+"/"+cards[decklist[item]].defense+"</span></div>";
-		}
+		showDeckList();
 	}else if(decklist.length >= 20){
 		document.getElementById("error-box").innerText = "Twenty is the maximum deck size.";
 		showError();
@@ -416,12 +415,8 @@ function removeFromDeck(name){
 	}
 
 	if(found){
-		var list = document.getElementById("deck-builder-list");
-		list.innerHTML = "";
-
-		for(var item in decklist){
-			list.innerHTML += "<div class=\"list\" onclick=\"removeFromDeck('"+decklist[item]+"')\">"+cards[decklist[item]].title+" <span class=\"stats\">"+cards[decklist[item]].attack+"/"+cards[decklist[item]].defense+"</span></div>";
-		}
+		showDeckList();
+		hideCard();
 	}
 }
 
