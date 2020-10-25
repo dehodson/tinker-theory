@@ -348,27 +348,26 @@ function cardSearch(searchBox){
 	var i = 0;
 	var page = 0;
 
+	function doSearch(cardlist){
+		var cardText = cards[card].text.replace(/<[^>]*>/g, "");
+		if(cards[card].title.match(regex) || cardText.match(regex)){
+			cardlist.innerHTML += makeCard(cards[card], "deckbuilder-"+card, "addToDeck('"+card+"')");
+			var display = document.getElementById("deckbuilder-"+card);
+			display.style.left = ((i % 3) * 18)+"vmin";
+			display.style.top  = (Math.floor(i / 3) * 28)+"vmin";
+			i += 1;
+		}
+	}
+
 	for(var card in cards){
 		if(cards[card].expansion == "core"){
-			if(cards[card].title.match(regex) || cards[card].text.match(regex)){
-				element.innerHTML += makeCard(cards[card], "deckbuilder-"+card, "addToDeck('"+card+"')");
-				var display = document.getElementById("deckbuilder-"+card);
-				display.style.left = ((i % 3) * 18)+"vmin";
-				display.style.top  = (Math.floor(i / 3) * 28)+"vmin";
-				i += 1;
-			}
+			doSearch(element);
 		}else{
 			if(page == 0){
 				i = 0;
 				page += 1;
 			}
-			if(cards[card].title.match(regex) || cards[card].text.match(regex)){
-				cotclist.innerHTML += makeCard(cards[card], "deckbuilder-"+card, "addToDeck('"+card+"')");
-				var display = document.getElementById("deckbuilder-"+card);
-				display.style.left = ((i % 3) * 18)+"vmin";
-				display.style.top  = (Math.floor(i / 3) * 28)+"vmin";
-				i += 1;
-			}
+			doSearch(cotclist);
 		}
 	}
 }
