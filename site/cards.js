@@ -828,8 +828,10 @@ cards = {
         expansion: "cogs",
         silenced: false,
         battleEffect: function(obj, p1, p2){
-            for(var card in p2.hand){
-                if(p1.lastCard.silenced){p2.hand[card].silenced = true;}if(p1.lastCard.cursed){p2.hand[card].cursed = true;}
+            if(p1.lastCard){
+                for(var card in p2.hand){
+                    if(p1.lastCard.silenced){p2.hand[card].silenced = true;}if(p1.lastCard.cursed){p2.hand[card].cursed = true;}
+                }
             }
         }
     },
