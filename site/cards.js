@@ -1243,4 +1243,26 @@ cards = {
             }
         }
     },
+    "pope-uniqueness": {
+        title: "Pope Uniqueness X",
+        image: "pope-uniqueness.png",
+        text: "<span class=\"silenceable\">When you play him, if your starting deck had no duplicates, you get 2 points.</span>",
+        attack: 0,
+        defense: 3,
+        buffa: 0,
+        buffd: 0,
+        cursed: false,
+        expansion: "blessed",
+        silenced: false,
+        battleEffect: function(obj, p1, p2){
+            var seen = {};
+            for(var card in p1.originalDeck){
+                if(seen.hasOwnProperty(p1.originalDeck[card].title)){
+                    return;
+                }
+                seen[p1.originalDeck[card].title] = true;
+            }
+            p1.score += 2;
+        }
+    },
 };

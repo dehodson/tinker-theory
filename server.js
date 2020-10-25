@@ -68,6 +68,7 @@ var whoseTurn = 0;
 
 var Player = function(id, conn, deck, name){
     this.deck = deck;
+    this.originalDeck = [...deck];
     this.hand = [];
     this.score = 0;
     this.cornCounter = 0;
