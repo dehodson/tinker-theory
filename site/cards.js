@@ -915,6 +915,10 @@ cards = {
         expansion: "cogs",
         silenced: false,
         battleEffect: function(obj, p1, p2){
+            if(p2.hand.length == 0){
+                return;
+            }
+
             var best = 0;
             var index = 0;
             for(var card in p2.hand){
