@@ -818,7 +818,7 @@ cards = {
     },
     "revenge": {
         title: "Revenge Totem",
-        image: "stone.png",
+        image: "totem.png",
         text: "<span class=\"silenceable\">If the last card you played was cursed or silenced, curse or silence your opponent's hand.</span>",
         attack: 2,
         defense: 3,
