@@ -192,7 +192,7 @@ a:hover{
 	height:80vmin;
 	width: 80vmin;
 	background-color: #FFF;
-	background: radial-gradient(#FDF8FF 50%, #CDB5CD 100%);
+	background: radial-gradient(#2c70de 60%, #fafafa 100%);
 	position: absolute;
 	top:0px;
 	left:0px;
@@ -220,7 +220,7 @@ a:hover{
 	position: absolute;
 	left: 30vmin;
 	top:  9vmin;
-	color:black;
+	color:white;
 	font-family: 'Alfa Slab One', serif;
 }
 #splash-subtitle{
@@ -230,7 +230,7 @@ a:hover{
 	top:  27.5vmin;
 	width:80vmin;
 	text-align:center;
-	color:#2E0854;
+	color:#e6e4b5;
 	font-family: 'Alfa Slab One', serif;
 }
 .splash-button{
