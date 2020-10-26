@@ -1118,4 +1118,15 @@ cards = {
             p1.score += 2;
         }
     },
+    "blessed-idol":  {
+        title: "Blessed Idol",
+        image: "blessed-idol.png",
+        text: "Starts blessed.<br /><br /><i>This is one idol you should definitely worship.</i>",
+        attack: 2,
+        defense: 2,
+        buffa: 0,
+        buffd: 0,
+        blessed: true,
+        expansion: "blessed",
+    },
 };
