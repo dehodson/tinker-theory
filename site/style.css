@@ -616,7 +616,7 @@ a:hover{
 .icon{
 	height:2vmin;
 	width: 2vmin;
-	margin:.5vmin;
+	margin:.1vmin;
 	background-size: 100%;
 	display:inline-block;
 	background-position: center;
@@ -680,6 +680,21 @@ a:hover{
 }
 .icon.cursed:hover:before{
 	content: "Cursed. Gets -1/-1 at the start of every turn in hand.";
+	color:#fff;
+	background-color: black;
+	position: absolute;
+	width: 10vmin;
+	bottom:100%;
+	left: 20%;
+	border-radius: 1vmin;
+	padding:.5vmin;
+	z-index: 100;
+}
+.icon.blessed{
+	background-image: url("resources/blessed.png");
+}
+.icon.blessed:hover:before{
+	content: "Blessed. Gets +1/+1 at the start of every turn in hand.";
 	color:#fff;
 	background-color: black;
 	position: absolute;

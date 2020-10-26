@@ -199,6 +199,10 @@ function makeCard(dict, id, onclick){
 		buffString += "<div class=\"icon cursed\"></div>";
 	}
 
+	if(dict.blessed){
+		buffString += "<div class=\"icon blessed\"></div>";
+	}
+
 	if(dict.expansion == "cogs"){
 		className += " curse";
 	}

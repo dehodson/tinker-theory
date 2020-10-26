@@ -297,6 +297,11 @@ Game.prototype.takeTurn = function(){
                     this.players[i].hand[j].buffa -= 1;
                     this.players[i].hand[j].buffd -= 1;
                 }
+
+                if(this.players[i].hand[j].blessed == true){
+                    this.players[i].hand[j].buffa += 1;
+                    this.players[i].hand[j].buffd += 1;
+                }
             }
         }
 
