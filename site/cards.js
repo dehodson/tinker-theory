@@ -498,13 +498,15 @@ cards = {
     "bastard": {
         title: "Battery Bastard",
         image: "bastard.png",
-        text: "<span class=\"silenceable\">If you successfully attack with him, gain 3 charge.</span><br /><br /><i>His cup size is AAA.</i>",
+        text: "<span class=\"silenceable\">If you successfully attack with him, gain 4 charge.</span><br /><br /><i>His cup size is AAA.</i>",
         attack: 6,
         defense: 1,
         buffa: 0,
         buffd: 0,
         expansion: "cogs",
-        successfulAttackEffect: function(obj, p1, p2){p1.charge += 3}
+        successfulAttackEffect: function(obj, p1, p2){
+            p1.charge += 4;
+        }
     },
     "matrix": {
         title: "Defense Matrix",
@@ -520,13 +522,18 @@ cards = {
     "electrotimmy": {
         title: "Electro-Timmy",
         image: "electrotimmy.png",
-        text: "<span class=\"silenceable\">When you play him, spend 6 charge and gain a point.</span>",
+        text: "<span class=\"silenceable\">When you play him, spend 3 charge and gain a point.</span>",
         attack: 3,
         defense: 3,
         buffa: 0,
         buffd: 0,
         expansion: "cogs",
-        battleEffect: function(obj, p1, p2){if(p1.charge >= 6){p1.score += 1; p1.charge -= 6;}}
+        battleEffect: function(obj, p1, p2){
+            if(p1.charge >= 3){
+                p1.score += 1;
+                p1.charge -= 3;
+            }
+        }
     },
     "coffee": {
         title: "Wizard Coffee",
@@ -557,13 +564,18 @@ cards = {
     "ai": {
         title: "AI Researcher",
         image: "ai.png",
-        text: "<span class=\"silenceable\">When you play her, spend 2 charge and draw a card.</span>",
-        attack: 4,
+        text: "<span class=\"silenceable\">When you play her, spend 1 charge and draw a card.</span>",
+        attack: 5,
         defense: 2,
         buffa: 0,
         buffd: 0,
         expansion: "cogs",
-        battleEffect: function(obj, p1, p2){if(p1.charge >= 2 && p1.deck.length > 0){p1.drawCard(p1, p2); p1.charge -= 2;}}
+        battleEffect: function(obj, p1, p2){
+            if(p1.charge >= 1 && p1.deck.length > 0){
+                p1.drawCard(p1, p2);
+                p1.charge -= 1;
+            }
+        }
     },
     "lil": {
         title: "Lil' Battery Bug",
@@ -574,7 +586,9 @@ cards = {
         buffa: 0,
         buffd: 0,
         expansion: "cogs",
-        battleEffect: function(obj, p1, p2){p1.charge += 5;}
+        battleEffect: function(obj, p1, p2){
+            p1.charge += 5;
+        }
     },
     "stone": {
         title: "Heaven Stone",
@@ -670,8 +684,8 @@ cards = {
         title: "Circuit Smasher",
         image: "mech.png",
         text: "<span class=\"silenceable\">When you play him, spend 4 charge and he gets +4/+4.</span>",
-        attack: 3,
-        defense: 3,
+        attack: 4,
+        defense: 4,
         buffa: 0,
         buffd: 0,
         expansion: "cogs",
@@ -950,8 +964,8 @@ cards = {
         title: "Power-Pummeler",
         image: "pummeler.png",
         text: "Every turn you start with it in hand, spend 1 charge and it gets +2/+2.",
-        attack: 2,
-        defense: 2,
+        attack: 3,
+        defense: 3,
         buffa: 0,
         buffd: 0,
         expansion: "cogs",
