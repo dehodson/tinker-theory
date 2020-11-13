@@ -1228,8 +1228,8 @@ cards = {
                 }
             }
             for(var i = 0; i < p1.hand.length; i++){
-                p1.hand[i].buffa = p1.hand[i].buffa + p1.hand[i].attack;
-                p1.hand[i].buffd = p1.hand[i].buffd + p1.hand[i].defense;
+                p1.hand[i].buffa += p1.hand[i].buffa + p1.hand[i].attack;
+                p1.hand[i].buffd += p1.hand[i].buffd + p1.hand[i].defense;
             }
         }
     },
