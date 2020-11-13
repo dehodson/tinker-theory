@@ -1087,14 +1087,16 @@ cards = {
     "pearly-gates": {
         title: "Pearly Gates",
         image: "pearly-gates.png",
-        text: "<span class=\"silenceable\">When you play it, your opponent draws a card.</span>",
+        text: "<span class=\"silenceable\">When you play it, bless all cards in your hand.</span>",
         attack: 0,
-        defense: 9,
+        defense: 6,
         buffa: 0,
         buffd: 0,
         expansion: "blessed",
         battleEffect: function(obj, p1, p2){
-            p2.drawCard(p2, p1);
+            for(var i = 0; i < p1.hand.length; i++){
+                p1.hand[i].blessed = true;
+            }
         }
     },
     "flocking-seraphs": {
@@ -1132,7 +1134,7 @@ cards = {
             p1.score += 2;
         }
     },
-    "blessed-idol":  {
+    "blessed-idol": {
         title: "Blessed Idol",
         image: "blessed-idol.png",
         text: "Starts blessed.<br /><br /><i>This is one idol you should definitely worship.</i>",
