@@ -1145,23 +1145,6 @@ cards = {
         blessed: true,
         expansion: "blessed",
     },
-    "revelations": {
-        title: "Revelations",
-        image: "160x100.png",
-        text: "<span class=\"silenceable\">When you play it, draw every card in your deck and silence them.</span>",
-        attack: 1,
-        defense: 1,
-        buffa: 0,
-        buffd: 0,
-        expansion: "blessed",
-        battleEffect: function(obj, p1, p2){
-            while(p1.deck.length > 0){
-                p1.nextCard = 0;
-                p1.deck[0].silenced = true;
-                p1.drawCard(p1, p2);
-            }
-        },
-    },
     "wholly-water": {
         title: "Wholly Water",
         image: "160x100.png",
@@ -1198,22 +1181,6 @@ cards = {
                 for(var card in p2.hand){
                     if(p2.hand[card].title == p2.lastCard.title){p2.hand[card].cursed = true;}
                 }
-            }
-        },
-    },
-    "mighty-tiny": {
-        title: "Mighty Tiny",
-        image: "160x100.png",
-        text: "<span class=\"silenceable\">When you play it, if its power has been buffed, it gets +3/+3.</span>",
-        attack: 1,
-        defense: 1,
-        buffa: 0,
-        buffd: 0,
-        expansion: "blessed",
-        battleEffect: function(obj, p1, p2){
-            if(obj.buffa > 0){
-                obj.buffa += 3;
-                obj.buffd += 3;
             }
         },
     },
