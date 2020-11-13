@@ -1145,4 +1145,76 @@ cards = {
         blessed: true,
         expansion: "blessed",
     },
+    "revelations": {
+        title: "Revelations",
+        image: "160x100.png",
+        text: "<span class=\"silenceable\">When you play it, draw every card in your deck and silence them.</span>",
+        attack: 1,
+        defense: 1,
+        buffa: 0,
+        buffd: 0,
+        expansion: "blessed",
+        battleEffect: function(obj, p1, p2){
+            while(p1.deck.length > 0){
+                p1.nextCard = 0;
+                p1.deck[0].silenced = true;
+                p1.drawCard(p1, p2);
+            }
+        },
+    },
+    "wholly-water": {
+        title: "Wholly Water",
+        image: "160x100.png",
+        text: "<span class=\"silenceable\">When you play it, bless the next card you draw.</span>",
+        attack: 2,
+        defense: 5,
+        buffa: 0,
+        buffd: 0,
+        expansion: "blessed",
+        battleEffect: function(obj, p1, p2){
+            if(p1.deck.length > 0){
+                if(p1.nextCard != null){
+                    p1.deck[nextCard].blessed = true;
+                }else{
+                    p1.deck[p1.deck.length - 1].blessed = true;
+                }
+            }
+        },
+    },
+    "archfiend-diggy": {
+        title: "Archfiend Diggy",
+        image: "160x100.png",
+        text: "<span class=\"silenceable\">When you play him, curse all other copies of the last card your opponent played.</span>",
+        attack: 5,
+        defense: 1,
+        buffa: 0,
+        buffd: 0,
+        expansion: "blessed",
+        battleEffect: function(obj, p1, p2){
+            if(p2.lastCard != null){
+                for(var card in p2.deck){
+                    if(p2.deck[card].title == p2.lastCard.title){p2.deck[card].cursed = true;}
+                }
+                for(var card in p2.hand){
+                    if(p2.hand[card].title == p2.lastCard.title){p2.hand[card].cursed = true;}
+                }
+            }
+        },
+    },
+    "mighty-tiny": {
+        title: "Mighty Tiny",
+        image: "160x100.png",
+        text: "<span class=\"silenceable\">When you play it, if its power has been buffed, it gets +3/+3.</span>",
+        attack: 1,
+        defense: 1,
+        buffa: 0,
+        buffd: 0,
+        expansion: "blessed",
+        battleEffect: function(obj, p1, p2){
+            if(obj.buffa > 0){
+                obj.buffa += 3;
+                obj.buffd += 3;
+            }
+        },
+    },
 };
