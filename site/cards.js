@@ -1186,7 +1186,7 @@ cards = {
     },
     "radiant-goddess": {
         title: "Radiant Goddess",
-        image: "160x100.png",
+        image: "radiant-goddess.png",
         text: "<span class=\"silenceable\">Shuffle your hand into your deck when you play her. Draw two cards and bless them.</span>",
         attack: 0,
         defense: 4,
@@ -1213,7 +1213,7 @@ cards = {
     },
     "even-stephen": {
         title: "Even Stephen",
-        image: "160x100.png",
+        image: "even-stephen.png",
         text: "<span class=\"silenceable\">When you play him, if your starting deck had all even stats, double your hand's stats.</span>",
         attack: 4,
         defense: 2,
