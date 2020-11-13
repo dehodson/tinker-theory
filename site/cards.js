@@ -1184,4 +1184,53 @@ cards = {
             }
         },
     },
+    "radiant-goddess": {
+        title: "Radiant Goddess",
+        image: "160x100.png",
+        text: "<span class=\"silenceable\">Shuffle your hand into your deck when you play her. Draw two cards and bless them.</span>",
+        attack: 0,
+        defense: 4,
+        buffa: 0,
+        buffd: 0,
+        expansion: "blessed",
+        battleEffect: function(obj, p1, p2){
+            var size = p1.hand.length;
+            for(var i = 0; i < size; i++){
+                p1.deck.push(p1.hand.pop());
+            }
+            shuffle(p1.deck);
+            for(var i = 0; i < 2; i++){
+                if(p1.deck.length > 0){
+                    if(p1.nextCard != null){
+                        p1.deck[nextCard].blessed = true;
+                    }else{
+                        p1.deck[p1.deck.length - 1].blessed = true;
+                    }
+                }
+                p1.drawCard(p1, p2);
+            }
+        }
+    },
+    "even-stephen": {
+        title: "Even Stephen",
+        image: "160x100.png",
+        text: "<span class=\"silenceable\">When you play him, if your starting deck had all even stats, double your hand's stats.</span>",
+        attack: 4,
+        defense: 2,
+        buffa: 0,
+        buffd: 0,
+        expansion: "blessed",
+        battleEffect: function(obj, p1, p2){
+            for(var card in p1.originalDeck){
+                if(p1.originalDeck[card].attack % 2 == 1 ||
+                   p1.originalDeck[card].defense % 2 == 1) {
+                    return;
+                }
+            }
+            for(var i = 0; i < p1.hand.length; i++){
+                p1.hand[i].buffa = p1.hand[i].buffa + p1.hand[i].attack;
+                p1.hand[i].buffd = p1.hand[i].buffd + p1.hand[i].defense;
+            }
+        }
+    },
 };
