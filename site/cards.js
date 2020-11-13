@@ -1147,7 +1147,7 @@ cards = {
     },
     "wholly-water": {
         title: "Wholly Water",
-        image: "160x100.png",
+        image: "wholly-water.png",
         text: "<span class=\"silenceable\">When you play it, bless the next card you draw.</span>",
         attack: 2,
         defense: 5,
@@ -1166,7 +1166,7 @@ cards = {
     },
     "archfiend-diggy": {
         title: "Archfiend Diggy",
-        image: "160x100.png",
+        image: "archfiend-diggy.png",
         text: "<span class=\"silenceable\">When you play him, curse all other copies of the last card your opponent played.</span>",
         attack: 5,
         defense: 1,
