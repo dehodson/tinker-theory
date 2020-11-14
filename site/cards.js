@@ -1261,16 +1261,16 @@ cards = {
         requiresChoice: true,
         choiceEffect: function(obj, p1, p2){
             p1.connection.emit("choose", {
-                what: "Smug Saint",
+                what: obj.title,
                 choices: [
-                    "Smug Saint gets +3/+3.",
+                    obj.title+" gets +3/+3.",
                     "Draw a card.",
                 ],
             });
         },
         onChoice: function(obj, p1, p2, choice){
             if(choice === 0){
-                obj.text = "<span class=\"silenceable\">Chosen: Give Smug Saint +3/+3.</span>"
+                obj.text = "<span class=\"silenceable\">Chosen: Give "+obj.title+" +3/+3.</span>"
                 obj.buffa += 3;
                 obj.buffd += 3;
             }else{
@@ -1297,7 +1297,7 @@ cards = {
             }
 
             p1.connection.emit("choose", {
-                what: "Searching Scribe",
+                what: obj.title,
                 choices: p1.deck,
                 type: 'card',
             });
