@@ -19,13 +19,13 @@ console.log('\t :: Express :: Listening on port ' + port );
 
 
 epr.get( '/', function( req, res ){ 
-    res.sendfile( __dirname + '/site/index.html' );
+    res.sendFile( __dirname + '/site/index.html' );
 });
 
 
 epr.get( '/*' , function( req, res, next ) {
     var file = req.params[0]; 
-    res.sendfile( __dirname + '/site/' + file );
+    res.sendFile( __dirname + '/site/' + file );
 });
 
 
