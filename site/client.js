@@ -418,7 +418,8 @@ function cardSearch(searchBox){
 
 	function doSearch(cardlist){
 		var cardText = cards[card].text.replace(/<[^>]*>/g, "");
-		if(cards[card].title.match(regex) || cardText.match(regex)){
+		var cardTypes = (cards[card].types || []).join("");
+		if(cards[card].title.match(regex) || cardText.match(regex) || cardTypes.match(regex)){
 			cardlist.innerHTML += makeCard(cards[card], "deckbuilder-"+card, "addToDeck('"+card+"')");
 			var display = document.getElementById("deckbuilder-"+card);
 			display.style.left = ((i % 3) * 18)+"vmin";

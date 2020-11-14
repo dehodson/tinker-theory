@@ -101,6 +101,7 @@ cards = {
         buffa: 0,
         buffd: 0,
         expansion: "core",
+        types: ["wall"],
     },
     "timmy": {
         title: "Little Timmy",
@@ -209,6 +210,7 @@ cards = {
         buffa: 0,
         buffd: 0,
         expansion: "core",
+        types: ["mage"],
         failedAttackEffect: function(obj, p1, p2){if(p1.score > 0){p1.score -= 1;}}
     },
     "clone": {
@@ -233,6 +235,7 @@ cards = {
         buffa: 0,
         buffd: 0,
         expansion: "core",
+        types: ["mage"],
         requiresChoice: true,
         choiceEffect: function(obj, p1, p2){
             if(p1.lastCard != null){
@@ -278,7 +281,10 @@ cards = {
         buffa: 0,
         buffd: 0,
         expansion: "core",
-        successfulDefenseEffect: function(obj, p1, p2){p1.score += 1;}
+        types: ["wall"],
+        successfulDefenseEffect: function(obj, p1, p2){
+            p1.score += 1;
+        },
     },
     "diggy": {
         title: "Archmage Diggy",
@@ -289,6 +295,7 @@ cards = {
         buffa: 0,
         buffd: 0,
         expansion: "core",
+        types: ["mage", "diggy"],
         battleEffect: function(obj, p1, p2){
             if(p2.lastCard != null){
                 for(var card in p2.deck){
@@ -358,6 +365,7 @@ cards = {
         buffa: 0,
         buffd: 0,
         expansion: "core",
+        types: ["mage"],
         battleEffect: function(obj, p1, p2){
             if(p1.deck.length > 0){
                 if(p1.nextCard != null){
@@ -378,6 +386,7 @@ cards = {
         buffa: 0,
         buffd: 0,
         expansion: "core",
+        types: ["mage"],
         battleEffect: function(obj, p1, p2){
             var number = 0;
             for(var i = 0; i < p1.hand.length; i++){
@@ -398,6 +407,7 @@ cards = {
         buffa: 0,
         buffd: 0,
         expansion: "core",
+        types: ["behemoth"],
         silenced: true,
         battleEffect: function(obj, p1, p2){obj.buffa += 7; obj.buffd += 7;}
     },
@@ -436,6 +446,7 @@ cards = {
         buffa: 0,
         buffd: 0,
         expansion: "core",
+        types: ["goddess"],
         battleEffect: function(obj, p1, p2){
             var size = p1.hand.length;
             for(var i = 0; i < size; i++){p1.deck.push(p1.hand.pop());}
@@ -511,6 +522,7 @@ cards = {
         buffa: 0,
         buffd: 0,
         expansion: "cogs",
+        types: ["goddess"],
         battleEffect: function(obj, p1, p2){
             var size = p2.hand.length;
             for(var i = 0; i < size; i++){p2.deck.push(p2.hand.pop());}
@@ -580,7 +592,10 @@ cards = {
         expansion: "cogs",
         battleEffect: function(obj, p1, p2){
             for(var card in p1.deck){
-                if(p1.deck[card].title.match(/mage/i)){p1.deck[card].buffa += 2;}
+                var types = p1.deck[card].types || [];
+                if(types.indexOf("mage") !== -1){
+                    p1.deck[card].buffa += 2;
+                }
             }
         }
     },
@@ -635,7 +650,13 @@ cards = {
         expansion: "cogs",
         battleEffect: function(obj, p1, p2){
             for(var card in p1.deck){
-                if(p1.deck[card].title.match(/goddess/i)){p1.nextCard = card; p1.deck[card].buffa += 3; p1.drawCard(p1, p2); break;}
+                var types = p1.deck[card].types || [];
+                if(types.indexOf("goddess") !== -1){
+                    p1.nextCard = card;
+                    p1.deck[card].buffa += 3;
+                    p1.drawCard(p1, p2);
+                    break;
+                }
             }
         }
     },
@@ -666,6 +687,7 @@ cards = {
         buffa: 0,
         buffd: 0,
         expansion: "cogs",
+        types: ["behemoth"],
         battleEffect: function(obj, p1, p2){
             for(var i in p1.hand){
                 p1.hand[i].buffa -= 3; p1.hand[i].buffd -= 3;
@@ -692,7 +714,10 @@ cards = {
         buffa: 0,
         buffd: 0,
         expansion: "cogs",
-        globalEffect: function(obj, p1, p2){obj.cursed = false;},
+        types: ["wall"],
+        globalEffect: function(obj, p1, p2){
+            obj.cursed = false;
+        },
     },
     "drainer": {
         title: "Curse Drainer",
@@ -734,6 +759,7 @@ cards = {
         buffa: 0,
         buffd: 0,
         expansion: "cogs",
+        types: ["diggy"],
         battleEffect: function(obj, p1, p2){
             if(p2.lastCard != null){
                 for(var card in p2.deck){
@@ -788,7 +814,10 @@ cards = {
         buffa: 0,
         buffd: 0,
         expansion: "cogs",
-        battleEffect: function(obj, p1, p2){p1.charge += 2;}
+        types: ["wall"],
+        battleEffect: function(obj, p1, p2){
+            p1.charge += 2;
+        },
     },
     "artifact": {
         title: "Curious Artifact",
@@ -817,7 +846,11 @@ cards = {
         expansion: "cogs",
         battleEffect: function(obj, p1, p2){
             for(var card in p1.deck){
-                if(p1.deck[card].title.match(/wall/i)){p1.nextCard = card; break;}
+                var types = p1.deck[card].types || [];
+                if(types.indexOf("wall") !== -1){
+                    p1.nextCard = card;
+                    break;
+                }
             }
         }
     },
@@ -966,7 +999,7 @@ cards = {
     "spackler": {
         title: "Supreme Spackler",
         image: "spackler.png",
-        text: "<span class=\"silenceable\">When you play him, all walls and barriers in your deck get +0/+1.</span>",
+        text: "<span class=\"silenceable\">When you play him, all walls in your deck get +0/+1.</span>",
         attack: 5,
         defense: 1,
         buffa: 0,
@@ -974,7 +1007,10 @@ cards = {
         expansion: "cogs",
         battleEffect: function(obj, p1, p2){
             for(var card in p1.deck){
-                if(p1.deck[card].title.match(/wall/i) || p1.deck[card].title.match(/barrier/i)){p1.deck[card].buffd += 1;}
+                var types = p1.deck[card].types || [];
+                if(types.indexOf("wall") !== -1){
+                    p1.deck[card].buffd += 1;
+                }
             }
         }
     },
@@ -987,9 +1023,13 @@ cards = {
         buffa: 0,
         buffd: 0,
         expansion: "cogs",
+        types: ["diggy"],
         battleEffect: function(obj, p1, p2){
             for(var card in p1.hand){
-                if(p1.hand[card].title.match(/diggy/i)){p1.hand[card].buffa += 3; p1.hand[card].buffd += 3;}
+                var types = p1.deck[card].types || [];
+                if(types.indexOf("diggy") !== -1){
+                    p1.hand[card].buffa += 3; p1.hand[card].buffd += 3;
+                }
                 p1.hand[card].buffa += 1; p1.hand[card].buffd += 1;
             }
         }
@@ -1090,9 +1130,15 @@ cards = {
         battleEffect: function(obj, p1, p2){
             var found = false;
             for(var i = 0; i < p1.hand.length; i++){
-                if(p1.hand[i].title.match(/behemoth/i)){found = true;}
+                var types = p1.hand[i].types || [];
+                if(types.indexOf("behemoth") !== -1){
+                    found = true;
+                }
             }
-            if(found){obj.buffa += 3; obj.buffd += 3;}
+            if(found){
+                obj.buffa += 3;
+                obj.buffd += 3;
+            }
         }
     },
     "future": {
@@ -1127,6 +1173,7 @@ cards = {
         buffa: 0,
         buffd: 0,
         expansion: "blessed",
+        types: ["wall"],
         battleEffect: function(obj, p1, p2){
             for(var i = 0; i < p1.hand.length; i++){
                 p1.hand[i].blessed = true;
@@ -1207,6 +1254,7 @@ cards = {
         buffa: 0,
         buffd: 0,
         expansion: "blessed",
+        types: ["diggy"],
         battleEffect: function(obj, p1, p2){
             if(p2.lastCard != null){
                 for(var card in p2.deck){
@@ -1227,6 +1275,7 @@ cards = {
         buffa: 0,
         buffd: 0,
         expansion: "blessed",
+        types: ["goddess"],
         battleEffect: function(obj, p1, p2){
             var size = p1.hand.length;
             for(var i = 0; i < size; i++){
