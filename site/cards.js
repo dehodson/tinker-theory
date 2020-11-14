@@ -956,7 +956,7 @@ cards = {
         }
     },
     "tricks": {
-        title: "Bag Of Tricks",
+        title: "Bag of Tricks",
         image: "tricks.png",
         text: "<span class=\"silenceable\">When played, it will randomly curse, silence, or give -3/-3 to your opponent's next card.</span>",
         attack: 0,
@@ -968,10 +968,12 @@ cards = {
             var random = Math.random();
             if(random <= .333){
                 if(p2.nextCard){
-                    p2.deck[nextCard].cursed = true;
+                    p2.deck[nextCard].buffa -= 3;
+                    p2.deck[nextCard].buffd -= 3;
                 }else{
                     if(p2.deck.length > 0){
-                        p2.deck[p2.deck.length - 1].cursed = true;
+                        p2.deck[p2.deck.length - 1].buffa -= 3;
+                        p2.deck[p2.deck.length - 1].buffd -= 3;
                         obj.text = "Randomly chosen trick: Give -3/-3 to your opponent's next card.";
                     }
                 }
