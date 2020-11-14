@@ -127,6 +127,15 @@ function showDeckList(){
 	var list = document.getElementById("deck-builder-list");
 	list.innerHTML = "";
 
+	let i = 0;
+	while(i < decklist.length){
+		if(!cards.hasOwnProperty(decklist[i])){
+			decklist.splice(i, 1);
+		}else{
+			i++;
+		}
+	}
+
 	for(var item in decklist){
 		list.innerHTML += "<div class=\"list\" onclick=\"removeFromDeck('"+decklist[item]+"')\"><span onmousemove='showCard(event, \""+decklist[item]+"\")' onmouseleave='hideCard()'>"+cards[decklist[item]].title+"</span> <span class=\"stats\">"+cards[decklist[item]].attack+"/"+cards[decklist[item]].defense+"</span></div>";
 	}
