@@ -228,6 +228,22 @@ cards = {
         buffa: 0,
         buffd: 0,
         expansion: "core",
+        requiresChoice: true,
+        choiceEffect: function(obj, p1, p2){
+            if(p1.lastCard != null){
+                if(p1.lastCard.hasOwnProperty("choiceEffect")){
+                    if(p1.lastCard.hasOwnProperty("onChoice")){
+                        obj.onChoice = p1.lastCard.onChoice;
+                    }
+                    obj.battleEffect = function(obj, p1, p2){};
+                    if(p1.lastCard.choiceEffect.toString() != obj.choiceEffect.toString()){
+                        obj.choiceEffect = p1.lastCard.choiceEffect;
+                        return obj.choiceEffect(obj, p1, p2);
+                    }
+                }
+            }
+            return 0;
+        },
         battleEffect: function(obj, p1, p2){
             if(p1.lastCard != null){
                 if(p1.lastCard.hasOwnProperty("battleEffect") && p1.lastCard.battleEffect.toString() != obj.battleEffect.toString()){
