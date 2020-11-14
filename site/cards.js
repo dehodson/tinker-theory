@@ -1235,7 +1235,7 @@ cards = {
     },
     "smug-saint": {
         title: "Smug Saint",
-        image: "160x100.png",
+        image: "smug-saint.png",
         text: "<span class=\"silenceable\">Choose one: Give Smug Saint +3/+3 or draw a card.</span>",
         attack: 2,
         defense: 2,
