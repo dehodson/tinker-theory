@@ -166,7 +166,7 @@ a:hover{
 	left:0px;
 	visibility: hidden;
 }
-#alert-box, #error-box, #deck-picker{
+#alert-box, #choice-box, #error-box, #deck-picker{
 	position: absolute;
 	top:50%;
 	left:50%;

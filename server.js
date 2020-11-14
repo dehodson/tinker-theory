@@ -78,6 +78,7 @@ var Player = function(id, conn, deck, name){
     this.lastCard = null;
     this.uuid = id;
     this.hasPlayed = false;
+    this.awaitsChoice = false;
     this.connection = conn;
     this.name = name;
 };
@@ -106,6 +107,13 @@ Player.prototype.drawCard = function(p1, p2){
 Player.prototype.playCard = function(id, p1, p2){
     this.lastCard = clone(this.card);
     this.card = this.hand.splice(id, 1)[0];
+    this.hasPlayed = true;
+    if(!this.card.silenced && this.card.requiresChoice){
+        this.card.choiceEffect(this.card, p1, p2);
+        this.awaitsChoice = true;
+        return 0;
+    }
+    return 1;
 };
 
 Player.prototype.updateHand = function(p1, p2, delay){
@@ -312,6 +320,8 @@ Game.prototype.takeTurn = function(){
 
         this.players[0].hasPlayed = false;
         this.players[1].hasPlayed = false;
+        this.players[0].awaitsChoice = false;
+        this.players[1].awaitsChoice = false;
     }
 
     this.players[0].connection.emit("can click");
@@ -371,22 +381,52 @@ sio.sockets.on('connection', function (client) {
         }
     });
 
-    client.on('play', function(data){
-        if(typeof(data) !== 'undefined' && data.hasOwnProperty("number")){
-            search:
-            for(var i = 0; i < games.length; i++){
-                for(var j = 0; j < games[i].players.length; j++){
-                    if(games[i].players[j].uuid == client.userid && !games[i].players[j].hasPlayed){
-                        if(data.number < games[i].players[j].hand.length){
-                            games[i].players[j].playCard(data.number, games[i].players[j], games[i].players[(j + 1) % 2]);
-                            games[i].players[j].hasPlayed = true;
-                            games[i].complete += 1;
-                            if(games[i].players[0].hasPlayed && games[i].players[1].hasPlayed){
-                                games[i].takeTurn();
-                            }
-                        }
-                        break search;
+    client.on('make choice', function(data){
+        if(typeof(data) === 'undefined' || !data.hasOwnProperty("choice")){
+          return;
+        }
+
+        search:
+        for(var i = 0; i < games.length; i++){
+            for(var j = 0; j < games[i].players.length; j++){
+                if(games[i].players[j].uuid == client.userid && games[i].players[j].awaitsChoice){
+                    games[i].players[j].card.onChoice(
+                        games[i].players[j].card,
+                        games[i].players[j],
+                        games[i].players[(j + 1) % 2],
+                        +data.choice,
+                    );
+
+                    games[i].complete += 1;
+                    if(games[i].complete == 2){
+                        games[i].takeTurn();
                     }
+                    break search;
+                }
+            }
+        }
+    });
+
+    client.on('play', function(data){
+        if(typeof(data) === 'undefined' || !data.hasOwnProperty("number")){
+            return;
+        }
+
+        search:
+        for(var i = 0; i < games.length; i++){
+            for(var j = 0; j < games[i].players.length; j++){
+                if(games[i].players[j].uuid == client.userid && !games[i].players[j].hasPlayed){
+                    if(data.number < games[i].players[j].hand.length){
+                        games[i].complete += games[i].players[j].playCard(
+                            data.number,
+                            games[i].players[j],
+                            games[i].players[(j + 1) % 2],
+                        );
+                        if(games[i].complete == 2){
+                            games[i].takeTurn();
+                        }
+                    }
+                    break search;
                 }
             }
         }

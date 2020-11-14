@@ -91,6 +91,16 @@ function closeError(){
 	}
 }
 
+function showChoiceBox(){
+	document.getElementById("no-click").style.visibility = "visible";
+	document.getElementById("choice-box").style.visibility = "visible";
+}
+
+function closeChoiceBox(){
+	document.getElementById("no-click").style.visibility = "hidden";
+	document.getElementById("choice-box").style.visibility = "hidden";
+}
+
 function showChat(){
 	document.getElementById("chat-main").innerHTML = "";
 	document.getElementById("chat").style.visibility = "visible";
@@ -260,6 +270,25 @@ function showEnemyHand(enemyHand, what){
 	}
 
 	showError();
+}
+
+function makeChoice(value){
+	window.socket.emit("make choice", {choice: value});
+	closeChoiceBox();
+}
+
+function generateChoice(id, value){
+	return '<span class="choice" onclick="makeChoice('+id+')">'+value+'</span>';
+}
+
+function showChoices(what, choices){
+	document.getElementById("choice-box").innerHTML = what+"<br />";
+
+	for(var i = 0; i < choices.length; i++){
+		document.getElementById("choice-box").innerHTML += generateChoice(i, choices[i])+"<br />";
+	}
+
+	showChoiceBox();
 }
 
 function updateScore(){
@@ -522,6 +551,7 @@ function mainMenu(){
 	document.getElementById("game-container").innerHTML = old;
 	closeAlert();
 	closeError();
+	closeChoiceBox();
 	closeDeckPicker();
 	hideChat();
 	hideLog();
@@ -722,6 +752,10 @@ socket.on('disconnected', function(){
 
 socket.on('enemy hand', function(data){
 	window.setTimeout(function(){showEnemyHand(data.hand, data.what);}, 3000);
+});
+
+socket.on('choose', function(data){
+	showChoices(data.what, data.choices);
 });
 
 socket.on('game over', function(data){

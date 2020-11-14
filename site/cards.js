@@ -1233,4 +1233,36 @@ cards = {
             }
         }
     },
+    "smug-saint": {
+        title: "Smug Saint",
+        image: "160x100.png",
+        text: "<span class=\"silenceable\">Choose one: Give Smug Saint +3/+3 or draw a card.</span>",
+        attack: 2,
+        defense: 2,
+        buffa: 0,
+        buffd: 0,
+        expansion: "blessed",
+        requiresChoice: true,
+        choiceEffect: function(obj, p1, p2){
+            p1.connection.emit("choose", {
+                what: "Smug Saint",
+                choices: [
+                    "Smug Saint gets +3/+3.",
+                    "Draw a card.",
+                ],
+            });
+        },
+        onChoice: function(obj, p1, p2, choice){
+            if(choice === 0){
+                obj.text = "<span class=\"silenceable\">Chosen: Give Smug Saint +3/+3.</span>"
+                obj.buffa += 3;
+                obj.buffd += 3;
+            }else{
+                obj.text = "<span class=\"silenceable\">Chosen: Draw a card.</span>"
+                obj.battleEffect = function(obj, p1, p2){
+                    p1.drawCard(p1, p2);
+                }
+            }
+        },
+    },
 };
