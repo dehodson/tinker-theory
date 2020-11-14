@@ -181,6 +181,9 @@ a:hover{
 	width:60vmin;
 	visibility: hidden;
 }
+.choices{
+	font-size:2vmin;
+}
 #error-box a:visited{
 	color:white;
 }

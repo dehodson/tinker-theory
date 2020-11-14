@@ -278,16 +278,17 @@ function makeChoice(value){
 }
 
 function generateChoice(id, value){
-	return '<span class="choice" onclick="makeChoice('+id+')">'+value+'</span>';
+	return '<span onclick="makeChoice('+id+')">'+value+'</span>';
 }
 
 function showChoices(what, choices){
-	document.getElementById("choice-box").innerHTML = what+"<br />";
-
+	var choiceHtml = what+'<br /><div class="choices">';
 	for(var i = 0; i < choices.length; i++){
-		document.getElementById("choice-box").innerHTML += generateChoice(i, choices[i])+"<br />";
+		choiceHtml += generateChoice(i, choices[i])+"<br />";
 	}
+	choiceHtml += '</div>';
 
+	document.getElementById("choice-box").innerHTML = choiceHtml;
 	showChoiceBox();
 }
 
