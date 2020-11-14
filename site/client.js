@@ -230,9 +230,14 @@ function makeCard(dict, id, onclick){
 		className += " blessed";
 	}
 
+	var types = (dict.types || []).map(function(type){
+		return type[0].toUpperCase() + type.slice(1);
+	}).join(" ");
+
 	var string = "<div class=\""+className+"\" id=\""+id+"\" onclick=\""+onclick+"\">";
 	   string += "<div class=\"title\" id=\""+id+"-title\">"+dict.title+"</div>";
 	   string += "<div class=\"image\" id=\""+id+"-image\" style=\"background-image:url('images/"+dict.image+"')\"></div>";
+	   string += "<div class=\"types\"  id=\""+id+"-type\" >"+types+"</div>";
 	   string += "<div class=\"text\"  id=\""+id+"-text\" >"+dict.text+"</div>";
 	   string += "<div class=\"buff\"  id=\""+id+"-buff\">"+buffString+"</div>";
 	   string += "<div class=\"attack\"  id=\""+id+"-attack\">"+(dict.attack + dict.buffa)+"<div class=\"sword\"></div></div>";

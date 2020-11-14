@@ -392,7 +392,7 @@ a:hover{
 	margin: 1vmin;
 	padding: 1vmin;
 	color: black;
-	font-size: 1.7vmin;
+	font-size: 1.6vmin;
 	box-shadow: -.5vmin .5vmin 2vmin rgba(0,0,0,0.5);
 }
 .deck-builder-page .card .title{
@@ -575,7 +575,7 @@ a:hover{
 	background-color: #FFF;
 	border-radius: 1vmin;
 	color: black;
-	font-size: 1.8vmin;
+	font-size: 1.7vmin;
 	box-shadow: -1vmin 1vmin 3vmin rgba(0,0,0,0.5);
 }
 .card.buffed{
@@ -592,6 +592,12 @@ a:hover{
 .card .title{
 	font-family: Chunkfive;
 	font-size:1.6vmin;
+}
+.card .types{
+	font-size:1vmin;
+	height:1vmin;
+	font-weight:bold;
+	text-align:center;
 }
 .card.curse{
 	background-image: url("resources/cardback.png");
