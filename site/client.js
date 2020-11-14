@@ -275,16 +275,20 @@ function showEnemyHand(enemyHand, what){
 function makeChoice(value){
 	window.socket.emit("make choice", {choice: value});
 	closeChoiceBox();
+	hideCard();
 }
 
-function generateChoice(id, value){
+function generateChoice(id, value, type){
+	if(type === 'card'){
+		return '<span onmousemove="showCard(event, \'\', \''+btoa(JSON.stringify(value))+'\')" onmouseleave="hideCard()" onclick="makeChoice('+id+')">'+value.title+'</span>';
+	}
 	return '<span onclick="makeChoice('+id+')">'+value+'</span>';
 }
 
-function showChoices(what, choices){
+function showChoices(what, choices, type){
 	var choiceHtml = what+'<br /><div class="choices">';
 	for(var i = 0; i < choices.length; i++){
-		choiceHtml += generateChoice(i, choices[i])+"<br />";
+		choiceHtml += generateChoice(i, choices[i], type)+"<br />";
 	}
 	choiceHtml += '</div>';
 
@@ -583,9 +587,13 @@ function createChatBubble(type, message, name){
 	chatbox.scrollTop = chatbox.scrollHeight;
 }
 
-function showCard(e, cardId){
+function showCard(e, cardId, dataString){
 	var preview = document.getElementById("card-preview");
-	preview.innerHTML = makeCard(cards[cardId], "inner-preview", "");
+	var dict = cards[cardId];
+	if(typeof(dataString) !== 'undefined'){
+		dict = JSON.parse(atob(dataString));
+	}
+	preview.innerHTML = makeCard(dict, "inner-preview", "");
 	preview.style.top  = (e.clientY + 5) + "px";
 	preview.style.left = (e.clientX + 5) + "px";
 	preview.style.visibility = "visible";
@@ -756,7 +764,7 @@ socket.on('enemy hand', function(data){
 });
 
 socket.on('choose', function(data){
-	showChoices(data.what, data.choices);
+	showChoices(data.what, data.choices, data.type);
 });
 
 socket.on('game over', function(data){

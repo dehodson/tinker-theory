@@ -109,9 +109,11 @@ Player.prototype.playCard = function(id, p1, p2){
     this.card = this.hand.splice(id, 1)[0];
     this.hasPlayed = true;
     if(!this.card.silenced && this.card.requiresChoice){
-        this.card.choiceEffect(this.card, p1, p2);
-        this.awaitsChoice = true;
-        return 0;
+        var needsWait = this.card.choiceEffect(this.card, p1, p2);
+        if (needsWait !== 0) {
+            this.awaitsChoice = true;
+            return 0;
+        }
     }
     return 1;
 };

@@ -138,6 +138,7 @@ a:hover{
 	left:0px;
 	height: 28vmin;
 	width:  18vmin;
+	z-index:100;
 }
 #game-container{
 	position: absolute;
@@ -183,6 +184,7 @@ a:hover{
 }
 .choices{
 	font-size:2vmin;
+	cursor:pointer;
 }
 #error-box a:visited{
 	color:white;

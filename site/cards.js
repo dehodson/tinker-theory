@@ -1265,4 +1265,32 @@ cards = {
             }
         },
     },
+    "searching-scribe": {
+        title: "Searching Scribe",
+        image: "searching-scribe.png",
+        text: "<span class=\"silenceable\">When you play her, search your deck for a card and draw it.</span>",
+        attack: 1,
+        defense: 1,
+        buffa: 0,
+        buffd: 0,
+        expansion: "blessed",
+        requiresChoice: true,
+        choiceEffect: function(obj, p1, p2){
+            if(p1.deck.length === 0){
+                return 0;
+            }
+
+            p1.connection.emit("choose", {
+                what: "Searching Scribe",
+                choices: p1.deck,
+                type: 'card',
+            });
+        },
+        onChoice: function(obj, p1, p2, choice){
+            obj.battleEffect = function(obj, p1, p2){
+                p1.nextCard = choice;
+                p1.drawCard(p1, p2);
+            }
+        },
+    },
 };
