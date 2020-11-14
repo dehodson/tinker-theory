@@ -71,7 +71,7 @@ var Player = function(id, conn, deck, name){
     this.originalDeck = [...deck];
     this.hand = [];
     this.score = 0;
-    this.cornCounter = 0;
+    this.typeCounter = {};
     this.charge = 0;
     this.card = null;
     this.nextCard = null;
@@ -108,6 +108,14 @@ Player.prototype.playCard = function(id, p1, p2){
     this.lastCard = clone(this.card);
     this.card = this.hand.splice(id, 1)[0];
     this.hasPlayed = true;
+    var types = this.card.types || [];
+    for(var i = 0; i < types.length; i++){
+      if(!this.typeCounter[types[i]]){
+        this.typeCounter[types[i]] = 1;
+      }else{
+        this.typeCounter[types[i]]++;
+      }
+    }
     if(!this.card.silenced && this.card.requiresChoice){
         var needsWait = this.card.choiceEffect(this.card, p1, p2);
         if (needsWait !== 0) {

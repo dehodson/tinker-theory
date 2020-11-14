@@ -52,8 +52,13 @@ cards = {
         buffa: 0,
         buffd: 0,
         expansion: "core",
-        globalEffect: function(obj, p1, p2){obj.text = "Its stats grow with every corn you play. (+"+p1.cornCounter+"/+"+p1.cornCounter+")"; obj.attack = 2 + p1.cornCounter; obj.defense = 2 + p1.cornCounter;},
-        battleEffect: function(obj, p1, p2){p1.cornCounter += 1;}
+        types: ["corn"],
+        globalEffect: function(obj, p1, p2){
+            var cornCount = p1.typeCounter['corn'] || 0;
+            obj.text = "Its stats grow with every corn you play. (+"+cornCount+"/+"+cornCount+")";
+            obj.attack = 2 + cornCount;
+            obj.defense = 2 + cornCount;
+        },
     },
     "shower": {
         title: "Power Shower",
@@ -139,7 +144,7 @@ cards = {
         buffa: 0,
         buffd: 0,
         expansion: "core",
-        battleEffect: function(obj, p1, p2){p1.cornCounter += 1;}
+        types: ["corn", "wall"],
     },
     "gatekeeper": {
         title: "Gatekeeper",
@@ -305,7 +310,12 @@ cards = {
         buffd: 0,
         expansion: "core",
         battleEffect: function(obj, p1, p2){
-            if(p1.lastCard != null){if(p1.lastCard.title.indexOf("Corn") != -1){p1.drawCard(p1, p2);}}
+            if(p1.lastCard != null){
+                var types = p1.lastCard.types || [];
+                if(types.indexOf("corn") != -1){
+                    p1.drawCard(p1, p2);
+                }
+            }
         }
     },
     "necro": {
@@ -482,7 +492,15 @@ cards = {
         buffa: 0,
         buffd: 0,
         expansion: "cogs",
-        battleEffect: function(obj, p1, p2){p1.cornCounter += 1; if(p1.cornCounter > 2){for(var i = 0; i < p2.hand.length; i++){p2.hand[i].buffa -= 2; p2.hand[i].buffd -= 2;}}}
+        types: ["corn"],
+        battleEffect: function(obj, p1, p2){
+            var cornCount = p1.typeCounter['corn'] || 0;
+            if(cornCount > 2){
+                for(var i = 0; i < p2.hand.length; i++){
+                    p2.hand[i].buffa -= 2; p2.hand[i].buffd -= 2;
+                }
+            }
+        }
     },
     "demoness": {
         title: "Chaos Goddess",
