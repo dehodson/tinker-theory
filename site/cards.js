@@ -52,9 +52,9 @@ cards = {
         buffa: 0,
         buffd: 0,
         expansion: "core",
-        types: ["corn"],
+        types: ["Corn"],
         globalEffect: function(obj, p1, p2){
-            var cornCount = p1.typeCounter['corn'] || 0;
+            var cornCount = p1.typeCounter['Corn'] || 0;
             obj.text = "Its stats grow with every corn you play. (+"+cornCount+"/+"+cornCount+")";
             obj.attack = 2 + cornCount;
             obj.defense = 2 + cornCount;
@@ -101,7 +101,7 @@ cards = {
         buffa: 0,
         buffd: 0,
         expansion: "core",
-        types: ["wall"],
+        types: ["Wall"],
     },
     "timmy": {
         title: "Little Timmy",
@@ -145,7 +145,7 @@ cards = {
         buffa: 0,
         buffd: 0,
         expansion: "core",
-        types: ["corn", "wall"],
+        types: ["Corn", "Wall"],
     },
     "gatekeeper": {
         title: "Gatekeeper",
@@ -210,7 +210,7 @@ cards = {
         buffa: 0,
         buffd: 0,
         expansion: "core",
-        types: ["mage"],
+        types: ["Mage"],
         failedAttackEffect: function(obj, p1, p2){if(p1.score > 0){p1.score -= 1;}}
     },
     "clone": {
@@ -235,7 +235,7 @@ cards = {
         buffa: 0,
         buffd: 0,
         expansion: "core",
-        types: ["mage"],
+        types: ["Mage"],
         requiresChoice: true,
         choiceEffect: function(obj, p1, p2){
             if(p1.lastCard != null){
@@ -281,7 +281,7 @@ cards = {
         buffa: 0,
         buffd: 0,
         expansion: "core",
-        types: ["wall"],
+        types: ["Wall"],
         successfulDefenseEffect: function(obj, p1, p2){
             p1.score += 1;
         },
@@ -295,7 +295,7 @@ cards = {
         buffa: 0,
         buffd: 0,
         expansion: "core",
-        types: ["mage", "diggy"],
+        types: ["Mage", "Diggy"],
         battleEffect: function(obj, p1, p2){
             if(p2.lastCard != null){
                 for(var card in p2.deck){
@@ -319,7 +319,7 @@ cards = {
         battleEffect: function(obj, p1, p2){
             if(p1.lastCard != null){
                 var types = p1.lastCard.types || [];
-                if(types.indexOf("corn") != -1){
+                if(types.indexOf("Corn") != -1){
                     p1.drawCard(p1, p2);
                 }
             }
@@ -365,7 +365,7 @@ cards = {
         buffa: 0,
         buffd: 0,
         expansion: "core",
-        types: ["mage"],
+        types: ["Mage"],
         battleEffect: function(obj, p1, p2){
             if(p1.deck.length > 0){
                 if(p1.nextCard != null){
@@ -386,7 +386,7 @@ cards = {
         buffa: 0,
         buffd: 0,
         expansion: "core",
-        types: ["mage"],
+        types: ["Mage"],
         battleEffect: function(obj, p1, p2){
             var number = 0;
             for(var i = 0; i < p1.hand.length; i++){
@@ -407,7 +407,7 @@ cards = {
         buffa: 0,
         buffd: 0,
         expansion: "core",
-        types: ["behemoth"],
+        types: ["Behemoth"],
         silenced: true,
         battleEffect: function(obj, p1, p2){obj.buffa += 7; obj.buffd += 7;}
     },
@@ -446,7 +446,7 @@ cards = {
         buffa: 0,
         buffd: 0,
         expansion: "core",
-        types: ["goddess"],
+        types: ["Goddess"],
         battleEffect: function(obj, p1, p2){
             var size = p1.hand.length;
             for(var i = 0; i < size; i++){p1.deck.push(p1.hand.pop());}
@@ -503,9 +503,9 @@ cards = {
         buffa: 0,
         buffd: 0,
         expansion: "cogs",
-        types: ["corn"],
+        types: ["Corn"],
         battleEffect: function(obj, p1, p2){
-            var cornCount = p1.typeCounter['corn'] || 0;
+            var cornCount = p1.typeCounter['Corn'] || 0;
             if(cornCount > 2){
                 for(var i = 0; i < p2.hand.length; i++){
                     p2.hand[i].buffa -= 2; p2.hand[i].buffd -= 2;
@@ -522,7 +522,7 @@ cards = {
         buffa: 0,
         buffd: 0,
         expansion: "cogs",
-        types: ["goddess"],
+        types: ["Goddess"],
         battleEffect: function(obj, p1, p2){
             var size = p2.hand.length;
             for(var i = 0; i < size; i++){p2.deck.push(p2.hand.pop());}
@@ -593,7 +593,7 @@ cards = {
         battleEffect: function(obj, p1, p2){
             for(var card in p1.deck){
                 var types = p1.deck[card].types || [];
-                if(types.indexOf("mage") !== -1){
+                if(types.indexOf("Mage") !== -1){
                     p1.deck[card].buffa += 2;
                 }
             }
@@ -651,7 +651,7 @@ cards = {
         battleEffect: function(obj, p1, p2){
             for(var card in p1.deck){
                 var types = p1.deck[card].types || [];
-                if(types.indexOf("goddess") !== -1){
+                if(types.indexOf("Goddess") !== -1){
                     p1.nextCard = card;
                     p1.deck[card].buffa += 3;
                     p1.drawCard(p1, p2);
@@ -687,7 +687,7 @@ cards = {
         buffa: 0,
         buffd: 0,
         expansion: "cogs",
-        types: ["behemoth"],
+        types: ["Behemoth"],
         battleEffect: function(obj, p1, p2){
             for(var i in p1.hand){
                 p1.hand[i].buffa -= 3; p1.hand[i].buffd -= 3;
@@ -714,7 +714,7 @@ cards = {
         buffa: 0,
         buffd: 0,
         expansion: "cogs",
-        types: ["wall"],
+        types: ["Wall"],
         globalEffect: function(obj, p1, p2){
             obj.cursed = false;
         },
@@ -759,7 +759,7 @@ cards = {
         buffa: 0,
         buffd: 0,
         expansion: "cogs",
-        types: ["diggy"],
+        types: ["Diggy"],
         battleEffect: function(obj, p1, p2){
             if(p2.lastCard != null){
                 for(var card in p2.deck){
@@ -814,7 +814,7 @@ cards = {
         buffa: 0,
         buffd: 0,
         expansion: "cogs",
-        types: ["wall"],
+        types: ["Wall"],
         battleEffect: function(obj, p1, p2){
             p1.charge += 2;
         },
@@ -847,7 +847,7 @@ cards = {
         battleEffect: function(obj, p1, p2){
             for(var card in p1.deck){
                 var types = p1.deck[card].types || [];
-                if(types.indexOf("wall") !== -1){
+                if(types.indexOf("Wall") !== -1){
                     p1.nextCard = card;
                     break;
                 }
@@ -1010,7 +1010,7 @@ cards = {
         battleEffect: function(obj, p1, p2){
             for(var card in p1.deck){
                 var types = p1.deck[card].types || [];
-                if(types.indexOf("wall") !== -1){
+                if(types.indexOf("Wall") !== -1){
                     p1.deck[card].buffd += 1;
                 }
             }
@@ -1025,11 +1025,11 @@ cards = {
         buffa: 0,
         buffd: 0,
         expansion: "cogs",
-        types: ["diggy"],
+        types: ["Diggy"],
         battleEffect: function(obj, p1, p2){
             for(var card in p1.hand){
                 var types = p1.deck[card].types || [];
-                if(types.indexOf("diggy") !== -1){
+                if(types.indexOf("Diggy") !== -1){
                     p1.hand[card].buffa += 3; p1.hand[card].buffd += 3;
                 }
                 p1.hand[card].buffa += 1; p1.hand[card].buffd += 1;
@@ -1133,7 +1133,7 @@ cards = {
             var found = false;
             for(var i = 0; i < p1.hand.length; i++){
                 var types = p1.hand[i].types || [];
-                if(types.indexOf("behemoth") !== -1){
+                if(types.indexOf("Behemoth") !== -1){
                     found = true;
                 }
             }
@@ -1175,7 +1175,7 @@ cards = {
         buffa: 0,
         buffd: 0,
         expansion: "blessed",
-        types: ["wall"],
+        types: ["Wall"],
         battleEffect: function(obj, p1, p2){
             for(var i = 0; i < p1.hand.length; i++){
                 p1.hand[i].blessed = true;
@@ -1256,7 +1256,7 @@ cards = {
         buffa: 0,
         buffd: 0,
         expansion: "blessed",
-        types: ["diggy"],
+        types: ["Diggy"],
         battleEffect: function(obj, p1, p2){
             if(p2.lastCard != null){
                 for(var card in p2.deck){
@@ -1277,7 +1277,7 @@ cards = {
         buffa: 0,
         buffd: 0,
         expansion: "blessed",
-        types: ["goddess"],
+        types: ["Goddess"],
         battleEffect: function(obj, p1, p2){
             var size = p1.hand.length;
             for(var i = 0; i < size; i++){
