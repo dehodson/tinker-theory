@@ -12,6 +12,19 @@ function shuffle(array) {
     }
 }
 
+function getTypesFromDeck(deck){
+    var cardTypes = [];
+    for(var i = 0; i < deck.length; i++){
+        var types = deck[i].types || [];
+        for(var j = 0; j < types.length; j++){
+            if(cardTypes.indexOf(types[j]) === -1){
+                cardTypes.push(types[j]);
+            }
+        }
+    }
+    return cardTypes.sort();
+}
+
 cards = {
     "dingle": {
         title: "Dingle, the Sticky",
@@ -1379,6 +1392,41 @@ cards = {
                         p1.nextCard = i;
                         p1.drawCard(p1, p2);
                         break;
+                    }
+                }
+            }
+        },
+    },
+    "inspiring-leader": {
+        title: "Inspiring Leader",
+        image: "160x100.png",
+        text: "<span class=\"silenceable\">When you play them, pick a card type. All cards of that type in your deck get +1/+1.</span>",
+        attack: 5,
+        defense: 5,
+        buffa: 0,
+        buffd: 0,
+        expansion: "blessed",
+        requiresChoice: true,
+        choiceEffect: function(obj, p1, p2){
+            var allTypes = getTypesFromDeck(p1.deck);
+            if(allTypes.length === 0){
+                return 0;
+            }
+
+            p1.connection.emit("choose", {
+                what: obj.title,
+                choices: allTypes,
+            });
+        },
+        onChoice: function(obj, p1, p2, choice){
+            var chosenType = getTypesFromDeck(p1.deck)[choice];
+            obj.text = "<span class=\"silenceable\">When you play them, pick a card type. All cards of that type in your deck get +1/+1.<br>Chosen type: <b>"+chosenType+"</b></span>",
+            obj.battleEffect = function(obj, p1, p2){
+                for(var i = 0; i < p1.deck.length; i++){
+                    var types = p1.deck[i].types || [];
+                    if(types.indexOf(chosenType) !== -1){
+                        p1.deck[i].buffa += 1;
+                        p1.deck[i].buffd += 1;
                     }
                 }
             }
