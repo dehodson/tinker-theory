@@ -1372,9 +1372,15 @@ cards = {
             });
         },
         onChoice: function(obj, p1, p2, choice){
+            var reference = p1.deck[choice];
             obj.battleEffect = function(obj, p1, p2){
-                p1.nextCard = choice;
-                p1.drawCard(p1, p2);
+                for(var i = 0; i < p1.deck.length; i++){
+                    if(p1.deck[i] === reference){
+                        p1.nextCard = i;
+                        p1.drawCard(p1, p2);
+                        break;
+                    }
+                }
             }
         },
     },
