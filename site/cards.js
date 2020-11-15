@@ -1401,7 +1401,7 @@ cards = {
     },
     "inspiring-leader": {
         title: "Inspiring Leader",
-        image: "160x100.png",
+        image: "inspiring-leader.png",
         text: "<span class=\"silenceable\">When you play them, pick a card type. All cards of that type in your deck get +1/+1.</span>",
         attack: 5,
         defense: 5,
@@ -1436,7 +1436,7 @@ cards = {
     },
     "dingles-disciple": {
         title: "Dingle's Disciple",
-        image: "160x100.png",
+        image: "dingles-disciple.png",
         text: "Its stats grow with every dingle you play.<br><br><i>The \"holy shit\" they're talking about.</i>",
         attack: 4,
         defense: 2,
