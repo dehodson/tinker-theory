@@ -35,6 +35,7 @@ cards = {
         buffa: 0,
         buffd: 0,
         expansion: "core",
+        types: ["Dingle"],
     },
     "mantis": {
         title: "Mantis Man",
@@ -1073,6 +1074,7 @@ cards = {
         buffa: 0,
         buffd: 0,
         expansion: "cogs",
+        types: ["Dingle"],
         battleEffect: function(obj, p1, p2){p1.charge += 2;}
     },
     "spirit": {
@@ -1430,6 +1432,23 @@ cards = {
                     }
                 }
             }
+        },
+    },
+    "dingles-disciple": {
+        title: "Dingle's Disciple",
+        image: "160x100.png",
+        text: "Its stats grow with every dingle you play.<br><br><i>The \"holy shit\" they're talking about.</i>",
+        attack: 4,
+        defense: 2,
+        buffa: 0,
+        buffd: 0,
+        expansion: "blessed",
+        types: ["Dingle"],
+        globalEffect: function(obj, p1, p2){
+            var dingleCount = p1.typeCounter['Dingle'] || 0;
+            obj.text = "Its stats grow with every dingle you play. (+"+dingleCount+"/+"+dingleCount+")<br><br><i>The \"holy shit\" they're talking about.</i>";
+            obj.attack = 4 + dingleCount;
+            obj.defense = 2 + dingleCount;
         },
     },
 };
