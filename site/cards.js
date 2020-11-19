@@ -94,6 +94,7 @@ cards = {
         buffa: 0,
         buffd: 0,
         expansion: "core",
+        types: ["Human"],
         battleEffect: function(obj, p1, p2){p1.drawCard(p1, p2);}
     },
     "fist": {
@@ -126,6 +127,7 @@ cards = {
         buffa: 0,
         buffd: 0,
         expansion: "core",
+        types: ["Human"],
         successfulAttackEffect: function(obj, p1, p2){p1.score += 1;}
     },
     "timer": {
@@ -137,6 +139,7 @@ cards = {
         buffa: 0,
         buffd: 0,
         expansion: "core",
+        types: ["Human"],
         globalEffect: function(obj, p1, p2){obj.defense = p2.score * 2;}
     },
     "smuggy": {
@@ -148,6 +151,7 @@ cards = {
         buffa: 0,
         buffd: 0,
         expansion: "core",
+        types: ["Human"],
         successfulDefenseEffect: function(obj, p1, p2){p1.drawCard(p1, p2);}
     },
     "cornwall": {
@@ -170,6 +174,7 @@ cards = {
         buffa: 0,
         buffd: 0,
         expansion: "core",
+        types: ["Human"],
         battleEffect: function(obj, p1, p2){
             var best = 0;
             var index = 0;
@@ -188,6 +193,7 @@ cards = {
         buffa: 0,
         buffd: 0,
         expansion: "core",
+        types: ["Human"],
         battleEffect: function(obj, p1, p2){for(var i = 0; i < p2.hand.length; i++){p2.hand[i].buffa -= 1; p2.hand[i].buffd -= 3;}}
     },
     "normalizer": {
@@ -199,6 +205,7 @@ cards = {
         buffa: 0,
         buffd: 0,
         expansion: "core",
+        types: ["Mage"],
         battleEffect: function(obj, p1, p2){
             for(var i = 0; i < p2.hand.length; i++){p2.hand[i].buffa = 0; p2.hand[i].buffd = 0;}
             for(var i = 0; i < p1.hand.length; i++){p1.hand[i].buffa = 0; p1.hand[i].buffd = 0;}
@@ -224,7 +231,7 @@ cards = {
         buffa: 0,
         buffd: 0,
         expansion: "core",
-        types: ["Mage"],
+        types: ["Human", "Mage"],
         failedAttackEffect: function(obj, p1, p2){if(p1.score > 0){p1.score -= 1;}}
     },
     "clone": {
@@ -249,7 +256,7 @@ cards = {
         buffa: 0,
         buffd: 0,
         expansion: "core",
-        types: ["Mage"],
+        types: ["Human", "Mage"],
         requiresChoice: true,
         choiceEffect: function(obj, p1, p2){
             if(p1.lastCard != null){
@@ -477,6 +484,7 @@ cards = {
         buffa: 0,
         buffd: 0,
         expansion: "cogs",
+        types: ["Human"],
         battleEffect: function(obj, p1, p2){
             var max = p2.deck.length < 2 ? p2.deck.length : 2;
             for(var i = 0; i < max; i++){p2.deck[(p2.deck.length - 1) - i].cursed = true;}
@@ -491,6 +499,7 @@ cards = {
         buffa: 0,
         buffd: 0,
         expansion: "cogs",
+        types: ["Human"],
         battleEffect: function(obj, p1, p2){
             var found = false;
             for(var i = 0; i < p2.deck.length; i++){if(p2.deck[i].cursed){found = true;}}
@@ -633,6 +642,7 @@ cards = {
         buffa: 0,
         buffd: 0,
         expansion: "cogs",
+        types: ["Human"],
         battleEffect: function(obj, p1, p2){
             if(p1.charge >= 1 && p1.deck.length > 0){
                 p1.drawCard(p1, p2);
@@ -742,6 +752,7 @@ cards = {
         buffa: 0,
         buffd: 0,
         expansion: "cogs",
+        types: ["Human"],
         successfulDefenseEffect: function(obj, p1, p2){
             var num = 0;
             for(var i in p1.hand){
@@ -762,6 +773,7 @@ cards = {
         buffa: 0,
         buffd: 0,
         expansion: "cogs",
+        types: ["Human"],
         battleEffect: function(obj, p1, p2){if(p1.charge >= 4){p1.charge -= 4; obj.buffa += 4; obj.buffd += 4;}}
     },
     "apprentice": {
@@ -877,6 +889,7 @@ cards = {
         buffa: 0,
         buffd: 0,
         expansion: "cogs",
+        types: ["Human"],
         battleEffect: function(obj, p1, p2){
             if(p2.charge < 2){
                 p1.charge += p2.charge;
@@ -896,6 +909,7 @@ cards = {
         buffa: 0,
         buffd: 0,
         expansion: "cogs",
+        types: ["Elf", "Mage"],
         battleEffect: function(obj, p1, p2){
             if(p2.hand.length == 0){
                 return;
@@ -927,6 +941,7 @@ cards = {
         buffa: 0,
         buffd: 0,
         expansion: "cogs",
+        types: ["Human"],
         battleEffect: function(obj, p1, p2){
             p1.connection.emit("enemy hand", {hand: p2.hand, what: "Their hand:"});
         }
@@ -940,6 +955,7 @@ cards = {
         buffa: 0,
         buffd: 0,
         expansion: "cogs",
+        types: ["Human"],
         drawEffect: function(obj, p1, p2){
             if(p1){
                 for(var i in p1.hand){
@@ -957,6 +973,7 @@ cards = {
         buffa: 0,
         buffd: 0,
         expansion: "cogs",
+        types: ["Human"],
         startTurnInHandEffect: function(obj, p1, p2){
             var count = 0;
             for(var i in p1.hand){
@@ -1021,6 +1038,7 @@ cards = {
         buffa: 0,
         buffd: 0,
         expansion: "cogs",
+        types: ["Human"],
         battleEffect: function(obj, p1, p2){
             for(var card in p1.deck){
                 var types = p1.deck[card].types || [];
@@ -1144,6 +1162,7 @@ cards = {
         buffa: 0,
         buffd: 0,
         expansion: "cogs",
+        types: ["Human"],
         battleEffect: function(obj, p1, p2){
             var found = false;
             for(var i = 0; i < p1.hand.length; i++){
@@ -1167,6 +1186,7 @@ cards = {
         buffa: 0,
         buffd: 0,
         expansion: "cogs",
+        types: ["Human"],
         battleEffect: function(obj, p1, p2){
             if(p1.deck.length > 1){
                 var top = [];
@@ -1221,6 +1241,7 @@ cards = {
         buffa: 0,
         buffd: 0,
         expansion: "blessed",
+        types: ["Human"],
         battleEffect: function(obj, p1, p2){
             var seen = {};
             for(var card in p1.originalDeck){
@@ -1320,6 +1341,7 @@ cards = {
         buffa: 0,
         buffd: 0,
         expansion: "blessed",
+        types: ["Human"],
         battleEffect: function(obj, p1, p2){
             for(var card in p1.originalDeck){
                 if(p1.originalDeck[card].attack % 2 == 1 ||
@@ -1342,6 +1364,7 @@ cards = {
         buffa: 0,
         buffd: 0,
         expansion: "blessed",
+        types: ["Human"],
         requiresChoice: true,
         choiceEffect: function(obj, p1, p2){
             p1.connection.emit("choose", {
@@ -1374,6 +1397,7 @@ cards = {
         buffa: 0,
         buffd: 0,
         expansion: "blessed",
+        types: ["Human"],
         requiresChoice: true,
         choiceEffect: function(obj, p1, p2){
             if(p1.deck.length === 0){
@@ -1408,6 +1432,7 @@ cards = {
         buffa: 0,
         buffd: 0,
         expansion: "blessed",
+        types: ["Human"],
         requiresChoice: true,
         choiceEffect: function(obj, p1, p2){
             var allTypes = getTypesFromDeck(p1.deck);
