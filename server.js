@@ -106,7 +106,7 @@ Player.prototype.drawCard = function(p1, p2){
 
 Player.prototype.playCard = function(id, p1, p2){
     this.lastCard = clone(this.card);
-    this.card = this.hand.splice(id, 1)[0];
+    this.card = this.hand[id];
     this.hasPlayed = true;
     var types = this.card.types || [];
     for(var i = 0; i < types.length; i++){
@@ -242,6 +242,9 @@ Game.prototype.takeTurn = function(){
 
     this.players[0].connection.emit("clear status");
     this.players[1].connection.emit("clear status");
+
+    this.players[0].hand.splice(this.players[0].hand.indexOf(this.players[0].card), 1);
+    this.players[1].hand.splice(this.players[1].hand.indexOf(this.players[1].card), 1);
 
     var attacker = this.players[this.whoseTurn];
     var defender = this.players[(this.whoseTurn + 1) % 2];
