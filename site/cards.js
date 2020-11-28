@@ -1504,7 +1504,7 @@ cards = {
     "blessing-borrower": {
         title: "Blessing Borrower",
         image: "160x100.png",
-        text: "If he's in your hand, he becomes blessed when you play a card that's blessed.",
+        text: "If she's in your hand, she becomes blessed when you play a card that's blessed.",
         attack: 6,
         defense: 0,
         buffa: 0,
@@ -1517,6 +1517,26 @@ cards = {
                         obj.blessed = true;
                         break;
                     }
+                }
+            }
+        },
+    },
+    "amish-cheerleader": {
+        title: "Amish Cheerleader",
+        image: "160x100.png",
+        text: "If he's in your hand, cards you play get +1/+1.",
+        attack: 3,
+        defense: 3,
+        buffa: 0,
+        buffd: 0,
+        expansion: "blessed",
+        types: ["Human"],
+        onCardPlayedEffect: function(obj, p1, p2){
+            for(var i = 0; i < p1.hand.length; i++){
+                if(p1.hand[i] === obj){
+                    p1.card.buffa += 1;
+                    p1.card.buffd += 1;
+                    break;
                 }
             }
         },
