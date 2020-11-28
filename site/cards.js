@@ -1541,4 +1541,74 @@ cards = {
             }
         },
     },
+    "fallen-behemoth": {
+        title: "Fallen Behemoth",
+        image: "160x100.png",
+        text: "<span class=\"silenceable\">When you play it, curse the top five cards of your deck.</span>",
+        attack: 8,
+        defense: 8,
+        buffa: 0,
+        buffd: 0,
+        expansion: "blessed",
+        types: ["Behemoth"],
+        battleEffect: function(obj, p1, p2){
+            var max = p1.deck.length < 5 ? p2.deck.length : 5;
+            for(var i = 0; i < max; i++){
+                p1.deck[(p1.deck.length - 1) - i].cursed = true;
+            }
+        }
+    },
+    "predict-a-bill": {
+        title: "Predict-a-Bill",
+        image: "160x100.png",
+        text: "<span class=\"silenceable\">When you play him, guess what card your opponent will play next. If you're right, he gets +4/+4.</span>",
+        attack: 4,
+        defense: 4,
+        buffa: 0,
+        buffd: 0,
+        expansion: "blessed",
+        types: ["Human"],
+        requiresChoice: true,
+        choiceEffect: function(obj, p1, p2){
+            if(p2.hand.length === 0){
+                return 0;
+            }
+
+            p1.connection.emit("choose", {
+                what: obj.title,
+                choices: p2.hand,
+                type: 'card',
+            });
+        },
+        onChoice: function(obj, p1, p2, choice){
+            var reference = p2.hand[choice].title;
+            obj.battleEffect = function(obj, p1, p2){
+                if(p2.card.title === reference){
+                    obj.buffa += 4;
+                    obj.buffd += 4;
+                }
+            }
+        },
+    },
+    "battering-ram": {
+        title: "Battering Ram",
+        image: "160x100.png",
+        text: "When you play a wall, you'll draw a copy of it next.<br><br><i>Bringing the bleatdown.</i>",
+        attack: 6,
+        defense: 0,
+        buffa: 0,
+        buffd: 0,
+        expansion: "blessed",
+        onCardPlayedEffect: function(obj, p1, p2){
+            var types = p1.card.types || [];
+            if(types.indexOf("Wall") !== -1){
+                for(var card in p1.deck){
+                    if(p1.deck[card] === obj){
+                        p1.nextCard = card;
+                        break;
+                    }
+                }
+            }
+        }
+    },
 };
