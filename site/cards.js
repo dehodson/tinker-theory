@@ -631,7 +631,14 @@ cards = {
         buffa: 0,
         buffd: 0,
         expansion: "cogs",
-        battleEffect: function(obj, p1, p2){if(p1.charge >= 3){p1.charge -= 3; for(var i = 0; i < p2.hand.length; i++){p2.hand[i].cursed = true;}}}
+        battleEffect: function(obj, p1, p2){
+            if(p1.charge >= 3){
+                p1.charge -= 3;
+                for(var i = 0; i < p2.hand.length; i++){
+                    p2.hand[i].cursed = true;
+                }
+            }
+        }
     },
     "ai": {
         title: "AI Researcher",
@@ -1474,6 +1481,44 @@ cards = {
             obj.text = "Its stats grow with every dingle you play. (+"+dingleCount+"/+"+dingleCount+")<br><br><i>The \"holy shit\" they're talking about.</i>";
             obj.attack = 4 + dingleCount;
             obj.defense = 2 + dingleCount;
+        },
+    },
+    "damned-collective": {
+        title: "Damned Collective",
+        image: "160x100.png",
+        text: "<span class=\"silenceable\">If you've played at least 5 Human cards when you play it, curse your opponent's hand.</span>",
+        attack: 0,
+        defense: 4,
+        buffa: 0,
+        buffd: 0,
+        expansion: "blessed",
+        battleEffect: function(obj, p1, p2){
+            var humanCount = p1.typeCounter['Human'] || 0;
+            if(humanCount >= 5){
+                for(var i = 0; i < p2.hand.length; i++){
+                    p2.hand[i].cursed = true;
+                }
+            }
+        }
+    },
+    "blessing-borrower": {
+        title: "Blessing Borrower",
+        image: "160x100.png",
+        text: "If he's in your hand, he becomes blessed when you play a card that's blessed.",
+        attack: 6,
+        defense: 0,
+        buffa: 0,
+        buffd: 0,
+        expansion: "blessed",
+        onCardPlayedEffect: function(obj, p1, p2){
+            if(p1.card.blessed === true){
+                for(var i = 0; i < p1.hand.length; i++){
+                    if(p1.hand[i] === obj){
+                        obj.blessed = true;
+                        break;
+                    }
+                }
+            }
         },
     },
 };

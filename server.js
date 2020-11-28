@@ -116,6 +116,16 @@ Player.prototype.playCard = function(id, p1, p2){
         this.typeCounter[types[i]]++;
       }
     }
+    for(var i = 0; i < this.hand.length; i++){
+        if(this.hand[i].hasOwnProperty("onCardPlayedEffect")){
+            this.hand[i].onCardPlayedEffect(this.hand[i], p1, p2);
+        }
+    }
+    for(var i = 0; i < this.deck.length; i++){
+        if(this.deck[i].hasOwnProperty("onCardPlayedEffect")){
+            this.deck[i].onCardPlayedEffect(this.deck[i], p1, p2);
+        }
+    }
     if(!this.card.silenced && this.card.requiresChoice){
         var needsWait = this.card.choiceEffect(this.card, p1, p2);
         if (needsWait !== 0) {
