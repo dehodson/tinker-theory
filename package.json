@@ -20,6 +20,6 @@
   "dependencies": {
     "express": "^4.14.0",
     "node-uuid": "^1.4.7",
-    "socket.io": "^0.9.17"
+    "socket.io": "^2.4.0"
   }
 }
