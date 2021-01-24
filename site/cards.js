@@ -1140,8 +1140,8 @@ cards = {
                 for(var card in p1.hand){
                     if(p1.hand[card].buffa < 0){p1.hand[card].buffa = 0}
                     if(p1.hand[card].buffd < 0){p1.hand[card].buffd = 0}
-                    p1.charge -= 5;
                 }
+                p1.charge -= 5;
             }
         }
     },
