@@ -1365,7 +1365,7 @@ cards = {
     "smug-saint": {
         title: "Smug Saint",
         image: "smug-saint.png",
-        text: "<span class=\"silenceable\">Choose one: Give Smug Saint +3/+3 or draw a card.</span>",
+        text: "<span class=\"silenceable\">Choose one: Give Smug Saint +3/+3, or draw a card.</span>",
         attack: 2,
         defense: 2,
         buffa: 0,
@@ -1610,5 +1610,44 @@ cards = {
                 }
             }
         }
+    },
+    "electric-wafer": {
+        title: "Electric Wafer",
+        image: "160x100.png",
+        text: "<span class=\"silenceable\">Choose one: Gain 3 charge, or spend 3 charge and bless all cards in your hand.</span>",
+        attack: 6,
+        defense: 0,
+        buffa: 0,
+        buffd: 0,
+        expansion: "blessed",
+        types: [],
+        requiresChoice: true,
+        choiceEffect: function(obj, p1, p2){
+            p1.connection.emit("choose", {
+                what: obj.title,
+                choices: [
+                    "Gain 3 charge.",
+                    "Spend 3 charge and bless all cards in your hand.",
+                ],
+            });
+        },
+        onChoice: function(obj, p1, p2, choice){
+            if(choice === 0){
+                obj.text = "<span class=\"silenceable\">Chosen: Gain 3 charge.</span>";
+                obj.battleEffect = function(obj, p1, p2){
+                    p1.charge += 3;
+                };
+            }else{
+                obj.text = "<span class=\"silenceable\">Chosen: Spend 3 charge and bless all cards in your hand.</span>"
+                obj.battleEffect = function(obj, p1, p2){
+                    if(p1.charge >= 3){
+                        for(var i = 0; i < p1.hand.length; i++){
+                            p1.hand[i].blessed = true;
+                        }
+                        p1.charge -= 3;
+                    }
+                };
+            }
+        },
     },
 };
