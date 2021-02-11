@@ -4,883 +4,895 @@
 }
 
 body, html{
-	height:100%;
-	margin:0;
-	color: #FFF;
-	background-color: #333;
-	font-family: "Helvetica", "Arial", sans-serif;
-	overflow:hidden;
+  height:100%;
+  margin:0;
+  color: #FFF;
+  background-color: #333;
+  font-family: "Helvetica", "Arial", sans-serif;
+  overflow:hidden;
 }
 a:link{
-	color:#FFF;
+  color:#FFF;
 }
 a:visited{
-	color:#FFF;
+  color:#FFF;
 }
 a:active{
-	color:#FFF;
+  color:#FFF;
 }
 a:hover{
-	color:#DDD;
+  color:#DDD;
 }
 #main{
-	height:80vmin;
-	width: 80vmin;
-	position: absolute;
-	top:0px;
-	left:0px;
-	right:0px;
-	bottom:0px;
-	margin:auto;
+  height:80vmin;
+  width: 80vmin;
+  position: absolute;
+  top:0px;
+  left:0px;
+  right:0px;
+  bottom:0px;
+  margin:auto;
 }
 #chat{
-	position: absolute;
-	height: 80vmin;
-	background-color: #FFF;
-	width: 20vmin;
-	right:-21vmin;
-	top:0vmin;
-	border-radius: 3vmin;
-	color: black;
-	visibility: hidden;
+  position: absolute;
+  height: 80vmin;
+  background-color: #FFF;
+  width: 20vmin;
+  right:-21vmin;
+  top:0vmin;
+  border-radius: 3vmin;
+  color: black;
+  visibility: hidden;
 }
 #chat-header{
-	position: absolute;
-	top:0vmin;
-	left:0vmin;
-	height:5vmin;
-	width: 20vmin;
-	background-color: #AAA;
-	line-height: 5vmin;
-	font-size: 3vmin;
-	text-align: center;
-	border-top-right-radius: 3vmin;
-	border-top-left-radius: 3vmin;
+  position: absolute;
+  top:0vmin;
+  left:0vmin;
+  height:5vmin;
+  width: 20vmin;
+  background-color: #AAA;
+  line-height: 5vmin;
+  font-size: 3vmin;
+  text-align: center;
+  border-top-right-radius: 3vmin;
+  border-top-left-radius: 3vmin;
 }
 #chat-main{
-	position: absolute;
-	top:5vmin;
-	left:0vmin;
-	height:65vmin;
-	width: 20vmin;
-	overflow-y:scroll;
+  position: absolute;
+  top:5vmin;
+  left:0vmin;
+  height:65vmin;
+  width: 20vmin;
+  overflow-y:scroll;
 }
 .chat-bubble{
-	width:17.5vmin;
-	padding:.5vmin;
-	padding-right:1vmin;
-	word-wrap: break-word;
+  width:17.5vmin;
+  padding:.5vmin;
+  padding-right:1vmin;
+  word-wrap: break-word;
 }
 .chat-bubble.them{
-	background-color: #FCC;
+  background-color: #FCC;
 }
 #chat-footer{
-	position: absolute;
-	top:70vmin;
-	left:0vmin;
-	height:10vmin;
-	width: 20vmin;
-	background-color: #AAA;
-	text-align: center;
-	border-bottom-right-radius: 3vmin;
-	border-bottom-left-radius: 3vmin;
+  position: absolute;
+  top:70vmin;
+  left:0vmin;
+  height:10vmin;
+  width: 20vmin;
+  background-color: #AAA;
+  text-align: center;
+  border-bottom-right-radius: 3vmin;
+  border-bottom-left-radius: 3vmin;
 }
 #chat-input{
-	width:18vmin;
-	margin:.5vmin;
-	height:6vmin;
+  width:18vmin;
+  margin:.5vmin;
+  height:6vmin;
 }
 #battle-log{
-	position: absolute;
-	height: 80vmin;
-	background-color: #FFF;
-	width: 20vmin;
-	left: -21vmin;
-	top:0vmin;
-	border-radius: 3vmin;
-	color: black;
-	visibility: hidden;
+  position: absolute;
+  height: 80vmin;
+  background-color: #FFF;
+  width: 20vmin;
+  left: -21vmin;
+  top:0vmin;
+  border-radius: 3vmin;
+  color: black;
+  visibility: hidden;
 }
 #battle-log-header{
-	position: absolute;
-	top:0vmin;
-	left:0vmin;
-	height:5vmin;
-	width: 20vmin;
-	background-color: #AAA;
-	line-height: 5vmin;
-	font-size: 3vmin;
-	text-align: center;
-	border-top-right-radius: 3vmin;
-	border-top-left-radius: 3vmin;
+  position: absolute;
+  top:0vmin;
+  left:0vmin;
+  height:5vmin;
+  width: 20vmin;
+  background-color: #AAA;
+  line-height: 5vmin;
+  font-size: 3vmin;
+  text-align: center;
+  border-top-right-radius: 3vmin;
+  border-top-left-radius: 3vmin;
 }
 #battle-log-main{
-	position: absolute;
-	top:5vmin;
-	left:0vmin;
-	height:70vmin;
-	width: 20vmin;
-	overflow-y:scroll;
+  position: absolute;
+  top:5vmin;
+  left:0vmin;
+  height:70vmin;
+  width: 20vmin;
+  overflow-y:scroll;
 }
 #battle-log-footer{
-	position: absolute;
-	top:75vmin;
-	left:0vmin;
-	height:5vmin;
-	width: 20vmin;
-	background-color: #AAA;
-	border-bottom-right-radius: 3vmin;
-	border-bottom-left-radius: 3vmin;
+  position: absolute;
+  top:75vmin;
+  left:0vmin;
+  height:5vmin;
+  width: 20vmin;
+  background-color: #AAA;
+  border-bottom-right-radius: 3vmin;
+  border-bottom-left-radius: 3vmin;
 }
 #card-preview{
-	position: absolute;
-	top:0px;
-	left:0px;
-	height: 28vmin;
-	width:  18vmin;
-	z-index:100;
+  position: absolute;
+  top:0px;
+  left:0px;
+  height: 28vmin;
+  width:  18vmin;
+  z-index:100;
 }
 #game-container{
-	position: absolute;
-	height:80vmin;
-	width: 80vmin;
-	background-color: #DDD;
-	position: absolute;
-	top:0px;
-	left:0px;
-	right:0px;
-	bottom:0px;
-	margin:auto;
-	border-radius: 3vmin;
-	overflow: hidden;
+  position: absolute;
+  height:80vmin;
+  width: 80vmin;
+  background-color: #DDD;
+  position: absolute;
+  top:0px;
+  left:0px;
+  right:0px;
+  bottom:0px;
+  margin:auto;
+  border-radius: 3vmin;
+  overflow: hidden;
 }
 .cardname{
-	font-weight: bold;
+  font-weight: bold;
 }
 #no-click{
-	height:100%;
-	width:100%;
-	z-index: 10;
-	background-color: rgba(0,0,0,0.7);
-	position: absolute;
-	top:0px;
-	left:0px;
-	visibility: hidden;
+  height:100%;
+  width:100%;
+  z-index: 10;
+  background-color: rgba(0,0,0,0.7);
+  position: absolute;
+  top:0px;
+  left:0px;
+  visibility: hidden;
 }
 #alert-box, #choice-box, #error-box, #deck-picker{
-	position: absolute;
-	top:50%;
-	left:50%;
-	transform: translate(-50%, -50%);
-	background-color: #333;
-	z-index: 11;
-	font-size:4vmin;
-	text-align: center;
-	border: 0.5vmin solid white;
-	border-radius: 1vmin;
-	padding:1vmin;
-	width:60vmin;
-	visibility: hidden;
+  position: absolute;
+  top:50%;
+  left:50%;
+  transform: translate(-50%, -50%);
+  background-color: #333;
+  z-index: 11;
+  font-size:4vmin;
+  text-align: center;
+  border: 0.5vmin solid white;
+  border-radius: 1vmin;
+  padding:1vmin;
+  width:60vmin;
+  visibility: hidden;
 }
 .choices{
-	font-size:2vmin;
-	cursor:pointer;
+  font-size:2vmin;
+  cursor:pointer;
 }
 #error-box a:visited{
-	color:white;
+  color:white;
 }
 #error-box a{
-	color:white;
+  color:white;
 }
 #splash{
-	position: absolute;
-	height:80vmin;
-	width: 80vmin;
-	background-color: #FFF;
-	background: radial-gradient(#2c70de 60%, #fafafa 100%);
-	position: absolute;
-	top:0px;
-	left:0px;
-	right:0px;
-	bottom:0px;
-	margin:auto;
-	border-radius: 3vmin;
-	overflow: hidden;
-	z-index: 5;
+  position: absolute;
+  height:80vmin;
+  width: 80vmin;
+  background-color: #FFF;
+  background: radial-gradient(#2c70de 60%, #fafafa 100%);
+  position: absolute;
+  top:0px;
+  left:0px;
+  right:0px;
+  bottom:0px;
+  margin:auto;
+  border-radius: 3vmin;
+  overflow: hidden;
+  z-index: 5;
 }
 #splash-logo{
-	background-image: url("gears.svg");
-	position: absolute;
-	height:20vmin;
-	width: 20vmin;
-	left: 9vmin;
-	top:  7.5vmin;
-	background-size: 100%;
-	background-position: center;
-	background-repeat: no-repeat;
+  background-image: url("gears.svg");
+  position: absolute;
+  height:20vmin;
+  width: 20vmin;
+  left: 9vmin;
+  top:  7.5vmin;
+  background-size: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 #splash-title{
-	font-size: 10vmin;
-	line-height: 9vmin;
-	position: absolute;
-	left: 30vmin;
-	top:  9vmin;
-	color:white;
-	font-family: 'Alfa Slab One', serif;
+  font-size: 10vmin;
+  line-height: 9vmin;
+  position: absolute;
+  left: 30vmin;
+  top:  9vmin;
+  color:white;
+  font-family: 'Alfa Slab One', serif;
 }
 #splash-subtitle{
-	font-size: 5vmin;
-	position: absolute;
-	left: 0vmin;
-	top:  27.5vmin;
-	width:80vmin;
-	text-align:center;
-	color:#e6e4b5;
-	font-family: 'Alfa Slab One', serif;
+  font-size: 5vmin;
+  position: absolute;
+  left: 0vmin;
+  top:  27.5vmin;
+  width:80vmin;
+  text-align:center;
+  color:#e6e4b5;
+  font-family: 'Alfa Slab One', serif;
 }
 .splash-button{
-	box-shadow: -1vmin 1vmin 3vmin rgba(0,0,0,0.5);
-	position: absolute;
-	color:black;
-	width:34vmin;
-	height:9vmin;
-	font-size:3vmin;
-	text-align: center;
-	line-height: 9vmin;
-	border-radius: 3vmin;
-	border: .5vmin solid black;
-	transition: background-color .25s;
+  box-shadow: -1vmin 1vmin 3vmin rgba(0,0,0,0.5);
+  position: absolute;
+  color:black;
+  width:34vmin;
+  height:9vmin;
+  font-size:3vmin;
+  text-align: center;
+  line-height: 9vmin;
+  border-radius: 3vmin;
+  border: .5vmin solid black;
+  transition: background-color .25s;
 }
 #splash-quick-match{
-	background-color: #FAA;
-	left: 3vmin;
-	top: 50vmin;
+  background-color: #FAA;
+  left: 3vmin;
+  top: 50vmin;
 }
 #splash-friend-game{
-	background-color: #FFA;
-	left: 42vmin;
-	top: 50vmin;
+  background-color: #FFA;
+  left: 42vmin;
+  top: 50vmin;
 }
 #splash-deckbuilder{
-	background-color: #AFA;
-	left: 3vmin;
-	top: 65vmin;
+  background-color: #AFA;
+  left: 3vmin;
+  top: 65vmin;
 }
 #splash-rules{
-	background-color: #AAF;
-	left: 42vmin;
-	top: 65vmin;
+  background-color: #AAF;
+  left: 42vmin;
+  top: 65vmin;
 }
 #splash-quick-match:hover{
-	background-color: #FFF;
+  background-color: #FFF;
 }
 #splash-friend-game:hover{
-	background-color: #FFF;
+  background-color: #FFF;
 }
 #splash-deckbuilder:hover{
-	background-color: #FFF;
+  background-color: #FFF;
 }
 #splash-rules:hover{
-	background-color: #FFF;
+  background-color: #FFF;
 }
 #splash-name{
-	position: absolute;
-	height:3vmin;
-	width:40vmin;
-	left:20vmin;
-	top:36vmin;
-	font-size:2.5vmin;
-	line-height: 3vmin;
-	text-align: center;
-	color:black;
+  position: absolute;
+  height:3vmin;
+  width:40vmin;
+  left:20vmin;
+  top:36vmin;
+  font-size:2.5vmin;
+  line-height: 3vmin;
+  text-align: center;
+  color:black;
 }
 #splash-name-box{
-	height: 2.5vmin;
-	font-size:2vmin;
-	text-align:center;
+  height: 2.5vmin;
+  font-size:2vmin;
+  text-align:center;
 }
 #deck-builder{
-	position: absolute;
-	height:80vmin;
-	width: 80vmin;
-	background-color: #AAA;
-	position: absolute;
-	color: black;
-	top:0px;
-	left:0px;
-	right:0px;
-	bottom:0px;
-	margin:auto;
-	border-radius: 3vmin;
-	overflow: hidden;
-	visibility: hidden;
+  position: absolute;
+  height:80vmin;
+  width: 80vmin;
+  background-color: #AAA;
+  position: absolute;
+  color: black;
+  top:0px;
+  left:0px;
+  right:0px;
+  bottom:0px;
+  margin:auto;
+  border-radius: 3vmin;
+  overflow: hidden;
+  visibility: hidden;
 }
 #rules{
-	position: absolute;
-	height:80vmin;
-	width: 80vmin;
-	background-color: #FFF;
-	position: absolute;
-	top:0px;
-	left:0px;
-	right:0px;
-	bottom:0px;
-	margin:auto;
-	border-radius: 3vmin;
-	z-index: 5;
-	visibility: hidden;
-	color: black;
-	font-size: 2.5vmin;
+  position: absolute;
+  height:80vmin;
+  width: 80vmin;
+  background-color: #FFF;
+  position: absolute;
+  top:0px;
+  left:0px;
+  right:0px;
+  bottom:0px;
+  margin:auto;
+  border-radius: 3vmin;
+  z-index: 5;
+  visibility: hidden;
+  color: black;
+  font-size: 2.5vmin;
 }
 #rules-container{
-	position: absolute;
-	width: 76vmin;
-	height: 78vmin;
-	padding: 1vmin;
-	top:0vmin;
-	left:0vmin;
-	overflow-y: scroll;
+  position: absolute;
+  width: 76vmin;
+  height: 78vmin;
+  padding: 1vmin;
+  top:0vmin;
+  left:0vmin;
+  overflow-y: scroll;
 }
 #rules h1,h2,h3,h4,h5,h6{
-	margin: 0.5vmin 0vmin;
-	padding: 0;
+  margin: 0.5vmin 0vmin;
+  padding: 0;
 }
 .deckbuilder-button{
-	width:24vmin;
-	height:5vmin;
-	line-height: 5vmin;
-	font-size: 2vmin;
-	text-align: center;
-	transition: background-color .25s;
+  width:24vmin;
+  height:5vmin;
+  line-height: 5vmin;
+  font-size: 2vmin;
+  text-align: center;
+  transition: background-color .25s;
 }
 .deckbuilder-button:hover{
-	background-color: #AFA;
+  background-color: #AFA;
 }
 .deckbuilder-card-count{
-	width:23vmin;
-	margin-right:1vmin;
-	height:3vmin;
-	line-height: 3vmin;
-	font-size: 1.5vmin;
-	font-weight: bold;
-	text-align: right;
+  width:23vmin;
+  margin-right:1vmin;
+  height:3vmin;
+  line-height: 3vmin;
+  font-size: 1.5vmin;
+  font-weight: bold;
+  text-align: right;
 }
 .deck-builder-page{
-	width:56vmin;
-	position: absolute;
-	height:75vmin;
-	top:5vmin;
-	left:0px;
-	overflow-y:scroll;
-	overflow-x:hidden;
+  width:56vmin;
+  position: absolute;
+  height:75vmin;
+  top:5vmin;
+  left:0px;
+  overflow-y:scroll;
+  overflow-x:hidden;
 }
 #deck-builder-cards{
-	background-color: #DDD;
+  background-color: #DDD;
 }
 #deck-builder-cards-curse{
-	visibility: hidden;
-	background-color: #71637D;
+  visibility: hidden;
+  background-color: #71637D;
 }
 #deck-builder-cards-blessed{
-	visibility: hidden;
-	background-color: #E6E4B5;
+  visibility: hidden;
+  background-color: #E6E4B5;
 }
 .deck-builder-page .card{
-	position: absolute;
-	height: 24vmin;
-	width:  14.5vmin;
-	margin: 1vmin;
-	padding: 1vmin;
-	color: black;
-	font-size: 1.5vmin;
-	box-shadow: -.5vmin .5vmin 2vmin rgba(0,0,0,0.5);
+  position: absolute;
+  height: 24vmin;
+  width:  14.5vmin;
+  margin: 1vmin;
+  padding: 1vmin;
+  color: black;
+  font-size: 1.5vmin;
+  box-shadow: -.5vmin .5vmin 2vmin rgba(0,0,0,0.5);
 }
 .deck-builder-page .card .title{
-	font-size: 1.5vmin;
+  font-size: 1.5vmin;
 }
 .deck-builder-page .card:hover{
-	border: .5vmin solid #000;
-	margin: .5vmin;
+  border: .5vmin solid #000;
+  margin: .5vmin;
 }
 .deck-builder-page .image{
-	height: 8.75vmin;
-	width:  14vmin;
+  height: 8.75vmin;
+  width:  14vmin;
 }
 .deck-builder-tab{
-	position: absolute;
-	height: 4vmin;
-	width: 8vmin;
-	top:1vmin;
-	border-top-left-radius: 2vmin;
-	border-top-right-radius: 2vmin;
-	text-align: center;
-	line-height: 4vmin;
-	font-size: 2vmin;
+  position: absolute;
+  height: 4vmin;
+  width: 8vmin;
+  top:1vmin;
+  border-top-left-radius: 2vmin;
+  border-top-right-radius: 2vmin;
+  text-align: center;
+  line-height: 4vmin;
+  font-size: 2vmin;
 }
 #deck-builder-core-tab{
-	background-color: #DDD;
-	left:1vmin;
+  background-color: #DDD;
+  left:1vmin;
 }
 #deck-builder-curse-tab{
-	background-color: #71637D;
-	left:10vmin;
+  background-color: #71637D;
+  left:10vmin;
 }
 #deck-builder-blessed-tab{
-	background-color: #E6E4B5;
-	left:19vmin;
+  background-color: #E6E4B5;
+  left:19vmin;
 }
 #deck-builder-search{
-	position: absolute;
-	height:4vmin;
-	width:30vmin;
-	left:28vmin;
-	top:1.5vmin;
+  position: absolute;
+  height:4vmin;
+  width:30vmin;
+  left:28vmin;
+  top:1.5vmin;
 }
 #deck-builder-search-input{
-	width: 18vmin;
+  width: 18vmin;
 }
 .stats{
-	float: right;
+  float: right;
 }
 #deck-builder-header{
-	width: 21.5vmin;
-	height: 8vmin;
-	line-height: 3.5vmin;
-	font-size: 3vmin;
-	position: absolute;
-	left:56vmin;
-	top:0vmin;
-	padding:1vmin 1.25vmin;
-	background-color:#DDD;
+  width: 21.5vmin;
+  height: 8vmin;
+  line-height: 3.5vmin;
+  font-size: 3vmin;
+  position: absolute;
+  left:56vmin;
+  top:0vmin;
+  padding:1vmin 1.25vmin;
+  background-color:#DDD;
 }
 #deck-builder-footer{
-	width: 24vmin;
-	height: 18vmin;
-	position: absolute;
-	left:56vmin;
-	top:62vmin;
-	background-color:#DDD;
+  width: 24vmin;
+  height: 18vmin;
+  position: absolute;
+  left:56vmin;
+  top:62vmin;
+  background-color:#DDD;
 }
 #deck-builder-deckname{
-	width: 21.5vmin;
-	height:2vmin;
+  width: 21.5vmin;
+  height:2vmin;
 }
 #deck-builder-list{
-	width:21.5vmin;
-	height:52vmin;
-	position: absolute;
-	left:56vmin;
-	top: 10vmin;
-	font-size: 2vmin;
-	background-color: #FFF;
-	padding:0 1.25vmin;
+  width:21.5vmin;
+  height:52vmin;
+  position: absolute;
+  left:56vmin;
+  top: 10vmin;
+  font-size: 2vmin;
+  background-color: #FFF;
+  padding:0 1.25vmin;
 }
 #deck-builder-list .item{
-	width:21.5vmin;
-	height:4vmin;
-	font-size: 2vmin;
-	line-height: 4vmin;
+  width:21.5vmin;
+  height:4vmin;
+  font-size: 2vmin;
+  line-height: 4vmin;
 }
 #game-title{
-	position: absolute;
-	font-size:5vmin;
-	top: -6vmin;
-	width: 80vmin;
-	text-align: center;
+  position: absolute;
+  font-size:5vmin;
+  top: -6vmin;
+  width: 80vmin;
+  text-align: center;
 }
 #quit-game{
-	position: absolute;
-	font-size:3vmin;
-	bottom: -5vmin;
-	width: 80vmin;
-	text-align: center;
-	z-index: 12;
+  position: absolute;
+  font-size:3vmin;
+  bottom: -5vmin;
+  width: 80vmin;
+  text-align: center;
+  z-index: 12;
 }
 #turn{
-	position: absolute;
-	font-size: 3.5vmin;
-	top:3vmin;
-	left:5vmin;
-	color:black;
-	font-weight: bold;
+  position: absolute;
+  font-size: 3.5vmin;
+  top:3vmin;
+  left:5vmin;
+  color:black;
+  font-weight: bold;
+}
+#turn-counter{
+  position: absolute;
+  font-size: 3.5vmin;
+  top:3vmin;
+  left:0;
+  right:0;
+  width:25vmin;
+  text-align:center;
+  margin:auto;
+  color:black;
+  font-weight: bold;
 }
 #score{
-	position: absolute;
-	font-size: 3.5vmin;
-	top:3vmin;
-	right:5vmin;
-	color:black;
-	font-weight: bold;
+  position: absolute;
+  font-size: 3.5vmin;
+  top:3vmin;
+  right:5vmin;
+  color:black;
+  font-weight: bold;
 }
 #status{
-	position: absolute;
-	font-size: 2.5vmin;
-	bottom: 35vmin;
-	left: 0vmin;
-	width: 80vmin;
-	color: black;
-	text-align: center;
-	font-weight: bold;
+  position: absolute;
+  font-size: 2.5vmin;
+  bottom: 35vmin;
+  left: 0vmin;
+  width: 80vmin;
+  color: black;
+  text-align: center;
+  font-weight: bold;
 }
 #status .loader{
-	height: 3vmin;
-	width: 3vmin;
-	background-image: url("balls.svg");
-	background-size:5vmin 5vmin;
-	display: inline-block;
-	background-position: center;
-	background-size: 100%;
-	background-repeat: no-repeat;
+  height: 3vmin;
+  width: 3vmin;
+  background-image: url("balls.svg");
+  background-size:5vmin 5vmin;
+  display: inline-block;
+  background-position: center;
+  background-size: 100%;
+  background-repeat: no-repeat;
 }
 #hand{
-	position: absolute;
-	bottom: 0px;
-	left:   0px;
-	width:  80vmin;
-	height: 30vmin;
-	background-color: #AAA;
-	border-bottom-right-radius: 3vmin;
-	border-bottom-left-radius: 3vmin;
+  position: absolute;
+  bottom: 0px;
+  left:   0px;
+  width:  80vmin;
+  height: 30vmin;
+  background-color: #AAA;
+  border-bottom-right-radius: 3vmin;
+  border-bottom-left-radius: 3vmin;
 }
 #enemy-hand{
-	width:  80vmin;
-	height: 30vmin;
-	background-color: #AAA;
+  width:  80vmin;
+  height: 30vmin;
+  background-color: #AAA;
 }
 #yourstats{
-	position: absolute;
-	left:1vmin;
-	top: 43vmin;
-	width: 15vmin;
-	text-align: left;
-	color: black;
-	white-space: nowrap;
-	font-size:1.8vmin;
+  position: absolute;
+  left:1vmin;
+  top: 43vmin;
+  width: 15vmin;
+  text-align: left;
+  color: black;
+  white-space: nowrap;
+  font-size:1.8vmin;
 }
 #theirstats{
-	position: absolute;
-	right:1vmin;
-	top: 43vmin;
-	width: 15vmin;
-	text-align: right;
-	color: black;
-	white-space: nowrap;
-	font-size:1.8vmin;
+  position: absolute;
+  right:1vmin;
+  top: 43vmin;
+  width: 15vmin;
+  text-align: right;
+  color: black;
+  white-space: nowrap;
+  font-size:1.8vmin;
 }
 .card{
-	position: absolute;
-	height: 26vmin;
-	width:  16vmin;
-	margin: 1vmin;
-	padding: 1vmin;
-	background-color: #FFF;
-	border-radius: 1vmin;
-	color: black;
-	font-size: 1.5vmin;
-	box-shadow: -1vmin 1vmin 3vmin rgba(0,0,0,0.5);
+  position: absolute;
+  height: 26vmin;
+  width:  16vmin;
+  margin: 1vmin;
+  padding: 1vmin;
+  background-color: #FFF;
+  border-radius: 1vmin;
+  color: black;
+  font-size: 1.5vmin;
+  box-shadow: -1vmin 1vmin 3vmin rgba(0,0,0,0.5);
 }
 .card.buffed{
-	background-color: #FF3;
-	box-shadow: -1vmin 1vmin 3vmin rgba(0,0,0,0.5), 0vmin 0vmin 3vmin rgba(255,255,200,0.7);
+  background-color: #FF3;
+  box-shadow: -1vmin 1vmin 3vmin rgba(0,0,0,0.5), 0vmin 0vmin 3vmin rgba(255,255,200,0.7);
 }
 .card.debuffed{
-	background-color: #F33;
-	box-shadow: -1vmin 1vmin 3vmin rgba(0,0,0,0.5), 0vmin 0vmin 3vmin rgba(255,200,200,0.7);
+  background-color: #F33;
+  box-shadow: -1vmin 1vmin 3vmin rgba(0,0,0,0.5), 0vmin 0vmin 3vmin rgba(255,200,200,0.7);
 }
 .card.silenced .silenceable{
-	text-decoration: line-through;
+  text-decoration: line-through;
 }
 .card .title{
-	font-family: Chunkfive;
-	font-size:1.6vmin;
+  font-family: Chunkfive;
+  font-size:1.6vmin;
 }
 .card .types{
-	font-size:1vmin;
-	height:1vmin;
-	font-weight:bold;
-	text-align:center;
+  font-size:1vmin;
+  height:1vmin;
+  font-weight:bold;
+  text-align:center;
 }
 .card.curse{
-	background-image: url("resources/cardback.png");
-	background-size: 100%;
-	background-repeat: no-repeat;
+  background-image: url("resources/cardback.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
 }
 .card.blessed{
-	background-image: url("resources/blessed-cardback.png");
-	background-size: 100%;
-	background-repeat: no-repeat;
+  background-image: url("resources/blessed-cardback.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
 }
 .action{
-	font-weight: bold;
+  font-weight: bold;
 }
 .action:hover:before{
-	content: "Action: takes effect when you play the card.";
-	color:#fff;
-	background-color: black;
-	position: absolute;
-	width: 10vmin;
-	bottom:10%;
-	left: 20%;
-	border-radius: 1vmin;
-	padding:.5vmin;
-	z-index: 100;
+  content: "Action: takes effect when you play the card.";
+  color:#fff;
+  background-color: black;
+  position: absolute;
+  width: 10vmin;
+  bottom:10%;
+  left: 20%;
+  border-radius: 1vmin;
+  padding:.5vmin;
+  z-index: 100;
 }
 .icon{
-	height:2vmin;
-	width: 2vmin;
-	margin:.1vmin;
-	background-size: 100%;
-	display:inline-block;
-	background-position: center;
-	background-repeat: no-repeat;
+  height:2vmin;
+  width: 2vmin;
+  margin:.1vmin;
+  background-size: 100%;
+  display:inline-block;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 .buff{
-	position: absolute;
-	width: 100%;
-	height:2.1vmin;
-	bottom: 1vmin;
-	left: 0vmin;
-	text-align: center;
+  position: absolute;
+  width: 100%;
+  height:2.1vmin;
+  bottom: 1vmin;
+  left: 0vmin;
+  text-align: center;
 }
 .icon.buffed{
-	background-image: url("resources/buffed.png");
+  background-image: url("resources/buffed.png");
 }
 .icon.buffed:hover:before{
-	content: "Buffed. Its stats have been raised.";
-	color:#fff;
-	background-color: black;
-	position: absolute;
-	width: 10vmin;
-	bottom:100%;
-	left: 20%;
-	border-radius: 1vmin;
-	padding:.5vmin;
-	z-index: 100;
+  content: "Buffed. Its stats have been raised.";
+  color:#fff;
+  background-color: black;
+  position: absolute;
+  width: 10vmin;
+  bottom:100%;
+  left: 20%;
+  border-radius: 1vmin;
+  padding:.5vmin;
+  z-index: 100;
 }
 .icon.debuffed{
-	background-image: url("resources/debuffed.png");
+  background-image: url("resources/debuffed.png");
 }
 .icon.debuffed:hover:before{
-	content: "Debuffed. Its stats have been lowered.";
-	color:#fff;
-	background-color: black;
-	position: absolute;
-	width: 10vmin;
-	bottom:100%;
-	left: 20%;
-	border-radius: 1vmin;
-	padding:.5vmin;
-	z-index: 100;
+  content: "Debuffed. Its stats have been lowered.";
+  color:#fff;
+  background-color: black;
+  position: absolute;
+  width: 10vmin;
+  bottom:100%;
+  left: 20%;
+  border-radius: 1vmin;
+  padding:.5vmin;
+  z-index: 100;
 }
 .icon.silenced{
-	background-image: url("resources/silenced.png");
+  background-image: url("resources/silenced.png");
 }
 .icon.silenced:hover:before{
-	content: "Silenced. Battle effects do not activate.";
-	color:#fff;
-	background-color: black;
-	position: absolute;
-	width: 10vmin;
-	bottom:100%;
-	left: 20%;
-	border-radius: 1vmin;
-	padding:.5vmin;
-	z-index: 100;
+  content: "Silenced. Battle effects do not activate.";
+  color:#fff;
+  background-color: black;
+  position: absolute;
+  width: 10vmin;
+  bottom:100%;
+  left: 20%;
+  border-radius: 1vmin;
+  padding:.5vmin;
+  z-index: 100;
 }
 .icon.cursed{
-	background-image: url("resources/cursed.png");
+  background-image: url("resources/cursed.png");
 }
 .icon.cursed:hover:before{
-	content: "Cursed. Gets -1/-1 at the start of every turn in hand.";
-	color:#fff;
-	background-color: black;
-	position: absolute;
-	width: 10vmin;
-	bottom:100%;
-	left: 20%;
-	border-radius: 1vmin;
-	padding:.5vmin;
-	z-index: 100;
+  content: "Cursed. Gets -1/-1 at the start of every turn in hand.";
+  color:#fff;
+  background-color: black;
+  position: absolute;
+  width: 10vmin;
+  bottom:100%;
+  left: 20%;
+  border-radius: 1vmin;
+  padding:.5vmin;
+  z-index: 100;
 }
 .icon.blessed{
-	background-image: url("resources/blessed.png");
+  background-image: url("resources/blessed.png");
 }
 .icon.blessed:hover:before{
-	content: "Blessed. Gets +1/+1 at the start of every turn in hand.";
-	color:#fff;
-	background-color: black;
-	position: absolute;
-	width: 10vmin;
-	bottom:100%;
-	left: 20%;
-	border-radius: 1vmin;
-	padding:.5vmin;
-	z-index: 100;
+  content: "Blessed. Gets +1/+1 at the start of every turn in hand.";
+  color:#fff;
+  background-color: black;
+  position: absolute;
+  width: 10vmin;
+  bottom:100%;
+  left: 20%;
+  border-radius: 1vmin;
+  padding:.5vmin;
+  z-index: 100;
 }
 .card:hover{
-	border: .5vmin solid #000;
-	margin: .5vmin;
-	z-index: 100;
+  border: .5vmin solid #000;
+  margin: .5vmin;
+  z-index: 100;
 }
 #hand .card{
-	transition: background-color .25s;
+  transition: background-color .25s;
 }
 #hand .card:hover{
-	background-color: #7F7;
+  background-color: #7F7;
 }
 .image{
-	background-size: 100%;
-	width:16vmin;
-	height:10vmin;
-	border: 0.2vmin solid black;
+  background-size: 100%;
+  width:16vmin;
+  height:10vmin;
+  border: 0.2vmin solid black;
 }
 .text{
-	text-align: center;
+  text-align: center;
 }
 .attack{
-	position: absolute;
-	bottom:-.5vmin;
-	left:  -.5vmin;
-	background-color: #FAA;
-	padding:1vmin;
-	border-radius: 1vmin;
+  position: absolute;
+  bottom:-.5vmin;
+  left:  -.5vmin;
+  background-color: #FAA;
+  padding:1vmin;
+  border-radius: 1vmin;
 }
 .sword{
-	display: inline-block;
-	height:1.5vmin;
-	width: 1.5vmin;
-	background-image: url("sword.svg");
-	background-size:100%;
-	background-repeat: no-repeat;
-	background-position: center;
+  display: inline-block;
+  height:1.5vmin;
+  width: 1.5vmin;
+  background-image: url("sword.svg");
+  background-size:100%;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 .shield{
-	display: inline-block;
-	height:1.5vmin;
-	width: 1.5vmin;
-	background-image: url("shield.svg");
-	background-size:100%;
-	background-repeat: no-repeat;
-	background-position: center;
+  display: inline-block;
+  height:1.5vmin;
+  width: 1.5vmin;
+  background-image: url("shield.svg");
+  background-size:100%;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 .card:hover .attack{
-	left:   -1vmin;
-	bottom: -1vmin;
-	border-left:.5vmin solid #000;
-	border-bottom:.5vmin solid #000;
+  left:   -1vmin;
+  bottom: -1vmin;
+  border-left:.5vmin solid #000;
+  border-bottom:.5vmin solid #000;
 }
 .defense{
-	position: absolute;
-	bottom:-.5vmin;
-	right: -.5vmin;
-	background-color: #AAF;
-	padding:1vmin;
-	border-radius: 1vmin;
+  position: absolute;
+  bottom:-.5vmin;
+  right: -.5vmin;
+  background-color: #AAF;
+  padding:1vmin;
+  border-radius: 1vmin;
 }
 .card:hover .defense{
-	right:  -1vmin;
-	bottom: -1vmin;
-	border-right:.5vmin solid #000;
-	border-bottom:.5vmin solid #000;
+  right:  -1vmin;
+  bottom: -1vmin;
+  border-right:.5vmin solid #000;
+  border-bottom:.5vmin solid #000;
 
 }
 
 
 #your-card{
-	position: absolute;
-	top:10vmin;
-	left:18vmin;
+  position: absolute;
+  top:10vmin;
+  left:18vmin;
 }
 #enemy-card{
-	position: absolute;
-	top:10vmin;
-	left:42vmin;
+  position: absolute;
+  top:10vmin;
+  left:42vmin;
 }
 #your-card.attacker-winner{
-	background-color: #F99;
-	transform: rotate(45deg);
-	left: 25vmin;
-	transition: all .5s;
+  background-color: #F99;
+  transform: rotate(45deg);
+  left: 25vmin;
+  transition: all .5s;
 }
 #your-card.attacker-exit{
-	background-color: #3F3;
-	transform: rotate(0deg);
-	left: -30vmin;
-	transition: all 1s;
+  background-color: #3F3;
+  transform: rotate(0deg);
+  left: -30vmin;
+  transition: all 1s;
 }
 #your-card.attacker-losing-exit{
-	background-color: #3F3;
-	transform: rotate(-360deg);
-	left: -30vmin;
-	transition: all 1s;
+  background-color: #3F3;
+  transform: rotate(-360deg);
+  left: -30vmin;
+  transition: all 1s;
 }
 #enemy-card.defender-loser{
-	background-color: #999;
-	transform: rotate(45deg);
-	left: 90vmin;
-	transition: all 1s;
+  background-color: #999;
+  transform: rotate(45deg);
+  left: 90vmin;
+  transition: all 1s;
 }
 #enemy-card.defender-winner{
-	background-color: #999;
-	box-shadow: box-shadow: 0px 0px 3vmin #AAA;;
-	transition: all .5s;
+  background-color: #999;
+  box-shadow: box-shadow: 0px 0px 3vmin #AAA;;
+  transition: all .5s;
 }
 #enemy-card.defender-winning-exit{
-	background-color: #3F3;
-	transition: all 1s;
-	left: 90vmin;
+  background-color: #3F3;
+  transition: all 1s;
+  left: 90vmin;
 }
 #your-card.defender-loser{
-	background-color: #999;
-	transform: rotate(-45deg);
-	left: -30vmin;
-	transition: all 1s;
+  background-color: #999;
+  transform: rotate(-45deg);
+  left: -30vmin;
+  transition: all 1s;
 }
 #your-card.defender-winner{
-	background-color: #999;
-	box-shadow: box-shadow: 0px 0px 3vmin #AAA;;
-	transition: all .5s;
+  background-color: #999;
+  box-shadow: box-shadow: 0px 0px 3vmin #AAA;;
+  transition: all .5s;
 }
 #your-card.defender-winning-exit{
-	background-color: #3F3;
-	transition: all 1s;
-	left: -30vmin;
+  background-color: #3F3;
+  transition: all 1s;
+  left: -30vmin;
 }
 #enemy-card.attacker-winner{
-	background-color: #F99;
-	transform: rotate(-45deg);
-	left: 35vmin;
-	transition: all .5s;
+  background-color: #F99;
+  transform: rotate(-45deg);
+  left: 35vmin;
+  transition: all .5s;
 }
 #enemy-card.attacker-exit{
-	background-color: #3F3;
-	transform: rotate(0deg);
-	left: 90vmin;
-	transition: all 1s;
+  background-color: #3F3;
+  transform: rotate(0deg);
+  left: 90vmin;
+  transition: all 1s;
 }
 #enemy-card.attacker-losing-exit{
-	background-color: #3F3;
-	transform: rotate(360deg);
-	left: 90vmin;
-	transition: all 1s;
+  background-color: #3F3;
+  transform: rotate(360deg);
+  left: 90vmin;
+  transition: all 1s;
 }
 #github{
-	position: absolute;
-	bottom:1vmin;
-	left:1vmin;
-	font-size: 1.5vmin;
-	opacity: 0.5;
+  position: absolute;
+  bottom:1vmin;
+  left:1vmin;
+  font-size: 1.5vmin;
+  opacity: 0.5;
 }
 #github:hover{
-	opacity: 1;
+  opacity: 1;
 }
 #donate{
-	position: absolute;
-	bottom:1vmin;
-	right:1vmin;
-	font-size: 1.5vmin;
-	opacity: 0.5;
+  position: absolute;
+  bottom:1vmin;
+  right:1vmin;
+  font-size: 1.5vmin;
+  opacity: 0.5;
 }
 #donate:hover{
-	opacity: 1;
+  opacity: 1;
 }

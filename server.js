@@ -196,6 +196,7 @@ var Game = function(publicity, gameId){
     this.complete = 0;
     this.clients  = 0;
     this.whoseTurn = 0;
+    this.turnNumber = 1;
     this.public = publicity;
     this.id = gameId;
 };
@@ -209,8 +210,14 @@ Game.prototype.startGame = function(){
     this.players[0].connection.emit("game start");
     this.players[1].connection.emit("game start");
 
-    this.players[this.whoseTurn].connection.emit("turn", {bool: true});
-    this.players[(this.whoseTurn + 1) % 2].connection.emit("turn", {bool: false});
+    this.players[this.whoseTurn].connection.emit("turn", {
+      turnNumber: this.turnNumber,
+      bool: true,
+    });
+    this.players[(this.whoseTurn + 1) % 2].connection.emit("turn", {
+      turnNumber: this.turnNumber,
+      bool: false,
+    });
 
     shuffle(this.players[0].deck);
     shuffle(this.players[1].deck);
@@ -298,10 +305,7 @@ Game.prototype.takeTurn = function(){
     this.players[0].updateHand(this.players[0], this.players[1], 0);
     this.players[1].updateHand(this.players[1], this.players[0], 0);
 
-    this.players[this.whoseTurn].connection.emit("turn", {bool: true});
-    this.players[(this.whoseTurn + 1) % 2].connection.emit("turn", {bool: false});
-
-    if(this.players[0].deck.length == 0 && this.players[0].hand.length == 0){
+    if(this.turnNumber === 20){
 
         if(this.players[0].score > this.players[1].score){
             this.players[0].connection.emit("game over", {message: "You won!"})
@@ -314,6 +318,17 @@ Game.prototype.takeTurn = function(){
             this.players[1].connection.emit("game over", {message: "Tie game."})
         }
     }else{
+
+        this.turnNumber += 1;
+
+        this.players[this.whoseTurn].connection.emit("turn", {
+            turnNumber: this.turnNumber,
+            bool: true,
+        });
+        this.players[(this.whoseTurn + 1) % 2].connection.emit("turn", {
+            turnNumber: this.turnNumber,
+            bool: false,
+        });
 
         this.players[0].drawCard(this.players[0], this.players[1]);
         this.players[1].drawCard(this.players[1], this.players[0]);
@@ -359,7 +374,7 @@ sio.sockets.on('connection', function (client) {
     client.name   = "anonymous";
 
     console.log('\t socket.io:: player ' + client.userid + ' connected');
-    
+
     client.on('disconnect', function () {
         console.log('\t socket.io:: client disconnected ' + client.userid );
 
