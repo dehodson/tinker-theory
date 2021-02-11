@@ -1650,4 +1650,20 @@ cards = {
             }
         },
     },
+    "heretical-scholar": {
+        title: "Heretical Scholar",
+        image: "160x100.png",
+        text: "<span class=\"silenceable\">When you play her, draw two cards.</span>",
+        attack: 0,
+        defense: 0,
+        buffa: 0,
+        buffd: 0,
+        expansion: "blessed",
+        types: [],
+        requiresChoice: true,
+        battleEffect: function(obj, p1, p2){
+            p1.drawCard(p1, p2);
+            p1.drawCard(p1, p2);
+        },
+    },
 };
