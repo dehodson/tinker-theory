@@ -1485,7 +1485,7 @@ cards = {
     },
     "damned-collective": {
         title: "Damned Collective",
-        image: "160x100.png",
+        image: "damned-collective.png",
         text: "<span class=\"silenceable\">If you've played at least 5 Human cards when you play it, curse your opponent's hand.</span>",
         attack: 0,
         defense: 4,
