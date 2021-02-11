@@ -25,6 +25,15 @@ function getTypesFromDeck(deck){
     return cardTypes.sort();
 }
 
+function clone(obj) {
+    if (null == obj || "object" != typeof obj) return obj;
+    var copy = obj.constructor();
+    for (var attr in obj) {
+        if (obj.hasOwnProperty(attr)) copy[attr] = obj[attr];
+    }
+    return copy;
+}
+
 cards = {
     "dingle": {
         title: "Dingle, the Sticky",
@@ -927,16 +936,7 @@ cards = {
             for(var card in p2.hand){
                 if(p2.hand[card].attack + p2.hand[card].buffa > best){index = card; best = p2.hand[card].attack + p2.hand[card].buffa}
             }
-            p2.hand[index] = {
-                title: "Pig",
-                image: "pig.png",
-                text: "<i>Oink.</i>",
-                attack: 1,
-                defense: 1,
-                buffa: 0,
-                buffd: 0,
-                expansion: "cogs",
-            }
+            p2.hand[index] = clone(tokens['pig']);
         }
     },
     "peeper": {
@@ -1113,16 +1113,7 @@ cards = {
         expansion: "cogs",
         startTurnInHandEffect: function(obj, p1, p2){
             if(p1.score >= 5){
-                obj.title = "Pig";
-                obj.image = "pig.png";
-                obj.text = "<i>Oink.</i>";
-                obj.attack = 1;
-                obj.defense = 1;
-                obj.buffa = 0;
-                obj.buffd = 0;
-                obj.cursed = false;
-                obj.expansion = "cogs";
-                obj.silenced = false;
+                obj = clone(tokens['pig']);
             }
         }
     },
@@ -1665,4 +1656,44 @@ cards = {
             p1.drawCard(p1, p2);
         },
     },
+    "elven-convoy": {
+        title: "Elven Convoy",
+        image: "160x100.png",
+        text: "<span class=\"silenceable\">When you play it, add a 2/2 Elf to your hand.</span>",
+        attack: 6,
+        defense: 2,
+        buffa: 0,
+        buffd: 0,
+        expansion: "blessed",
+        types: ["Elf"],
+        battleEffect: function(obj, p1, p2){
+            p1.hand.push(clone(tokens['elf']));
+        },
+    },
 };
+
+tokens = {
+    "pig": {
+        id: "pig",
+        title: "Pig",
+        image: "pig.png",
+        text: "<i>Oink.</i>",
+        attack: 1,
+        defense: 1,
+        buffa: 0,
+        buffd: 0,
+        expansion: "cogs",
+    },
+    "elf": {
+        id: "elf",
+        title: "Elf",
+        image: "pig.png",
+        text: "<i>Elf.</i>",
+        attack: 2,
+        defense: 2,
+        buffa: 0,
+        buffd: 0,
+        types: ["Elf"],
+        expansion: "blessed",
+    },
+}

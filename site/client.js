@@ -602,7 +602,7 @@ function createChatBubble(type, message, name){
 
 function showCard(e, cardId, dataString){
     var preview = document.getElementById("card-preview");
-    var dict = cards[cardId];
+    var dict = cards.hasOwnProperty(cardId) ? cards[cardId] : tokens[cardId];
     if(typeof(dataString) !== 'undefined'){
         dict = JSON.parse(atob(dataString));
     }
