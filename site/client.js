@@ -7,6 +7,18 @@ var socket = io.connect('/');
 var messages = 0;
 var turn = 0;
 
+if (!String.prototype.format) {
+  String.prototype.format = function() {
+    var args = arguments;
+    return this.replace(/{([^}]+)}/g, function(match, key) { 
+      return typeof i18next.t(key) != 'undefined'
+        ? i18next.t(key)
+        : match
+      ;
+    });
+  };
+}
+
 var notification = new Audio('status_alert.mp3');
 notification.volume = 0.7;
 
@@ -232,11 +244,13 @@ function makeCard(dict, id, onclick){
 
     var types = (dict.types || []).join(" ");
 
+    const text = dict.text.format();
+
     var string = "<div class=\""+className+"\" id=\""+id+"\" onclick=\""+onclick+"\">";
        string += "<div class=\"title\" id=\""+id+"-title\">"+dict.title+"</div>";
        string += "<div class=\"image\" id=\""+id+"-image\" style=\"background-image:url('images/"+dict.image+"')\"></div>";
        string += "<div class=\"types\"  id=\""+id+"-type\" >"+types+"</div>";
-       string += "<div class=\"text\"  id=\""+id+"-text\" >"+dict.text+"</div>";
+       string += "<div class=\"text\"  id=\""+id+"-text\" >"+text+"</div>";
        string += "<div class=\"buff\"  id=\""+id+"-buff\">"+buffString+"</div>";
        string += "<div class=\"attack\"  id=\""+id+"-attack\">"+(dict.attack + dict.buffa)+"<div class=\"sword\"></div></div>";
        string += "<div class=\"defense\"  id=\""+id+"-defense\"><div class=\"shield\"></div>"+(dict.defense + dict.buffd)+"</div></div>";
