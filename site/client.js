@@ -213,25 +213,25 @@ function makeCard(dict, id, onclick){
 
     if(dict.buffa > 0 || dict.buffd > 0){
         className = "card buffed";
-        buffString = "<div class=\"icon buffed\"></div>";
+        buffString = `<div class="icon buffed ${i18next.language}"></div>`;
     }
 
     if(dict.buffa < 0 || dict.buffd < 0){
         className = "card debuffed";
-        buffString = "<div class=\"icon debuffed\"></div>";
+        buffString = `<div class="icon debuffed ${i18next.language}"></div>`;
     }
 
     if(dict.silenced){
         className += " silenced";
-        buffString += "<div class=\"icon silenced\"></div>";
+        buffString += `<div class="icon silenced ${i18next.language}"></div>`;
     }
 
     if(dict.cursed){
-        buffString += "<div class=\"icon cursed\"></div>";
+        buffString += `<div class="icon cursed ${i18next.language}"></div>`;
     }
 
     if(dict.blessed){
-        buffString += "<div class=\"icon blessed\"></div>";
+        buffString += `<div class="icon blessed ${i18next.language}"></div>`;
     }
 
     if(dict.expansion == "cogs"){
@@ -415,8 +415,14 @@ function deckBuilder(){
     document.getElementById("splash").style.visibility = "hidden";
 }
 
+function normalizeString(str){
+    return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+}
+
 function cardSearch(searchBox){
-    var regex = new RegExp(searchBox.value.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&"), 'i');
+    var regex = new RegExp(normalizeString(searchBox.value)
+        .replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&"), 'i'
+    );
 
     var element  = document.getElementById("deck-builder-cards");
     var cotclist = document.getElementById("deck-builder-cards-curse");
@@ -429,7 +435,7 @@ function cardSearch(searchBox){
     var page = 0;
 
     function doSearch(cardlist){
-        var cardText = cards[card].text.replace(/<[^>]*>/g, "");
+        var cardText = normalizeString(cards[card].text.format()).replace(/<[^>]*>/g, "");
         var cardTypes = (cards[card].types || []).join("");
         if(cards[card].title.match(regex) || cardText.match(regex) || cardTypes.match(regex)){
             cardlist.innerHTML += makeCard(cards[card], "deckbuilder-"+card, "addToDeck('"+card+"')");

@@ -658,7 +658,6 @@ a:hover{
   background-image: url("resources/buffed.png");
 }
 .icon.buffed:hover:before{
-  content: "Buffed. Its stats have been raised.";
   color:#fff;
   background-color: black;
   position: absolute;
@@ -668,12 +667,17 @@ a:hover{
   border-radius: 1vmin;
   padding:.5vmin;
   z-index: 100;
+}
+.icon.buffed.en:hover:before{
+  content: "Buffed. Its stats have been raised.";
+}
+.icon.buffed.fr:hover:before{
+  content: "Buffé. Ses statistiques ont été augmentées.";
 }
 .icon.debuffed{
   background-image: url("resources/debuffed.png");
 }
 .icon.debuffed:hover:before{
-  content: "Debuffed. Its stats have been lowered.";
   color:#fff;
   background-color: black;
   position: absolute;
@@ -683,12 +687,17 @@ a:hover{
   border-radius: 1vmin;
   padding:.5vmin;
   z-index: 100;
+}
+.icon.debuffed.en:hover:before{
+  content: "Debuffed. Its stats have been lowered.";
+}
+.icon.debuffed.fr:hover:before{
+  content: "Debuffé. Ses statistiques ont été abaissées.";
 }
 .icon.silenced{
   background-image: url("resources/silenced.png");
 }
 .icon.silenced:hover:before{
-  content: "Silenced. Battle effects do not activate.";
   color:#fff;
   background-color: black;
   position: absolute;
@@ -698,12 +707,17 @@ a:hover{
   border-radius: 1vmin;
   padding:.5vmin;
   z-index: 100;
+}
+.icon.silenced.en:hover:before{
+  content: "Silenced. Battle effects do not activate.";
+}
+.icon.silenced.fr:hover:before{
+  content: "Muselé. Effets de bataille ne marchent pas.";
 }
 .icon.cursed{
   background-image: url("resources/cursed.png");
 }
 .icon.cursed:hover:before{
-  content: "Cursed. Gets -1/-1 at the start of every turn in hand.";
   color:#fff;
   background-color: black;
   position: absolute;
@@ -713,12 +727,17 @@ a:hover{
   border-radius: 1vmin;
   padding:.5vmin;
   z-index: 100;
+}
+.icon.cursed.en:hover:before{
+  content: "Cursed. Gets -1/-1 at the start of every turn in hand.";
+}
+.icon.cursed.fr:hover:before{
+  content: "Maudit. Il perd -1/-1 au début de chaque tour dans votre main.";
 }
 .icon.blessed{
   background-image: url("resources/blessed.png");
 }
 .icon.blessed:hover:before{
-  content: "Blessed. Gets +1/+1 at the start of every turn in hand.";
   color:#fff;
   background-color: black;
   position: absolute;
@@ -728,6 +747,12 @@ a:hover{
   border-radius: 1vmin;
   padding:.5vmin;
   z-index: 100;
+}
+.icon.blessed.en:hover:before{
+  content: "Blessed. Gets +1/+1 at the start of every turn in hand.";
+}
+.icon.blessed.fr:hover:before{
+  content: "Béni. Il gagne +1/+1 au début de chaque tour dans votre main.";
 }
 .card:hover{
   border: .5vmin solid #000;
