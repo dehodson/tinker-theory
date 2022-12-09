@@ -392,7 +392,6 @@ a:hover{
   margin: 1vmin;
   padding: 1vmin;
   color: black;
-  font-size: 1.5vmin;
   box-shadow: -.5vmin .5vmin 2vmin rgba(0,0,0,0.5);
 }
 .deck-builder-page .card .title{
@@ -590,6 +589,9 @@ a:hover{
   color: black;
   font-size: 1.5vmin;
   box-shadow: -1vmin 1vmin 3vmin rgba(0,0,0,0.5);
+}
+.card.text-m{
+  font-size:1.4vmin;
 }
 .card.buffed{
   background-color: #FF3;

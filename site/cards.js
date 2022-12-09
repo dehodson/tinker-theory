@@ -487,7 +487,7 @@ cards = {
     "cursy": {
         title: "Spiteful One",
         image: "cursy.png",
-        text: "<span class=\"silenceable\">When you play her, curse the top two cards of your opponent's deck.</span>",
+        text: "<span class=\"silenceable\">{cursy.text}</span>",
         attack: 1,
         defense: 5,
         buffa: 0,
@@ -502,7 +502,7 @@ cards = {
     "maniac": {
         title: "Hex Maniac",
         image: "maniac.png",
-        text: "<span class=\"silenceable\">When you play him, if your opponent's deck contains a cursed card, he gets +3/+3.</span>",
+        text: "<span class=\"silenceable\">{maniac.text}</span>",
         attack: 2,
         defense: 3,
         buffa: 0,
@@ -518,7 +518,7 @@ cards = {
     "idol":  {
         title: "Cursed Idol",
         image: "idol.png",
-        text: "Starts cursed.<br /><br /><i>Known to the state of California to cause curses.</i>",
+        text: "{idol.text}<br /><br /><i>{idol.flavortext}</i>",
         attack: 6,
         defense: 6,
         buffa: 0,
@@ -529,7 +529,7 @@ cards = {
     "unsweet": {
         title: "Unsweet Corn",
         image: "unsweet.png",
-        text: "<span class=\"silenceable\">If you've played at least 3 corn cards when you play it, cards in your opponent's hand get -2/-2.</span>",
+        text: "<span class=\"silenceable\">{unsweet.text}</span>",
         attack: 5,
         defense: 0,
         buffa: 0,
@@ -548,7 +548,7 @@ cards = {
     "demoness": {
         title: "Chaos Goddess",
         image: "demoness.png",
-        text: "<span class=\"silenceable\">Shuffle your opponent's hand into their deck when you play her. They draw two cards.</span>",
+        text: "<span class=\"silenceable\">{demoness.text}</span>",
         attack: 3,
         defense: 0,
         buffa: 0,
@@ -565,7 +565,7 @@ cards = {
     "liquid": {
         title: "Caustic Liquid",
         image: "liquid.png",
-        text: "<span class=\"silenceable\">Gives all cards in your hand +5/+5 when you play it, but curses them.</span>",
+        text: "<span class=\"silenceable\">{liquid.text}</span>",
         attack: 3,
         defense: 1,
         buffa: 0,
@@ -576,7 +576,7 @@ cards = {
     "bastard": {
         title: "Battery Bastard",
         image: "bastard.png",
-        text: "<span class=\"silenceable\">If you successfully attack with him, gain 4 charge.</span><br /><br /><i>His cup size is AAA.</i>",
+        text: "<span class=\"silenceable\">{bastard.text}</span><br /><br /><i>{bastard.flavortext}</i>",
         attack: 6,
         defense: 1,
         buffa: 0,
@@ -589,7 +589,7 @@ cards = {
     "matrix": {
         title: "Defense Matrix",
         image: "matrix.png",
-        text: "<span class=\"silenceable\">When you play it, cards in your hand get +1 defense for every charge you have.</span>",
+        text: "<span class=\"silenceable\">{matrix.text}</span>",
         attack: 1,
         defense: 5,
         buffa: 0,
@@ -600,7 +600,7 @@ cards = {
     "electrotimmy": {
         title: "Electro-Timmy",
         image: "electrotimmy.png",
-        text: "<span class=\"silenceable\">When you play him, spend 3 charge and gain a point.</span>",
+        text: "<span class=\"silenceable\">{electrotimmy.text}</span>",
         attack: 3,
         defense: 3,
         buffa: 0,
@@ -616,7 +616,7 @@ cards = {
     "coffee": {
         title: "Wizard Coffee",
         image: "coffee.png",
-        text: "<span class=\"silenceable\">When you play it, all mages in your deck get +2 attack.<br /><br /><i>\"Order for Saruman!\"</i></span>",
+        text: "<span class=\"silenceable\">{coffee.text}</span><br /><br /><i>{coffee.flavortext}</i>",
         attack: 2,
         defense: 2,
         buffa: 0,
@@ -634,7 +634,7 @@ cards = {
     "hexbot": {
         title: "Hexbot",
         image: "hexbot.png",
-        text: "<span class=\"silenceable\">When you play it, spend 3 charge and curse all cards in your opponent's hand.</span>",
+        text: "<span class=\"silenceable\">{hexbot.text}</span>",
         attack: 2,
         defense: 4,
         buffa: 0,
@@ -652,7 +652,7 @@ cards = {
     "ai": {
         title: "AI Researcher",
         image: "ai.png",
-        text: "<span class=\"silenceable\">When you play her, spend 1 charge and draw a card.</span>",
+        text: "<span class=\"silenceable\">{ai.text}</span>",
         attack: 5,
         defense: 2,
         buffa: 0,
@@ -669,7 +669,7 @@ cards = {
     "lil": {
         title: "Lil' Battery Bug",
         image: "lil.png",
-        text: "<span class=\"silenceable\">When you play it, gain 5 charge.</span><br /><br /><i>Zap!</i>",
+        text: "<span class=\"silenceable\">{lil.text}</span><br /><br /><i>{lil.flavortext}</i>",
         attack: 1,
         defense: 1,
         buffa: 0,
@@ -682,7 +682,7 @@ cards = {
     "stone": {
         title: "Heaven Stone",
         image: "stone.png",
-        text: "<span class=\"silenceable\">When you play it, draw a goddess. That goddess gets +3/+0.</span>",
+        text: "<span class=\"silenceable\">{stone.text}</span>",
         attack: 2,
         defense: 2,
         buffa: 0,
@@ -703,7 +703,7 @@ cards = {
     "electricsilencer": {
         title: "Electric Silencer",
         image: "electricsilencer.png",
-        text: "<span class=\"silenceable\">When you play him, spend 3 charge and silence all cards in your opponent's hand.</span>",
+        text: "<span class=\"silenceable\">{electricsilencer.text}</span>",
         attack: 1,
         defense: 6,
         buffa: 0,
@@ -721,7 +721,7 @@ cards = {
     "hulk": {
         title: "Behemoth Hulk",
         image: "hulk.png",
-        text: "<span class=\"silenceable\">When you play it, cards in your hand get -3/-3.</span>",
+        text: "<span class=\"silenceable\">{hulk.text}</span>",
         attack: 9,
         defense: 9,
         buffa: 0,
@@ -737,7 +737,7 @@ cards = {
     "knowledge": {
         title: "Knowledge Feaster",
         image: "knowledge.png",
-        text: "Its stats are equal to the number of cards in your hand.",
+        text: "{knowledge.text}",
         attack: 0,
         defense: 0,
         buffa: 0,
@@ -748,7 +748,7 @@ cards = {
     "proof": {
         title: "Hexproof Barrier",
         image: "proof.png",
-        text: "It can't be cursed.<br /><br /><i>One time a big horse shaped hex tricked it, though.</i>",
+        text: "{proof.text}><br /><i>{proof.flavortext}</i>",
         attack: 0,
         defense: 6,
         buffa: 0,
@@ -762,7 +762,7 @@ cards = {
     "drainer": {
         title: "Curse Drainer",
         image: "drainer.png",
-        text: "<span class=\"silenceable\">If you successfully defend with him, uncurse your hand. Gain 1 charge for each.</span>",
+        text: "<span class=\"silenceable\">{drainer.text}</span>",
         attack: 0,
         defense: 5,
         buffa: 0,
@@ -783,7 +783,7 @@ cards = {
     "mech": {
         title: "Circuit Smasher",
         image: "mech.png",
-        text: "<span class=\"silenceable\">When you play him, spend 4 charge and he gets +4/+4.</span>",
+        text: "<span class=\"silenceable\">{mech.text}</span>",
         attack: 4,
         defense: 4,
         buffa: 0,
@@ -795,7 +795,7 @@ cards = {
     "apprentice": {
         title: "Diggy's Apprentice",
         image: "apprentice.png",
-        text: "<span class=\"silenceable\">When you play him, silence all other copies of the last card your opponent played.</span>",
+        text: "<span class=\"silenceable\">{apprentice.text}</span>",
         attack: 4,
         defense: 1,
         buffa: 0,
@@ -816,7 +816,7 @@ cards = {
     "potion": {
         title: "Proton Potion",
         image: "potion.png",
-        text: "<span class=\"silenceable\">Spend all your charge when you play it. Cards in your hand get +1/+0 for each.</span>",
+        text: "<span class=\"silenceable\">{potion.text}</span>",
         attack: 4,
         defense: 0,
         buffa: 0,
@@ -833,7 +833,7 @@ cards = {
     "revenge": {
         title: "Revenge Totem",
         image: "totem.png",
-        text: "<span class=\"silenceable\">If the last card you played was cursed or silenced, curse or silence your opponent's hand.</span>",
+        text: "<span class=\"silenceable\">{revenge.text}</span>",
         attack: 2,
         defense: 3,
         buffa: 0,
@@ -850,7 +850,7 @@ cards = {
     "socket": {
         title: "Socket Wall",
         image: "socket.png",
-        text: "<span class=\"silenceable\">When you play it, gain 2 charge.</span><br /><br /><i>Defeated by childproof safety plugs.</i>",
+        text: "<span class=\"silenceable\">{socket.text}</span><br /><br /><i>{socket.flavortext}</i>",
         attack: 1,
         defense: 6,
         buffa: 0,
@@ -864,7 +864,7 @@ cards = {
     "artifact": {
         title: "Curious Artifact",
         image: "artifact.png",
-        text: "Starts cursed.<br /><span class=\"silenceable\">When you play it, if both of its stats are below -9, you gain two points.</span>",
+        text: "{artifact.text}><span class=\"silenceable\">{artifact.text2}</span>",
         attack: 0,
         defense: 0,
         buffa: 0,
@@ -880,7 +880,7 @@ cards = {
     "mason": {
         title: "Mad Mason",
         image: "mason.png",
-        text: "<span class=\"silenceable\">If you fail to attack with him, you'll draw a wall next.</span>",
+        text: "<span class=\"silenceable\">{mason.text}</span>",
         attack: 6,
         defense: 0,
         buffa: 0,
@@ -899,7 +899,7 @@ cards = {
     "thief": {
         title: "Juice Thief",
         image: "thief.png",
-        text: "<span class=\"silenceable\">When you play her, steal up to 2 charge from your opponent.</span>",
+        text: "<span class=\"silenceable\">{thief.text}</span>",
         attack: 3,
         defense: 3,
         buffa: 0,
@@ -919,7 +919,7 @@ cards = {
     "conjurer": {
         title: "Porcine Conjurer",
         image: "conjurer.png",
-        text: "<span class=\"silenceable\">When you play him, turn the best attacker in your opponent's hand into a 1/1 pig.</span>",
+        text: "<span class=\"silenceable\">{conjurer.text}</span>",
         attack: 2,
         defense: 4,
         buffa: 0,
@@ -942,7 +942,7 @@ cards = {
     "peeper": {
         title: "Peeper",
         image: "peeper.png",
-        text: "<span class=\"silenceable\">When you play her, look at your opponent's hand.</span><br /><br /><i>Dirty screen looker.</i>",
+        text: "<span class=\"silenceable\">{peeper.text}</span><br /><br /><i>{peeper.flavortext}</i>",
         attack: 3,
         defense: 3,
         buffa: 0,
@@ -956,7 +956,7 @@ cards = {
     "crier": {
         title: "Rallying Crier",
         image: "crier.png",
-        text: "When you draw him, other cards in your hand get +1/+1.",
+        text: "{crier.text}",
         attack: 3,
         defense: 2,
         buffa: 0,
@@ -974,7 +974,7 @@ cards = {
     "twins": {
         title: "The Three Twins",
         image: "twins.png",
-        text: "If you start a turn with all three of them in hand, they become 9/9.",
+        text: "{twins.text}",
         attack: 2,
         defense: 3,
         buffa: 0,
@@ -996,7 +996,7 @@ cards = {
     "tricks": {
         title: "Bag of Tricks",
         image: "tricks.png",
-        text: "<span class=\"silenceable\">When played, it will randomly curse, silence, or give -3/-3 to your opponent's next card.</span>",
+        text: "<span class=\"silenceable\">{tricks.text}</span>",
         attack: 0,
         defense: 4,
         buffa: 0,
@@ -1039,7 +1039,7 @@ cards = {
     "spackler": {
         title: "Supreme Spackler",
         image: "spackler.png",
-        text: "<span class=\"silenceable\">When you play him, all walls in your deck get +0/+1.</span>",
+        text: "<span class=\"silenceable\">{spackler.text}</span>",
         attack: 5,
         defense: 1,
         buffa: 0,
@@ -1058,7 +1058,7 @@ cards = {
     "staff": {
         title: "Diggy's Staff",
         image: "staff.png",
-        text: "<span class=\"silenceable\">When you play it, Diggy cards in your hand get +4/+4. Others get +1/+1.</span>",
+        text: "<span class=\"silenceable\">{staff.text}</span>",
         attack: 1,
         defense: 0,
         buffa: 0,
@@ -1078,7 +1078,7 @@ cards = {
     "pummeler": {
         title: "Power-Pummeler",
         image: "pummeler.png",
-        text: "Every turn you start with it in hand, spend 1 charge and it gets +2/+2.",
+        text: "{pummeler.text}",
         attack: 3,
         defense: 3,
         buffa: 0,
@@ -1093,7 +1093,7 @@ cards = {
     "lightning": {
         title: "Lightning Dingle",
         image: "lightning.png",
-        text: "<span class=\"silenceable\">When you play him, gain 2 charge.</span><br /><br /><i>Smells like static.</i>",
+        text: "<span class=\"silenceable\">{lightning.text}</span><br /><br /><i>{lightning.flavortext}</i>",
         attack: 3,
         defense: 4,
         buffa: 0,
@@ -1105,7 +1105,7 @@ cards = {
     "spirit": {
         title: "Trickster Spirit",
         image: "spirit.png",
-        text: "If you start a turn with it in hand, and you have 5 or more points, it becomes a 1/1 pig.",
+        text: "{spirit.text}",
         attack: 8,
         defense: 0,
         buffa: 0,
@@ -1120,7 +1120,7 @@ cards = {
     "washer": {
         title: "Steam Cleaner",
         image: "washer.png",
-        text: "<span class=\"silenceable\">When you play it, spend 5 charge and remove all debuffs from cards in your hand.</span>",
+        text: "<span class=\"silenceable\">{washer.text}</span>",
         attack: 2,
         defense: 5,
         buffa: 0,
@@ -1139,7 +1139,7 @@ cards = {
     "statue": {
         title: "Awakening Statue",
         image: "statue.png",
-        text: "<span class=\"silenceable\">If you successfully attack with him, unsilence all cards in your hand.</span>",
+        text: "<span class=\"silenceable\">{statue.text}</span>",
         attack: 6,
         defense: 0,
         buffa: 0,
@@ -1154,7 +1154,7 @@ cards = {
     "harbinger": {
         title: "Harbinger of Doom",
         image: "harbinger.png",
-        text: "<span class=\"silenceable\">When you play him, if you have a Behemoth in hand, he gets +3/+3.</span>",
+        text: "<span class=\"silenceable\">{harbinger.text}</span>",
         attack: 3,
         defense: 3,
         buffa: 0,
@@ -1178,7 +1178,7 @@ cards = {
     "future": {
         title: "Fortune Teller",
         image: "future.png",
-        text: "<span class=\"silenceable\">When you play her, look at the top three cards of your deck.</span>",
+        text: "<span class=\"silenceable\">{future.text}</span>",
         attack: 3,
         defense: 3,
         buffa: 0,

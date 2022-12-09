@@ -246,6 +246,10 @@ function makeCard(dict, id, onclick){
 
     const text = dict.text.format();
 
+    if (text.length > 110) {
+        className += " text-m";
+    }
+
     var string = "<div class=\""+className+"\" id=\""+id+"\" onclick=\""+onclick+"\">";
        string += "<div class=\"title\" id=\""+id+"-title\">"+dict.title+"</div>";
        string += "<div class=\"image\" id=\""+id+"-image\" style=\"background-image:url('images/"+dict.image+"')\"></div>";

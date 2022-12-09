@@ -95,6 +95,138 @@ i18next.init({
         "goddess": {
           "text": "Shuffle your hand into your deck when you play her. Draw that many cards."
         },
+        "cursy": {
+          "text": "When you play her, curse the top two cards of your opponent's deck.",
+        },
+        "maniac": {
+          "text": "When you play him, if your opponent's deck contains a cursed card, he gets +3/+3.",
+        },
+        "idol":  {
+          "text": "Starts cursed.",
+          "flavortext": "Known to the state of California to cause curses.",
+        },
+        "unsweet": {
+          "text": "If you've played at least 3 corn cards when you play it, cards in your opponent's hand get -2/-2.",
+        },
+        "demoness": {
+          "text": "Shuffle your opponent's hand into their deck when you play her. They draw two cards.",
+        },
+        "liquid": {
+          "text": "Gives all cards in your hand +5/+5 when you play it, but curses them.",
+        },
+        "bastard": {
+          "text": "If you successfully attack with him, gain 4 charge.",
+          "flavortext": "His cup size is AAA."
+        },
+        "matrix": {
+          "text": "When you play it, cards in your hand get +1 defense for every charge you have.",
+        },
+        "electrotimmy": {
+          "text": "When you play him, spend 3 charge and gain a point.",
+        },
+        "coffee": {
+          "text": "When you play it, all mages in your deck get +2 attack.",
+          "flavortext": "\"Order for Saruman!\"",
+        },
+        "hexbot": {
+          "text": "When you play it, spend 3 charge and curse all cards in your opponent's hand.",
+        },
+        "ai": {
+          "text": "When you play her, spend 1 charge and draw a card.",
+        },
+        "lil": {
+          "text": "When you play it, gain 5 charge.",
+          "flavortext": "Zap!",
+        },
+        "stone": {
+          "text": "When you play it, draw a goddess. That goddess gets +3/+0.",
+        },
+        "electricsilencer": {
+          "text": "When you play him, spend 3 charge and silence all cards in your opponent's hand.",
+        },
+        "hulk": {
+          "text": "When you play it, cards in your hand get -3/-3.",
+        },
+        "knowledge": {
+          "text": "Its stats are equal to the number of cards in your hand.",
+        },
+        "proof": {
+          "text": "It can't be cursed.",
+          "flavortext": "One time a big horse shaped hex tricked it, though.",
+        },
+        "drainer": {
+          "text": "If you successfully defend with him, uncurse your hand. Gain 1 charge for each.",
+        },
+        "mech": {
+          "text": "When you play him, spend 4 charge and he gets +4/+4.",
+        },
+        "apprentice": {
+          "text": "When you play him, silence all other copies of the last card your opponent played.",
+        },
+        "potion": {
+          "text": "Spend all your charge when you play it. Cards in your hand get +1/+0 for each.",
+        },
+        "revenge": {
+          "text": "If the last card you played was cursed or silenced, curse or silence your opponent's hand.",
+        },
+        "socket": {
+          "text": "When you play it, gain 2 charge.",
+          "flavortext": "Defeated by childproof safety plugs.",
+        },
+        "artifact": {
+          "text": "Starts cursed.",
+          "text2": "When you play it, if both of its stats are below -9, you gain two points.",
+        },
+        "mason": {
+          "text": "If you fail to attack with him, you'll draw a wall next.",
+        },
+        "thief": {
+          "text": "When you play her, steal up to 2 charge from your opponent.",
+        },
+        "conjurer": {
+          "text": "When you play him, turn the best attacker in your opponent's hand into a 1/1 pig.",
+        },
+        "peeper": {
+          "text": "When you play her, look at your opponent's hand.",
+          "flavortext": "Dirty screen looker.",
+        },
+        "crier": {
+          "text": "When you draw him, other cards in your hand get +1/+1.",
+        },
+        "twins": {
+          "text": "If you start a turn with all three of them in hand, they become 9/9.",
+        },
+        "tricks": {
+          "text": "When played, it will randomly curse, silence, or give -3/-3 to your opponent's next card.",
+        },
+        "spackler": {
+          "text": "When you play him, all walls in your deck get +0/+1.",
+        },
+        "staff": {
+          "text": "When you play it, Diggy cards in your hand get +4/+4. Others get +1/+1.",
+        },
+        "pummeler": {
+          "text": "Every turn you start with it in hand, spend 1 charge and it gets +2/+2.",
+        },
+        "lightning": {
+          "text": "When you play him, gain 2 charge.",
+          "flavortext": "Smells like static.",
+        },
+        "spirit": {
+          "text": "If you start a turn with it in hand, and you have 5 or more points, it becomes a 1/1 pig.",
+        },
+        "washer": {
+          "text": "When you play it, spend 5 charge and remove all debuffs from cards in your hand.",
+        },
+        "statue": {
+          "text": "If you successfully attack with him, unsilence all cards in your hand.",
+        },
+        "harbinger": {
+          "text": "When you play him, if you have a Behemoth in hand, he gets +3/+3.",
+        },
+        "future": {
+          "text": "When you play her, look at the top three cards of your deck.",
+        },
       }
     },
 
@@ -190,6 +322,138 @@ i18next.init({
         },
         "goddess": {
           "text": "Quand vous la jouez, mélangez votre main dans votre deck. Piochez ensuite autant de cartes."
+        },
+        "cursy": {
+          "text": "Quand vous la jouez, maudissez les deux prochaines cartes du deck de l'adversaire.",
+        },
+        "maniac": {
+          "text": "Quand vous le jouez, si le deck de l'adversaire contient une carte maudite, il gagne +3/+3.",
+        },
+        "idol":  {
+          "text": "Commence maudit.",
+          "flavortext": "Chaque matin, il se reveille avec un vraie gueule de bois.",
+        },
+        "unsweet": {
+          "text": "Quand vous le jouez, si vous avez joué au moins 3 cartes maïs, il donne tous les cartes dans le main de l'adversaire -2/-2.",
+        },
+        "demoness": {
+          "text": "Quand vous la jouez, mélangez le main de l'adversaire dans son deck. Ensuite, l'adversaire pioche deux cartes.",
+        },
+        "liquid": {
+          "text": "Quand vous le jouez, il donne tous les cartes dans votre main +5/+5, mais il les maudit aussi.",
+        },
+        "bastard": {
+          "text": "If you successfully attack with him, gain 4 charge.",
+          "flavortext": "His cup size is AAA."
+        },
+        "matrix": {
+          "text": "When you play it, cards in your hand get +1 defense for every charge you have.",
+        },
+        "electrotimmy": {
+          "text": "When you play him, spend 3 charge and gain a point.",
+        },
+        "coffee": {
+          "text": "When you play it, all mages in your deck get +2 attack.",
+          "flavortext": "\"Order for Saruman!\"",
+        },
+        "hexbot": {
+          "text": "When you play it, spend 3 charge and curse all cards in your opponent's hand.",
+        },
+        "ai": {
+          "text": "When you play her, spend 1 charge and draw a card.",
+        },
+        "lil": {
+          "text": "When you play it, gain 5 charge.",
+          "flavortext": "Zap!",
+        },
+        "stone": {
+          "text": "When you play it, draw a goddess. That goddess gets +3/+0.",
+        },
+        "electricsilencer": {
+          "text": "When you play him, spend 3 charge and silence all cards in your opponent's hand.",
+        },
+        "hulk": {
+          "text": "When you play it, cards in your hand get -3/-3.",
+        },
+        "knowledge": {
+          "text": "Its stats are equal to the number of cards in your hand.",
+        },
+        "proof": {
+          "text": "It can't be cursed.",
+          "flavortext": "One time a big horse shaped hex tricked it, though.",
+        },
+        "drainer": {
+          "text": "If you successfully defend with him, uncurse your hand. Gain 1 charge for each.",
+        },
+        "mech": {
+          "text": "When you play him, spend 4 charge and he gets +4/+4.",
+        },
+        "apprentice": {
+          "text": "When you play him, silence all other copies of the last card your opponent played.",
+        },
+        "potion": {
+          "text": "Spend all your charge when you play it. Cards in your hand get +1/+0 for each.",
+        },
+        "revenge": {
+          "text": "If the last card you played was cursed or silenced, curse or silence your opponent's hand.",
+        },
+        "socket": {
+          "text": "When you play it, gain 2 charge.",
+          "flavortext": "Defeated by childproof safety plugs.",
+        },
+        "artifact": {
+          "text": "Starts cursed.",
+          "text2": "When you play it, if both of its stats are below -9, you gain two points.",
+        },
+        "mason": {
+          "text": "If you fail to attack with him, you'll draw a wall next.",
+        },
+        "thief": {
+          "text": "When you play her, steal up to 2 charge from your opponent.",
+        },
+        "conjurer": {
+          "text": "When you play him, turn the best attacker in your opponent's hand into a 1/1 pig.",
+        },
+        "peeper": {
+          "text": "When you play her, look at your opponent's hand.",
+          "flavortext": "Dirty screen looker.",
+        },
+        "crier": {
+          "text": "When you draw him, other cards in your hand get +1/+1.",
+        },
+        "twins": {
+          "text": "If you start a turn with all three of them in hand, they become 9/9.",
+        },
+        "tricks": {
+          "text": "When played, it will randomly curse, silence, or give -3/-3 to your opponent's next card.",
+        },
+        "spackler": {
+          "text": "When you play him, all walls in your deck get +0/+1.",
+        },
+        "staff": {
+          "text": "When you play it, Diggy cards in your hand get +4/+4. Others get +1/+1.",
+        },
+        "pummeler": {
+          "text": "Every turn you start with it in hand, spend 1 charge and it gets +2/+2.",
+        },
+        "lightning": {
+          "text": "When you play him, gain 2 charge.",
+          "flavortext": "Smells like static.",
+        },
+        "spirit": {
+          "text": "If you start a turn with it in hand, and you have 5 or more points, it becomes a 1/1 pig.",
+        },
+        "washer": {
+          "text": "When you play it, spend 5 charge and remove all debuffs from cards in your hand.",
+        },
+        "statue": {
+          "text": "If you successfully attack with him, unsilence all cards in your hand.",
+        },
+        "harbinger": {
+          "text": "When you play him, if you have a Behemoth in hand, he gets +3/+3.",
+        },
+        "future": {
+          "text": "When you play her, look at the top three cards of your deck.",
         },
       }
     }
