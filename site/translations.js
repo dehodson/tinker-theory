@@ -422,43 +422,41 @@ i18next.init({
           "text": "Quand vous le piochez, les autres cartes dans votre main gagne +1/+1.",
         },
         "twins": {
-          "text": "If you start a turn with all three of them in hand, they become 9/9.",
+          "text": "Si vous commencez votre tour avec 3 copies d'eux dans votre main, ils deviennent 9/9.",
         },
         "tricks": {
-          "text": "When played, it will randomly curse, silence, or give -3/-3 to your opponent's next card.",
+          "text": "Quand vous le jouez, il maudira, musellera, ou donnera -3/-3 au hasard à la prochaine carte de l'adversaire.",
         },
         "spackler": {
-          "text": "When you play him, all walls in your deck get +0/+1.",
+          "text": "Quand vous le jouez, tous les murs dans votre deck gagnent +0/+1.",
         },
         "staff": {
-          "text": "When you play it, Diggy cards in your hand get +4/+4. Others get +1/+1.",
+          "text": "Quand vous le jouez, cartes Diggy dans votre main gagnent +4/+4. Les autres gagnent +1/+1.",
         },
         "pummeler": {
-          "text": "Every turn you start with it in hand, spend 1 charge and it gets +2/+2.",
+          "text": "Chaque tour vous commencez avec lui dans votre main, dépensez 1 charge et il gagne +2/+2.",
         },
         "lightning": {
-          "text": "When you play him, gain 2 charge.",
-          "flavortext": "Smells like static.",
+          "text": "Quand vous le jouez, gagnez 2 charges.",
+          "flavortext": "Ça sent l'électricité statique.",
         },
         "spirit": {
-          "text": "If you start a turn with it in hand, and you have 5 or more points, it becomes a 1/1 pig.",
+          "text": "Si vous commencez un tour avec lui dans votre main et que vous avez plus de 5 points, il devient un 1/1 cochon.",
         },
         "washer": {
-          "text": "When you play it, spend 5 charge and remove all debuffs from cards in your hand.",
+          "text": "Quand vous le jouez, dépensez 5 charges et il supprime tous les debuffs de cartes dans votre main.",
         },
         "statue": {
-          "text": "If you successfully attack with him, unsilence all cards in your hand.",
+          "text": "Si vous gagnez à l'attaque avec lui, démuselez toutes les cartes dans votre main.",
         },
         "harbinger": {
-          "text": "When you play him, if you have a Behemoth in hand, he gets +3/+3.",
+          "text": "Quand vous le jouez, si vous avez un Behemoth dans votre main, il gagne +3/+3.",
         },
         "future": {
-          "text": "When you play her, look at the top three cards of your deck.",
+          "text": "Quand vous la jouez, voyez les trois cartes du dessous de votre deck.",
         },
       }
     }
 
   }
 });
-
-console.log(i18next.t('dingle.flavortext'));
