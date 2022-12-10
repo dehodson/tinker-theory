@@ -1,9 +1,47 @@
+const supportedLanguages = ['en', 'fr'];
+let userLanguage = navigator.language || 'en';
+
+for (let lang of navigator.languages) {
+  let normalized = lang.split('-')[0];
+  if (supportedLanguages.indexOf(normalized) >= 0) {
+    userLanguage = normalized;
+    break;
+  }
+}
+
 i18next.init({
-  lng: 'fr', // if you're using a language detector, do not define the lng option
+  lng: userLanguage,
   debug: true,
   resources: {
     en: {
       translation: {
+        "ui": {
+          "battlelog": "Battle Log",
+          "quickmatch": "Quick Match",
+          "challengefriend": "Challenge a Friend",
+          "deckbuilder": "Build a Deck",
+          "rulesbutton": "Rules",
+          "rules": {
+            "howtoplay": "How to Play",
+            "objective": "The object of the game is to score as many points as possible. Each turn, you pick a card from your hand to play against your opponent. You score a point when you're attacking and your card's attack exceeds your opponent's card's defense. The game is over after twenty turns.",
+            "attackanddefend": "Attacking and Defending",
+            "statistics": "When the game starts, a coin will flip and the attacking player will be chosen. If you are on the <b>attack</b> and your card's attack (looks like this: <span style='background-color:#FAA;border-radius:1vmin;padding:.25vmin .5vmin;'>9<img style='height:1.5vmin;width:1.5vmin;' src='sword.svg' /></span>) exceeds their card's defense (looks like this: <span style='background-color:#AAF;border-radius:1vmin;padding:.25vmin .5vmin;'><img style='height:1.5vmin;width:1.5vmin;' src='shield.svg' />4</span>) you will gain a point, and you get to attack again! If you are on the <b>defense</b> and your card's defense exceeds their card's attack, then you will get a turn to attack!",
+            "cardeffects": "Card Effects",
+            "effects": "Certain cards have additional effects. If a card has an additional effect, it will be written on the card. Those effects may take action when played in battle, when you successfully attack with them, successfully defend with them, or in other situations. The card will tell you when the effect will occur.",
+            "buffsanddebuffs": "Buffs and Debuffs",
+            "buffs": "Certain cards improve the stats of cards. Other cards lower the stats of cards. A card is <b>buffed</b> if it has greater stats than its normal stats. A card is <b>debuffed</b> if it has lower stats than its normal stats.",
+            "effectsilenced": "Silenced",
+            "silenced": "If a card is <b>silenced</b>, it will say so on its card and its text will be struck out. Card effects that trigger in battle will not trigger if the card is silenced. Effects that trigger elsewhere, such as in hand, will not be stopped. Effects that determine a card's attack and defense, such as Medusa Mercenary's effect \"If you're losing, she's a 10/10.\" will also not be stopped.",
+            "effectcursed": "Cursed",
+            "cursed": "If a card is <b>cursed</b>, it will say so on its card. Whenever a turn starts, every cursed card in a player's hand loses one attack and one defense.",
+            "effectcharge": "Charge",
+            "charge": "Certain cards allow you to gain <b>charge</b>. Think of charge like a currency you can spend. If a card requires you to spend charge, its effect will not happen unless you have enough charge to spend on it.",
+            "effectblessed": "Blessed",
+            "blessed": "If a card is <b>blessed</b>, it will say so on its card. Whenever a turn starts, every blessed card in a player's hand gains an additional one attack and one defense.",
+            "deckbuilding": "Deckbuilding",
+            "howtobuild": "A deck must contain twenty cards, no more and no less. A maximum of three of each card is enforced.",
+          },
+        },
         "dingle": {
           "flavortext": "Something smells!"
         },
@@ -232,6 +270,33 @@ i18next.init({
 
     fr: {
       translation: {
+        "ui": {
+          "battlelog": "Journaux",
+          "quickmatch": "Match rapide",
+          "challengefriend": "Défiez un ami",
+          "deckbuilder": "Construisez un deck",
+          "rulesbutton": "Règles",
+          "rules": {
+            "howtoplay": "Comment jouer",
+            "objective": "Le but du jeu est de marquer le plus de points possible. A chaque tour, vous piochez une carte dans votre main pour la jouer contre votre adversaire. Vous marquez un point lorsque vous attaquez et que l'attaque de votre carte dépasse la défense de la carte de votre adversaire. Le jeu est terminé après vingt tours.",
+            "attackanddefend": "Attaquer et défendre",
+            "statistics": "Au début du jeu, le joueur attaquant sera choisi au hasard. Si vous êtes à <b>l'attaque</b> et l'attaque de votre carte (ressemble à ça: <span style='background-color:#FAA;border-radius:1vmin;padding:.25vmin .5vmin;'>9<img style='height:1.5vmin;width:1.5vmin;' src='sword.svg' /></span>) est plus grand que la defense de la carte de l'adversaire (defense ressemble à ça: <span style='background-color:#AAF;border-radius:1vmin;padding:.25vmin .5vmin;'><img style='height:1.5vmin;width:1.5vmin;' src='shield.svg' />4</span>) vous gagnez un point et vous pouvez attaquer encore ! Si vous êtes à <b>la defense</b> et la defense de votre carte est plus grand que l'attaque de la carte de l'adversaire, ensuite ce sera à votre tour d'attaquer !",
+            "cardeffects": "Effets de carte",
+            "effects": "Certaines cartes ont des effets supplémentaires. Si une carte a un effet supplémentaire, cela sera écrit sur la carte. Ces effets peuvent agir lorsqu'ils sont joués au combat, lorsque vous réussissez à attaquer avec eux, à vous défendre avec succès ou dans d'autres situations. La carte vous dira quand l'effet se produira.",
+            "buffsanddebuffs": "Buffs et debuffs",
+            "buffs": "Certaines cartes améliorent les statistiques des cartes. D'autres cartes réduisent les statistiques des cartes. Une carte est <b>buffée</b> si elle a des statistiques supérieures à ses statistiques normales. Une carte est <b>debuffée</b> si elle a des statistiques inférieures à ses statistiques normales.",
+            "effectsilenced": "Muselée",
+            "silenced": "Si une carte est <b>muselée</b>, elle le dira sur sa carte et son texte sera barré. Les effets de carte qui se déclenchent au combat ne se déclencheront pas si la carte est réduite au silence. Les effets qui se déclenchent ailleurs, comme dans la main, ne seront pas arrêtés. Effets qui déterminent l'attaque et la défense d'une carte, comme l'effet de Medusa Mercenary \"Si vous perdez, elle devient un 10/10.\" ne sera pas arrêté non plus.",
+            "effectcursed": "Maudit",
+            "cursed": "Si une carte est <b>maudite</b>, elle le mentionnera sur sa carte. Chaque fois qu'un tour commence, chaque carte maudite dans la main d'un joueur perd une attaque et une défense.",
+            "effectcharge": "Charges",
+            "charge": "Certaines cartes permettent de gagner <b>charges</b>. Considérez les frais comme une monnaie que vous pouvez dépenser. Si une carte vous oblige à dépenser une charge, son effet ne se produira que si vous avez suffisamment de charge à dépenser.",
+            "effectblessed": "Bénie",
+            "blessed": "Si une carte est <b>bénie</b>, cela sera indiqué sur sa carte. Chaque fois qu'un tour commence, chaque carte bénie dans la main d'un joueur gagne une attaque et une défense supplémentaires.",
+            "deckbuilding": "Construire un deck",
+            "howtobuild": "Un deck doit contenir vingt cartes, ni plus ni moins. Un maximum de trois cartes de chaque carte est appliqué.",
+          },
+        },
         "dingle": {
           "flavortext": "Quelque chose pue!"
         },

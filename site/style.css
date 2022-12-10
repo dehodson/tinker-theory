@@ -926,3 +926,20 @@ a:hover{
 #donate:hover{
   opacity: 1;
 }
+#translations{
+  position: absolute;
+  top:.5vmin;
+  left:.5vmin;
+  display:flex;
+  flex-direction:row;
+  z-index:110;
+}
+.translation-button{
+  font-size: 2.5vmin;
+  opacity: 0.5;
+  padding:0.5vmin;
+  cursor:pointer;
+}
+.translation-button:hover{
+  opacity:1;
+}

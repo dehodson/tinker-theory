@@ -376,21 +376,16 @@ function friendGame(){
     showLog();
 }
 
-function deckBuilder(){
-    mode = 2;
+function renderCardLists(){
+    var i = 0;
+    var page = 0;
 
-    decklist = [];
     var element  = document.getElementById("deck-builder-cards");
     var cotclist = document.getElementById("deck-builder-cards-curse");
     var blessedlist = document.getElementById("deck-builder-cards-blessed");
     element.innerHTML = "";
     cotclist.innerHTML = "";
     blessedlist.innerHTML = "";
-    element.style.visibility = "visible";
-    cotclist.style.visibility = "hidden";
-    blessedlist.style.visibility = "hidden";
-    var i = 0;
-    var page = 0;
 
     for(var card in cards){
         if(cards[card].expansion == "core"){
@@ -413,10 +408,22 @@ function deckBuilder(){
         display.style.top  = (Math.floor(i / 3) * 28)+"vmin";
         i += 1;
     }
+}
 
+function deckBuilder(){
+    mode = 2;
+
+    decklist = [];
+    var element  = document.getElementById("deck-builder-cards");
+    var cotclist = document.getElementById("deck-builder-cards-curse");
+    var blessedlist = document.getElementById("deck-builder-cards-blessed");
+    element.style.visibility = "hidden";
+    cotclist.style.visibility = "hidden";
+    blessedlist.style.visibility = "visible";
+
+    renderCardLists();
     showDeckPicker();
 
-    //element.style.height = ((Math.floor((i - 1) / 3) + 1) * 28) + "vmin";
     document.getElementById("deck-builder").style.visibility = "visible";
     document.getElementById("splash").style.visibility = "hidden";
 }
@@ -698,6 +705,23 @@ function keyPressed(event){
     }
 }
 
+var uiElements = {};
+function translateUi(){
+  for (let element of document.getElementsByClassName('translatable')) {
+    if (!uiElements[element.id]) {
+      uiElements[element.id] = element.innerHTML;
+    }
+    element.innerHTML = uiElements[element.id].format();
+  }
+}
+
+function changeTranslation(translation){
+  i18next.changeLanguage(translation);
+  renderCardLists();
+  updateHand();
+  translateUi();
+}
+
 socket.on('turn', function( data ) {
     var timeout = 2500;
 
@@ -824,7 +848,4 @@ if($_GET["gameid"]){
     friendGame();
 }
 
-// var audio = new Audio('goog.wav');
-// audio.play();
-
-// window.setInterval(function(){audio.currentTime = 0; audio.play()}, 35000);
+translateUi();
