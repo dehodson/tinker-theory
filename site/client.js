@@ -246,7 +246,9 @@ function makeCard(dict, id, onclick){
 
     const text = dict.text.format();
 
-    if (text.length > 110) {
+    if (text.length > 140) {
+        className += " text-s";
+    } else if (text.length > 110) {
         className += " text-m";
     }
 

@@ -748,7 +748,7 @@ cards = {
     "proof": {
         title: "Hexproof Barrier",
         image: "proof.png",
-        text: "{proof.text}><br /><i>{proof.flavortext}</i>",
+        text: "{proof.text}<br /><br /><i>{proof.flavortext}</i>",
         attack: 0,
         defense: 6,
         buffa: 0,
@@ -864,7 +864,7 @@ cards = {
     "artifact": {
         title: "Curious Artifact",
         image: "artifact.png",
-        text: "{artifact.text}><span class=\"silenceable\">{artifact.text2}</span>",
+        text: "{artifact.text}<br /><span class=\"silenceable\">{artifact.text2}</span>",
         attack: 0,
         defense: 0,
         buffa: 0,

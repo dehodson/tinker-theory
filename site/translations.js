@@ -270,7 +270,7 @@ i18next.init({
           "text": "Quand vous le jouez, vous piocherez ensuite votre meilleur attacqant."
         },
         "shrinky": {
-          "text": "Quand vous le jouez, il donne chaque carte dans le main de l'adversaire -1/-3."
+          "text": "Quand vous le jouez, il donne chaque carte dans la main de l'adversaire -1/-3."
         },
         "normalizer": {
           "text": "Quand vous le jouez, il supprime tous les buffs et debuffs de chaque carte dans chaque main."
@@ -298,10 +298,10 @@ i18next.init({
           "text": "Quand vous le jouez, si votre dernière carte etait une carte maïs, piochez une carte."
         },
         "necro": {
-          "text": "Quand vous le jouez, tous les statistiques de le main de l'adversaire seront moyennés."
+          "text": "Quand vous le jouez, tous les statistiques de la main de l'adversaire seront moyennés."
         },
         "silencer": {
-          "text": "Quand vous le jouez, muselée tous les cartes de le main de l'adversaire."
+          "text": "Quand vous le jouez, muselée tous les cartes de la main de l'adversaire."
         },
         "duo": {
           "text": "Quand vous les jouez, piochez une carte, mais elle sera muselée."
@@ -334,65 +334,65 @@ i18next.init({
           "flavortext": "Chaque matin, il se reveille avec un vraie gueule de bois.",
         },
         "unsweet": {
-          "text": "Quand vous le jouez, si vous avez joué au moins 3 cartes maïs, il donne tous les cartes dans le main de l'adversaire -2/-2.",
+          "text": "Quand vous le jouez, si vous avez joué au moins 3 cartes maïs, il donne tous les cartes dans la main de l'adversaire -2/-2.",
         },
         "demoness": {
-          "text": "Quand vous la jouez, mélangez le main de l'adversaire dans son deck. Ensuite, l'adversaire pioche deux cartes.",
+          "text": "Quand vous la jouez, mélangez la main de l'adversaire dans son deck. Ensuite, l'adversaire pioche deux cartes.",
         },
         "liquid": {
           "text": "Quand vous le jouez, il donne tous les cartes dans votre main +5/+5, mais il les maudit aussi.",
         },
         "bastard": {
-          "text": "If you successfully attack with him, gain 4 charge.",
-          "flavortext": "His cup size is AAA."
+          "text": "Si vous gagnez a l'attaque avec lui, gagnez 4 charges.",
+          "flavortext": "Il vous donnera un \"pile\"driver."
         },
         "matrix": {
-          "text": "When you play it, cards in your hand get +1 defense for every charge you have.",
+          "text": "Quand vous le jouez, les cartes dans votre main gagnez +1/+1 pour chaque charge que vous avez.",
         },
         "electrotimmy": {
-          "text": "When you play him, spend 3 charge and gain a point.",
+          "text": "Quand vous le jouez, dépensez 3 charges puis vous gagnez un point.",
         },
         "coffee": {
-          "text": "When you play it, all mages in your deck get +2 attack.",
-          "flavortext": "\"Order for Saruman!\"",
+          "text": "Quand vous le jouez, tous les mages de votre deck gagnent +2 attaque.",
+          "flavortext": "Bon avec une baguette.",
         },
         "hexbot": {
-          "text": "When you play it, spend 3 charge and curse all cards in your opponent's hand.",
+          "text": "Quand vous le jouez, dépensez 3 charges et maudissez tous les cartes dans la main de l'adversaire.",
         },
         "ai": {
-          "text": "When you play her, spend 1 charge and draw a card.",
+          "text": "Quand vous la jouez, dépensez 1 charge et piochez une carte.",
         },
         "lil": {
-          "text": "When you play it, gain 5 charge.",
-          "flavortext": "Zap!",
+          "text": "Quand vous le jouez, gagnez 5 charges.",
+          "flavortext": "Zap !",
         },
         "stone": {
-          "text": "When you play it, draw a goddess. That goddess gets +3/+0.",
+          "text": "Quand vouz le jouez, piochez une carte déesse. Cette déesse gagnez +3/+0.",
         },
         "electricsilencer": {
-          "text": "When you play him, spend 3 charge and silence all cards in your opponent's hand.",
+          "text": "Quand vous le jouez, dépensez 3 charges et muselez toutes les cartes dans la main de l'adversaire.",
         },
         "hulk": {
-          "text": "When you play it, cards in your hand get -3/-3.",
+          "text": "Quand vous le jouez, il donne -3/-3 à toutes les cartes dans votre main.",
         },
         "knowledge": {
-          "text": "Its stats are equal to the number of cards in your hand.",
+          "text": "Ses statistiques sont égales au nombre de cartes dans votre main.",
         },
         "proof": {
-          "text": "It can't be cursed.",
-          "flavortext": "One time a big horse shaped hex tricked it, though.",
+          "text": "Il ne peut pas être maudit.",
+          "flavortext": "Plus dur que les autres murs.",
         },
         "drainer": {
-          "text": "If you successfully defend with him, uncurse your hand. Gain 1 charge for each.",
+          "text": "Si vous gagnez à la défense avec lui, supprimer toute malédiction de chaque carte dans votre main et gagnez 1 charge pour chacun.",
         },
         "mech": {
-          "text": "When you play him, spend 4 charge and he gets +4/+4.",
+          "text": "Quand vous le jouez, dépensez 4 charges et il gagne +4/+4.",
         },
         "apprentice": {
-          "text": "When you play him, silence all other copies of the last card your opponent played.",
+          "text": "Quand vous le jouez, il muselle chaque autre copie de le dernière carte de l'adversaire.",
         },
         "potion": {
-          "text": "Spend all your charge when you play it. Cards in your hand get +1/+0 for each.",
+          "text": "Quand vous le jouez, dépensez toutes vos charges. Chaque carte dans votre main gagne +1/+0 pour chaque charge.",
         },
         "revenge": {
           "text": "If the last card you played was cursed or silenced, curse or silence your opponent's hand.",
