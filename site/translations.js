@@ -395,31 +395,31 @@ i18next.init({
           "text": "Quand vous le jouez, dépensez toutes vos charges. Chaque carte dans votre main gagne +1/+0 pour chaque charge.",
         },
         "revenge": {
-          "text": "If the last card you played was cursed or silenced, curse or silence your opponent's hand.",
+          "text": "Si votre dernière carte a été maudite ou muselée, maudire ou museler chaque carte dans la main de l'adversaire.",
         },
         "socket": {
-          "text": "When you play it, gain 2 charge.",
-          "flavortext": "Defeated by childproof safety plugs.",
+          "text": "Quand vous le jouez, gagnez 2 charges.",
+          "flavortext": "Son plus grand ennemi ? Couvre-prises à l'épreuve des enfants.",
         },
         "artifact": {
-          "text": "Starts cursed.",
-          "text2": "When you play it, if both of its stats are below -9, you gain two points.",
+          "text": "Commence maudit.",
+          "text2": "Quand vous le jouez, si ses statistiques sont toutes le deux moins de -9, vous gagnez 2 points.",
         },
         "mason": {
-          "text": "If you fail to attack with him, you'll draw a wall next.",
+          "text": "Si vous perdez à l'attaque avec lui, vous piocherez un mur lors de votre prochaine tour.",
         },
         "thief": {
-          "text": "When you play her, steal up to 2 charge from your opponent.",
+          "text": "Quand vous la jouez, volez 2 chargez à l'adversaire.",
         },
         "conjurer": {
-          "text": "When you play him, turn the best attacker in your opponent's hand into a 1/1 pig.",
+          "text": "Quand vous le jouez, le meilleur attaquant dans la main de l'adversaire devient un 1/1 cochon.",
         },
         "peeper": {
-          "text": "When you play her, look at your opponent's hand.",
-          "flavortext": "Dirty screen looker.",
+          "text": "Quand vous la jouez, vous voyez la main de l'adversaire.",
+          "flavortext": "N'est-ce pas de la triche ?",
         },
         "crier": {
-          "text": "When you draw him, other cards in your hand get +1/+1.",
+          "text": "Quand vous le piochez, les autres cartes dans votre main gagne +1/+1.",
         },
         "twins": {
           "text": "If you start a turn with all three of them in hand, they become 9/9.",
