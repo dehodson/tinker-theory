@@ -304,7 +304,7 @@ i18next.init({
           "flavortext": "C'est presque trop cosy."
         },
         "corn": {
-          "text": "Il gagne +2/+2 chaque fois vous jouez un maïs."
+          "text": "Il gagne +1/+1 chaque fois vous jouez un maïs."
         },
         "shower": {
           "text": "Quand vous le jouez, il donne chaque carte dans votre main +3/+3."
@@ -341,7 +341,7 @@ i18next.init({
           "text": "Quand vous le jouez, il supprime tous les buffs et debuffs de chaque carte dans chaque main."
         },
         "mercenary": {
-          "text": "Si vous perdez, elle devient un 10/10.",
+          "text": "Si vous êtes en train de perdre, elle devient un 10/10.",
           "flavortext": "Les coiffeurs la détestent !"
         },
         "electro": {
@@ -366,13 +366,13 @@ i18next.init({
           "text": "Quand vous le jouez, tous les statistiques de la main de l'adversaire seront moyennés."
         },
         "silencer": {
-          "text": "Quand vous le jouez, muselée tous les cartes de la main de l'adversaire."
+          "text": "Quand vous le jouez, muselée toutes les cartes de la main de l'adversaire."
         },
         "duo": {
           "text": "Quand vous les jouez, piochez une carte, mais elle sera muselée."
         },
         "hexmage": {
-          "text": "Quand vous le jouez, il démusele tous les cartes de votre main. Il gagne +1/+0 pour chaque carte."
+          "text": "Quand vous le jouez, il démusele toutes les cartes de votre main. Il gagne +1/+0 pour chaque carte."
         },
         "bound": {
           "text": "Quand vous le jouez, il gagne +7/+7.",
@@ -395,17 +395,17 @@ i18next.init({
           "text": "Quand vous le jouez, si le deck de l'adversaire contient une carte maudite, il gagne +3/+3.",
         },
         "idol":  {
-          "text": "Commence maudit.",
+          "text": "Maudit.",
           "flavortext": "Chaque matin, il se reveille avec un vraie gueule de bois.",
         },
         "unsweet": {
-          "text": "Quand vous le jouez, si vous avez joué au moins 3 cartes maïs, il donne tous les cartes dans la main de l'adversaire -2/-2.",
+          "text": "Quand vous le jouez, si vous avez joué au moins 3 cartes maïs, Il confère -2/-2 à toutes les cartes dans la main de votre adversaire.",
         },
         "demoness": {
           "text": "Quand vous la jouez, mélangez la main de l'adversaire dans son deck. Ensuite, l'adversaire pioche deux cartes.",
         },
         "liquid": {
-          "text": "Quand vous le jouez, il donne tous les cartes dans votre main +5/+5, mais il les maudit aussi.",
+          "text": "Quand vous le jouez, il confère à toutes les cartes de votre main +5/+5, mais il les maudit aussi.",
         },
         "bastard": {
           "text": "Si vous gagnez a l'attaque avec lui, gagnez 4 charges.",
@@ -422,7 +422,7 @@ i18next.init({
           "flavortext": "Bon avec une baguette.",
         },
         "hexbot": {
-          "text": "Quand vous le jouez, dépensez 3 charges et maudissez tous les cartes dans la main de l'adversaire.",
+          "text": "Quand vous le jouez, dépensez 3 charges et maudissez toutes les cartes dans la main de l'adversaire.",
         },
         "ai": {
           "text": "Quand vous la jouez, dépensez 1 charge et piochez une carte.",
@@ -460,14 +460,14 @@ i18next.init({
           "text": "Quand vous le jouez, dépensez toutes vos charges. Chaque carte dans votre main gagne +1/+0 pour chaque charge.",
         },
         "revenge": {
-          "text": "Si votre dernière carte a été maudite ou muselée, maudire ou museler chaque carte dans la main de l'adversaire.",
+          "text": "Si votre toute dernière carte a été maudite ou muselée, maudire ou museler chaque carte dans la main de l'adversaire.",
         },
         "socket": {
           "text": "Quand vous le jouez, gagnez 2 charges.",
           "flavortext": "Son plus grand ennemi ? Couvre-prises à l'épreuve des enfants.",
         },
         "artifact": {
-          "text": "Commence maudit.",
+          "text": "Maudit.",
           "text2": "Quand vous le jouez, si ses statistiques sont toutes le deux moins de -9, vous gagnez 2 points.",
         },
         "mason": {
